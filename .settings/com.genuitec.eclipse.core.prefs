@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=WebContent/globle/js/jquery-1.8.0.min.js,WebContent/globle/js/jquery-2.0.0.min.js
+validator.Unchecked=
