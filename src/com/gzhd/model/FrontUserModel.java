@@ -30,6 +30,10 @@ public class FrontUserModel {
 	
 	private double balance;
 	
+	private double balanceBegin;
+	
+	private double balanceEnd;
+	
 	private int pageNum = 1; // 一定要有默认值1，不然会报错
 
 	public String getId() {
@@ -150,6 +154,22 @@ public class FrontUserModel {
 
 	public void setBalance(double balance) {
 		this.balance = balance;
+	}
+
+	public double getBalanceBegin() {
+		return balanceBegin;
+	}
+
+	public void setBalanceBegin(double balanceBegin) {
+		this.balanceBegin = balanceBegin;
+	}
+
+	public double getBalanceEnd() {
+		return balanceEnd;
+	}
+
+	public void setBalanceEnd(double balanceEnd) {
+		this.balanceEnd = balanceEnd;
 	}
 	
 	

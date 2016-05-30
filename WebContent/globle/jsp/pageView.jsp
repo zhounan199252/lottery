@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<jsp:include page="/globle/jsp/base.jsp"></jsp:include>
 
 <div class="container">
 	<div class="row" style="line-height: 36px">
@@ -9,7 +8,7 @@
 			</div>
 			<div class="control-group span12">
 				<ul class="pagination">
-					<li><a href="javascript: gotoPage(${requestScope.pageModel.currentPage - 1})" title="上一页">&larr;</a></li>
+					<li><a href="javascript: gotoPage(1)" title="首页">&larr;</a></li>
 
 					<s:iterator begin="%{#pageModel.beginPageIndex}" end="%{#pageModel.endPageIndex}" var="num">
 						<s:if test="currentPage == #num">
@@ -21,7 +20,7 @@
 							<li><a href="javascript: gotoPage(${num})">${num}</a></li>
 						</s:else>
 					</s:iterator>
-					<li><a href="javascript: gotoPage(${requestScope.pageModel.currentPage + 1})" title="下一页">&rarr;</a></li>
+					<li><a href="javascript: gotoPage(${requestScope.pageModel.pageCount})" title="尾页">&rarr;</a></li>
 				</ul>
 			</div>
 			<div class="control-group span3 ">
