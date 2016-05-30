@@ -21,10 +21,10 @@ import com.opensymphony.xwork2.ActionContext;
  * @time:2015年7月28日 上午10:05:24
  */
 @Action(value = "backUser", results = { //
-		@Result(name = "list", location = "/WEB-INF/pages/back_page/user/userList.jsp"), //
+		@Result(name = "list", location = "/WEB-INF/pages/back_page/back_user/userList.jsp"), //
 		@Result(name = "toList", location = "backUser!listBackUser.action", type = "redirectAction"),//
-		@Result(name = "add", location = "/WEB-INF/pages/back_page/user/addUser.jsp"),//
-		@Result(name = "edit", location = "/WEB-INF/pages/back_page/user/editUser.jsp")//
+		@Result(name = "add", location = "/WEB-INF/pages/back_page/back_user/addUser.jsp"),//
+		@Result(name = "edit", location = "/WEB-INF/pages/back_page/back_user/editUser.jsp")//
 })
 @Scope("prototype")
 public class BackUserAction extends BaseAction<BackUserModel> {

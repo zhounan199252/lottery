@@ -38,10 +38,10 @@
 	<form action="${pageContext.request.contextPath}/backUser!listBackUser.action" method="post" id="form_search"></form>
 
 
-	<div class="container span24">
-		<div class="row span24">
-			<div class="row" style="padding: 10px 0 0 10px">
-				<div class="control-group span24">
+	<div class="container" style="width: 100%;padding: 10px 0 0 20px">
+		<div class="row">
+			<div class="row">
+				<div class="control-group span24" style="width: 100%">
 					<label class="control-label">
 						<button class="button" onclick="doAdd('${pageContext.request.contextPath}/backUser!addBackUserPage.action');">添加</button>
 					</label> <label class="control-label">
@@ -54,11 +54,11 @@
 					</label>
 				</div>
 			</div>
-			<div class="row span24">
-				<div class="control-group span24">
+			<div class="row">
+				<div class="control-group">
 					<table class="table table-striped table-bordered">
 						<tr>
-							<th style="width: 30px"><input type="checkbox" id="chk_ids" onclick="$('[name=ids]').prop('checked', this.checked)"></th>
+							<th style="width: 30px"><input type="checkbox" id="chk_ids" onclick="$('[name=ids]').prop('checked', this.checked)" title="全选"></th>
 							<th>姓名</th>
 							<th>用户名</th>
 							<th>注册时间</th>
