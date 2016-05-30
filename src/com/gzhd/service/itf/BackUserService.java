@@ -5,7 +5,6 @@ import com.gzhd.model.PageModel;
 
 /**
  * @Description:user 业务逻辑类
- * @author:黄威生
  * @time:2015年7月24日 下午3:00:50
  */
 public interface BackUserService {
@@ -14,7 +13,6 @@ public interface BackUserService {
 
 	/**
 	 * @Description:根据id获取User对象
-	 * @author: 黄威生
 	 * @param id
 	 * @return
 	 * @return:User
@@ -25,7 +23,6 @@ public interface BackUserService {
 
 	/**
 	 * @Description:添加一个用户
-	 * @author: 黄威生
 	 * @param model
 	 * @return
 	 * @return:Integer
@@ -36,7 +33,6 @@ public interface BackUserService {
 
 	/**
 	 * @Description:用户登录
-	 * @author: 黄威生
 	 * @param model
 	 * @return
 	 * @return:UserModel
@@ -47,7 +43,6 @@ public interface BackUserService {
 
 	/**
 	 * @Description:根据分页获取数据
-	 * @author: 黄威生
 	 * @param pageSize   
 	 * 			分页大小
 	 * @param pageNum
@@ -62,7 +57,6 @@ public interface BackUserService {
 
 	/**
 	 * @Description:更新用户信息
-	 * @author: 黄威生
 	 * @param model
 	 * @return:void
 	 * @exception:
@@ -72,7 +66,6 @@ public interface BackUserService {
 
 	/**
 	 * @Description:根据id删除用户
-	 * @author: 黄威生
 	 * @param id
 	 * @return:void
 	 * @exception:
@@ -82,7 +75,6 @@ public interface BackUserService {
 
 	/**
 	 * @Description:初始化密码，默认初始化为88888888
-	 * @author: 黄威生
 	 * @param id
 	 * @return:void
 	 * @exception:

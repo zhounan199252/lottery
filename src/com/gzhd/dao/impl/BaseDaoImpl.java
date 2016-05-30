@@ -16,7 +16,6 @@ import com.gzhd.dao.itf.BaseDao;
 
 /**
  * @Description:基础dao类，基本上已经实现了所有有可能使用到的操作数据库的方法
- * @author:黄威生
  * @time:2015年7月24日 下午2:42:22
  */
 @SuppressWarnings("unchecked")

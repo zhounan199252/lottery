@@ -21,7 +21,6 @@ import com.gzhd.util.Encrypt;
 
 /**
  * @Description:user的业务逻辑实现类
- * @author:黄威生
  * @time:2015年7月28日 上午10:07:58
  */
 @Service(BackUserService.BEAN_NAME)

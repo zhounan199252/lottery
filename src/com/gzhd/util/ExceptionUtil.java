@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 
 /**
  * @Description:获取异常信息
- * @author:黄威生
  * @time:2015年8月7日 上午11:50:09
  */
 public class ExceptionUtil {
@@ -19,7 +18,6 @@ public class ExceptionUtil {
 	
 	/**
 	 * @Description:
-	 * @author: 黄威生
 	 * @param ex
 	 * @return
 	 * @return:String 异常信息

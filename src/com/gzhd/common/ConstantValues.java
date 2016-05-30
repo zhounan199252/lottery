@@ -2,7 +2,6 @@ package com.gzhd.common;
 
 /**
  * @Description:系统所有常量
- * @author:黄威生
  * @time:2015年7月24日 下午4:34:14
  */
 public class ConstantValues {
@@ -25,9 +24,14 @@ public class ConstantValues {
 	
 	
 	/**
-	 * 当前验证码 
+	 * 后台当前验证码 
 	 */
-	public static final String SESSION_CODE = "sessionCode";
+	public static final String BACK_SESSION_CODE = "backSessionCode";
+	
+	/**
+	 * 前台当前验证码
+	 */
+	public static final String FRONT_SESSION_CODE = "frontSessionCode";
 	
 	
 	/**

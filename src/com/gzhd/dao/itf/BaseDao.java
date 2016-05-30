@@ -6,7 +6,6 @@ import java.util.Map;
 
 /**
  * @Description:基础dao类，基本上已经实现了所有有可能使用到的操作数据库的方法，所有service类都可以从整个类中获取方法操作数据库，并不需要各自实现
- * @author:黄威生
  * @time:2015年7月24日 下午2:45:29
  */
 public interface BaseDao<T> {

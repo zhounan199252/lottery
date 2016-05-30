@@ -13,7 +13,6 @@ import com.opensymphony.xwork2.ActionContext;
 
 /**
  * @Description:登陆页面以此获取验证码
- * @author:黄威生
  * @time:2015年7月24日 上午11:07:09
  */
 @Action(value="securityCode", results = {
@@ -29,13 +28,24 @@ public class SecurityCodeAction extends BaseAction<Object> {
 	
 	private ByteArrayInputStream inputStream;
 
-	public String getCode() throws Exception {
+	public String getCodeForBack() throws Exception {
 		
 		RandomCodeUtil rdnu = RandomCodeUtil.Instance();
 		
 		this.setInputStream(rdnu.getImage());// 取得带有随机字符串的图片
 		
-		ActionContext.getContext().getSession().put(ConstantValues.SESSION_CODE, rdnu.getString());// 取得随机字符串放入HttpSession
+		ActionContext.getContext().getSession().put(ConstantValues.BACK_SESSION_CODE, rdnu.getString());// 取得随机字符串放入HttpSession
+		
+		return SUCCESS;
+	}
+	
+	public String getCodeForFront() throws Exception {
+		
+		RandomCodeUtil rdnu = RandomCodeUtil.Instance();
+		
+		this.setInputStream(rdnu.getImage());// 取得带有随机字符串的图片
+		
+		ActionContext.getContext().getSession().put(ConstantValues.FRONT_SESSION_CODE, rdnu.getString());// 取得随机字符串放入HttpSession
 		
 		return SUCCESS;
 	}

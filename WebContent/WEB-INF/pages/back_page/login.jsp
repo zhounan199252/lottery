@@ -61,7 +61,7 @@
 	function changeValidateCode(obj) {
 		// 获取当前的时间作为参数,没实际意义，只为确保页面不会缓存
 		var timenow = new Date().getTime();
-		$(obj).attr("src", "${pageContext.request.contextPath}/securityCode!getCode.action?d=" + timenow);
+		$(obj).attr("src", "${pageContext.request.contextPath}/securityCode!getCodeForBack.action?d=" + timenow);
 	}
 
 	/**
@@ -103,7 +103,7 @@
 			<tr>
 				<td>验证码</td>
 				<td><input type="text" name="code"></td>
-				<td><img src="${pageContext.request.contextPath }/securityCode!getCode.action" id="img_code" onclick="changeValidateCode(this)" title="点击图片刷新验证码" style="width: 80px; height: 30px"/></td>
+				<td><img src="${pageContext.request.contextPath }/securityCode!getCodeForBack.action" id="img_code" onclick="changeValidateCode(this)" title="点击图片刷新验证码" style="width: 80px; height: 30px"/></td>
 			</tr>
 			
 			<tr>

@@ -42,7 +42,7 @@
 						closeable : false
 					}, {
 						id : 'back_user',
-						text : '用户管理',
+						text : '后台用户管理',
 						href : '${pageContext.request.contextPath}/backUser!listBackUser.action'
 					} ]
 				}, {
@@ -55,6 +55,10 @@
 						id : 'function',
 						text : '优惠活动',
 						href : 'main/quick.html'
+					}, {
+						id : 'front_user',
+						text : '前台用户管理',
+						href : '${pageContext.request.contextPath}/frontUser!listFrontUser.action'
 					} ]
 				} ]
 			} ];

@@ -75,7 +75,7 @@
 </head>
 <body>
 	<div style="width: 90%;padding: 12px 0 0 12px">
-	<h2>用户管理--添加用户</h2>
+	<h2>后台用户管理--添加用户</h2>
 	
 		<s:form action="backUser!addBackUser.action" id="form_add">
 		<table class="table table-striped">

@@ -11,7 +11,6 @@ import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 
 /**
  * @Description:字符编码过滤器，强制性把编码设置成utf-8
- * @author:黄威生
  * @time:2015年7月24日 上午10:06:53
  */
 public class EncodingInterceptor extends MethodFilterInterceptor {

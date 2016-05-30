@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Description:request工具类
- * @author:黄威生
  * @time:2015年7月24日 上午10:05:39
  */
 public class RequestUtil {

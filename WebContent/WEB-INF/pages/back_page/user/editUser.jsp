@@ -59,7 +59,7 @@
 </head>
 <body>
 	<div style="width: 90%;padding: 12px 0 0 12px">
-	<h2>用户管理--编辑用户</h2>
+	<h2>后台用户管理--编辑用户</h2>
 	
 		<s:form action="backUser!editBackUser.action" id="form_edit">
 		<s:hidden name="id"></s:hidden>

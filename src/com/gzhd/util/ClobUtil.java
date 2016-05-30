@@ -13,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * @Description:大文本（Clob）存取工具类
- * @author:黄威生
  * @time:2015年7月28日 上午10:21:19
  */
 public class ClobUtil {

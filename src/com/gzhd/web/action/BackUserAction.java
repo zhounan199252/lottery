@@ -18,7 +18,6 @@ import com.opensymphony.xwork2.ActionContext;
 
 /**
  * @Description:user 的action处理类
- * @author:黄威生
  * @time:2015年7月28日 上午10:05:24
  */
 @Action(value = "backUser", results = { //
@@ -45,7 +44,7 @@ public class BackUserAction extends BaseAction<BackUserModel> {
 
 		JsonObject json = new JsonObject();
 
-		String sessionCode = (String) ActionContext.getContext().getSession().get(ConstantValues.SESSION_CODE);
+		String sessionCode = (String) ActionContext.getContext().getSession().get(ConstantValues.BACK_SESSION_CODE);
 
 		if (!model.getCode().equals(sessionCode)) {
 			json.addProperty("success", false);
