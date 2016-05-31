@@ -78,6 +78,11 @@
 </div>
 <!-- //logo-cart -->
 <!------>
+
+ <div      style="position: absolute; text-align: center; float: left; width: 10%; height: 10%; z-index: 10001; left: 90%; top: 80%; border: 2px">
+			<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1904037944&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1904037944:53" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+	</div>
+	
 <div class="mega_nav">
 	 <div class="container">
 		 <div class="menu_sec">
@@ -99,7 +104,7 @@
 			<li><a  class="color1" href="#">优惠活动</a>
 				
 			</li>
-			<li><a  class="color1" href="#">在线客服</a>
+			<li><a  class="color1" href="${pageContext.request.contextPath}/globle/js/front_bootstrap/responsiveslides.min.js">在线客服</a>
 				
 			</li>								
 		</ul> 
@@ -144,6 +149,7 @@
 									优惠活动<br>		
 									优惠活动<br>								
 									</p>
+							
 									<div class="buy">
 										<a href="single.html">点击查看</a>
 									</div>
