@@ -38,16 +38,14 @@
 </head>
 	
 <body>
-<!-- header -->
-	
-<!-- //header -->
+
 <!-- top-header -->
 <div class="top_bg">
 	<div class="container">
 		<div class="header_top-sec">
 			<div class="top_left">
 				<ul>
-					<li><a href="login.html">登录</a></li>|
+					<li><a href="login.html">登录</a></li>
 					<li class="top_link"><a href="login.html">我的账户</a></li>					
 				</ul>
 			</div>
@@ -56,6 +54,7 @@
 	</div>
 </div>
 <!-- top-header -->
+
 <!-- logo-cart -->
 <div class="header_top">
 	<div class="container">
@@ -65,9 +64,8 @@
 		<div class="header_right">
 			<div class="cart box_1">
 				<a href="checkout.html">
-				<h3> <div class="total">
-					<span class="simpleCart_total"></span> </div>
-					<img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/cart1.png" alt=""/></h3>
+				    <span class="simpleCart_total  total"></span> 
+					<img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/cart1.png" alt=""/>
 				</a>
 				<p><a href="javascript:;" class="simpleCart_empty"></a></p>
 				<div class="clearfix"> </div>
@@ -77,13 +75,18 @@
 	</div>
 </div>
 <!-- //logo-cart -->
-<!------>
+
+<!-- 在线客服 -->
+ <div   style="position: absolute; text-align: center; float: left; width: 10%; height: 10%; z-index: 10001; left: 90%; top: 80%; border: 2px">
+	    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1904037944&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1904037944:53" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+	</div>
+	
 <div class="mega_nav">
 	 <div class="container">
 		 <div class="menu_sec">
 		 <!-- start header menu -->
 		<ul class="megamenu skyblue">
-			<li class="active grid"><a class="color1" href="index.html">首页</a></li>
+			<li class="active grid"><a class="color1" onclick="showFirstPage();">首页</a></li>
 			<li><a  class="color1" href="#">消息公告</a>
 				
 			</li>
@@ -93,7 +96,7 @@
 			<li><a class="color1" href="#">彩票游戏</a>
 				
 			</li>
-			<li><a class="color1" href="#">六合彩</a>
+			<li><a class="color1" onclick="gotoPage('${pageContext.request.contextPath}/lottery/lottery.jsp');">六合彩</a>
 				
 			</li>				
 			<li><a  class="color1" href="#">优惠活动</a>
@@ -106,13 +109,29 @@
 		 </div>
 	  </div>
 </div>
-<!---->
+
 <!-- banner -->
 	<div class="banner">
 		<div class="container">
 <!-- Slider-starts-Here -->
 				<script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/responsiveslides.min.js"></script>
 				 <script>
+				 
+				 /**
+		                  跳转到指定的页面
+				 */
+				   function gotoPage(url) {
+					$("#top").css("display", "none"); 
+					$("#iframe_main").prop("src", url);
+				  }
+				   /**
+		                 显示首页
+				 */
+				   function showFirstPage() {
+					$("#top").css("display", "block"); 
+					$("#iframe_main").prop("src","");
+				  }
+				 
 				    // You can also use "$(window).load(function() {"
 				    $(function () {
 				      // Slideshow 4
@@ -133,7 +152,7 @@
 				    });
 				  </script>
 			<!--//End-slider-script -->
-			<div  id="top" class="callbacks_container">
+				<div  id="top" class="callbacks_container"  >
 				<ul class="rslides" id="slider3">
 					<li>
 						<div class="banner-info">
@@ -144,6 +163,7 @@
 									优惠活动<br>		
 									优惠活动<br>								
 									</p>
+							
 									<div class="buy">
 										<a href="single.html">点击查看</a>
 									</div>
@@ -170,9 +190,12 @@
 					
 				</ul>
 			</div>
+			<iframe  height="100%" width="100%" frameBorder="0" scrolling="auto" id="iframe_main"></iframe>
 		</div>
 	</div>
 <!-- //banner -->
+
+
 <!-- cate -->
 	<div class="cate">
 		<div class="container">
@@ -237,22 +260,9 @@
 		</div>
 	</div>
 <!-- //cate -->
-<!-- cate-bottom -->
-	
-<!-- //cate-bottom -->
-<!-- welcome -->
-<!-- //welcome -->
-<!-- banner-bottom1 -->
-	
-<!-- //banner-bottom1 -->
-<!-- banner-bottom -->
-	
-<!-- //banner-bottom -->
-<!-- footer -->
-	
+
 	<div class="footer-copy">
 		<p>Copyright &copy; 2015.Company name All rights 程靓坤 <a href="#" target="_blank" title="程靓坤">程靓坤</a> - Collect from <a href="#" title="程靓坤" target="_blank">网页模板</a></p>
 	</div>
-<!-- //footer -->
 </body>
 </html>
