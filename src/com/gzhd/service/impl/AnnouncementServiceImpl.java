@@ -127,15 +127,18 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
 	@Override
 	public void updateAnnouncementStatus(AnnouncementModel model) {
-		Announcement announcement = baseDao.get(Announcement.class, model.getId());
 		
-		announcement.setPublishTime(model.getPublishTime());
-		announcement.setStatus(model.getStatus());
+		String[] ids = model.getId().split(",");
 		
-		baseDao.update(announcement);
-		
+		for(String id : ids) {
+			Announcement announcement = baseDao.get(Announcement.class, id);
+			
+			announcement.setPublishTime(model.getPublishTime());
+			announcement.setStatus(model.getStatus());
+			
+			baseDao.update(announcement);
+		}
 	}
-	
 }
 
 
