@@ -75,8 +75,9 @@
 				<td></td>
 			</tr>
 			<tr>
-				<th><button type="submit" class="button button-primary" onclick="editSave();">保存</button></th>
-				<td><button type="reset" class="button" onclick="goBack();">取消</button></td>
+				<th><button type="submit" class="button button-primary" onclick="editSave();">保存</button>
+				<button type="reset" class="button" onclick="goBack();">取消</button></th>
+				<td></td>
 				<td></td>
 			</tr>
 		</table>

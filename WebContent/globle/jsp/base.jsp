@@ -91,7 +91,7 @@
 		}
 		
 		 
-	BUI.Message.Confirm('确认要删除选中的记录么？', function() {
+		BUI.Message.Confirm('确认要删除选中的记录吗？', function() {
 
 			var id = "";
 			for (var i = 0; i < checkboxs.length; i++) {

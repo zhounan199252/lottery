@@ -6,16 +6,29 @@
 <head>
 <title>后台管理主页面</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript">
+
+	function doLogout() {
+		
+		BUI.Message.Confirm('确认要退出本系统吗？', function() {
+			location.href = "${pageContext.request.contextPath}/backUser!logout.action";
+		}, 'question');
+	}
+
+</script>
 </head>
 <body>
 
 	<div class="header">
+	
 
-		<div class="dl-title">彩票中心--后台管理系统</div>
+		<div class="dl-title" align="center">彩票中心--后台管理系统</div>
 
 		<div class="dl-log">
-			欢迎您，<span class="dl-log-user">${sessionScope.backCurrentLoginUser.nickname}</span><a href="###" title="退出系统" class="dl-log-quit">[退出]</a>
+			欢迎您，<span class="dl-log-user">${sessionScope.backCurrentLoginUser.nickname}</span>
+			<a href="javascript:doLogout();" title="退出系统" class="dl-log-quit">[退出]</a>
 		</div>
+		
 	</div>
 	<div class="content">
 		<div class="dl-main-nav">
@@ -49,12 +62,8 @@
 					text : '应用管理',
 					items : [ {
 						id : 'message',
-						text : '消息公告',
-						href : 'main/operation.html'
-					}, {
-						id : 'function',
-						text : '优惠活动',
-						href : 'main/quick.html'
+						text : '消息发布',
+						href : '${pageContext.request.contextPath}/announcement!listAnnouncement.action'
 					}, {
 						id : 'front_user',
 						text : '前台用户管理',
