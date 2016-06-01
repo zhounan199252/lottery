@@ -100,7 +100,7 @@ html,body {
 
 		$('#form_login').keydown(function(event) { // 回车事件（登陆）
 			if (event && event.which == 13) {
-				$('#btn_login').click();
+				$('#btn_login').click(); 
 				return false;
 			}
 			return true;
@@ -165,23 +165,13 @@ html,body {
 				if (data.success) {
 					location.href = "${pageContext.request.contextPath}/" + data.object;
 				} else {
-					alert(data.message);
+					BUI.Message.Alert(data.message);
+					//alert(data.message);
 				}
 			}
 		});
 	}
 </script>
-
-
-
-
-
-
-
-
-
-
-
 
 </head>
 
@@ -193,7 +183,7 @@ html,body {
 			</div>
 			<div class="login-content ">
 			<div class="form">
-			<form action="#" method="post" id="form_login">
+			<form action="${pageContext.request.contextPath }/backUser.backLogin" method="post" id="form_login">
 				<div class="form-group">
 					<div class="col-xs-12  ">
 						<div class="input-group">
