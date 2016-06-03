@@ -1,6 +1,5 @@
 package com.gzhd.service.impl;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,10 +15,10 @@ import com.gzhd.dao.itf.BaseDao;
 import com.gzhd.domain.Announcement;
 import com.gzhd.model.AnnouncementModel;
 import com.gzhd.model.PageModel;
-import com.gzhd.service.itf.AnnouncementService;
+import com.gzhd.service.itf.FrontAnnouncementService;
 
-@Service(value=AnnouncementService.BEAN_NAME)
-public class AnnouncementServiceImpl implements AnnouncementService {
+@Service(value=FrontAnnouncementService.BEAN_NAME)
+public class FrontAnnouncementServiceImpl implements FrontAnnouncementService {
 	
 	@Resource(name=BaseDao.BEAN_NAME)
 	private BaseDao<Announcement> baseDao;
@@ -77,18 +76,6 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	}
 
 	@Override
-	public String addAnnouncement(AnnouncementModel model) {
-
-		Announcement announcement = new Announcement();
-		
-		BeanUtils.copyProperties(model, announcement);
-		
-		Serializable res = baseDao.save(announcement);
-		
-		return (String)res;
-	}
-
-	@Override
 	public AnnouncementModel getAnnouncementById(String id) {
 
 		Announcement announcement = baseDao.get(Announcement.class, id);
@@ -100,45 +87,6 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		return model;
 	}
 
-	@Override
-	public void editAnnouncement(AnnouncementModel model) {
-
-		Announcement announcement = baseDao.get(Announcement.class, model.getId());
-		
-		BeanUtils.copyProperties(model, announcement, new String[]{"publishTime", "editTime", "status"});
-		
-		baseDao.update(announcement);
-		
-	}
-
-	@Override
-	public void deleteAnnouncement(String id) {
-
-		String[] ids = id.split(",");
-		
-		for(String singleId : ids) {
-			
-			Announcement announcement = baseDao.get(Announcement.class, singleId);
-			
-			baseDao.delete(announcement);
-		}
-		
-	}
-
-	@Override
-	public void updateAnnouncementStatus(AnnouncementModel model) {
-		
-		String[] ids = model.getId().split(",");
-		
-		for(String id : ids) {
-			Announcement announcement = baseDao.get(Announcement.class, id);
-			
-			announcement.setPublishTime(model.getPublishTime());
-			announcement.setStatus(model.getStatus());
-			
-			baseDao.update(announcement);
-		}
-	}
 }
 
 

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import=" java.util.*,com.gzhd.util.SecurityHelper"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,12 +93,12 @@
 			<div class="menu_sec">
 				<!-- start header menu -->
 				<ul class="megamenu skyblue">
-					<li class="active grid"><a class="color1" onclick="showFirstPage();">首页</a></li>
-					<li><a class="color1" href="#">消息公告</a></li>
+					<li class=""><a class="color1" onclick="javascript:gotoPage('#', this);">首页</a></li>
+					<li><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/an', this);">消息公告</a></li>
 					<li><a class="color1" href="#">体育赛事</a></li>
 					<li><a class="color1" href="#">彩票游戏</a></li>
-					<li><a class="color1" onclick="gotoPage('${pageContext.request.contextPath}/lottery/lottery.jsp');">六合彩</a></li>
-					<li><a class="color1" href="gotoPage('${pageContext.request.contextPath}/lottery/lottery.jsp');">优惠活动</a></li>
+					<li><a class="color1" onclick="gotoPage('${pageContext.request.contextPath}/lottery/lottery.jsp', this);">六合彩</a></li>
+					<li><a class="color1" href="gotoPage('${pageContext.request.contextPath}/lottery/lottery.jsp', this);">优惠活动</a></li>
 					<li><a class="color1" href="#">在线客服</a></li>
 				</ul>
 			</div>
@@ -114,9 +114,16 @@
 				/**
 				         跳转到指定的页面
 				 */
-				function gotoPage(url) {
+				function gotoPage(url, node) {
 					$("#top").css("display", "none");
 					$("#iframe_main").prop("src", url);
+					
+					$(node).parent("li").addClass("active");
+					$(node).parent("li").siblings("li").removeClass("active");
+					
+					
+					
+					
 				}
 				/**
 				      显示首页
