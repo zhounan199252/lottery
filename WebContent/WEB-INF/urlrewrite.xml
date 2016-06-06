@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"  
+        "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">  
+  
+<urlrewrite>  
+  
+  	<!-- 用于重写url -->
+  
+    <rule>  
+        <from>/an</from>  
+        <to>/frontAnnouncement!announcementList.action</to>  
+    </rule>  
+    <rule>  
+        <from>/ans</from>  
+        <to>/frontAnnouncement!getSingleAnnouncement.action</to>  
+    </rule>  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</urlrewrite> 

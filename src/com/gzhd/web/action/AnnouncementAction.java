@@ -15,6 +15,8 @@ import com.gzhd.service.itf.AnnouncementService;
 import com.gzhd.util.TimeUtil;
 import com.opensymphony.xwork2.ActionContext;
 
+import sun.misc.BASE64Encoder;
+
 
 @Action(value = "announcement", results = { //
 		@Result(name = "list", location = "/WEB-INF/pages/back_page/announcement/announcementList.jsp"),//
