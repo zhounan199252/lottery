@@ -13,6 +13,7 @@ import com.gzhd.common.ConstantValues;
 import com.gzhd.model.BackUserModel;
 import com.gzhd.model.PageModel;
 import com.gzhd.service.itf.BackUserService;
+import com.gzhd.util.Des;
 import com.gzhd.util.TimeUtil;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -51,6 +52,14 @@ public class BackUserAction extends BaseAction<BackUserModel> {
 			json.addProperty("success", false);
 			json.addProperty("message", "验证码错误，请刷新后重新登陆！");
 		} else {
+			String firstKey = (String)ActionContext.getContext().getSession().get("firstKey");
+			String secondKey = (String)ActionContext.getContext().getSession().get("secondKey");
+			String thirdKey = (String)ActionContext.getContext().getSession().get("thirdKey");
+			
+			String passwordDesc = Des.strDec(model.getPassword(), firstKey, secondKey, thirdKey);   //对密码进行解密
+			
+			model.setPassword(passwordDesc);
+			
 			BackUserModel u = service.login(model);
 
 			if (null == u) {

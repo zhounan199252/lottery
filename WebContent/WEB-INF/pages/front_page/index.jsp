@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import=" java.util.*,com.gzhd.util.SecurityHelper"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,11 +59,19 @@
 			<div class="header_top-sec">
 				<div class="top_left">
 					<ul>
-						<li><a href="login.html">登录</a>|</li> 
-						<li class="top_link"><a href="login.html">我的账户</a></li>
+						<s:if test="#session.frontCurrentLoginUser == null">
+							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/tolo.url');">登录</a></li> 
+							<li>|</li>
+							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/tore.url');">注册</a></li>
+						</s:if>
+						<s:else>
+							 <li>欢迎您，${sessionScope.frontCurrentLoginUser.nickname}</li>
+							<li>
+								<a href="javascript:gotoPage('${pageContext.request.contextPath}/myC.url');">我的账户</a>
+							</li>
+						</s:else>
 					</ul>
 				</div>
-				<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>
@@ -74,7 +83,7 @@
 			<div class="logo">
 				<a href="index.html">体育博彩网站</a>
 			</div>
-			<div class="header_right">
+			<%-- <div class="header_right">
 				<div class="cart box_1">
 					<a href="checkout.html"> <span class="simpleCart_total  total"></span> <img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/cart1.png" alt="" />
 					</a>
@@ -83,7 +92,7 @@
 					</p>
 					<div class="clearfix"></div>
 				</div>
-			</div>
+			</div> --%>
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -99,7 +108,7 @@
 			<div class="menu_sec">
 				<!-- start header menu -->
 				<ul class="megamenu skyblue">
-					<li class="active grid for_active"><a class="color1" onclick="javascript:gotoPage('${pageContext.request.contextPath}/default.url');">首页</a></li>
+					<li class="active grid for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/default.url');">首页</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/an.url');">消息公告</a></li>
 					<li class="for_active"><a class="color1" href="#">体育赛事</a></li>
 					<li class="for_active"><a class="color1" href="#">彩票游戏</a></li>

@@ -138,7 +138,7 @@ public class FrontUserServiceImpl implements FrontUserService {
 			userModels.add(userModel);
 		}
 
-		StringBuffer countHql = new StringBuffer("select count(*) ").append(queryHql);
+		StringBuffer countHql = new StringBuffer("select count(1) ").append(queryHql);
 		int allRows = baseDao.count(countHql.toString(), params).intValue();
 
 		return new PageModel(pageNum, pageSize, list, allRows);

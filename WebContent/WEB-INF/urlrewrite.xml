@@ -4,12 +4,14 @@
 
 <urlrewrite>
 
-	<!-- 用于重写url -->
+	<!-- 前台主页面 begin -->
 	<rule>
 		<from>/default.url</from>
 		<to>/frontIndex!toDefault.action</to>
 	</rule>
+	<!-- 前台主页面 end -->
 
+	<!-- 消息发布 begin -->
 	<rule>
 		<from>/an.url</from>
 		<to>/frontAnnouncement!announcementList.action</to>
@@ -27,8 +29,36 @@
 		<from>/sfa.url</from>
 		<to>/frontAnnouncement!getSingleFavor.action</to>
 	</rule>
+	<!-- 消息发布 begin -->
 
-
+	<!-- 注册和登录 begin -->
+	<rule>
+		<from>/tolo.url</from>
+		<to>/frontIndex!toFrontLogin.action</to>
+	</rule>
+	<rule>
+		<from>/rlo.url</from>
+		<to>/frontUser!frontLogin.action</to>
+	</rule>
+	
+	<rule>
+		<from>/tore.url</from>
+		<to>/frontIndex!toRegister.action</to>
+	</rule>
+	<rule>
+		<from>/chku.url</from>
+		<to>/frontUser!checkFrontUsernameIsExist.action</to>
+	</rule>
+	<rule>
+		<from>/lre.url</from>
+		<to>/frontUser!register.action</to>
+	</rule>
+	
+	<rule>
+		<from>/myC.url</from>
+		<to>/frontUser!myCount.action</to>
+	</rule>
+	<!-- 注册和登录 begin -->
 
 
 
