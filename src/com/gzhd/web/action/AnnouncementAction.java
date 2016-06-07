@@ -15,12 +15,10 @@ import com.gzhd.service.itf.AnnouncementService;
 import com.gzhd.util.TimeUtil;
 import com.opensymphony.xwork2.ActionContext;
 
-import sun.misc.BASE64Encoder;
 
-
-@Action(value = "announcement", results = { //
+@Action(value = "backAnnouncement", results = { //
 		@Result(name = "list", location = "/WEB-INF/pages/back_page/announcement/announcementList.jsp"),//
-		@Result(name = "toList", location = "announcement!listAnnouncement.action", type = "redirectAction"),//
+		@Result(name = "toList", location = "backAnnouncement!listAnnouncement.action", type = "redirectAction"),//
 		@Result(name = "toAddPage", location = "/WEB-INF/pages/back_page/announcement/addAnnouncement.jsp"),//
 		@Result(name = "toEditPage", location = "/WEB-INF/pages/back_page/announcement/editAnnouncement.jsp")//
 })

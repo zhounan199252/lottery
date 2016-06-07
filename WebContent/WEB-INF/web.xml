@@ -28,7 +28,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>UrlRewriteFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.url</url-pattern>
 	</filter-mapping>
 	<!-- url转换过滤器 end -->
 

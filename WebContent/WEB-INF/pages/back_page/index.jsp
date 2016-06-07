@@ -63,7 +63,7 @@
 					items : [ {
 						id : 'message',
 						text : '消息发布',
-						href : '${pageContext.request.contextPath}/announcement!listAnnouncement.action'
+						href : '${pageContext.request.contextPath}/backAnnouncement!listAnnouncement.action'
 					}, {
 						id : 'front_user',
 						text : '前台用户管理',

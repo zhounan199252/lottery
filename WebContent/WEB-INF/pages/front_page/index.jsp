@@ -21,23 +21,29 @@
 <!-- start-smoth-scrolling -->
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
+		$(".megamenu").megamenu();
 		$(".scroll").click(function(event) {
 			event.preventDefault();
 			$('html,body').animate({
 				scrollTop : $(this.hash).offset().top
 			}, 1000);
 		});
+		
+		$(".for_active").click(function() {
+			$(this).addClass("active");
+			$(this).siblings("li").removeClass("active");
+		});
+		
 	});
+	
+	function gotoPage(url) {
+		$("#iframe_main").prop("src", url);
+	}
 </script>
 <!-- start-smoth-scrolling -->
 <!-- start menu -->
 <link href="${pageContext.request.contextPath}/globle/css/front_bootstrap/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/globle/js/front_bootstrap/megamenu.js"></script>
-<script>
-	$(document).ready(function() {
-		$(".megamenu").megamenu();
-	});
-</script>
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/megamenu.js"></script>
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/simpleCart.min.js">
 	
@@ -93,23 +99,23 @@
 			<div class="menu_sec">
 				<!-- start header menu -->
 				<ul class="megamenu skyblue">
-					<li class=""><a class="color1" onclick="javascript:gotoPage('#', this);">首页</a></li>
-					<li><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/an', this);">消息公告</a></li>
-					<li><a class="color1" href="#">体育赛事</a></li>
-					<li><a class="color1" href="#">彩票游戏</a></li>
-					<li><a class="color1" onclick="gotoPage('${pageContext.request.contextPath}/lottery/lottery.jsp', this);">六合彩</a></li>
-					<li><a class="color1" href="gotoPage('${pageContext.request.contextPath}/lottery/lottery.jsp', this);">优惠活动</a></li>
-					<li><a class="color1" href="#">在线客服</a></li>
+					<li class="active grid for_active"><a class="color1" onclick="javascript:gotoPage('${pageContext.request.contextPath}/default.url');">首页</a></li>
+					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/an.url');">消息公告</a></li>
+					<li class="for_active"><a class="color1" href="#">体育赛事</a></li>
+					<li class="for_active"><a class="color1" href="#">彩票游戏</a></li>
+					<li class="for_active"><a class="color1" onclick="javascript:gotoPage('${pageContext.request.contextPath}/lottery/lottery.jsp');">六合彩</a></li>
+					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/fa.url');">优惠活动</a></li>
+					<!-- <li><a class="color1" href="#">在线客服</a></li> -->
 				</ul>
 			</div>
 		</div>
 	</div>
 
 	<!-- banner -->
-	<div class="banner">
-		<div class="container">
+	<div class="banner" style="height: 100%;width:100%">
+		<div class="container" style="height: 100%;width:100%">
 			<!-- Slider-starts-Here -->
-			<script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/responsiveslides.min.js"></script>
+		<%-- 	<script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/responsiveslides.min.js"></script>
 			<script>
 				/**
 				         跳转到指定的页面
@@ -151,9 +157,9 @@
 					});
 
 				});
-			</script>
+			</script> --%>
 			<!--//End-slider-script -->
-			<div id="top" class="callbacks_container">
+			<!-- <div id="top" class="callbacks_container">
 				<ul class="rslides" id="slider3">
 					<li>
 						<div class="banner-info">
@@ -188,8 +194,8 @@
 					</li>
 
 				</ul>
-			</div>
-			<iframe height="100%" width="100%" frameBorder="0" scrolling="auto" id="iframe_main"></iframe>
+			</div> -->
+			<iframe width="100%" frameBorder="0" scrolling="no" id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%;height:630px"></iframe>
 		</div>
 	</div>
 	<!-- //banner -->

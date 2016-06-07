@@ -55,7 +55,7 @@ public class FrontAnnouncementServiceImpl implements FrontAnnouncementService {
 			params.put("publishTimeEnd", model.getPublishTimeEnd());
 		}
 		
-		queryHql.append(" order by a.publishTime desc, a.id desc");
+		queryHql.append(" and a.status='yes' order by a.publishTime desc, a.id desc");
 		
 		List<Announcement> list = baseDao.find(queryHql.toString() , params);
 		

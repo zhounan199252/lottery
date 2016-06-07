@@ -39,7 +39,7 @@
 	<div style="width: 90%;padding: 12px 0 0 12px">
 	<h2>消息公告--添加公告</h2>
 	
-		<s:form action="announcement!addAnnouncement.action" id="form_add">
+		<s:form action="backAnnouncement!addAnnouncement.action" id="form_add">
 		<table class="table table-striped">
 			<tr>
 				<th style="width: 16%">类型</th>
@@ -84,7 +84,7 @@
 		fck.Config["ImageUploadURL"] = "${pageContext.request.contextPath}/fileUpload!uploadFCKImage.action";  //设置图片的上传路径
 		
 		fck.Config['Enabled'] = true;
-		fck.Config['UserFilesPath'] = '${pageContext.request.contextPath}/file_uploads/' ;
+		fck.Config['UserFilesPath'] = '${pageContext.request.contextPath}/file_uploads/';
 		
 		fck.ReplaceTextarea();
 	});

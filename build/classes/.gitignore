@@ -1,2 +1,6 @@
-/urlrewrite.xml
 /com/
+/config.properties
+/log4j.xml
+/spring-hibernate.xml
+/struts.xml
+/urlrewrite.xml

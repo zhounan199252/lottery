@@ -2,6 +2,7 @@ package com.gzhd.web.interceptor;
 
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
@@ -29,7 +30,7 @@ public class BackSessionInterceptor extends MethodFilterInterceptor {
 			return "backNoSession";
 		}*/
 		
-		
+		logger.info("进入session拦截器->访问路径为[" + ServletActionContext.getRequest().getServletPath() + "]");
 		
 		return actionInvocation.invoke();
 	}

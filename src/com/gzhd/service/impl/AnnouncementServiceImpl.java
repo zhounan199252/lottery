@@ -56,7 +56,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 			params.put("publishTimeEnd", model.getPublishTimeEnd());
 		}
 		
-		queryHql.append(" order by a.publishTime desc, a.id desc");
+		queryHql.append(" order by a.publishTime desc, a.editTime desc");
 		
 		List<Announcement> list = baseDao.find(queryHql.toString() , params);
 		
