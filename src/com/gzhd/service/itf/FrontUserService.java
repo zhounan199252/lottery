@@ -80,5 +80,11 @@ public interface FrontUserService {
 
 	public void updateUserBalanceById(FrontUserModel model);
 
+	public double getUserCount(String id);
+
+	public boolean validPassword(FrontUserModel model);
+
+	public void updateUserPassword(FrontUserModel model);
+
 
 }

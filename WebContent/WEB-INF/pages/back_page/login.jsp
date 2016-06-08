@@ -151,19 +151,18 @@ html,body {
 	function changeValidateCode(obj) {
 		// 获取当前的时间作为参数,没实际意义，只为确保页面不会缓存
 		var timenow = new Date().getTime();
-		$(obj).attr("src", "${pageContext.request.contextPath}/securityCode!getCodeForBack.action?d=" + timenow);
+		$(obj).attr("src", "${pageContext.request.contextPath}/cfb.url?d=" + timenow);
 	}
 
 	/**
 	 * 提交表单
 	 */
 	function submitForm() {
-		
 		var passowrdEnc = strEnc($("#txt_password").val(), "${sessionScope.firstKey}", "${sessionScope.secondKey}", "${sessionScope.thirdKey}");
 		$("#txt_password").val(passowrdEnc);
 		
 		$.ajax({
-			url : "${pageContext.request.contextPath}/backUser!backLogin.action",
+			url : "${pageContext.request.contextPath}/bul.url",
 			type : "post",
 			data : $("#form_login").serialize(),
 			success : function(res) {
@@ -189,7 +188,7 @@ html,body {
 			</div>
 			<div class="login-content ">
 			<div class="form">
-			<form action="${pageContext.request.contextPath }/backUser.backLogin" method="post" id="form_login">
+			<form action="${pageContext.request.contextPath }/bul.url" method="post" id="form_login">
 				<div class="form-group">
 					<div class="col-xs-12  ">
 						<div class="input-group">
@@ -215,7 +214,7 @@ html,body {
 							<input type="text" name="code" class="form-control" placeholder="验证码" style="width: 140px;height: 40px">
 							<span></span>
 							<span style="padding:10px 0 0 8px">
-								<img src="${pageContext.request.contextPath }/securityCode!getCodeForBack.action" id="img_code" onclick="changeValidateCode(this)" title="点击图片刷新验证码" style="width: 80px; height: 36px"/>
+								<img src="${pageContext.request.contextPath }/cfb.url" id="img_code" onclick="changeValidateCode(this)" title="点击图片刷新验证码" style="width: 80px; height: 36px"/>
 							</span>
 						</div>
 					</div>

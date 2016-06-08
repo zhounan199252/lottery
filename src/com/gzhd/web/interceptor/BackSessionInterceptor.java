@@ -30,8 +30,6 @@ public class BackSessionInterceptor extends MethodFilterInterceptor {
 			return "backNoSession";
 		}*/
 		
-		logger.info("进入session拦截器->访问路径为[" + ServletActionContext.getRequest().getServletPath() + "]");
-		
 		return actionInvocation.invoke();
 	}
 

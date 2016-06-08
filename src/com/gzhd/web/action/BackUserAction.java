@@ -26,7 +26,7 @@ import com.opensymphony.xwork2.ActionContext;
 		@Result(name = "toList", location = "backUser!listBackUser.action", type = "redirectAction"),//
 		@Result(name = "add", location = "/WEB-INF/pages/back_page/back_user/addUser.jsp"),//
 		@Result(name = "edit", location = "/WEB-INF/pages/back_page/back_user/editUser.jsp"),//
-		@Result(name = "toBackLogin", location = "/WEB-INF/pages/back_page/login.jsp")//
+		@Result(name = "toBackLogin", location = "backIndex!toBackLogin.action", type = "redirectAction")//
 })
 @Scope("prototype")
 public class BackUserAction extends BaseAction<BackUserModel> {
@@ -152,7 +152,8 @@ public class BackUserAction extends BaseAction<BackUserModel> {
 	
 	public String logout() {
 		
-		ActionContext.getContext().getSession().remove(ConstantValues.BACK_CURRENT_USER_LOGIN);
+		//ActionContext.getContext().getSession().remove(ConstantValues.BACK_CURRENT_USER_LOGIN);
+		ActionContext.getContext().getSession().clear();
 		
 		return "toBackLogin";
 	}

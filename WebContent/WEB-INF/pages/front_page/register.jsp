@@ -116,7 +116,7 @@
 			</tr>
 			<tr>
 				<th>确认密码</th>
-				<td><s:password name="" id="txt_rePassword" cssClass="control-text"  maxLength="20"></s:password></td>
+				<td><s:password name="rePassword" id="txt_rePassword" cssClass="control-text"  maxLength="20"></s:password></td>
 				<td></td>
 			</tr>
 			

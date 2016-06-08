@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +9,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
 <script type="application/x-javascript">
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } 
+
+
 </script>
 <!-- //for-mobile-apps -->
 <link href="${pageContext.request.contextPath}/globle/css/front_bootstrap/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -20,6 +24,7 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/globle/images/logo.ico" />
 <!-- //js -->
 <!-- start-smoth-scrolling -->
+
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".megamenu").megamenu();
@@ -29,14 +34,14 @@
 				scrollTop : $(this.hash).offset().top
 			}, 1000);
 		});
-		
+
 		$(".for_active").click(function() {
 			$(this).addClass("active");
 			$(this).siblings("li").removeClass("active");
 		});
-		
+
 	});
-	
+
 	function gotoPage(url) {
 		$("#iframe_main").prop("src", url);
 	}
@@ -57,18 +62,18 @@
 	<div class="top_bg">
 		<div class="container">
 			<div class="header_top-sec">
-				<div class="top_left">
-					<ul>
+				<div class="top_left" id="nav">
+					<ul class="">
 						<s:if test="#session.frontCurrentLoginUser == null">
-							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/tolo.url');">登录</a></li> 
+							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/tolo.url');">登录</a></li>
 							<li>|</li>
 							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/tore.url');">注册</a></li>
 						</s:if>
 						<s:else>
-							 <li>欢迎您，${sessionScope.frontCurrentLoginUser.nickname}</li>
-							<li>
-								<a href="javascript:gotoPage('${pageContext.request.contextPath}/myC.url');">我的账户</a>
-							</li>
+							<li>欢迎您，${sessionScope.frontCurrentLoginUser.nickname}</li>
+							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/myC.url');">我的账户</a></li>
+							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/tcp.url');">修改密码</a></li>
+							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/flo.url');">退出</a></li>
 						</s:else>
 					</ul>
 				</div>
@@ -121,10 +126,10 @@
 	</div>
 
 	<!-- banner -->
-	<div class="banner" style="height: 100%;width:100%">
-		<div class="container" style="height: 100%;width:100%">
+	<div class="banner" style="height: 100%; width: 100%">
+		<div class="container" style="height: 100%; width: 100%">
 			<!-- Slider-starts-Here -->
-		<%-- 	<script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/responsiveslides.min.js"></script>
+			<%-- 	<script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/responsiveslides.min.js"></script>
 			<script>
 				/**
 				         跳转到指定的页面
@@ -204,7 +209,7 @@
 
 				</ul>
 			</div> -->
-			<iframe width="100%" frameBorder="0" scrolling="no" id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%;height:630px"></iframe>
+			<iframe width="100%" frameBorder="0" scrolling="no" id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%; height: 630px"></iframe>
 		</div>
 	</div>
 	<!-- //banner -->

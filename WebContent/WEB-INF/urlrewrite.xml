@@ -4,6 +4,25 @@
 
 <urlrewrite>
 
+	<!-- 后台登录 begin -->
+	<rule>
+		<from>/bul.url</from>
+		<to>/backUser!backLogin.action</to>
+	</rule>
+	<!-- 后台登录 end -->
+	<!-- 后台登录验证码 begin -->
+	<rule>
+		<from>/cfb.url</from>
+		<to>/securityCode!getCodeForBack.action</to>
+	</rule>
+	<!-- 后台登录验证码 end -->
+	<!-- 前台登录验证码 begin -->
+	<rule>
+		<from>/cff.url</from>
+		<to>/securityCode!getCodeForFront.action</to>
+	</rule>
+	<!-- 前台登录验证码 end -->
+
 	<!-- 前台主页面 begin -->
 	<rule>
 		<from>/default.url</from>
@@ -53,16 +72,62 @@
 		<from>/lre.url</from>
 		<to>/frontUser!register.action</to>
 	</rule>
+	<!-- 注册和登录 begin -->
+
 	
+	<!-- 查看我的账户 begin -->
 	<rule>
 		<from>/myC.url</from>
 		<to>/frontUser!myCount.action</to>
 	</rule>
-	<!-- 注册和登录 begin -->
+	<!-- 查看我的账户 begin -->
 
 
-
+	<!-- 修改密码 begin -->
+	<rule>
+		<from>/tcp.url</from>
+		<to>/frontUser!toChangePassword.action</to>
+	</rule>
+	<rule>
+		<from>/cp.url</from>
+		<to>/frontUser!changePassword.action</to>
+	</rule>
+	<rule>
+		<from>/chkpass.url</from>
+		<to>/frontUser!validPassword.action</to>
+	</rule>
+	<!-- 修改密码 begin -->
+	
+	<!-- 退出登录 begin -->
+	<rule>
+		<from>/flo.url</from>
+		<to>/frontUser!frontLogout.action</to>
+	</rule>
+	<!-- 退出登录 begin -->
 
 
 
 </urlrewrite> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
