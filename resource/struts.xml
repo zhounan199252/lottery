@@ -52,24 +52,32 @@
 			<interceptor-stack name="frontSessionStack">
 				<interceptor-ref name="encodingStack"></interceptor-ref>
 				<interceptor-ref name="frontSessionInterceptor">
-					<param name="excludeMethods">login, getCode, initSystemData</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
+					<param name="excludeMethods">
+						listAnnouncement,addAnnouncementPage,addAnnouncement,editAnnouncementPage,editAnnouncement,deleteAnnouncement,
+						publishAnnouncement,unPublishAnnouncement,toBackLogin,toBackIndex,toWelcomePage,backLogin,listBackUser,
+						addBackUserPage,addBackUser,editBackUserPage,editBackUser,deleteBackUser,initBackUserPassword,uploadFCKImage,
+						toFrontLogin,toRegister,frontLogin,listFrontUser,addFrontUserPage,addFrontUser,editFrontUserPage,
+						editFrontUser,deleteFrontUser,initFrontUserPassword,checkFrontUsernameIsExist,toRechargePage,recharge,register,
+						validPassword,frontLogout,logout,getCodeForFront,getCodeForBack,toDefault,announcementList,favorList,getSingleAnnouncement,
+						getSingleFavor
+
+					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
 				</interceptor-ref>
 			</interceptor-stack>
 			
 			<interceptor-stack name="backSessionStack">
 				<interceptor-ref name="frontSessionStack"></interceptor-ref>
 				<interceptor-ref name="backSessionInterceptor">
-					<param name="excludeMethods">login, getCode, initSystemData</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
+					<param name="excludeMethods">
+						toBackLogin,backLogin,announcementList,favorList,getSingleAnnouncement,checkFrontUsernameIsExist,getSingleFavor,toFrontLogin,toRegister,
+						frontLogin,register,myCount,toChangePassword,validPassword,changePassword,frontLogout,logout,getCodeForBack,getCodeForFront,toDefault
+					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
 				</interceptor-ref>
 			</interceptor-stack>
 
 			<interceptor-stack name="authStack">
 				<interceptor-ref name="backSessionStack"></interceptor-ref>
-				<interceptor-ref name="authInterceptor">
-					<param name="excludeMethods"><!-- excludeMethods:不需要经过拦截器的方法 -->
-						login, getCode, initSystemData, toIndex, countCurrentUser
-					</param>
-				</interceptor-ref>
+				<interceptor-ref name="authInterceptor"></interceptor-ref>
 			</interceptor-stack>
 
 		</interceptors>
