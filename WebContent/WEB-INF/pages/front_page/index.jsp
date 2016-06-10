@@ -117,7 +117,7 @@
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/an.url');">消息公告</a></li>
 					<li class="for_active"><a class="color1" href="#">体育赛事</a></li>
 					<li class="for_active"><a class="color1" href="#">彩票游戏</a></li>
-					<li class="for_active"><a class="color1" onclick="javascript:gotoPage('${pageContext.request.contextPath}/lottery/lottery.jsp');">六合彩</a></li>
+					<li class="for_active"><a class="color1" onclick="javascript:gotoPage('${pageContext.request.contextPath}/pageJump!toHighFrequency.action');">六合彩</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/fa.url');">优惠活动</a></li>
 					<!-- <li><a class="color1" href="#">在线客服</a></li> -->
 				</ul>
