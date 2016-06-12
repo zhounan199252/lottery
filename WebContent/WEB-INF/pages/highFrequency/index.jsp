@@ -11,12 +11,9 @@
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery-1.11.1.min.js"></script>
 <style type="text/css">
  .checked{
- font-size: 20px;
  color:red;
  }
  
- 
-
 </style>
 
  <script>
@@ -77,8 +74,8 @@
          return  false; 
         }
         } 
-       
-       if((hours<9||hours>23)&&name=="gd11x5"){
+        
+       if((hours<9||hours>22)&&name=="gd11x5"){
        return  false; 
         }
        
@@ -88,35 +85,52 @@
   //显示下注区域
  function showBuy(name) {
 	 $("#div"+name).find("ul").remove();
-	 $("#div"+name).find("div").remove();
-	 var div= "<div  id='select"+name+"'>选择号码 ";
+	 $("#div"+name).find("fieldset").remove();
+	 var div= "<fieldset  id='select"+name+"'> <legend style='font-size: 16px;' >选号区:</legend> ";
 	 
 	 if(name=="gd11x5"){	 
 			for (var i = 1; i < 12; i++) {
 				div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";
 			}	
-			div=div+"</div> <div >投注倍数<input id='quan"+name+"'></input><button type='button' onclick='buy(1)'>购买</button></div> ";
+			div=div+"</fieldset> <fieldset> <legend style='font-size: 16px;'>操作区</legend> 投注倍数<input id='quan"+name+"'></input> &emsp;&emsp; <button type='button' class='btn btn-default' onclick='buy(1)'>购买</button></fieldset> ";
 	 }else if(name=="ssq"){
-		       div=div+"<div >红球:"; 
+		       div=div+"<fieldset ><legend style='font-size: 12px;'>前区:</legend>"; 
 			for (var i = 1; i < 33; i++) {
-				div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
-			}				
-			div=div+"</div><div >蓝球:"; 
-			for (var i = 1; i < 16; i++) {
-				div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
+			if(i<10){
+			div=div+"<span onclick='check(this)'>0"+i+"</span>&emsp;&emsp;";	
+			}else{
+			div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
 			}
-			div=div+"</div></div><div >投注倍数<input id='quan"+name+"'></input><button type='button' onclick='buy(2)'>购买</button></div>  " ;
+				
+			}				
+			div=div+"</fieldset ><fieldset ><legend style='font-size: 12px;'>后区:</legend>"; 
+			for (var i = 1; i < 16; i++) {
+				if(i<10){
+			    div=div+"<span onclick='check(this)'>0"+i+"</span>&emsp;&emsp;";	
+			    }else{
+			     div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
+			    }
+			}
+			div=div+"</fieldset></fieldset><fieldset> <legend style='font-size: 16px;'>操作区</legend> 投注倍数<input id='quan"+name+"'></input> &emsp;&emsp; <button type='button' class='btn btn-default' onclick='buy(2)'>购买</button></fieldset> " ;
 			
 	 }else if(name=="dlt"){
-		    div=div+"<div >红球:"; 
+		    div=div+"<fieldset><legend style='font-size: 16px;'>前区:</legend>"; 
 			for (var i = 1; i < 35; i++) {
-				div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
+				if(i<10){
+			    div=div+"<span onclick='check(this)'>0"+i+"</span>&emsp;&emsp;";	
+			    }else{
+			     div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
+			    }
 			}
-			div=div+"</div><div >蓝球:"; 
+			div=div+"</fieldset><fieldset><legend style='font-size: 16px;'>后区:</legend>"; 
 			for (var i = 1; i < 12; i++) {
-				div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
+			if(i<10){
+			    div=div+"<span onclick='check(this)'>0"+i+"</span>&emsp;&emsp;";	
+			    }else{
+			     div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
+			    }
 			}
-			div=div+"</div></div> <div >投注倍数<input id='quan"+name+"'></input><button type='button' onclick='buy(3)'>购买</button></div> ";
+			div=div+"</fieldset></fieldset> <fieldset> <legend style='font-size: 16px;'>操作区</legend> 投注倍数<input id='quan"+name+"'></input>  &emsp;&emsp; <button class='btn btn-default' type='button' onclick='buy(3)'>购买</button></fieldset> ";
 		
 	 }
 		
@@ -141,14 +155,14 @@
 			return false;
 			}
        }else if(name=="ssq"){
-       var num1 = $("#select"+name).children().first().children(".checked").length;
-       var num2 = $("#select"+name).children().last().children(".checked").length;
+       var num1 = $("#select"+name).children().eq(1).children(".checked").length;
+       var num2 = $("#select"+name).children().eq(2).children(".checked").length;
         if(num1!="6"||num2!="1"){
 			return false;
 			}
        }else if(name=="dlt"){
-       var num3 = $("#select"+name).children().first().children(".checked").length;
-       var num4 = $("#select"+name).children().last().children(".checked").length;
+       var num3 = $("#select"+name).children().eq(1).children(".checked").length;
+       var num4 = $("#select"+name).children().eq(2).children(".checked").length;
         if(num3!="5"||num4!="2"){
 			return false;
 			} 
@@ -165,6 +179,7 @@
 	           var  betPeriod="";
 	           var betNum="";
 	           var betType="";
+	           var betPerson=""
 	           var  id="";
 	           if(name=="1"){
 	        	   id="gd11x5";
@@ -200,12 +215,12 @@
 	        	    alert("获取期数错误");
 	        	   return;
 	        	   }
-	        	    $("#select"+id).children().first().children(".checked").each(function (index, domEle) { 
+	        	    $("#select"+id).children().eq(1).children(".checked").each(function (index, domEle) { 
 	                    var num= $(domEle).text(); 
 	                      betNum =betNum+num+",";
 	   			   });
-	        	    betNum =betNum+"+";
-	        	    $("#select"+id).children().last().children(".checked").each(function (index, domEle) { 
+	        	    betNum =betNum=betNum.substring(0, betNum.length-1)+"+";
+	        	    $("#select"+id).children().eq(2).children(".checked").each(function (index, domEle) { 
 	                    var num= $(domEle).text(); 
 	                      betNum =betNum+num+",";
 	   			   });
@@ -228,20 +243,26 @@
 	        	    }
 	        	     betType="大乐透";
 	        	     
-	        	     $("#select"+id).children().first().children(".checked").each(function (index, domEle) { 
+	        	     $("#select"+id).children().eq(1).children(".checked").each(function (index, domEle) { 
 		                    var num= $(domEle).text(); 
 		                      betNum =betNum+num+",";
 		   			   });
-		        	    betNum =betNum+"+";
-		        	    $("#select"+id).children().last().children(".checked").each(function (index, domEle) { 
+		        	    betNum =betNum=betNum.substring(0, betNum.length-1)+"+";
+		        	    $("#select"+id).children().eq(2).children(".checked").each(function (index, domEle) { 
 		                    var num= $(domEle).text(); 
 		                      betNum =betNum+num+",";
 		   			   });
 	           }
 	           
 	            betNum=betNum.substring(0, betNum.length-1);
-	           var betQuan= $("#quan"+id).val().trim(); 	  
-	          var url= "http://localhost:8080/lottery/betmessage!addBetMessage.action"; 
+	            betPerson='${sessionScope.frontCurrentLoginUser.nickname}';
+	           var betQuan= $("#quan"+id).val().trim();
+	           var re = /^[1-9]+[0-9]*]*$/ ;
+	           if(!re.test(betQuan)){
+	                 alert("投注倍数为整数");
+	        	     return;betQuan==1;
+	             }	  
+	          var url= "${pageContext.request.contextPath}/betmessage!addBetMessage.action"; 
 	          $.ajax({
 	  			url :url,
 	  			type : "post",
@@ -249,7 +270,8 @@
 	  				"betPeriod":betPeriod,
 	  				 "betNum":betNum,
 	  				"betQuan":betQuan,
-	  				"betType":betType
+	  				"betType":betType,
+	  				"betPerson":betPerson
 	  				
 	  			},
 	  			success : function(result) {
@@ -275,8 +297,8 @@
 				var data= result.data;
 				if (data.length > 0) {
 					$("#div"+name).find("div").remove();
-					$("#div"+name).find("ul").remove();
-					var ul= "<ul>最新开奖结果 ";
+					$("#div"+name).find("fieldset").remove();
+					var ul= "<ul>";
 					for (var i = 0; i < data.length; i++) {
 						ul=ul+"<li>开奖期数:"+data[i].expect+",开奖号码"+data[i].opencode+",开奖时间"+data[i].opentime+"</li>";
 					}
@@ -322,19 +344,19 @@
  
  <div align="center" >
 <ul  class="nav nav-tabs" style="width: 58%" >
-<li  id="gd11x5"  class="active"  onclick="tabchange('gd11x5')" > 广东十一选五  &emsp; </li>  
-<li  id="ssq" class=""  onclick="tabchange('ssq')" > 双 色球  &emsp; </li>
-<li  id="dlt" class=""  onclick="tabchange('dlt')" > 大 乐透 &emsp;</li>
+<li  id="gd11x5"  class="active"  style="font-size: 16px;" onclick="tabchange('gd11x5')" > 广东十一选五  &emsp; </li>  
+<li  id="ssq"   style="font-size: 16px;"  onclick="tabchange('ssq')" > 双色球  &emsp; </li>
+<li  id="dlt"   style="font-size: 16px;" onclick="tabchange('dlt')" > 大乐透 &emsp;</li>
 </ul>
 
  <div   id="divgd11x5"  style="display:none;width: 58%;"  align="left">
-<span  onclick="look('gd11x5')">查看最近开奖信息</span> &emsp;&emsp;&emsp;<span  onclick="showBuy('gd11x5')">下注</span>
+ <button type='button' class='btn btn-link' onclick="look('gd11x5')">最近开奖信息</button> &emsp;&emsp;&emsp; <button type='button' class='btn btn-link' onclick="showBuy('gd11x5')">下注</button> 
 </div>
 <div   id="divssq" style="display:none;width: 58%;" align="left">
- <span  onclick="look('ssq')">查看最近开奖信息</span> &emsp;&emsp;&emsp;<span  onclick="showBuy('ssq')">下注</span>
+ <button type='button' class='btn btn-link' onclick="look('ssq')">最近开奖信息</button> &emsp;&emsp;&emsp; <button type='button' class='btn btn-link' onclick="showBuy('ssq')">下注</button>
 </div>
 <div   id="divdlt"  style="display:none;width: 58%;" align="left">
- <span  onclick="look('dlt')">查看最近开奖信息</span> &emsp;&emsp;&emsp;<span  onclick="showBuy('dlt')">下注</span>
+ <button type='button' class='btn btn-link' onclick="look('dlt')">最近开奖信息</button> &emsp;&emsp;&emsp; <button type='button' class='btn btn-link' onclick="showBuy('dlt')">下注</button>
 </div>
 
 </div>
