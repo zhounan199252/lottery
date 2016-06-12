@@ -3,6 +3,12 @@
         "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">
 
 <urlrewrite>
+	<!-- 前往后台登录界面 begin -->
+		<rule>
+		<from>/tbul.url</from>
+		<to>/backIndex!toBackLogin.action</to>
+	</rule>
+	<!-- 前往后台登录界面 end -->
 
 	<!-- 后台登录 begin -->
 	<rule>
