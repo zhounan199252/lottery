@@ -38,7 +38,7 @@
 	<div style="width: 90%;padding: 12px 0 0 12px">
 	<h2>消息公告--编辑公告</h2>
 	
-		<s:form action="announcement!editAnnouncement.action" id="form_edit">
+		<s:form action="backAnnouncement!editAnnouncement.action" id="form_edit">
 		<s:hidden name="id"></s:hidden>
 		<table class="table table-striped">
 			<tr>

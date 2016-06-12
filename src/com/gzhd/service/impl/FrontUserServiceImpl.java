@@ -138,7 +138,7 @@ public class FrontUserServiceImpl implements FrontUserService {
 			userModels.add(userModel);
 		}
 
-		StringBuffer countHql = new StringBuffer("select count(*) ").append(queryHql);
+		StringBuffer countHql = new StringBuffer("select count(1) ").append(queryHql);
 		int allRows = baseDao.count(countHql.toString(), params).intValue();
 
 		return new PageModel(pageNum, pageSize, list, allRows);
@@ -209,6 +209,39 @@ public class FrontUserServiceImpl implements FrontUserService {
 		frontUser.setBalance(model.getBalance());
 		
 		baseDao.update(frontUser);
+	}
+
+	@Override
+	public double getUserCount(String id) {
+		FrontUser user = baseDao.get(FrontUser.class, id);
+		
+		if(null != user) {
+			return user.getBalance();
+		}
+		
+		return 0;
+	}
+
+	@Override
+	public boolean validPassword(FrontUserModel model) {
+
+		FrontUser user = baseDao.get(FrontUser.class, model.getId());
+		
+		if(null != user && user.getPassword().equals(Encrypt.md5AndSha(model.getPassword()))) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public void updateUserPassword(FrontUserModel model) {
+
+		FrontUser user = baseDao.get(FrontUser.class, model.getId());
+		
+		user.setPassword(Encrypt.md5AndSha(model.getPassword()));
+		
+		baseDao.update(user);
 	}
 	
 

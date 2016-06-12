@@ -116,18 +116,18 @@ FCKConfig.ToolbarSets["Default"] = [
 ] ;
 
 FCKConfig.ToolbarSets["MyEditor"] = [
-	['Cut','Copy','Paste','PasteText','PasteWord','-'],
-	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
-	['Style','FontFormat','FontName','FontSize'],
-	'/',
-	['Bold','Italic','Underline','StrikeThrough','-','Subscript','Superscript'],
-	['OrderedList','UnorderedList','-','Outdent','Indent'],
-	['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],
-	['Link','Unlink'],
-	['Image','Table','Rule','SpecialChar','PageBreak'],
-	['TextColor','BGColor']// No comma for the last row.
-	
-] ;
+ 	['Cut','Copy','Paste','PasteText','PasteWord','-'],
+ 	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+ 	['Style','FontFormat','FontName','FontSize'],
+ 	'/',
+ 	['Bold','Italic','Underline','StrikeThrough','-','Subscript','Superscript'],
+ 	['OrderedList','UnorderedList','-','Outdent','Indent'],
+ 	['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],
+ 	['Link','Unlink'],
+ 	['Image','Table','Rule','SpecialChar','PageBreak'],
+ 	['TextColor','BGColor']// No comma for the last row.
+ 	
+ ] ;
 
 FCKConfig.ToolbarSets["Basic"] = [
 	['Bold','Italic','-','OrderedList','UnorderedList','-','Link','Unlink','-','About']

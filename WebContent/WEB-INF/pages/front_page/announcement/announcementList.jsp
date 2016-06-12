@@ -6,31 +6,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
-	<div class="row" style="width: 100%">
-		<div class="control-group span24" style="width: 98%">
-			<table class="table table-striped table-bordered">
-				<tr>
-					<th>标题</th>
-					<th>发布时间</th>
-				</tr>
-
-				<s:iterator value="#pageModel.recordList">
+	<div align="center">
+		<div class="row">
+			<div class="control-group" style="width: 68%">
+				<table class="table table-striped table-bordered">
 					<tr>
-						<td><a href="${pageContext.request.contextPath}/ans?id=<%=SecurityHelper.encode((String)request.getAttribute("id"))%>" target="_self" style="cursor:pointer;">${title }</a>  </td>
-						<td>${publishTime}</td>
+						<th>标题</th>
+						<th>发布时间</th>
 					</tr>
-				</s:iterator>
 
-			</table>
+					<s:iterator value="#pageModel.recordList">
+						<tr>
+							<td><a href="${pageContext.request.contextPath}/san.url?id=<%=SecurityHelper.encode((String)request.getAttribute("id"))%>" target="_self" style="cursor: pointer;">${title }</a></td>
+							<td>${publishTime}</td>
+						</tr>
+					</s:iterator>    
+
+				</table>
 
 
+			</div>
 		</div>
-	</div>
-	<div class="row" style="padding-left: 10px">
-		<div class="control-group span24 ">
-			<jsp:include page="/globle/jsp/pageView.jsp"></jsp:include>
+		<div class="row">
+			<div class="control-group">
+				<jsp:include page="/globle/jsp/pageView.jsp"></jsp:include>
+			</div>
 		</div>
 	</div>
 </body>

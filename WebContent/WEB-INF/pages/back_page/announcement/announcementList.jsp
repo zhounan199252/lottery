@@ -51,7 +51,7 @@
 
 	<div class="container" style="padding: 20px 0 0 30px; width: 100%">
 		<div class="row" style="width: 100%;">
-			<s:form action="announcement!listAnnouncement.action" method="post" id="form_search" cssClass="form-horizontal">
+			<s:form action="backAnnouncement!listAnnouncement.action" method="post" id="form_search" cssClass="form-horizontal">
 				<div class="row" style="width: 100%">
 					<div class="control-group span8">
 						<label class="control-label">公告类型：</label>
@@ -90,16 +90,16 @@
 			<div class="row" style="padding: 10px 0 0 10px;">
 				<div class="control-group span24">
 					<label class="control-label">
-						<button class="button" onclick="doAdd('${pageContext.request.contextPath}/announcement!addAnnouncementPage.action');">添加</button>
+						<button class="button" onclick="doAdd('${pageContext.request.contextPath}/backAnnouncement!addAnnouncementPage.action');">添加</button>
 					</label> <label class="control-label">
-						<button class="button" onclick="doUpdate('${pageContext.request.contextPath}/announcement!editAnnouncementPage.action')">编辑</button>
+						<button class="button" onclick="doUpdate('${pageContext.request.contextPath}/backAnnouncement!editAnnouncementPage.action')">编辑</button>
 					</label> <label class="control-label">
-						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/announcement!deleteAnnouncement.action');">删除</button>
+						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/backAnnouncement!deleteAnnouncement.action');">删除</button>
 					</label><label class="control-label">
-						<button class="button" onclick="doPublish('${pageContext.request.contextPath}/announcement!publishAnnouncement.action');">发布</button>
+						<button class="button" onclick="doPublish('${pageContext.request.contextPath}/backAnnouncement!publishAnnouncement.action');">发布</button>
 					</label> 
 					<label class="control-label">
-						<button class="button" onclick="doUnPublish('${pageContext.request.contextPath}/announcement!unPublishAnnouncement.action');">取消发布</button>
+						<button class="button" onclick="doUnPublish('${pageContext.request.contextPath}/backAnnouncement!unPublishAnnouncement.action');">取消发布</button>
 					</label> <label class="control-label">
 						<button class="button" onclick="doSearch();">搜索</button>
 					</label> <label class="control-label">

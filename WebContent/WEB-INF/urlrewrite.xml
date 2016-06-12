@@ -1,26 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"  
-        "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">  
-  
-<urlrewrite>  
-  
-  	<!-- 用于重写url -->
-  
-    <rule>  
-        <from>/an</from>  
-        <to>/frontAnnouncement!announcementList.action</to>  
-    </rule>  
-    <rule>  
-        <from>/ans</from>  
-        <to>/frontAnnouncement!getSingleAnnouncement.action</to>  
-    </rule>  
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">
+
+<urlrewrite>
+	<!-- 前往后台登录界面 begin -->
+		<rule>
+		<from>/tbul.url</from>
+		<to>/backIndex!toBackLogin.action</to>
+	</rule>
+	<!-- 前往后台登录界面 end -->
+
+	<!-- 后台登录 begin -->
+	<rule>
+		<from>/bul.url</from>
+		<to>/backUser!backLogin.action</to>
+	</rule>
+	<!-- 后台登录 end -->
+	<!-- 后台登录验证码 begin -->
+	<rule>
+		<from>/cfb.url</from>
+		<to>/securityCode!getCodeForBack.action</to>
+	</rule>
+	<!-- 后台登录验证码 end -->
+	<!-- 前台登录验证码 begin -->
+	<rule>
+		<from>/cff.url</from>
+		<to>/securityCode!getCodeForFront.action</to>
+	</rule>
+	<!-- 前台登录验证码 end -->
+
+	<!-- 前台主页面 begin -->
+	<rule>
+		<from>/default.url</from>
+		<to>/frontIndex!toDefault.action</to>
+	</rule>
+	<!-- 前台主页面 end -->
+
+	<!-- 消息发布 begin -->
+	<rule>
+		<from>/an.url</from>
+		<to>/frontAnnouncement!announcementList.action</to>
+	</rule>
+	<rule>
+		<from>/san.url</from>
+		<to>/frontAnnouncement!getSingleAnnouncement.action</to>
+	</rule>
+
+	<rule>
+		<from>/fa.url</from>
+		<to>/frontAnnouncement!favorList.action</to>
+	</rule>
+	<rule>
+		<from>/sfa.url</from>
+		<to>/frontAnnouncement!getSingleFavor.action</to>
+	</rule>
+	<!-- 消息发布 begin -->
+
+	<!-- 注册和登录 begin -->
+	<rule>
+		<from>/tolo.url</from>
+		<to>/frontIndex!toFrontLogin.action</to>
+	</rule>
+	<rule>
+		<from>/rlo.url</from>
+		<to>/frontUser!frontLogin.action</to>
+	</rule>
+	
+	<rule>
+		<from>/tore.url</from>
+		<to>/frontIndex!toRegister.action</to>
+	</rule>
+	<rule>
+		<from>/chku.url</from>
+		<to>/frontUser!checkFrontUsernameIsExist.action</to>
+	</rule>
+	<rule>
+		<from>/lre.url</from>
+		<to>/frontUser!register.action</to>
+	</rule>
+	<!-- 注册和登录 begin -->
+
+	
+	<!-- 查看我的账户 begin -->
+	<rule>
+		<from>/myC.url</from>
+		<to>/frontUser!myCount.action</to>
+	</rule>
+	<!-- 查看我的账户 begin -->
+
+
+	<!-- 修改密码 begin -->
+	<rule>
+		<from>/tcp.url</from>
+		<to>/frontUser!toChangePassword.action</to>
+	</rule>
+	<rule>
+		<from>/cp.url</from>
+		<to>/frontUser!changePassword.action</to>
+	</rule>
+	<rule>
+		<from>/chkpass.url</from>
+		<to>/frontUser!validPassword.action</to>
+	</rule>
+	<!-- 修改密码 begin -->
+	
+	<!-- 退出登录 begin -->
+	<rule>
+		<from>/flo.url</from>
+		<to>/frontUser!frontLogout.action</to>
+	</rule>
+	<!-- 退出登录 begin -->
+
+
+
 </urlrewrite> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

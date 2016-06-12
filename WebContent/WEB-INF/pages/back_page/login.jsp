@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import=" java.util.*,com.gzhd.util.SecurityHelper"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <jsp:include page="/globle/jsp/base.jsp"></jsp:include>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -9,6 +9,7 @@
 <title>登录界面</title>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/globle/css/bootstrap.min.css" />
+<script src="${pageContext.request.contextPath}/globle/js/des.js"></script>
 
 <style type="text/css">
 html,body {
@@ -96,6 +97,7 @@ html,body {
 
 <script type="text/javascript">
 	$(function() {
+		
 		$("#txt_username").focus(); // 用户名框获取焦点
 
 		$('#form_login').keydown(function(event) { // 回车事件（登陆）
@@ -149,15 +151,18 @@ html,body {
 	function changeValidateCode(obj) {
 		// 获取当前的时间作为参数,没实际意义，只为确保页面不会缓存
 		var timenow = new Date().getTime();
-		$(obj).attr("src", "${pageContext.request.contextPath}/securityCode!getCodeForBack.action?d=" + timenow);
+		$(obj).attr("src", "${pageContext.request.contextPath}/cfb.url?d=" + timenow);
 	}
 
 	/**
 	 * 提交表单
 	 */
 	function submitForm() {
+		var passowrdEnc = strEnc($("#txt_password").val(), "${sessionScope.firstKey}", "${sessionScope.secondKey}", "${sessionScope.thirdKey}");
+		$("#txt_password").val(passowrdEnc);
+		
 		$.ajax({
-			url : "${pageContext.request.contextPath}/backUser!backLogin.action",
+			url : "${pageContext.request.contextPath}/bul.url",
 			type : "post",
 			data : $("#form_login").serialize(),
 			success : function(res) {
@@ -183,7 +188,7 @@ html,body {
 			</div>
 			<div class="login-content ">
 			<div class="form">
-			<form action="${pageContext.request.contextPath }/backUser.backLogin" method="post" id="form_login">
+			<form action="${pageContext.request.contextPath }/bul.url" method="post" id="form_login">
 				<div class="form-group">
 					<div class="col-xs-12  ">
 						<div class="input-group">
@@ -209,17 +214,17 @@ html,body {
 							<input type="text" name="code" class="form-control" placeholder="验证码" style="width: 140px;height: 40px">
 							<span></span>
 							<span style="padding:10px 0 0 8px">
-								<img src="${pageContext.request.contextPath }/securityCode!getCodeForBack.action" id="img_code" onclick="changeValidateCode(this)" title="点击图片刷新验证码" style="width: 80px; height: 36px"/>
+								<img src="${pageContext.request.contextPath }/cfb.url" id="img_code" onclick="changeValidateCode(this)" title="点击图片刷新验证码" style="width: 80px; height: 36px"/>
 							</span>
 						</div>
 					</div>
 				</div>
-				<div class="form-group form-actions">
+			</form>
+			<div class="form-group form-actions">
 					<div class="col-xs-4 col-xs-offset-4 ">
 						<button type="submit" class="btn btn-sm btn-info" onclick="$('#form_login').submit();" id="btn_login"><span class="glyphicon glyphicon-off"></span> 登录</button>
 					</div>
 				</div>
-			</form>
 			</div>
 		</div>
 	</div>

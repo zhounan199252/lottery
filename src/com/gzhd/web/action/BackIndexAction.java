@@ -7,6 +7,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.springframework.context.annotation.Scope;
 
 import com.gzhd.model.BackUserModel;
+import com.opensymphony.xwork2.ActionContext;
 
 
 @Action(value = "backIndex", results = { //
@@ -25,6 +26,11 @@ public class BackIndexAction extends BaseAction<BackUserModel> {
 	private static final Logger logger = Logger.getLogger(BackIndexAction.class);
 
 	public String toBackLogin() {
+		
+		//des密钥
+		ActionContext.getContext().getSession().put("firstKey", "ILoveJava-");      
+		ActionContext.getContext().getSession().put("secondKey", "dfxcesedd3HJGFO?!4saxffsDSs-");  
+		ActionContext.getContext().getSession().put("thirdKey", "!?dfdff12FG-");   
 		
 		return "toBackLogin";
 	}

@@ -55,7 +55,7 @@ public class FrontAnnouncementServiceImpl implements FrontAnnouncementService {
 			params.put("publishTimeEnd", model.getPublishTimeEnd());
 		}
 		
-		queryHql.append(" order by a.publishTime desc, a.id desc");
+		queryHql.append(" and a.status='yes' order by a.publishTime desc, a.id desc");
 		
 		List<Announcement> list = baseDao.find(queryHql.toString() , params);
 		
@@ -69,7 +69,7 @@ public class FrontAnnouncementServiceImpl implements FrontAnnouncementService {
 			modelList.add(announcementModel);
 		}
 		
-		StringBuffer countHql = new StringBuffer("select count(*) ").append(queryHql);
+		StringBuffer countHql = new StringBuffer("select count(1) ").append(queryHql);
 		int allRows = baseDao.count(countHql.toString(), params).intValue();
 
 		return new PageModel(pageNum, pageSize, list, allRows);
