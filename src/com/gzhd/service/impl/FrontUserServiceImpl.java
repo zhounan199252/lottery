@@ -37,7 +37,9 @@ public class FrontUserServiceImpl implements FrontUserService {
 	public FrontUserModel getUserById(String id) {
 		FrontUser u = baseDao.get(FrontUser.class, id);
 		FrontUserModel model = new FrontUserModel();
-		BeanUtils.copyProperties(u, model);
+		if(u!=null){
+	     BeanUtils.copyProperties(u, model);
+		}
 		return model;
 	}
 

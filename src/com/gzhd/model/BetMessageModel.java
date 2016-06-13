@@ -9,7 +9,7 @@ public class BetMessageModel {
 	private String betPerson;   //投注人id
 	private String betPersonName; //投注人名字
 	private String betQuan;    //投注数量
-    
+	private double betPrice=2;    //投注数量
 	
 	private String betNum;   //投注号码
 
@@ -88,6 +88,14 @@ public class BetMessageModel {
 
 	public void setBetPersonName(String betPersonName) {
 		this.betPersonName = betPersonName;
+	}
+
+	public double getBetPrice() {
+		return betPrice;
+	}
+
+	public void setBetPrice(double betPrice) {
+		this.betPrice = betPrice;
 	}
 	
 	
