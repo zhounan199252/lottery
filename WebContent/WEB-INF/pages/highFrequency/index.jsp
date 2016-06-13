@@ -179,7 +179,8 @@
 	           var  betPeriod="";
 	           var betNum="";
 	           var betType="";
-	           var betPerson=""
+	           var betQuan="";
+	           var betPerson="";
 	           var  id="";
 	           if(name=="1"){
 	        	   id="gd11x5";
@@ -226,7 +227,7 @@
 	   			   });
 	           }else if(name=="3"){
 	        	      id="dlt";
-	        	      lookExpect(id)
+	        	      lookExpect(id);
 	                 if(timeLimate(id)==false){
 	        	     alert("20-21点禁止下注");
 	        	     return;
@@ -255,8 +256,14 @@
 	           }
 	           
 	            betNum=betNum.substring(0, betNum.length-1);
+	            //判断投注倍数是否为空
 	            betPerson='${sessionScope.frontCurrentLoginUser.nickname}';
-	           var betQuan= $("#quan"+id).val().trim();
+	            if(betPerson==""){
+	            	alert("请先登录，再进行投注");
+		        	return;	
+	            }
+	            //判断投注倍数是否为整数
+	          betQuan= $("#quan"+id).val().trim();
 	           var re = /^[1-9]+[0-9]*]*$/ ;
 	           if(!re.test(betQuan)){
 	                 alert("投注倍数为整数");
@@ -344,9 +351,9 @@
  
  <div align="center" >
 <ul  class="nav nav-tabs" style="width: 58%" >
-<li  id="gd11x5"  class="active"  style="font-size: 16px;" onclick="tabchange('gd11x5')" > 广东十一选五  &emsp; </li>  
-<li  id="ssq"   style="font-size: 16px;"  onclick="tabchange('ssq')" > 双色球  &emsp; </li>
-<li  id="dlt"   style="font-size: 16px;" onclick="tabchange('dlt')" > 大乐透 &emsp;</li>
+<li  id="gd11x5"  class="active"  style="font-size: 16px;" onclick="tabchange('gd11x5')" > 广东十一选五  &emsp;&emsp; </li>  
+<li  id="ssq"   style="font-size: 16px;"  onclick="tabchange('ssq')" > 双色球  &emsp;&emsp; </li>
+<li  id="dlt"   style="font-size: 16px;" onclick="tabchange('dlt')" > 大乐透 &emsp;&emsp;</li>
 </ul>
 
  <div   id="divgd11x5"  style="display:none;width: 58%;"  align="left">
