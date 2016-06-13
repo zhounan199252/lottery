@@ -202,7 +202,6 @@
 	        	     return;
 	        	    }
 	        	    betType="广东11选5";
-	        	    alert(getNowFormatDate());
 	        	   betPeriod =parseInt(getNowFormatDate())+1;
 	        	   $("#select"+id).children(".checked").each(function (index, domEle) { 
 	                   var num= $(domEle).text(); 

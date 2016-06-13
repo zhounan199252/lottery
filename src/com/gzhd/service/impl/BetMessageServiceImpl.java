@@ -19,6 +19,7 @@ import com.gzhd.model.AnnouncementModel;
 import com.gzhd.model.BetMessageModel;
 import com.gzhd.model.PageModel;
 import com.gzhd.service.itf.BetMessageService;
+import com.gzhd.service.itf.FrontUserService;
 
 
 
@@ -29,7 +30,10 @@ public class BetMessageServiceImpl  implements BetMessageService {
 
 	@Resource(name = BaseDao.BEAN_NAME)
 	private BaseDao<BetMessage> baseDao;
-
+	@Resource(name = FrontUserService.BEAN_NAME)
+	private FrontUserService frontUserService;
+	
+	
 	@Override
 	public String addBetMessage(BetMessageModel model) {
 		BetMessage betMessage= new BetMessage();
@@ -53,9 +57,18 @@ Map<String, Object> params = new HashMap<String, Object>();
 			params.put("betType", model.getBetType());
 		}
 		
+		if(StringUtils.isNotBlank(model.getBetPersonName())) {		
+		model.setBetPerson( frontUserService.getIdByFrontUsername(model.getBetPersonName()));	  	
+		}
+		
+		
 		if(StringUtils.isNotBlank(model.getBetPerson())) {
-			queryHql.append(" and a.betPerson like :betPerson");
+			queryHql.append(" and a.betPerson = :betPerson");
 			params.put("betPerson",model.getBetPerson());
+		}
+		if(StringUtils.isNotBlank(model.getBetPeriod())) {
+			queryHql.append(" and a.betPeriod = :betPeriod");
+			params.put("betPeriod",model.getBetPeriod());
 		}
 			
 		queryHql.append(" order by a.betDate desc");
@@ -68,14 +81,14 @@ Map<String, Object> params = new HashMap<String, Object>();
 			BetMessageModel betMessageModel = new BetMessageModel();
 			
 			BeanUtils.copyProperties(betMessage, betMessageModel);
-			
+				betMessageModel.setBetPersonName(frontUserService.getUserById(betMessageModel.getBetPerson()).getUsername()) ;	
 			modelList.add(betMessageModel);
 		}
 		
 		StringBuffer countHql = new StringBuffer("select count(1) ").append(queryHql);
 		int allRows = baseDao.count(countHql.toString(), params).intValue();
 
-		return new PageModel(pageNum, pageSize, list, allRows);
+		return new PageModel(pageNum, pageSize, modelList, allRows);
 	}
 
 
