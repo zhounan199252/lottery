@@ -954,7 +954,7 @@ p.non span{
 }
 .footer-copy{
 	padding:1.5em 1em;
-	background:#333333;
+	background:#e1e1e1;
 	text-align:center;
 }
 .footer-copy p{
@@ -963,8 +963,7 @@ p.non span{
 	margin:0;
 }
 .footer-copy p a{
-	color:#fff;
-	text-decoration:underline;
+	text-decoration: none;
 }
 .footer-copy p a:hover{
 	color:#f65a5b;

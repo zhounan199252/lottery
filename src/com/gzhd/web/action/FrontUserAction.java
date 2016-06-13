@@ -182,9 +182,10 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 		FrontUserModel user = (FrontUserModel) ActionContext.getContext().getSession()
 				.get(ConstantValues.FRONT_CURRENT_USER_LOGIN);
 
-		double count = service.getUserCount(user.getId());
+		FrontUserModel userModel = service.getUserCount(user.getId());
 
-		ActionContext.getContext().put("count", count);
+		//ActionContext.getContext().put("userModel", userModel);
+		ActionContext.getContext().getValueStack().push(userModel);
 
 		return "showCount";
 	}
@@ -251,6 +252,12 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 
 		return "toDefault";
 
+	}
+	
+	public String updateFrontUserInfo() {
+		service.updateUser(model);
+
+		return "toDefault";
 	}
 
 }

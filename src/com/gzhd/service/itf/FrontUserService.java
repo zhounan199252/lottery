@@ -80,7 +80,7 @@ public interface FrontUserService {
 
 	public void updateUserBalanceById(FrontUserModel model);
 
-	public double getUserCount(String id);
+	public FrontUserModel getUserCount(String id);
 
 	public boolean validPassword(FrontUserModel model);
 

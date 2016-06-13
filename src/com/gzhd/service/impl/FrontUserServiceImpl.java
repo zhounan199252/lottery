@@ -148,7 +148,7 @@ public class FrontUserServiceImpl implements FrontUserService {
 	public void updateUser(FrontUserModel model) {
 		FrontUser user = baseDao.get(FrontUser.class, model.getId());
 
-		BeanUtils.copyProperties(model, user, new String[]{"password", "registerTime", "lastLoginTime"});
+		BeanUtils.copyProperties(model, user, new String[]{"password", "registerTime", "lastLoginTime", "balance"});
 
 		baseDao.update(user);
 	}
@@ -212,14 +212,14 @@ public class FrontUserServiceImpl implements FrontUserService {
 	}
 
 	@Override
-	public double getUserCount(String id) {
+	public FrontUserModel getUserCount(String id) {
 		FrontUser user = baseDao.get(FrontUser.class, id);
 		
-		if(null != user) {
-			return user.getBalance();
-		}
+		FrontUserModel model = new FrontUserModel();
 		
-		return 0;
+		BeanUtils.copyProperties(user, model);
+		
+		return model;
 	}
 
 	@Override
