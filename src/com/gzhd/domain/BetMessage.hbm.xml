@@ -22,7 +22,7 @@
 			</column>
 		</property>
 		<property name="betPerson" type="string">
-			<column name="betPerson" length="20">
+			<column name="betPerson" length="32">
 				<comment>投注人</comment>
 			</column>
 		</property>

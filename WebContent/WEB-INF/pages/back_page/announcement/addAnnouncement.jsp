@@ -84,7 +84,7 @@
 		fck.Config["ImageUploadURL"] = "${pageContext.request.contextPath}/fileUpload!uploadFCKImage.action";  //设置图片的上传路径
 		
 		fck.Config['Enabled'] = true;
-		fck.Config['UserFilesPath'] = '${pageContext.request.contextPath}/file_uploads/';
+		//fck.Config['UserFilesPath'] = '${pageContext.request.contextPath}/file_uploads/';
 		
 		fck.ReplaceTextarea();
 	});

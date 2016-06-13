@@ -6,14 +6,16 @@ public class BetMessageModel {
 
 	private String betPeriod;  //投注期数
 	private String   betType;   //投注类型
-	private String betPerson;   //投注人
-	
+	private String betPerson;   //投注人id
+	private String betPersonName; //投注人名字
 	private String betQuan;    //投注数量
     
 	
 	private String betNum;   //投注号码
 
 	private String betDate;    //投注日期
+	
+	private int pageNum = 1;
 
 	public String getId() {
 		return id;
@@ -71,6 +73,24 @@ public class BetMessageModel {
 	public void setBetType(String betType) {
 		this.betType = betType;
 	}
+
+	public int getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	public String getBetPersonName() {
+		return betPersonName;
+	}
+
+	public void setBetPersonName(String betPersonName) {
+		this.betPersonName = betPersonName;
+	}
+	
+	
 	
 	
 }

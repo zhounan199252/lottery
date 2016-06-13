@@ -78,6 +78,11 @@
 		<from>/lre.url</from>
 		<to>/frontUser!register.action</to>
 	</rule>
+	
+	<rule>
+		<from>/cfu.url</from>
+		<to>/frontUser!updateFrontUserInfo.action</to>
+	</rule>
 	<!-- 注册和登录 begin -->
 
 	
@@ -87,6 +92,13 @@
 		<to>/frontUser!myCount.action</to>
 	</rule>
 	<!-- 查看我的账户 begin -->
+	
+	<!-- 查看我的投注 begin -->
+	<rule>
+		<from>/myB.url</from>
+		<to>/frontUser!myBetRecord.action</to>
+	</rule>
+	<!-- 查看我的投注 begin -->
 
 
 	<!-- 修改密码 begin -->

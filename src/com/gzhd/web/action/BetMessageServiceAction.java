@@ -6,8 +6,8 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Result;
 import org.springframework.context.annotation.Scope;
+
 import com.gzhd.model.BetMessageModel;
 import com.gzhd.service.itf.BetMessageService;
 import com.gzhd.util.TimeUtil;

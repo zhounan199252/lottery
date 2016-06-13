@@ -21,6 +21,7 @@
 <link href="${pageContext.request.contextPath}/globle/css/front_bootstrap/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- js -->
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery-1.11.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/confirmation.js"></script>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/globle/images/logo.ico" />
 <!-- //js -->
 <!-- start-smoth-scrolling -->
@@ -44,6 +45,12 @@
 
 	function gotoPage(url) {
 		$("#iframe_main").prop("src", url);
+	}
+	
+	function doLogout() {
+		if(confirm("确定要退出吗？")) {
+			gotoPage('${pageContext.request.contextPath}/flo.url');
+		}
 	}
 </script>
 <!-- start-smoth-scrolling -->
@@ -72,8 +79,9 @@
 						<s:else>
 							<li>欢迎您，${sessionScope.frontCurrentLoginUser.nickname}</li>
 							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/myC.url');">我的账户</a></li>
+							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/myB.url');">投注记录</a></li>
 							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/tcp.url');">修改密码</a></li>
-							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/flo.url');">退出</a></li>
+							<li><a href="javascript:doLogout();">退出</a></li>
 						</s:else>
 					</ul>
 				</div>
@@ -86,7 +94,7 @@
 	<div class="header_top">
 		<div class="container">
 			<div class="logo">
-				<a href="index.html">体育博彩网站</a>
+				<a href="index.html">天天趣玩网</a>
 			</div>
 			<%-- <div class="header_right">
 				<div class="cart box_1">
@@ -283,8 +291,8 @@
 	<!-- //cate -->
 
 	<div class="footer-copy">
-		<p>
-			Copyright &copy; 2015.Company name All rights 程靓坤 <a href="#" target="_blank" title="程靓坤">程靓坤</a> - Collect from <a href="#" title="程靓坤" target="_blank">网页模板</a>
+		<p style="color: black">
+			Copyright &copy; 2015 - 2016.天天趣玩网  版权所有 <a href="http://www.ttquwan.com/tbul.url" target="_blank" title="后台管理" class="color1">后台管理</a>
 		</p>
 	</div>
 </body>

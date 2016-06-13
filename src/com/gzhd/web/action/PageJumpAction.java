@@ -26,4 +26,5 @@ public class PageJumpAction {
 	public String toHighFrequency() {
 		return "toHighFrequency";
 	}
+	
 }

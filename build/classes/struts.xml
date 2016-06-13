@@ -70,7 +70,8 @@
 				<interceptor-ref name="backSessionInterceptor">
 					<param name="excludeMethods">
 						toBackLogin,backLogin,announcementList,favorList,getSingleAnnouncement,checkFrontUsernameIsExist,getSingleFavor,toFrontLogin,toRegister,
-						frontLogin,register,myCount,toChangePassword,validPassword,changePassword,frontLogout,logout,getCodeForBack,getCodeForFront,toDefault
+						frontLogin,register,myCount,toChangePassword,validPassword,changePassword,frontLogout,logout,getCodeForBack,getCodeForFront,toDefault,updateFrontUserInfo,
+						myBetRecord
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
 				</interceptor-ref>
 			</interceptor-stack>
