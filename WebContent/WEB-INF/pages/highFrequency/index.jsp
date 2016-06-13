@@ -56,8 +56,13 @@
          strDate = "0" + strDate;
      }
 
+     
+     var peroid = parseInt((date.getHours()-9)*6+date.getMinutes()/10);
+     if(peroid >= 1 && peroid <= 9){
+    	 peroid = "0" + peroid;
+     }
      var currentdate = date.getFullYear()+ month+strDate
-           + parseInt((date.getHours()-9)*6+date.getMinutes()/10);
+           + peroid;
      return currentdate;
 
  }  
@@ -90,7 +95,11 @@
 	 
 	 if(name=="gd11x5"){	 
 			for (var i = 1; i < 12; i++) {
-				div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";
+				   if(i<10){
+				    div=div+"<span onclick='check(this)'>0"+i+"</span>&emsp;&emsp;";	
+				    }else{
+				     div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
+				    }
 			}	
 			div=div+"</fieldset> <fieldset> <legend style='font-size: 16px;'>操作区</legend> 投注倍数<input id='quan"+name+"'></input> &emsp;&emsp; <button type='button' class='btn btn-default' onclick='buy(1)'>购买</button></fieldset> ";
 	 }else if(name=="ssq"){
@@ -193,6 +202,7 @@
 	        	     return;
 	        	    }
 	        	    betType="广东11选5";
+	        	    alert(getNowFormatDate());
 	        	   betPeriod =parseInt(getNowFormatDate())+1;
 	        	   $("#select"+id).children(".checked").each(function (index, domEle) { 
 	                   var num= $(domEle).text(); 
@@ -257,7 +267,7 @@
 	           
 	            betNum=betNum.substring(0, betNum.length-1);
 	            //判断投注倍数是否为空
-	            betPerson='${sessionScope.frontCurrentLoginUser.nickname}';
+	            betPerson='${sessionScope.frontCurrentLoginUser.id}';
 	            if(betPerson==""){
 	            	alert("请先登录，再进行投注");
 		        	return;	
@@ -303,7 +313,7 @@
 			success : function(result) {
 				var data= result.data;
 				if (data.length > 0) {
-					$("#div"+name).find("div").remove();
+					$("#div"+name).find("ul").remove();
 					$("#div"+name).find("fieldset").remove();
 					var ul= "<ul>";
 					for (var i = 0; i < data.length; i++) {
