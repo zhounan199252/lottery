@@ -68,7 +68,11 @@
 						id : 'front_user',
 						text : '前台用户管理',
 						href : '${pageContext.request.contextPath}/frontUser!listFrontUser.action'
-					} ]
+					} ,{
+						id : 'front_user',
+						text : '前台用户投注信息',
+						href : '${pageContext.request.contextPath}/betmessage!listBackBetMessage.action'
+					}]
 				} ]
 			} ];
 			new PageUtil.MainPage({

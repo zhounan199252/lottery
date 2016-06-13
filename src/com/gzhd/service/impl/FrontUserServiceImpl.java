@@ -190,6 +190,19 @@ public class FrontUserServiceImpl implements FrontUserService {
 		}
 	}
 
+	
+	@Override
+	public String getIdByFrontUsername(String username) {
+         Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", username);
+		FrontUser FrontUser = baseDao.get("from FrontUser f where f.username = :username", params); 
+		if(null != FrontUser) {
+			return FrontUser.getId();
+		} else {
+			return "";
+		}
+	}
+
 	@Override
 	public void updateLoginTimeById(String id, String loginTime) {
 

@@ -96,7 +96,7 @@
 	<!-- 查看我的投注 begin -->
 	<rule>
 		<from>/myB.url</from>
-		<to>/frontUser!myCount.action</to>
+		<to>/frontUser!myBetRecord.action</to>
 	</rule>
 	<!-- 查看我的投注 begin -->
 

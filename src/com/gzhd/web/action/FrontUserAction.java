@@ -4,14 +4,17 @@ package com.gzhd.web.action;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.context.annotation.Scope;
 
 import com.google.gson.JsonObject;
 import com.gzhd.common.ConstantValues;
+import com.gzhd.model.BetMessageModel;
 import com.gzhd.model.FrontUserModel;
 import com.gzhd.model.PageModel;
+import com.gzhd.service.itf.BetMessageService;
 import com.gzhd.service.itf.FrontUserService;
 import com.gzhd.util.Des;
 import com.gzhd.util.TimeUtil;
@@ -25,6 +28,7 @@ import com.opensymphony.xwork2.ActionContext;
 		@Result(name = "toRechargePage", location = "/WEB-INF/pages/back_page/front_user/recharge.jsp"), //
 		@Result(name = "toDefault", location = "frontIndex!toDefault.action", type = "redirectAction"), //
 		@Result(name = "showCount", location = "/WEB-INF/pages/front_page/myCount.jsp"), //
+		@Result(name = "betRecord", location = "/WEB-INF/pages/front_page/myBetRecord.jsp"), //
 		@Result(name = "toChangePassword", location = "/WEB-INF/pages/front_page/changePassword.jsp")//
 })
 @Scope("prototype")
@@ -39,6 +43,8 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 
 	@Resource(name = FrontUserService.BEAN_NAME)
 	private FrontUserService service;
+	@Resource(name = BetMessageService.BEAN_NAME)
+	private BetMessageService betMessageService;
 
 	public void frontLogin() {
 
@@ -179,12 +185,10 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 
 	public String myCount() {
 
-		FrontUserModel user = (FrontUserModel) ActionContext.getContext().getSession()
-				.get(ConstantValues.FRONT_CURRENT_USER_LOGIN);
+		FrontUserModel user = (FrontUserModel) ActionContext.getContext().getSession().get(ConstantValues.FRONT_CURRENT_USER_LOGIN);
 
 		FrontUserModel userModel = service.getUserCount(user.getId());
 
-		//ActionContext.getContext().put("userModel", userModel);
 		ActionContext.getContext().getValueStack().push(userModel);
 
 		return "showCount";
@@ -260,4 +264,15 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 		return "toDefault";
 	}
 
+	public String myBetRecord() {
+
+		FrontUserModel frontUserModel = (FrontUserModel) ServletActionContext.getRequest().getSession().getAttribute(ConstantValues.FRONT_CURRENT_USER_LOGIN);
+		BetMessageModel betMessageModel  = new  BetMessageModel();
+		betMessageModel.setBetPerson(frontUserModel.getId());
+        PageModel pageModel = betMessageService.getForPageModel(model.getPageNum(), ConstantValues.PAGE_SIZE, betMessageModel);
+		
+		ActionContext.getContext().put("pageModel", pageModel);
+		
+		return "betRecord";
+	}
 }
