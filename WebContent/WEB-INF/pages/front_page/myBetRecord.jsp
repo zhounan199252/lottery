@@ -12,6 +12,10 @@
 <body>
 
 	<div class="container" style="padding: 20px 0 20px 0; width: 68%">
+	<div class="row" style="width: 100%;">
+			<s:form action="myB.url" method="post" id="form_search" cssClass="form-horizontal">
+			</s:form>
+		</div>
 		<span style="font-size: 20px; color: red"> 以下为您的已投注信息： </span>
 	</div>
 
@@ -21,8 +25,8 @@
 				<div class="control-group span24" style="width: 98%">
 					<table class="table table-striped table-bordered">
 						<tr>
-							<th style="width: 30px"><input type="checkbox" id="chk_ids" onclick="$('[name=ids]').prop('checked', this.checked)" title="全选"></th>
-							<th>投注人</th>
+<!-- 							<th style="width: 30px"><input type="checkbox" id="chk_ids" onclick="$('[name=ids]').prop('checked', this.checked)" title="全选"></th> -->
+<!-- 							<th>投注人</th> -->
 							<th>投注类型</th>
 							<th>投注期数</th>
 							<th>投注倍数</th>
@@ -32,8 +36,8 @@
 
 						<s:iterator value="#pageModel.recordList">
 							<tr>
-								<td><input type="checkbox" name="ids" value="${id}"></td>
-								<td>${betPersonName}</td>
+<%-- 								<td><input type="checkbox" name="ids" value="${id}"></td> --%>
+<%-- 								<td>${betPersonName}</td> --%>
 								<td>${betType}</td>
 								<td>${betPeriod}</td>
 								<td>${betQuan}</td>
