@@ -74,7 +74,7 @@ Map<String, Object> params = new HashMap<String, Object>();
 			
 		queryHql.append(" order by a.betDate desc");
 		
-		List<BetMessage> list = baseDao.find(queryHql.toString() , params);
+		List<BetMessage> list = baseDao.find(queryHql.toString() , params,pageNum, pageSize);
 		
 		List<BetMessageModel> modelList = new ArrayList<BetMessageModel>();
 		
@@ -86,7 +86,7 @@ Map<String, Object> params = new HashMap<String, Object>();
 			if(frontUserModel.getUsername()!=null){
 				betMessageModel.setBetPersonName(frontUserModel.getUsername());		
 			}else{
-				betMessageModel.setBetPersonName("未知");	
+				betMessageModel.setBetPersonName("");	
 			}
 		    
 			modelList.add(betMessageModel);
