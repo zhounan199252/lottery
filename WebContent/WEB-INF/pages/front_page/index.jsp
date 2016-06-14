@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>天天趣玩网</title>
+<title>天天趣玩网_安全买彩票，幸福中大奖</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21,7 +21,6 @@
 <link href="${pageContext.request.contextPath}/globle/css/front_bootstrap/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- js -->
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery-1.11.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/confirmation.js"></script>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/globle/images/logo.ico" />
 <!-- //js -->
 <!-- start-smoth-scrolling -->
@@ -63,12 +62,16 @@
 </script>
 </head>
 
-<body>
-
+<body >
 	<!-- top-header -->
-	<div class="top_bg">
+	<div class="top_bg" >
 		<div class="container">
 			<div class="header_top-sec">
+				<div class="top_right">
+					<ul>
+						<li><a href="javascript:void(0)">你好,欢迎来到天天趣玩网彩票！</a></li>
+					</ul>
+				</div>
 				<div class="top_left" id="nav">
 					<ul class="">
 						<s:if test="#session.frontCurrentLoginUser == null">
@@ -91,21 +94,18 @@
 	<!-- top-header -->
 
 	<!-- logo-cart -->
-	<div class="header_top">
+	<div class="header_top" style="height: 90px">
 		<div class="container">
 			<div class="logo">
-				<a href="index.html">天天趣玩网</a>
+				<a href="javascript:void(0)">天天趣玩网</a>
 			</div>
-			<%-- <div class="header_right">
-				<div class="cart box_1">
-					<a href="checkout.html"> <span class="simpleCart_total  total"></span> <img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/cart1.png" alt="" />
-					</a>
-					<p>
-						<a href="javascript:;" class="simpleCart_empty"></a>
-					</p>
-					<div class="clearfix"></div>
+			<div class="header_right">
+				<div class="cart box_1">	
+					<font style="color: red">TEL:5566335544</font>&nbsp;
+					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1904037944&site=qq&menu=yes"><img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/kefu.png" alt="在线客服" title="点击咨询在线客服"/></a>
 				</div>
-			</div> --%>
+			
+			</div>
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -134,8 +134,8 @@
 	</div>
 
 	<!-- banner -->
-	<div class="banner" style="height: 100%; width: 100%">
-		<div class="container" style="height: 100%; width: 100%">
+	<div class="banner" style="height: 800px; width: 100%">
+		<div class="container" style="height: 800px; width: 100%">
 			<!-- Slider-starts-Here -->
 			<%-- 	<script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/responsiveslides.min.js"></script>
 			<script>
@@ -217,7 +217,7 @@
 
 				</ul>
 			</div> -->
-			<iframe width="100%" frameBorder="0" scrolling="no" id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%; height: 630px"></iframe>
+			<iframe width="100%" frameBorder="0" scrolling="no" id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%; height: 1000px"></iframe>
 		</div>
 	</div>
 	<!-- //banner -->
@@ -289,11 +289,6 @@
 		</div>
 	</div> --%>
 	<!-- //cate -->
-
-	<div class="footer-copy">
-		<p style="color: black">
-			Copyright &copy; 2015 - 2016.天天趣玩网  版权所有 <a href="http://www.ttquwan.com/tbul.url" target="_blank" title="后台管理" class="color1">后台管理</a>
-		</p>
-	</div>
+	
 </body>
 </html>
