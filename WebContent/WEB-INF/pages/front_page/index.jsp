@@ -101,7 +101,7 @@
 			</div>
 			<div class="header_right">
 				<div class="cart box_1">	
-					<font style="color: red">TEL:5566335544</font>&nbsp;
+					<!-- <font style="color: red">TEL:5566335544</font>&nbsp; -->
 					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1904037944&site=qq&menu=yes"><img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/kefu.png" alt="在线客服" title="点击咨询在线客服"/></a>
 				</div>
 			
