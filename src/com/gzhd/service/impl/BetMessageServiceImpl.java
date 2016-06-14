@@ -17,6 +17,7 @@ import com.gzhd.domain.Announcement;
 import com.gzhd.domain.BetMessage;
 import com.gzhd.model.AnnouncementModel;
 import com.gzhd.model.BetMessageModel;
+import com.gzhd.model.FrontUserModel;
 import com.gzhd.model.PageModel;
 import com.gzhd.service.itf.BetMessageService;
 import com.gzhd.service.itf.FrontUserService;
@@ -79,9 +80,15 @@ Map<String, Object> params = new HashMap<String, Object>();
 		
 		for(BetMessage betMessage: list) {
 			BetMessageModel betMessageModel = new BetMessageModel();
-			
 			BeanUtils.copyProperties(betMessage, betMessageModel);
-				betMessageModel.setBetPersonName(frontUserService.getUserById(betMessageModel.getBetPerson()).getUsername()) ;	
+			
+			FrontUserModel frontUserModel =frontUserService.getUserById(betMessageModel.getBetPerson());
+			if(frontUserModel.getUsername()!=null){
+				betMessageModel.setBetPersonName(frontUserModel.getUsername());		
+			}else{
+				betMessageModel.setBetPersonName("未知");	
+			}
+		    
 			modelList.add(betMessageModel);
 		}
 		

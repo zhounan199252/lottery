@@ -20,7 +20,7 @@
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/simpleCart.min.js"></script>
 </head>
 <body>
-		<!-- banner -->
+	<!-- banner -->
 	<div class="banner">
 		<div class="container">
 			<!-- Slider-starts-Here -->
@@ -52,13 +52,13 @@
 						<div class="banner-info">
 							<div class="banner-info1">
 								<div class="banner-inf">
-									<h1>彩票，六合彩，体育彩票</h1>
+									<h1>体育赛事</h1>
 									<p>
-										彩票，六合彩，体育彩票<br> 优惠活动<br> 优惠活动<br>
+										篮球竞彩<br> 足球竞彩<br>
 									</p>
 
 									<div class="buy">
-										<a href="single.html">点击查看</a>
+										<a href="">点击查看</a>
 									</div>
 								</div>
 							</div>
@@ -68,12 +68,12 @@
 						<div class="banner-info">
 							<div class="banner-info1">
 								<div class="banner-inf">
-									<h1>消息公告</h1>
+									<h1>六合彩</h1>
 									<p>
-										消息公告<br> 优惠活动<br> 优惠活动<br>
+										广东十一选五<br>双色球<br>大乐透<br>七星彩<br>
 									</p>
 									<div class="buy">
-										<a href="single.html">点击查看</a>
+										<a href="">点击查看</a>
 									</div>
 								</div>
 							</div>
@@ -85,6 +85,85 @@
 		</div>
 	</div>
 
+	<!-- //banner -->
 
+
+	<!-- cate -->
+	<div class="cate">
+		<div class="container">
+			<div class="cate-left">
+				<h3>
+					本站彩种<span>Lottery project</span>
+				</h3>
+			</div>
+			<div class="cate-right">
+				<!-- slider -->
+				<ul id="flexiselDemo1">
+					<li>
+						<div class="sliderfig-grid">
+							<img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/football.jpg" alt="足球竞彩" title="足球竞彩" class="img-responsive" />
+						</div>
+					</li>
+					<li>
+						<div class="sliderfig-grid">
+							<img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/basketball.jpg" alt="篮球竞彩" title="篮球竞彩" class="img-responsive" />
+						</div>
+					</li>
+					<li>
+						<div class="sliderfig-grid">
+							<img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/dlt.jpg" alt="大乐透" title="大乐透" class="img-responsive" />
+						</div>
+					</li>
+					<li>
+						<div class="sliderfig-grid">
+							<img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/ssq.jpg" alt="双色球" title="双色球" class="img-responsive" />
+						</div>
+					</li>
+					<li>
+						<div class="sliderfig-grid">
+							<img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/qxc.jpg" alt="七星彩" title="七星彩" class="img-responsive" />
+						</div>
+					</li>
+				</ul>
+				<script type="text/javascript">
+					$(window).load(function() {
+						$("#flexiselDemo1").flexisel({
+							visibleItems : 4,
+							animationSpeed : 1000,
+							autoPlay : true,
+							autoPlaySpeed : 3000,
+							pauseOnHover : true,
+							enableResponsiveBreakpoints : true,
+							responsiveBreakpoints : {
+								portrait : {
+									changePoint : 480,
+									visibleItems : 3
+								},
+								landscape : {
+									changePoint : 640,
+									visibleItems : 4
+								},
+								tablet : {
+									changePoint : 768,
+									visibleItems : 3
+								}
+							}
+						});
+
+					});
+				</script>
+				<script type="text/javascript" src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery.flexisel.js"></script>
+			</div>
+			<!-- //slider -->
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- //cate -->
+	<div class="footer-copy" style="height: 160px">
+		
+		<p style="color: black">
+			Copyright &copy; 2015 - 2016.<a href="http://www.ttquwan.com" target="_blank">天天趣玩网</a> 版权所有 <a href="http://www.ttquwan.com/tbul.url" target="_blank" title="后台管理" class="color1">后台管理</a><br> 提醒：购买彩票有风险，在线投注需谨慎，不向未满18周岁的青少年出售彩票及提供彩票代购服务
+		</p>
+	</div>
 </body>
 </html>
