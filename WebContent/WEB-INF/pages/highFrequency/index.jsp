@@ -25,7 +25,7 @@ margin-bottom: 5px;
  <script>
  
  function waring(message) {
-	var  waring='<div  style="position:absolute;left:30%;top:60%;" class="alert alert-info alert-dismissible" role="alert">'+
+	var  waring='<div  style="position:absolute;left:30%;top:40%;" class="alert alert-info alert-dismissible" role="alert">'+
 		 '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
 		 '<strong>提示:</strong>'+message+'</div>';
 	     $("#main").append(waring);
