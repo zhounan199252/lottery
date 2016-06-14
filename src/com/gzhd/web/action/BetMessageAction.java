@@ -20,7 +20,8 @@ import com.opensymphony.xwork2.ActionContext;
 
 
 @Action(value = "betmessage", results = { 
-		@Result(name = "list", location = "/WEB-INF/pages/highFrequency/backBetMessage.jsp")
+		@Result(name = "list", location = "/WEB-INF/pages/highFrequency/backBetMessage.jsp"),
+		@Result(name = "list", location = "betmessage!listBackBetMessage.action", type = "redirectAction")
 })
 @Scope("prototype")
 public class BetMessageAction  extends BaseAction<BetMessageModel>  {
@@ -77,6 +78,18 @@ public class BetMessageAction  extends BaseAction<BetMessageModel>  {
 		return "list";
 		
 	}
+	
+	
+	/**
+	 * 删除投注信息
+	 */
+	public String deleteById() {
+
+		betMessageService.deleteById(model.getId());
+
+		return "toList";
+	}
+
 
 
 }

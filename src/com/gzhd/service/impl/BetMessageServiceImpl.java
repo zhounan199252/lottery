@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.gzhd.dao.itf.BaseDao;
 import com.gzhd.domain.Announcement;
 import com.gzhd.domain.BetMessage;
+import com.gzhd.domain.FrontUser;
 import com.gzhd.model.AnnouncementModel;
 import com.gzhd.model.BetMessageModel;
 import com.gzhd.model.FrontUserModel;
@@ -96,6 +97,17 @@ Map<String, Object> params = new HashMap<String, Object>();
 		int allRows = baseDao.count(countHql.toString(), params).intValue();
 
 		return new PageModel(pageNum, pageSize, modelList, allRows);
+	}
+
+	@Override
+	public void deleteById(String id) {
+         String[] ids = id.split(",");
+		for(String sigleId : ids) {
+			BetMessage betMessage= baseDao.get(BetMessage.class, sigleId);
+			baseDao.delete(betMessage);
+		}
+	
+		
 	}
 
 

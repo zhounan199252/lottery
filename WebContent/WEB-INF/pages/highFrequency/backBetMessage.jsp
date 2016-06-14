@@ -47,6 +47,9 @@
 						<label class="control-label">
 							<button class="button" onclick="doClear();">清空</button>
 						</label>
+						<label class="control-label">
+						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/betmessage!deleteById.action');">删除</button>
+					</label> 
 				</div>
 			</div>
 			<div class="row" style="width: 100%">
