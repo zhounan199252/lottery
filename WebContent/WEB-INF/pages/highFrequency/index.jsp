@@ -6,14 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
-<link href="${pageContext.request.contextPath}/globle/css/front_bootstrap/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="${pageContext.request.contextPath}/globle/css/front_bootstrap/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="${pageContext.request.contextPath}/bootstrap-3.3.5/css/bootstrap.css" rel="stylesheet" />
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery-1.11.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.css"></script>
 <style type="text/css">
  .checked{
- color:red;
+ color:white;
+ background-color:red; 
  }
  
+ .span_cicle{
+border-radius: 14px;
+border:1px solid #000; 
+margin-bottom: 5px;
+}
 </style>
 
  <script>
@@ -25,7 +31,7 @@
 	function lookExpect(name) {
 	  
 		$.ajax({
-			url : "http://f.apiplus.cn/"+name+".json",
+			url : "http://f.apiplus.cn/"+name+"-1.json",
 			type : "post",
 			dataType: 'jsonp',
 		    jsonp: 'callback',
@@ -87,64 +93,6 @@
        return  true;
    }
  
-  //显示下注区域
- function showBuy(name) {
-	 $("#div"+name).find("ul").remove();
-	 $("#div"+name).find("fieldset").remove();
-	 var div= "<fieldset  id='select"+name+"'> <legend style='font-size: 16px;' >选号区:</legend> ";
-	 
-	 if(name=="gd11x5"){	 
-			for (var i = 1; i < 12; i++) {
-				   if(i<10){
-				    div=div+"<span onclick='check(this)'>0"+i+"</span>&emsp;&emsp;";	
-				    }else{
-				     div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
-				    }
-			}	
-			div=div+"</fieldset> <fieldset> <legend style='font-size: 16px;'>操作区</legend> 投注倍数<input id='quan"+name+"'></input> &emsp;&emsp; <button type='button' class='btn btn-default' onclick='buy(1)'>购买</button></fieldset> ";
-	 }else if(name=="ssq"){
-		       div=div+"<fieldset ><legend style='font-size: 12px;'>前区:</legend>"; 
-			for (var i = 1; i < 33; i++) {
-			if(i<10){
-			div=div+"<span onclick='check(this)'>0"+i+"</span>&emsp;&emsp;";	
-			}else{
-			div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
-			}
-				
-			}				
-			div=div+"</fieldset ><fieldset ><legend style='font-size: 12px;'>后区:</legend>"; 
-			for (var i = 1; i < 16; i++) {
-				if(i<10){
-			    div=div+"<span onclick='check(this)'>0"+i+"</span>&emsp;&emsp;";	
-			    }else{
-			     div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
-			    }
-			}
-			div=div+"</fieldset></fieldset><fieldset> <legend style='font-size: 16px;'>操作区</legend> 投注倍数<input id='quan"+name+"'></input> &emsp;&emsp; <button type='button' class='btn btn-default' onclick='buy(2)'>购买</button></fieldset> " ;
-			
-	 }else if(name=="dlt"){
-		    div=div+"<fieldset><legend style='font-size: 16px;'>前区:</legend>"; 
-			for (var i = 1; i < 35; i++) {
-				if(i<10){
-			    div=div+"<span onclick='check(this)'>0"+i+"</span>&emsp;&emsp;";	
-			    }else{
-			     div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
-			    }
-			}
-			div=div+"</fieldset><fieldset><legend style='font-size: 16px;'>后区:</legend>"; 
-			for (var i = 1; i < 12; i++) {
-			if(i<10){
-			    div=div+"<span onclick='check(this)'>0"+i+"</span>&emsp;&emsp;";	
-			    }else{
-			     div=div+"<span onclick='check(this)'>"+i+"</span>&emsp;&emsp;";	
-			    }
-			}
-			div=div+"</fieldset></fieldset> <fieldset> <legend style='font-size: 16px;'>操作区</legend> 投注倍数<input id='quan"+name+"'></input>  &emsp;&emsp; <button class='btn btn-default' type='button' onclick='buy(3)'>购买</button></fieldset> ";
-		
-	 }
-		
-			$("#div"+name).append(div);
- }
  
  //选号
  function check(node) {
@@ -305,7 +253,7 @@
  //查看开奖信息
 	function look(name) {
 		$.ajax({
-			url : "http://f.apiplus.cn/"+name+".json",
+			url : "http://f.apiplus.cn/"+name+"-30.json",
 			type : "post",
 			dataType: 'jsonp',
 		    jsonp: 'callback',
@@ -313,13 +261,12 @@
 				var data= result.data;
 				if (data.length > 0) {
 					$("#div"+name).find("ul").remove();
-					$("#div"+name).find("fieldset").remove();
 					var ul= "<ul>";
 					for (var i = 0; i < data.length; i++) {
 						ul=ul+"<li>开奖期数:"+data[i].expect+",开奖号码"+data[i].opencode+",开奖时间"+data[i].opentime+"</li>";
 					}
 					  ul=ul+ "</ul>";
-						$("#div"+name).append(ul);
+						$("#div1"+name).append(ul);
 				} 
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
@@ -359,20 +306,200 @@
  <body>
  
  <div align="center" >
-<ul  class="nav nav-tabs" style="width: 58%" >
-<li  id="gd11x5"  class="active"  style="font-size: 16px;" onclick="tabchange('gd11x5')" > 广东十一选五  &emsp;&emsp; </li>  
-<li  id="ssq"   style="font-size: 16px;"  onclick="tabchange('ssq')" > 双色球  &emsp;&emsp; </li>
-<li  id="dlt"   style="font-size: 16px;" onclick="tabchange('dlt')" > 大乐透 &emsp;&emsp;</li>
+<ul  class="nav nav-pills" style="width: 58%" >
+<li  id="gd11x5" class="active"  style="font-size: 16px;" onclick="tabchange('gd11x5');look('gd11x5');" ><a href="#"><span class="glyphicon glyphicon-th-large" ></span> 广东十一选五</a>  </li>  
+<li  id="ssq"   style="font-size: 16px;"  onclick="tabchange('ssq');look('ssq');" ><a href="#"><span class="glyphicon glyphicon-th-large" ></span> 双色球   </a>  </li>
+<li  id="dlt"   style="font-size: 16px;" onclick="tabchange('dlt');look('dlt');" > <a href="#"><span class="glyphicon glyphicon-th-large" ></span>大乐透   </a>   </li>
 </ul>
 
+
+
  <div   id="divgd11x5"  style="display:none;width: 58%;"  align="left">
- <button type='button' class='btn btn-link' onclick="look('gd11x5')">最近开奖信息</button> &emsp;&emsp;&emsp; <button type='button' class='btn btn-link' onclick="showBuy('gd11x5')">下注</button> 
+ 
+
+ <div class="panel panel panel-info"  style="width: 50%;height:541px;float:right" >
+  <div class="panel-heading">最近开奖信息</div>
+  <div class="panel-body"  id="div1gd11x5" >
+ </div>
 </div>
+
+ <div class="panel panel panel-info"  style="width: 50%;height:541px" >
+  <div class="panel-heading">购买</div>
+  <div class="panel-body"  >
+  
+  <fieldset  id='selectgd11x5'> <legend style='font-size: 16px;' >选号区:</legend>
+  <span onclick='check(this)' class="span_cicle">01</span>
+  <span onclick='check(this)' class="span_cicle">02</span>
+  <span onclick='check(this)' class="span_cicle">03</span>
+  <span onclick='check(this)' class="span_cicle">04</span>
+  <span onclick='check(this)' class="span_cicle">05</span>
+  <span onclick='check(this)' class="span_cicle">06</span>
+  <span onclick='check(this)' class="span_cicle">07</span>
+  <span onclick='check(this)' class="span_cicle">08</span>
+  <span onclick='check(this)' class="span_cicle">09</span>
+  <span onclick='check(this)' class="span_cicle">10</span>
+  <span onclick='check(this)' class="span_cicle">11</span>
+  </fieldset>
+   <fieldset> <legend style='font-size: 16px;'>操作区</legend>
+       投注倍数<input id='quangd11x5'></input>   
+  <button type='button' class='btn btn-default' onclick='buy(1)'>购买</button>
+  </fieldset> 
+  
+  </div>
+</div>
+
+</div>
+
+
 <div   id="divssq" style="display:none;width: 58%;" align="left">
- <button type='button' class='btn btn-link' onclick="look('ssq')">最近开奖信息</button> &emsp;&emsp;&emsp; <button type='button' class='btn btn-link' onclick="showBuy('ssq')">下注</button>
+<div class="panel panel panel-info"  style="width: 50%;float:right;height:541px" >
+  <div class="panel-heading">最近开奖信息</div>
+  <div class="panel-body"  id="div1ssq" >
+ </div>
 </div>
+
+ <div class="panel panel panel-info"  style="width: 50%;;height:541px" >
+  <div class="panel-heading">购买</div>
+  <div class="panel-body" >
+  
+<fieldset  id='selectssq'> <legend style='font-size: 16px;' >选号区:</legend>
+  <fieldset ><legend style='font-size: 12px;'>前区:</legend>
+ <span onclick='check(this)' class="span_cicle">01</span> 
+  <span onclick='check(this)' class="span_cicle">02</span> 
+  <span onclick='check(this)' class="span_cicle">03</span> 
+  <span onclick='check(this)' class="span_cicle">04</span> 
+  <span onclick='check(this)' class="span_cicle">05</span> 
+  <span onclick='check(this)' class="span_cicle">06</span> 
+  <span onclick='check(this)' class="span_cicle">07</span> 
+  <span onclick='check(this)' class="span_cicle">08</span> 
+  <span onclick='check(this)' class="span_cicle">09</span> 
+  <span onclick='check(this)' class="span_cicle">10</span> 
+  <span onclick='check(this)' class="span_cicle">11</span> 
+  <span onclick='check(this)' class="span_cicle">12</span> 
+  <span onclick='check(this)' class="span_cicle">13</span> 
+  <span onclick='check(this)' class="span_cicle">14</span> 
+  <span onclick='check(this)' class="span_cicle">15</span> 
+  <span onclick='check(this)' class="span_cicle">16</span> 
+  <span onclick='check(this)' class="span_cicle">17</span> 
+  <span onclick='check(this)' class="span_cicle">18</span> 
+  <span onclick='check(this)' class="span_cicle">19</span> 
+  <span onclick='check(this)' class="span_cicle">20</span> 
+  <span onclick='check(this)' class="span_cicle">21</span> 
+  <span onclick='check(this)' class="span_cicle">22</span> 
+  <span onclick='check(this)' class="span_cicle">23</span> 
+  <span onclick='check(this)' class="span_cicle">24</span> 
+  <span onclick='check(this)' class="span_cicle">25</span> 
+  <span onclick='check(this)' class="span_cicle">26</span> 
+  <span onclick='check(this)' class="span_cicle">27</span> 
+  <span onclick='check(this)' class="span_cicle">28</span> 
+  <span onclick='check(this)' class="span_cicle">29</span> 
+  <span onclick='check(this)' class="span_cicle">30</span> 
+  <span onclick='check(this)' class="span_cicle">31</span> 
+  <span onclick='check(this)' class="span_cicle">32</span> 
+  <span onclick='check(this)' class="span_cicle">33</span> 
+  </fieldset >
+  <fieldset ><legend style='font-size: 12px;'>后区:</legend>
+  <span onclick='check(this)' class="span_cicle">01</span> 
+  <span onclick='check(this)' class="span_cicle">02</span> 
+  <span onclick='check(this)' class="span_cicle">03</span> 
+  <span onclick='check(this)' class="span_cicle">04</span> 
+  <span onclick='check(this)' class="span_cicle">05</span> 
+  <span onclick='check(this)' class="span_cicle">06</span> 
+  <span onclick='check(this)' class="span_cicle">07</span> 
+  <span onclick='check(this)' class="span_cicle">08</span> 
+  <span onclick='check(this)' class="span_cicle">09</span> 
+  <span onclick='check(this)' class="span_cicle">10</span> 
+  <span onclick='check(this)' class="span_cicle">11</span> 
+  <span onclick='check(this)' class="span_cicle">12</span> 
+  <span onclick='check(this)' class="span_cicle">13</span> 
+  <span onclick='check(this)' class="span_cicle">14</span> 
+  <span onclick='check(this)' class="span_cicle">15</span> 
+  <span onclick='check(this)' class="span_cicle">16</span> 
+  </fieldset>
+  </fieldset> 
+  <fieldset> <legend style='font-size: 16px;'>操作区</legend> 
+  投注倍数<input id='quanssq'></input>   
+  <button type='button' class='btn btn-default' onclick='buy(2)'>购买</button>
+  </fieldset>
+  
+  </div>
+</div>
+
+</div>
+
+
 <div   id="divdlt"  style="display:none;width: 58%;" align="left">
- <button type='button' class='btn btn-link' onclick="look('dlt')">最近开奖信息</button> &emsp;&emsp;&emsp; <button type='button' class='btn btn-link' onclick="showBuy('dlt')">下注</button>
+<div class="panel panel panel-info"  style="width: 50%;float:right;height:541px" >
+  <div class="panel-heading">最近开奖信息</div>
+  <div class="panel-body"  id="div1dlt" >
+ </div>
+</div>
+
+ <div class="panel panel panel-info"  style="width: 50%;;height:541px" >
+  <div class="panel-heading">购买</div>
+  <div class="panel-body" >
+  
+<fieldset  id='selectdlt'> <legend style='font-size: 16px;' >选号区:</legend>
+  <fieldset ><legend style='font-size: 12px;'>前区:</legend>
+  <span onclick='check(this)' class="span_cicle">01</span> 
+  <span onclick='check(this)' class="span_cicle">02</span> 
+  <span onclick='check(this)' class="span_cicle">03</span> 
+  <span onclick='check(this)' class="span_cicle">04</span> 
+  <span onclick='check(this)' class="span_cicle">05</span> 
+  <span onclick='check(this)' class="span_cicle">06</span> 
+  <span onclick='check(this)' class="span_cicle">07</span> 
+  <span onclick='check(this)' class="span_cicle">08</span> 
+  <span onclick='check(this)' class="span_cicle">09</span> 
+  <span onclick='check(this)' class="span_cicle">10</span> 
+  <span onclick='check(this)' class="span_cicle">11</span> 
+  <span onclick='check(this)' class="span_cicle">12</span> 
+  <span onclick='check(this)' class="span_cicle">13</span> 
+  <span onclick='check(this)' class="span_cicle">14</span> 
+  <span onclick='check(this)' class="span_cicle">15</span> 
+  <span onclick='check(this)' class="span_cicle">16</span> 
+  <span onclick='check(this)' class="span_cicle">17</span> 
+  <span onclick='check(this)' class="span_cicle">18</span> 
+  <span onclick='check(this)' class="span_cicle">19</span> 
+  <span onclick='check(this)' class="span_cicle">20</span> 
+  <span onclick='check(this)' class="span_cicle">21</span> 
+  <span onclick='check(this)' class="span_cicle">22</span> 
+  <span onclick='check(this)' class="span_cicle">23</span> 
+  <span onclick='check(this)' class="span_cicle">24</span> 
+  <span onclick='check(this)' class="span_cicle">25</span> 
+  <span onclick='check(this)' class="span_cicle">26</span> 
+  <span onclick='check(this)' class="span_cicle">27</span> 
+  <span onclick='check(this)' class="span_cicle">28</span> 
+  <span onclick='check(this)' class="span_cicle">29</span> 
+  <span onclick='check(this)' class="span_cicle">30</span> 
+  <span onclick='check(this)' class="span_cicle">31</span> 
+  <span onclick='check(this)' class="span_cicle">32</span> 
+  <span onclick='check(this)' class="span_cicle">33</span> 
+  <span onclick='check(this)' class="span_cicle">34</span> 
+  <span onclick='check(this)' class="span_cicle">35</span> 
+  </fieldset >
+  <fieldset ><legend style='font-size: 12px;'>后区:</legend>
+   <span onclick='check(this)' class="span_cicle">01</span> 
+  <span onclick='check(this)' class="span_cicle">02</span> 
+  <span onclick='check(this)' class="span_cicle">03</span> 
+  <span onclick='check(this)' class="span_cicle">04</span> 
+  <span onclick='check(this)' class="span_cicle">05</span> 
+  <span onclick='check(this)' class="span_cicle">06</span> 
+  <span onclick='check(this)' class="span_cicle">07</span> 
+  <span onclick='check(this)' class="span_cicle">08</span> 
+  <span onclick='check(this)' class="span_cicle">09</span> 
+  <span onclick='check(this)' class="span_cicle">10</span> 
+  <span onclick='check(this)' class="span_cicle">11</span> 
+  <span onclick='check(this)' class="span_cicle">12</span> 
+  </fieldset>
+  </fieldset> 
+  <fieldset> <legend style='font-size: 16px;'>操作区</legend> 
+       投注倍数<input id='quandlt'></input>   
+  <button type='button' class='btn btn-default' onclick='buy(3)'>购买</button>
+  </fieldset>
+  
+ </div>
+</div>
+
 </div>
 
 </div>
