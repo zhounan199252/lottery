@@ -8,7 +8,7 @@
 </head>
 <link href="${pageContext.request.contextPath}/bootstrap-3.3.5/css/bootstrap.css" rel="stylesheet" />
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery-1.11.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.css"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <style type="text/css">
  .checked{
  color:white;
@@ -23,6 +23,15 @@ margin-bottom: 5px;
 </style>
 
  <script>
+ 
+ function waring(message) {
+	var  waring='<div  style="position:absolute;left:30%;top:60%;" class="alert alert-info alert-dismissible" role="alert">'+
+		 '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+		 '<strong>提示:</strong>'+message+'</div>';
+	     $("#main").append(waring);
+	  
+ }
+ 
  
 
  var expect2="";
@@ -112,14 +121,14 @@ margin-bottom: 5px;
 			return false;
 			}
        }else if(name=="ssq"){
-       var num1 = $("#select"+name).children().eq(1).children(".checked").length;
-       var num2 = $("#select"+name).children().eq(2).children(".checked").length;
+       var num1 = $("#select1"+name).children(".checked").length;
+       var num2 = $("#select2"+name).children(".checked").length;
         if(num1!="6"||num2!="1"){
 			return false;
 			}
        }else if(name=="dlt"){
-       var num3 = $("#select"+name).children().eq(1).children(".checked").length;
-       var num4 = $("#select"+name).children().eq(2).children(".checked").length;
+       var num3 = $("#select1"+name).children(".checked").length;
+       var num4 = $("#select2"+name).children(".checked").length;
         if(num3!="5"||num4!="2"){
 			return false;
 			} 
@@ -142,11 +151,11 @@ margin-bottom: 5px;
 	           if(name=="1"){
 	        	   id="gd11x5";
 	        	   if(timeLimate(id)==false){
-	        	    alert("已过投注时间");
+	        		   waring("已过投注时间");
 	        	     return;
 	        	    }
 	        	    if(checkLengh(id)==false){
-	        	     alert("只能选择5个号码");
+	        	    	waring("只能选择5个号码");
 	        	     return;
 	        	    }
 	        	    betType="广东11选5";
@@ -159,26 +168,26 @@ margin-bottom: 5px;
 	        	   id="ssq";
 	        	   lookExpect(id);
 	        	    if(timeLimate(id)==false){
-	        	    alert("21-22点禁止下注");
+	        	    	waring("21-22点禁止下注");
 	        	     return;
 	        	    }
 	        	   if(checkLengh(id)==false){
-	        	     alert("只能选择6个红球。1个蓝球");
+	        		   waring("只能选择6个红球。1个蓝球");
 	        	     return;
 	        	    }
 	        	   betType="双色球";
 	        	    if(expect!=""){
 	        	    betPeriod =parseInt(expect)+1;
 	        	   }else {
-	        	    alert("获取期数错误");
+	        		   waring("获取期数错误");
 	        	   return;
 	        	   }
-	        	    $("#select"+id).children().eq(1).children(".checked").each(function (index, domEle) { 
+	        	    $("#select1"+id).children(".checked").each(function (index, domEle) { 
 	                    var num= $(domEle).text(); 
 	                      betNum =betNum+num+",";
 	   			   });
 	        	    betNum =betNum=betNum.substring(0, betNum.length-1)+"+";
-	        	    $("#select"+id).children().eq(2).children(".checked").each(function (index, domEle) { 
+	        	    $("#select2"+id).children(".checked").each(function (index, domEle) { 
 	                    var num= $(domEle).text(); 
 	                      betNum =betNum+num+",";
 	   			   });
@@ -186,27 +195,27 @@ margin-bottom: 5px;
 	        	      id="dlt";
 	        	      lookExpect(id);
 	                 if(timeLimate(id)==false){
-	        	     alert("20-21点禁止下注");
+	                waring("20-21点禁止下注");
 	        	     return;
 	        	     }
 	        	     if(checkLengh(id)==false){
-	        	     alert("只能选择5个红球。2个蓝球");
+	        	     waring("只能选择5个红球。2个蓝球");
 	        	     return;
 	        	    }
 	        	    if(expect2!=""){
 	        	    betPeriod = parseInt(expect2)+1;
 	        	     }else {
-	        	     alert("获取期数错误");
+	        	     waring("获取期数错误");
 	        	     return;
 	        	    }
 	        	     betType="大乐透";
 	        	     
-	        	     $("#select"+id).children().eq(1).children(".checked").each(function (index, domEle) { 
+	        	     $("#select1"+id).children(".checked").each(function (index, domEle) { 
 		                    var num= $(domEle).text(); 
 		                      betNum =betNum+num+",";
 		   			   });
 		        	    betNum =betNum=betNum.substring(0, betNum.length-1)+"+";
-		        	    $("#select"+id).children().eq(2).children(".checked").each(function (index, domEle) { 
+		        	    $("#select2"+id).children(".checked").each(function (index, domEle) { 
 		                    var num= $(domEle).text(); 
 		                      betNum =betNum+num+",";
 		   			   });
@@ -216,14 +225,14 @@ margin-bottom: 5px;
 	            //判断投注倍数是否为空
 	            betPerson='${sessionScope.frontCurrentLoginUser.id}';
 	            if(betPerson==""){
-	            	alert("请先登录，再进行投注");
+	            	waring("请先登录，再进行投注");
 		        	return;	
 	            }
 	            //判断投注倍数是否为整数
 	          betQuan= $("#quan"+id).val().trim();
 	           var re = /^[1-9]+[0-9]*]*$/ ;
 	           if(!re.test(betQuan)){
-	                 alert("投注倍数为整数");
+	        	     waring("投注倍数为整数");
 	        	     return;betQuan==1;
 	             }	  
 	          var url= "${pageContext.request.contextPath}/betmessage!addBetMessage.action"; 
@@ -239,7 +248,8 @@ margin-bottom: 5px;
 	  				
 	  			},
 	  			success : function(result) {
-	                alert(result);
+	  			  var data=	$.parseJSON(result);
+	  				waring(data);
 	                expect2="";
                     expect="";
 	  			},
@@ -282,16 +292,28 @@ margin-bottom: 5px;
 		$("#"+name).siblings("li").removeClass("active");
 		if(name=="gd11x5"){
 			$("#divgd11x5").show();
-			$("#divssq").hide();
-			$("#divdlt").hide();
+			$("#divgd11x5").siblings("div").hide();  
+			$("#selectgd11x5").children(".checked").each(function (index, domEle) { 
+                 $(domEle).removeClass("checked");
+			   });
 	       }else if(name=="ssq"){
 	    		$("#divssq").show();
-				$("#divgd11x5").hide();
-				$("#divdlt").hide();
+	    		$("#divssq").siblings("div").hide(); 
+	    		$("#select1ssq").children(".checked").each(function (index, domEle) { 
+	                 $(domEle).removeClass("checked");
+				   });
+	    		$("#select2ssq").children(".checked").each(function (index, domEle) { 
+	                 $(domEle).removeClass("checked");
+				   });
 	       }else if(name=="dlt"){
 	    		$("#divdlt").show();
-				$("#divssq").hide();
-				$("#divgd11x5").hide();
+	    		$("#divdlt").siblings("div").hide(); 
+	    		$("#select1dlt").children(".checked").each(function (index, domEle) { 
+	                 $(domEle).removeClass("checked");
+				   });
+	    		$("#select2dlt").children(".checked").each(function (index, domEle) { 
+	                 $(domEle).removeClass("checked");
+				   });
 	       }	
 		
 		
@@ -305,7 +327,7 @@ margin-bottom: 5px;
 
  <body>
  
- <div align="center" >
+ <div align="center"   id="main">
 <ul  class="nav nav-pills" style="width: 58%" >
 <li  id="gd11x5" class="active"  style="font-size: 16px;" onclick="tabchange('gd11x5');look('gd11x5');" ><a href="#"><span class="glyphicon glyphicon-th-large" ></span> 广东十一选五</a>  </li>  
 <li  id="ssq"   style="font-size: 16px;"  onclick="tabchange('ssq');look('ssq');" ><a href="#"><span class="glyphicon glyphicon-th-large" ></span> 双色球   </a>  </li>
@@ -316,7 +338,6 @@ margin-bottom: 5px;
 
  <div   id="divgd11x5"  style="display:none;width: 58%;"  align="left">
  
-
  <div class="panel panel panel-info"  style="width: 50%;height:541px;float:right" >
   <div class="panel-heading">最近开奖信息</div>
   <div class="panel-body"  id="div1gd11x5" >
@@ -326,8 +347,7 @@ margin-bottom: 5px;
  <div class="panel panel panel-info"  style="width: 50%;height:541px" >
   <div class="panel-heading">购买</div>
   <div class="panel-body"  >
-  
-  <fieldset  id='selectgd11x5'> <legend style='font-size: 16px;' >选号区:</legend>
+  <div  class="well well-lg"  id='selectgd11x5'> <div style='margin-bottom: 5px;'>选号区:</div>
   <span onclick='check(this)' class="span_cicle">01</span>
   <span onclick='check(this)' class="span_cicle">02</span>
   <span onclick='check(this)' class="span_cicle">03</span>
@@ -339,12 +359,11 @@ margin-bottom: 5px;
   <span onclick='check(this)' class="span_cicle">09</span>
   <span onclick='check(this)' class="span_cicle">10</span>
   <span onclick='check(this)' class="span_cicle">11</span>
-  </fieldset>
-   <fieldset> <legend style='font-size: 16px;'>操作区</legend>
+  </div>
+   <div  class="well well-lg" > <div style='margin-bottom: 5px;'>操作区:</div>
        投注倍数<input id='quangd11x5'></input>   
   <button type='button' class='btn btn-default' onclick='buy(1)'>购买</button>
-  </fieldset> 
-  
+  </div> 
   </div>
 </div>
 
@@ -358,13 +377,15 @@ margin-bottom: 5px;
  </div>
 </div>
 
- <div class="panel panel panel-info"  style="width: 50%;;height:541px" >
-  <div class="panel-heading">购买</div>
-  <div class="panel-body" >
-  
-<fieldset  id='selectssq'> <legend style='font-size: 16px;' >选号区:</legend>
-  <fieldset ><legend style='font-size: 12px;'>前区:</legend>
- <span onclick='check(this)' class="span_cicle">01</span> 
+<div class="panel panel panel-info"style="width: 50%;; height: 541px">
+<div class="panel-heading">购买</div>
+<div class="panel-body">
+<div class="well well-lg">
+<div style='margin-bottom: 5px;'>选号区:</div>
+<div class="well well-lg">
+<div>前区:</div>
+<div style="height: 60px" id='select1ssq'>
+<span onclick='check(this)' class="span_cicle">01</span> 
   <span onclick='check(this)' class="span_cicle">02</span> 
   <span onclick='check(this)' class="span_cicle">03</span> 
   <span onclick='check(this)' class="span_cicle">04</span> 
@@ -397,9 +418,12 @@ margin-bottom: 5px;
   <span onclick='check(this)' class="span_cicle">31</span> 
   <span onclick='check(this)' class="span_cicle">32</span> 
   <span onclick='check(this)' class="span_cicle">33</span> 
-  </fieldset >
-  <fieldset ><legend style='font-size: 12px;'>后区:</legend>
-  <span onclick='check(this)' class="span_cicle">01</span> 
+</div>
+</div>
+<div class="well well-lg">
+<div>后区:</div>
+<div style="height: 40px" id='select2ssq'>
+<span onclick='check(this)' class="span_cicle">01</span> 
   <span onclick='check(this)' class="span_cicle">02</span> 
   <span onclick='check(this)' class="span_cicle">03</span> 
   <span onclick='check(this)' class="span_cicle">04</span> 
@@ -415,17 +439,20 @@ margin-bottom: 5px;
   <span onclick='check(this)' class="span_cicle">14</span> 
   <span onclick='check(this)' class="span_cicle">15</span> 
   <span onclick='check(this)' class="span_cicle">16</span> 
-  </fieldset>
-  </fieldset> 
-  <fieldset> <legend style='font-size: 16px;'>操作区</legend> 
-  投注倍数<input id='quanssq'></input>   
-  <button type='button' class='btn btn-default' onclick='buy(2)'>购买</button>
-  </fieldset>
-  
-  </div>
+</div>
+</div>
+</div>
+<div class="well well-lg">
+<div style='margin-bottom: 5px;'>操作区:</div>
+投注倍数<input id='quanssq'></input>
+<button type='button' class='btn btn-default' onclick='buy(2)'>购买</button>
+</div>
+</div>
 </div>
 
 </div>
+
+
 
 
 <div   id="divdlt"  style="display:none;width: 58%;" align="left">
@@ -437,10 +464,10 @@ margin-bottom: 5px;
 
  <div class="panel panel panel-info"  style="width: 50%;;height:541px" >
   <div class="panel-heading">购买</div>
-  <div class="panel-body" >
-  
-<fieldset  id='selectdlt'> <legend style='font-size: 16px;' >选号区:</legend>
-  <fieldset ><legend style='font-size: 12px;'>前区:</legend>
+  <div class="panel-body" > 
+<div  class="well well-lg"  > <div style='margin-bottom: 5px;'>选号区:</div> 
+  <div  class="well well-lg" ><div>前区:</div> 
+  <div  style="height:60px" id='select1dlt'>
   <span onclick='check(this)' class="span_cicle">01</span> 
   <span onclick='check(this)' class="span_cicle">02</span> 
   <span onclick='check(this)' class="span_cicle">03</span> 
@@ -476,8 +503,10 @@ margin-bottom: 5px;
   <span onclick='check(this)' class="span_cicle">33</span> 
   <span onclick='check(this)' class="span_cicle">34</span> 
   <span onclick='check(this)' class="span_cicle">35</span> 
-  </fieldset >
-  <fieldset ><legend style='font-size: 12px;'>后区:</legend>
+   </div >
+  </div >
+  <div  class="well well-lg" ><div>后区:</div> 
+  <div  style="height:40px" id='select2dlt'>
    <span onclick='check(this)' class="span_cicle">01</span> 
   <span onclick='check(this)' class="span_cicle">02</span> 
   <span onclick='check(this)' class="span_cicle">03</span> 
@@ -489,19 +518,21 @@ margin-bottom: 5px;
   <span onclick='check(this)' class="span_cicle">09</span> 
   <span onclick='check(this)' class="span_cicle">10</span> 
   <span onclick='check(this)' class="span_cicle">11</span> 
-  <span onclick='check(this)' class="span_cicle">12</span> 
-  </fieldset>
-  </fieldset> 
-  <fieldset> <legend style='font-size: 16px;'>操作区</legend> 
+  <span onclick='check(this)' class="span_cicle">12</span>
+   </div > 
+  </div>
+  </div> 
+  <div  class="well well-lg"> <div style='margin-bottom: 5px;'>操作区:</div> 
        投注倍数<input id='quandlt'></input>   
   <button type='button' class='btn btn-default' onclick='buy(3)'>购买</button>
-  </fieldset>
-  
+  </div> 
  </div>
 </div>
+</div>
+
+
 
 </div>
 
-</div>
 </body>
 </html>
