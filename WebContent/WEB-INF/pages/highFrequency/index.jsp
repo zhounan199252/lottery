@@ -328,7 +328,7 @@ margin-bottom: 5px;
  <body>
  
  <div align="center"   id="main">
-<ul  class="nav nav-pills" style="width: 58%" >
+<ul  class="nav nav-pills" style="width:1086px;" >
 <li  id="gd11x5" class="active"  style="font-size: 16px;" onclick="tabchange('gd11x5');look('gd11x5');" ><a href="#"><span class="glyphicon glyphicon-th-large" ></span> 广东十一选五</a>  </li>  
 <li  id="ssq"   style="font-size: 16px;"  onclick="tabchange('ssq');look('ssq');" ><a href="#"><span class="glyphicon glyphicon-th-large" ></span> 双色球   </a>  </li>
 <li  id="dlt"   style="font-size: 16px;" onclick="tabchange('dlt');look('dlt');" > <a href="#"><span class="glyphicon glyphicon-th-large" ></span>大乐透   </a>   </li>
@@ -336,7 +336,7 @@ margin-bottom: 5px;
 
 
 
- <div   id="divgd11x5"  style="display:none;width: 58%;"  align="left">
+ <div   id="divgd11x5"  style="display:none;width:1086px;"  align="left">
  
  <div class="panel panel panel-info"  style="width: 50%;height:541px;float:right" >
   <div class="panel-heading">最近开奖信息</div>
@@ -370,7 +370,7 @@ margin-bottom: 5px;
 </div>
 
 
-<div   id="divssq" style="display:none;width: 58%;" align="left">
+<div   id="divssq" style="display:none;width:1086px;" align="left">
 <div class="panel panel panel-info"  style="width: 50%;float:right;height:541px" >
   <div class="panel-heading">最近开奖信息</div>
   <div class="panel-body"  id="div1ssq" >
@@ -455,14 +455,14 @@ margin-bottom: 5px;
 
 
 
-<div   id="divdlt"  style="display:none;width: 58%;" align="left">
+<div   id="divdlt"  style="display:none;width: 1086px;" align="left">
 <div class="panel panel panel-info"  style="width: 50%;float:right;height:541px" >
   <div class="panel-heading">最近开奖信息</div>
   <div class="panel-body"  id="div1dlt" >
  </div>
 </div>
 
- <div class="panel panel panel-info"  style="width: 50%;;height:541px" >
+ <div class="panel panel panel-info"  style="width: 50%;height:541px" >
   <div class="panel-heading">购买</div>
   <div class="panel-body" > 
 <div  class="well well-lg"  > <div style='margin-bottom: 5px;'>选号区:</div> 

@@ -7,6 +7,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>投注信息列表</title>
 </head>
+<script type="text/javascript">
+
+   function doChange(url) {
+	var checkboxs = $("[name=ids]:checked");
+	
+	if(checkboxs.length <= 0) {
+		BUI.Message.Alert("请至少选择一条记录进行兑换！");
+		return false;
+	}
+	
+	 
+	BUI.Message.Confirm('确认要兑换选中的记录吗？', function() {
+
+		var id = "";
+		for (var i = 0; i < checkboxs.length; i++) {
+			id += $(checkboxs[i]).prop("value") + ",";
+		}
+       
+		var  exchangeFlag="1"; 
+		var _url = url + "?id=" + id.substring(0, id.length - 1)+"&exchangeFlag="+exchangeFlag;
+		location.href = _url;
+	}, 'question');
+}
+
+</script>
 <body>
 
 	<div class="container" style="padding: 20px 0 0 30px; width: 100%">
@@ -49,7 +74,10 @@
 						</label>
 						<label class="control-label">
 						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/betmessage!deleteById.action');">删除</button>
-					</label> 
+					   </label> 
+					   <label class="control-label">
+						<button class="button" onclick="doChange('${pageContext.request.contextPath}/betmessage!updateBetMessage.action');">兑奖</button>
+					  </label> 
 				</div>
 			</div>
 			<div class="row" style="width: 100%">
@@ -63,6 +91,7 @@
 							<th>投注倍数</th>
 							<th>投注号码</th>
 							<th>投注日期</th>
+							<th>是否兑奖</th>
 						</tr>
 
 						<s:iterator value="#pageModel.recordList">
@@ -74,6 +103,7 @@
 								<td>${betQuan}</td>
 								<td>${betNum}</td>
 								<td>${betDate}</td>
+								<td>${exchangeFlag}</td>
 							</tr>
 						</s:iterator>
 

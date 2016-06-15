@@ -38,7 +38,13 @@
 				<comment>投注号码</comment>
 			</column>
 		</property>
-
+        
+        <property name="exchangeFlag" type="string">
+			<column name="exchangeFlag" length="20">
+				<comment>兑换标志</comment>
+			</column>
+		</property>
+		
 		<property name="betDate" type="string">
 			<column name="betDate" length="20">
 				<comment>投注时间</comment>
