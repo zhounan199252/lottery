@@ -20,6 +20,8 @@ border-radius: 14px;
 border:1px solid #000; 
 margin-bottom: 5px;
 }
+ .span_style{
+}
 </style>
 
  <script>
@@ -34,8 +36,10 @@ margin-bottom: 5px;
  
  
 
- var expect2="";
+ 
   var expect="";
+  var expect2="";
+  var expect3="";
  //查看当前最新开奖期数
 	function lookExpect(name) {
 	  
@@ -52,7 +56,9 @@ margin-bottom: 5px;
 			       expect=  data[0].expect;	
 			       }else if(name=="dlt"){ 
 			       expect2=  data[0].expect;	
-				  } 
+				   }else if(name=="qxc"){ 
+				    expect3=  data[0].expect;	
+				   } 
 				 }
 				}
 			});		
@@ -84,19 +90,24 @@ margin-bottom: 5px;
 
    function timeLimate(name){
       var date = new Date();
-     var day = date.getDay();
-     var hours = date.getHours();
-     if(day==2||day==4||day==6){
+      var day = date.getDay();
+      var hours = date.getHours();
+      if(day==2||day==4||day==6){
        if(hours==21&&name=="ssq"){
          return  false; 
-        }
-       if(hours==20&&name=="dlt"){
+        }else if(hours==20&&name=="dlt"){
          return  false; 
         }
-        } 
-        
-       if((hours<9||hours>22)&&name=="gd11x5"){
-       return  false; 
+        }
+      
+      if(day==0||day==2||day==5){
+          if(hours==20&&name=="qxc"){
+            return  false; 
+           }
+           } 
+     
+         if((hours<9||hours>22)&&name=="gd11x5"){
+        return  false; 
         }
        
        return  true;
@@ -132,7 +143,16 @@ margin-bottom: 5px;
         if(num3!="5"||num4!="2"){
 			return false;
 			} 
-       }		
+       }else if(name=="qxc"){
+    	      for(var i=1;i<=7;i++){
+ 	    	 var num5=$("#select"+i+name).children(".checked").length;
+ 	    	   if(num5!="1"){
+     			return false;
+     			} 
+              }
+ 	       }
+           	
+  
 	 return true;
  }
  
@@ -219,6 +239,32 @@ margin-bottom: 5px;
 		                    var num= $(domEle).text(); 
 		                      betNum =betNum+num+",";
 		   			   });
+	           }else if(name=="4"){
+	        	      id="qxc";
+	        	      lookExpect(id);
+	                 if(timeLimate(id)==false){
+	                waring("20-21点禁止下注");
+	        	     return;
+	        	     }
+	        	     if(checkLengh(id)==false){
+	        	     waring("请每位选择一个");
+	        	     return;
+	        	    }
+	        	    if(expect3!=""){
+	        	    betPeriod = parseInt(expect3)+1;
+	        	     }else {
+	        	     waring("获取期数错误");
+	        	     return;
+	        	    }
+	        	     betType="七星彩";
+	        	     
+	        	     for(var i=1;i<=7;i++){
+	        	    	  $("#select"+i+id).children(".checked").each(function (index, domEle) { 
+			                    var num= $(domEle).text(); 
+			                      betNum =betNum+num+",";
+			   			   });
+	        	     }
+	        	   
 	           }
 	           
 	            betNum=betNum.substring(0, betNum.length-1);
@@ -250,8 +296,9 @@ margin-bottom: 5px;
 	  			success : function(result) {
 	  			  var data=	$.parseJSON(result);
 	  				waring(data);
-	                expect2="";
                     expect="";
+                    expect2="";
+                    expect3="";
 	  			},
 	  			error: function (jqXHR, textStatus, errorThrown) {
 	  				alert(textStatus);
@@ -314,6 +361,15 @@ margin-bottom: 5px;
 	    		$("#select2dlt").children(".checked").each(function (index, domEle) { 
 	                 $(domEle).removeClass("checked");
 				   });
+	       }else if(name=="qxc"){
+	    		$("#divqxc").show();
+	    		$("#divqxc").siblings("div").hide(); 
+	    		 for(var i=1;i<=7;i++){
+       	    	  $("#select"+i+name).children(".checked").each(function (index, domEle) { 
+       	    	   $(domEle).removeClass("checked");
+		   			   });
+       	           }
+	    	
 	       }	
 		
 		
@@ -332,6 +388,7 @@ margin-bottom: 5px;
 <li  id="gd11x5" class="active"  style="font-size: 16px;" onclick="tabchange('gd11x5');look('gd11x5');" ><a href="#"><span class="glyphicon glyphicon-th-large" ></span> 广东十一选五</a>  </li>  
 <li  id="ssq"   style="font-size: 16px;"  onclick="tabchange('ssq');look('ssq');" ><a href="#"><span class="glyphicon glyphicon-th-large" ></span> 双色球   </a>  </li>
 <li  id="dlt"   style="font-size: 16px;" onclick="tabchange('dlt');look('dlt');" > <a href="#"><span class="glyphicon glyphicon-th-large" ></span>大乐透   </a>   </li>
+<li  id="qxc"   style="font-size: 16px;" onclick="tabchange('qxc');look('qxc');" > <a href="#"><span class="glyphicon glyphicon-th-large" ></span>七星彩   </a>   </li>
 </ul>
 
 
@@ -530,6 +587,112 @@ margin-bottom: 5px;
 </div>
 </div>
 
+
+<div   id="divqxc"  style="display:none;width: 1086px;" align="left">
+<div class="panel panel panel-info"  style="width: 50%;float:right;height:541px" >
+  <div class="panel-heading">最近开奖信息</div>
+  <div class="panel-body"  id="div1qxc" >
+ </div>
+</div>
+
+ <div class="panel panel panel-info"  style="width: 50%;height:541px" >
+  <div class="panel-heading">购买</div>
+  <div class="panel-body" > 
+<div  class="well well-lg" > <div style='margin-bottom: 5px;'>选号区:</div> 
+ <div   style="height:200px" > 
+  <div   id='select1qxc'  class="span_style" ><span  class="span_style">第一位:</span > 
+  <span onclick='check(this)' class="span_cicle">0</span> 
+  <span onclick='check(this)' class="span_cicle">1</span> 
+  <span onclick='check(this)' class="span_cicle">2</span> 
+  <span onclick='check(this)' class="span_cicle">3</span> 
+  <span onclick='check(this)' class="span_cicle">4</span> 
+  <span onclick='check(this)' class="span_cicle">5</span> 
+  <span onclick='check(this)' class="span_cicle">6</span> 
+  <span onclick='check(this)' class="span_cicle">7</span> 
+  <span onclick='check(this)' class="span_cicle">8</span> 
+  <span onclick='check(this)' class="span_cicle">9</span> 
+  </div >
+   <div   id='select2qxc' class="span_style" ><span class="span_style">第二位:</span> 
+  <span onclick='check(this)' class="span_cicle">0</span> 
+  <span onclick='check(this)' class="span_cicle">1</span> 
+  <span onclick='check(this)' class="span_cicle">2</span> 
+  <span onclick='check(this)' class="span_cicle">3</span> 
+  <span onclick='check(this)' class="span_cicle">4</span> 
+  <span onclick='check(this)' class="span_cicle">5</span> 
+  <span onclick='check(this)' class="span_cicle">6</span> 
+  <span onclick='check(this)' class="span_cicle">7</span> 
+  <span onclick='check(this)' class="span_cicle">8</span> 
+  <span onclick='check(this)' class="span_cicle">9</span> 
+  </div >
+ <div   id='select3qxc'  class="span_style"><span class="span_style">第三位:</span> 
+  <span onclick='check(this)' class="span_cicle">0</span> 
+  <span onclick='check(this)' class="span_cicle">1</span> 
+  <span onclick='check(this)' class="span_cicle">2</span> 
+  <span onclick='check(this)' class="span_cicle">3</span> 
+  <span onclick='check(this)' class="span_cicle">4</span> 
+  <span onclick='check(this)' class="span_cicle">5</span> 
+  <span onclick='check(this)' class="span_cicle">6</span> 
+  <span onclick='check(this)' class="span_cicle">7</span> 
+  <span onclick='check(this)' class="span_cicle">8</span> 
+  <span onclick='check(this)' class="span_cicle">9</span> 
+  </div >
+ <div   id='select4qxc' class="span_style"><span class="span_style">第四位:</span> 
+  <span onclick='check(this)' class="span_cicle">0</span> 
+  <span onclick='check(this)' class="span_cicle">1</span> 
+  <span onclick='check(this)' class="span_cicle">2</span> 
+  <span onclick='check(this)' class="span_cicle">3</span> 
+  <span onclick='check(this)' class="span_cicle">4</span> 
+  <span onclick='check(this)' class="span_cicle">5</span> 
+  <span onclick='check(this)' class="span_cicle">6</span> 
+  <span onclick='check(this)' class="span_cicle">7</span> 
+  <span onclick='check(this)' class="span_cicle">8</span> 
+  <span onclick='check(this)' class="span_cicle">9</span> 
+  </div >
+ <div   id='select5qxc' class="span_style" ><span class="span_style">第五位:</span> 
+  <span onclick='check(this)' class="span_cicle">0</span> 
+  <span onclick='check(this)' class="span_cicle">1</span> 
+  <span onclick='check(this)' class="span_cicle">2</span> 
+  <span onclick='check(this)' class="span_cicle">3</span> 
+  <span onclick='check(this)' class="span_cicle">4</span> 
+  <span onclick='check(this)' class="span_cicle">5</span> 
+  <span onclick='check(this)' class="span_cicle">6</span> 
+  <span onclick='check(this)' class="span_cicle">7</span> 
+  <span onclick='check(this)' class="span_cicle">8</span> 
+  <span onclick='check(this)' class="span_cicle">9</span> 
+  </div >
+ <div   id='select6qxc' class="span_style" ><span class="span_style">第六位:</span> 
+  <span onclick='check(this)' class="span_cicle">0</span> 
+  <span onclick='check(this)' class="span_cicle">1</span> 
+  <span onclick='check(this)' class="span_cicle">2</span> 
+  <span onclick='check(this)' class="span_cicle">3</span> 
+  <span onclick='check(this)' class="span_cicle">4</span> 
+  <span onclick='check(this)' class="span_cicle">5</span> 
+  <span onclick='check(this)' class="span_cicle">6</span> 
+  <span onclick='check(this)' class="span_cicle">7</span> 
+  <span onclick='check(this)' class="span_cicle">8</span> 
+  <span onclick='check(this)' class="span_cicle">9</span> 
+  </div >
+ <div   id='select7qxc'  class="span_style"><span  class="span_style">第七位:</span> 
+  <span onclick='check(this)' class="span_cicle">0</span> 
+  <span onclick='check(this)' class="span_cicle">1</span> 
+  <span onclick='check(this)' class="span_cicle">2</span> 
+  <span onclick='check(this)' class="span_cicle">3</span> 
+  <span onclick='check(this)' class="span_cicle">4</span> 
+  <span onclick='check(this)' class="span_cicle">5</span> 
+  <span onclick='check(this)' class="span_cicle">6</span> 
+  <span onclick='check(this)' class="span_cicle">7</span> 
+  <span onclick='check(this)' class="span_cicle">8</span> 
+  <span onclick='check(this)' class="span_cicle">9</span> 
+  </div >
+  </div >
+  </div> 
+  <div  class="well well-lg"> <div style='margin-bottom: 5px;'>操作区:</div> 
+       投注倍数<input id='quanqxc'></input>   
+  <button type='button' class='btn btn-default' onclick='buy(4)'>购买</button>
+  </div> 
+ </div>
+</div>
+</div>
 
 
 </div>
