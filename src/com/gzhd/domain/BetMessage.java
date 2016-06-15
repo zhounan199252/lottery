@@ -1,21 +1,16 @@
 package com.gzhd.domain;
 
-import java.util.Date;
 
 public class BetMessage {
 	
 	private String id;
-
 	private String betPeriod;  //投注期数
 	private String   betType;   //投注类型
-	private String betPerson;   //投注人
-	
+	private String betPerson;   //投注人	
 	private String betQuan;    //投注数量
-    
-	
 	private String betNum;   //投注号码
-
-	private String betDate;    //投注日期
+	private String exchangeFlag;    //兑换标志
+	private String betDate; // 投注日期
 	
 	public String getId() {
 		return id;
@@ -73,6 +68,12 @@ public class BetMessage {
 		this.betType = betType;
 	}
 	
-	
+	public String getExchangeFlag() {
+		return exchangeFlag;
+	}
+
+	public void setExchangeFlag(String exchangeFlag) {
+		this.exchangeFlag = exchangeFlag;
+	}
 		
 }

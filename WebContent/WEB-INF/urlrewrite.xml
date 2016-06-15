@@ -122,6 +122,13 @@
 		<to>/frontUser!frontLogout.action</to>
 	</rule>
 	<!-- 退出登录 begin -->
+	
+	<!-- 退出登录 begin -->
+	<rule>
+		<from>/numLottery.url</from>
+		<to>/pageJump!toHighFrequency.action</to>
+	</rule>
+	<!-- 退出登录 begin -->
 
 
 	<!-- 体育赛事 begin -->

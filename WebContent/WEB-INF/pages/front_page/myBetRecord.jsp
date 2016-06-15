@@ -32,6 +32,7 @@
 							<th>投注倍数</th>
 							<th>投注号码</th>
 							<th>投注日期</th>
+							<th>是否兑奖</th>
 						</tr>
 
 						<s:iterator value="#pageModel.recordList">
@@ -43,6 +44,7 @@
 								<td>${betQuan}</td>
 								<td>${betNum}</td>
 								<td>${betDate}</td>
+								<td>${exchangeFlag}</td>
 							</tr>
 						</s:iterator>
 

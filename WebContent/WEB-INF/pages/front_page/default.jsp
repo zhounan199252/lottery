@@ -158,12 +158,6 @@
 			<div class="clearfix"></div>
 		</div>
 	</div>
-	<!-- //cate -->
-	<div class="footer-copy" style="height: 160px">
-		
-		<p style="color: black">
-			Copyright &copy; 2015 - 2016.<a href="http://www.ttquwan.com" target="_blank">天天趣玩网</a> 版权所有 <a href="http://www.ttquwan.com/tbul.url" target="_blank" title="后台管理" class="color1">后台管理</a><br> 提醒：购买彩票有风险，在线投注需谨慎，不向未满18周岁的青少年出售彩票及提供彩票代购服务
-		</p>
-	</div>
+	
 </body>
 </html>
