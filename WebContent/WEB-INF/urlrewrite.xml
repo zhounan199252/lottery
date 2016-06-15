@@ -124,7 +124,13 @@
 	<!-- 退出登录 begin -->
 
 
-
+	<!-- 体育赛事 begin -->
+	<rule>
+		<from>/tmi.url</from>
+		<to>/match!toMatchIndex.action</to>
+	</rule>
+	
+	<!-- 体育赛事 end -->
 </urlrewrite> 
 
 

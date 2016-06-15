@@ -59,7 +59,7 @@
 						toFrontLogin,toRegister,frontLogin,listFrontUser,addFrontUserPage,addFrontUser,editFrontUserPage,
 						editFrontUser,deleteFrontUser,initFrontUserPassword,checkFrontUsernameIsExist,toRechargePage,recharge,register,
 						validPassword,frontLogout,logout,getCodeForFront,getCodeForBack,toDefault,announcementList,favorList,getSingleAnnouncement,
-						getSingleFavor
+						getSingleFavor,listBackBetMessage
 
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
 				</interceptor-ref>

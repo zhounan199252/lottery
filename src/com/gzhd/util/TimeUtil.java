@@ -312,5 +312,14 @@ public class TimeUtil {
 			return false;
 		}
 	}
+	
+	public static void main(String[] args) {
+		
+		Date dateRelateToDate = getDateRelateToDate(new Date(), 2);
+		
+		System.out.println(dateFormat(dateRelateToDate, "yyyyMMdd"));
+		
+		
+	}
 
 }
