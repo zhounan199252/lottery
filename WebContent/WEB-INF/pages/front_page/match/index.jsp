@@ -193,6 +193,7 @@
 		}
 		
 		$("#txt_bet_data").val(data.join("&"));
+		$("#txt_totalCount").val($("#totalCount").val());
 		
 		$("#bet_form").submit();
 		
@@ -246,6 +247,7 @@
 	
 	<form action="${pageContext.request.contextPath}/subfootbet.url" style="display: none" method="post" id="bet_form">
 		<input type="text" id="txt_bet_data" name="data">
+		<input type="text" id="txt_totalCount" name="totalCount">
 	</form>
 </body>
 </html>

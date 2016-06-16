@@ -23,6 +23,8 @@ public class FootballBetModel {
 	private String winOrLose;
 
 	private int multiple;
+	
+	private double totalCount;
 
 	public String getId() {
 		return id;
@@ -103,7 +105,13 @@ public class FootballBetModel {
 	public void setMultiple(int multiple) {
 		this.multiple = multiple;
 	}
-	
-	
 
+	public double getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(double totalCount) {
+		this.totalCount = totalCount;
+	}
+	
 }

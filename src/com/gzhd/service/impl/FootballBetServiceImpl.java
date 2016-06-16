@@ -24,6 +24,14 @@ public class FootballBetServiceImpl implements FootballBetService {
 
 		FrontUser frontUser = frontUserDao.get(FrontUser.class, userId);
 		
+		
+		double balance = frontUser.getBalance();
+		double remain = balance - model.getTotalCount();
+		
+		if(remain < 0) {   //如果余额不足
+			return "";
+		}
+		
 		String[] datas = model.getData().split("&");
 		
 		FootballBet footballBet = null;
@@ -46,6 +54,10 @@ public class FootballBetServiceImpl implements FootballBetService {
 			
 			baseDao.save(footballBet);
 		}
+		
+		frontUser.setBalance(remain);
+		
+		frontUserDao.update(frontUser);   //更新账户余额
 		
 		return "ok";
 	}
