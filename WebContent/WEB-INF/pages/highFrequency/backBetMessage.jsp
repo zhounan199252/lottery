@@ -36,7 +36,7 @@
 
 	<div class="container" style="padding: 20px 0 0 30px; width: 100%">
 		<div class="row" style="width: 100%;">
-			<s:form action="betmessage!listBackBetMessage.action" method="post" id="form_search" cssClass="form-horizontal">
+			<s:form action="listBetM.url" method="post" id="form_search" cssClass="form-horizontal">
 				<div class="row" style="width: 100%">
 					<div class="control-group span8">
 						<label class="control-label">投注人：</label>
@@ -73,10 +73,10 @@
 							<button class="button" onclick="doClear();">清空</button>
 						</label>
 						<label class="control-label">
-						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/betmessage!deleteById.action');">删除</button>
+						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/deleteBetM.url');">删除</button>
 					   </label> 
 					   <label class="control-label">
-						<button class="button" onclick="doChange('${pageContext.request.contextPath}/betmessage!updateBetMessage.action');">兑奖</button>
+						<button class="button" onclick="doChange('${pageContext.request.contextPath}/updateBetM.url');">兑奖</button>
 					  </label> 
 				</div>
 			</div>

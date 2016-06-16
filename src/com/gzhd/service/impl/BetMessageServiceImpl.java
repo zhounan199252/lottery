@@ -49,13 +49,18 @@ public class BetMessageServiceImpl implements BetMessageService {
 				"from BetMessage a where 1=1 ");
 
 		if (StringUtils.isNotBlank(model.getBetType())) {
-			queryHql.append(" and a.betType = :betType");
-			params.put("betType", model.getBetType());
+			queryHql.append(" and a.betType like :betType");
+			params.put("betType", "%%" + model.getBetType() + "%%" );
 		}
 
 		if (StringUtils.isNotBlank(model.getBetPersonName())) {
-			model.setBetPerson(frontUserService.getIdByFrontUsername(model
-					.getBetPersonName()));
+			String userId= frontUserService.getIdByFrontUsername(model.getBetPersonName());
+			if (StringUtils.isNotBlank(userId)) {
+				model.setBetPerson(userId);
+			}else{
+				model.setBetPerson("no");
+			}
+		
 		}
 
 		if (StringUtils.isNotBlank(model.getBetPerson())) {
@@ -63,8 +68,8 @@ public class BetMessageServiceImpl implements BetMessageService {
 			params.put("betPerson", model.getBetPerson());
 		}
 		if (StringUtils.isNotBlank(model.getBetPeriod())) {
-			queryHql.append(" and a.betPeriod = :betPeriod");
-			params.put("betPeriod", model.getBetPeriod());
+			queryHql.append(" and a.betPeriod like :betPeriod");
+			params.put("betPeriod","%%" +model.getBetPeriod() + "%%" );
 		}
 
 		queryHql.append(" order by a.betDate desc");

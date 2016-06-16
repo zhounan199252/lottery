@@ -123,13 +123,38 @@
 	</rule>
 	<!-- 退出登录 begin -->
 	
-	<!-- 退出登录 begin -->
+	<!-- 跳转数字彩票-->
 	<rule>
 		<from>/numLottery.url</from>
 		<to>/pageJump!toHighFrequency.action</to>
 	</rule>
-	<!-- 退出登录 begin -->
-
+	<!-- 跳转数字彩票 -->
+	
+		<!-- 跳转数字彩票-->
+	<rule>
+		<from>/addBetM.url</from>
+		<to>/betmessage!addBetMessage.action</to>
+	</rule>
+	<!-- 后台显示数字彩票信息 -->
+	<rule>
+		<from>/listBetM.url</from>
+		<to>/betmessage!listBackBetMessage.action</to>
+	</rule>
+	<!-- 后台显示数字彩票信息 -->
+    
+    <!-- 后台删除数字彩票信息 -->
+	<rule>
+		<from>/deleteBetM.url</from>
+		<to>/betmessage!deleteById.action</to>
+	</rule>
+	<!-- 后台删除数字彩票信息 -->
+    <!-- 后台修改数字彩票信息 -->
+	<rule>
+		<from>/updateBetM.url</from>
+		<to>/betmessage!updateBetMessage.action</to>
+	</rule>
+	<!-- 后台修改数字彩票信息 -->
+    
 
 	<!-- 体育赛事 begin -->
 	<rule>
