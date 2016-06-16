@@ -137,6 +137,13 @@
 		<to>/match!toMatchIndex.action</to>
 	</rule>
 	
+	<rule>
+		<from>/subfootbet.url</from>
+		<to>/footballBet!addFootballBet.action</to>
+	</rule>
+	
+	
+	
 	<!-- 体育赛事 end -->
 </urlrewrite> 
 

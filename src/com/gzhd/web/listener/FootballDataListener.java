@@ -8,6 +8,8 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,6 +19,9 @@ import javax.servlet.ServletContextListener;
 
 import org.apache.log4j.Logger;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.gzhd.util.StringUtil;
 import com.gzhd.util.TimeUtil;
 
@@ -36,6 +41,7 @@ public class FootballDataListener implements ServletContextListener {
 		final ServletContext application = sce.getServletContext();
 
 		Timer timer = new Timer();
+		Timer timer2 = new Timer();
 
 		timer.schedule(new TimerTask() {
 
@@ -44,6 +50,14 @@ public class FootballDataListener implements ServletContextListener {
 				getFootballData(application);
 			}
 		}, 2000, 1000 * 60 * 10);
+		
+		timer2.schedule(new TimerTask() {
+
+			@Override
+			public void run() {
+				application.setAttribute("currentTime", TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss"));
+			}
+		}, 2000, 1000);
 	}
 
 	/**
@@ -71,12 +85,21 @@ public class FootballDataListener implements ServletContextListener {
 				response.append(StringUtil.convert(inputLine));
 			}
 			
-			application.setAttribute("currentDayData", response.toString());
-			logger.info("currentDayData: " + response.toString());
+			String json = null;
 			
+			if(response.toString().length() > 100) {
+
+				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
+				application.setAttribute("currentDayData", json);
+			}
+			
+			logger.info(json);
+			
+			Thread.sleep(5000);   //先睡眠5秒，否则接口网站会认为恶意操作
 			//==========================================
-			
-			url = new URL(dataUrl + TimeUtil.dateFormat(TimeUtil.getDateRelateToDate(new Date(), 1), "yyyyMMdd"));
+			String nextDayUrl = dataUrl + TimeUtil.dateFormat(TimeUtil.getDateRelateToDate(new Date(), 1), "yyyyMMdd");
+			System.out.println(nextDayUrl);
+			url = new URL(nextDayUrl);
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setRequestProperty("Content-Type", "application/json;charset=utf-8");
@@ -87,14 +110,19 @@ public class FootballDataListener implements ServletContextListener {
 				response.append(StringUtil.convert(inputLine));
 			}
 			
-			application.setAttribute("nextDayData", response.toString());
-			logger.info("nextDayData: " + response.toString());
+			if(response.toString().length() > 100) {
+				
+				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
+				application.setAttribute("nextDayData", json);
+				
+			}
+			Thread.sleep(5000);
 			
 			//==========================================
+			String next2DayUrl = dataUrl + TimeUtil.dateFormat(TimeUtil.getDateRelateToDate(new Date(), 2), "yyyyMMdd");
+			url = new URL(next2DayUrl);
 			
-			url = new URL(dataUrl + TimeUtil.dateFormat(TimeUtil.getDateRelateToDate(new Date(), 2), "yyyyMMdd"));
-			
-			con = (HttpURLConnection) url.openConnection();
+			con = (HttpURLConnection) url.openConnection(); 
 			con.setRequestMethod("GET");
 			con.setRequestProperty("Content-Type", "application/json;charset=utf-8");
 
@@ -104,14 +132,18 @@ public class FootballDataListener implements ServletContextListener {
 				response.append(StringUtil.convert(inputLine));
 			}
 			
-			application.setAttribute("next2DayData", response.toString());
-			logger.info("next2DayData: " + response.toString());
+			if(response.toString().length() > 100) {
+				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
+				application.setAttribute("next2DayData", json);
+			}
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (ProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
 			try {
