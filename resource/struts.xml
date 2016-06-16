@@ -59,7 +59,7 @@
 						toFrontLogin,toRegister,frontLogin,listFrontUser,addFrontUserPage,addFrontUser,editFrontUserPage,
 						editFrontUser,deleteFrontUser,initFrontUserPassword,checkFrontUsernameIsExist,toRechargePage,recharge,register,
 						validPassword,frontLogout,logout,getCodeForFront,getCodeForBack,toDefault,announcementList,favorList,getSingleAnnouncement,
-						getSingleFavor
+						getSingleFavor,toHighFrequency,addBetMessage,listBackBetMessage,deleteById,updateBetMessage,myBetRecord
 
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
 				</interceptor-ref>
@@ -71,7 +71,7 @@
 					<param name="excludeMethods">
 						toBackLogin,backLogin,announcementList,favorList,getSingleAnnouncement,checkFrontUsernameIsExist,getSingleFavor,toFrontLogin,toRegister,
 						frontLogin,register,myCount,toChangePassword,validPassword,changePassword,frontLogout,logout,getCodeForBack,getCodeForFront,toDefault,updateFrontUserInfo,
-						myBetRecord
+						myBetRecord,toHighFrequency,addBetMessage,listBackBetMessage,deleteById,updateBetMessage,myBetRecord
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
 				</interceptor-ref>
 			</interceptor-stack>

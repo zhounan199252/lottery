@@ -128,7 +128,7 @@ margin-bottom: 5px;
   function checkLengh(name) {
        if(name=="gd11x5"){
         var num = $("#select"+name).children(".checked").length;
-        if(num!="5"){
+        if(num<2||num>5){
 			return false;
 			}
        }else if(name=="ssq"){
@@ -175,7 +175,7 @@ margin-bottom: 5px;
 	        	     return;
 	        	    }
 	        	    if(checkLengh(id)==false){
-	        	    	waring("只能选择5个号码");
+	        	    	waring("请选择2-5个号码");
 	        	     return;
 	        	    }
 	        	    betType="广东11选5";
@@ -281,7 +281,7 @@ margin-bottom: 5px;
 	        	     waring("投注倍数为整数");
 	        	     return;betQuan==1;
 	             }	  
-	          var url= "${pageContext.request.contextPath}/betmessage!addBetMessage.action"; 
+	          var url= "${pageContext.request.contextPath}/addBetM.url"; 
 	          $.ajax({
 	  			url :url,
 	  			type : "post",
