@@ -126,7 +126,7 @@ public class FootballBetServiceImpl implements FootballBetService {
 			params.put("matchTimeEnd", model.getMatchTimeEnd());
 		}
 
-		queryHql.append(" order by b.betTime desc, b.isFulfil asc"); // 
+		queryHql.append(" order by b.isFulfil asc, b.betTime desc"); // 
 
 		List<FootballBet> list = baseDao.find(queryHql.toString(), params, pageNum, pageSize);
 
