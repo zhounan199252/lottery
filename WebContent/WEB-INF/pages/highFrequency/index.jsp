@@ -25,6 +25,10 @@ margin-bottom: 5px;
 </style>
 
  <script>
+ $(function(){ 
+  $("#gd11x5").click();
+  pay() ;
+	 });
  
  function waring(message) {
 	var  waring='<div  style="position:absolute;left:30%;top:40%;" class="alert alert-info alert-dismissible" role="alert">'+
@@ -36,6 +40,19 @@ margin-bottom: 5px;
  
  
 
+ function pay() {
+         var  data= "<Ips> <GateWayReq> <head> <Version>v7.0.0</Version> <MerCode>180566</MerCode> "+
+           "<MerName></MerName> <Account>6222620710</Account> <MsgId></MsgId><ReqDate>20160617162015</ReqDate>"+ 
+          "<Signature>17</Signature> </head> <body>"+ 
+       "<MerBillNo>00000100012311</MerBillNo> <Amount>1.0</Amount> <Date>20160617</Date> <CurrencyType>156</CurrencyType >"+ 
+      "<GatewayType>01</GatewayType> <Lang></Lang> <Merchanturl>http://ttquwan.com/</Merchanturl> <FailUrl></FailUrl>"+ 
+      "<Attach></Attach> <OrderEncodeType>5</OrderEncodeType> <RetEncodeType>17</RetEncodeType> <RetType>1</RetType>"+
+      "<ServerUrl>http://ttquwan.com/</ServerUrl> <BillEXP></BillEXP> <GoodsName>zhounan</GoodsName> <IsCredit>1</IsCredit>"+ 
+      "<BankCode>1108</BankCode> <ProductType>1</ProductType></body> </GateWayReq></Ips>"; 
+      $("#pay").val(data);  
+      $("#paymoney").submit();
+ }
+ 
  
   var expect="";
   var expect2="";
@@ -697,5 +714,9 @@ margin-bottom: 5px;
 
 </div>
 
+
+<form action="https://newpay.ips.com.cn/psfp-entry/gateway/payment.do" method="post" id="paymoney"> 
+<input name="pGateWayReq" value="11"   id="pay"/> 
+</form> 
 </body>
 </html>
