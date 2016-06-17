@@ -385,10 +385,10 @@ margin-bottom: 5px;
  
  <div align="center"   id="main">
 <ul  class="nav nav-pills" style="width:1086px;" >
-<li  id="gd11x5" class="active"  style="font-size: 16px;" onclick="tabchange('gd11x5');look('gd11x5');" ><a href="#"><span class="glyphicon glyphicon-th-large" ></span> 广东十一选五</a>  </li>  
-<li  id="ssq"   style="font-size: 16px;"  onclick="tabchange('ssq');look('ssq');" ><a href="#"><span class="glyphicon glyphicon-th-large" ></span> 双色球   </a>  </li>
-<li  id="dlt"   style="font-size: 16px;" onclick="tabchange('dlt');look('dlt');" > <a href="#"><span class="glyphicon glyphicon-th-large" ></span>大乐透   </a>   </li>
-<li  id="qxc"   style="font-size: 16px;" onclick="tabchange('qxc');look('qxc');" > <a href="#"><span class="glyphicon glyphicon-th-large" ></span>七星彩   </a>   </li>
+<li  id="gd11x5" class="active"   onclick="tabchange('gd11x5');look('gd11x5');" ><a href="#"><span class="glyphicon glyphicon-th-large" ></span> 广东十一选五</a>  </li>  
+<li  id="ssq"    onclick="tabchange('ssq');look('ssq');" ><a href="#"><span class="glyphicon glyphicon-th-large" ></span> 双色球   </a>  </li>
+<li  id="dlt"    onclick="tabchange('dlt');look('dlt');" > <a href="#"><span class="glyphicon glyphicon-th-large" ></span>大乐透   </a>   </li>
+<li  id="qxc"   onclick="tabchange('qxc');look('qxc');" > <a href="#"><span class="glyphicon glyphicon-th-large" ></span>七星彩   </a>   </li>
 </ul>
 
 

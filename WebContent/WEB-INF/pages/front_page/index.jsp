@@ -108,7 +108,6 @@
 					<li class="active grid for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/default.url');">首页</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/an.url');">消息公告</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/tmi.url');">体育赛事</a></li>
-					<li class="for_active"><a class="color1" href="#">彩票游戏</a></li>
 					<li class="for_active"><a class="color1" onclick="javascript:gotoPage('${pageContext.request.contextPath}/numLottery.url');">六合彩</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/fa.url');">优惠活动</a></li>
 					<!-- <li><a class="color1" href="#">在线客服</a></li> -->
@@ -117,16 +116,17 @@
 		</div>
 	</div>
 
-	<!-- 主体部分 -->
-	<div class="banner" style="height: 900px; width: 100%">
-		<div class="container" style="height: 800px; width: 100%">
-			<iframe width="100%" frameBorder="0" scrolling="yes" id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%; height: 850px"></iframe>
+	
+<!-- 主体部分 -->
+	<div class="banner" style="height: 700px; width: 100%">
+		<div class="container" style="height: 700px; width: 100%">
+			<iframe width="100%" frameBorder="0"  id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%; height: 700px"></iframe>
 		</div>
 	</div>
 	
 	
-	<div class="footer-copy" style="height: 60px">
-		<p style="color: black" >
+	<div class="footer-copy" style="height: 100px">
+		<p style="color: black;margin-top:20px" >
 			Copyright &copy; 2015 - 2016.<a href="http://www.ttquwan.com" target="_blank">天天趣玩网</a> 版权所有 <a href="http://www.ttquwan.com/tbul.url" target="_blank" title="后台管理" class="color1">后台管理</a><br> 提醒：购买彩票有风险，在线投注需谨慎，不向未满18周岁的青少年出售彩票及提供彩票代购服务
 		</p>
 	</div>
