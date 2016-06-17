@@ -12,13 +12,17 @@ public class FootballBet {
 	
 	private String awayTeam;
 	
-	private String odds;
+	private double odds;
 	
 	private String rangQiu;
 	
 	private String winOrLose;
 	
 	private int multiple;
+	
+	private String isFulfil;
+	
+	private String matchTime;
 
 	public String getId() {
 		return id;
@@ -60,14 +64,6 @@ public class FootballBet {
 		this.awayTeam = awayTeam;
 	}
 
-	public String getOdds() {
-		return odds;
-	}
-
-	public void setOdds(String odds) {
-		this.odds = odds;
-	}
-
 	public String getRangQiu() {
 		return rangQiu;
 	}
@@ -92,6 +88,28 @@ public class FootballBet {
 		this.multiple = multiple;
 	}
 
-	
+	public String getIsFulfil() {
+		return isFulfil;
+	}
+
+	public void setIsFulfil(String isFulfil) {
+		this.isFulfil = isFulfil;
+	}
+
+	public double getOdds() {
+		return odds;
+	}
+
+	public void setOdds(double odds) {
+		this.odds = odds;
+	}
+
+	public String getMatchTime() {
+		return matchTime;
+	}
+
+	public void setMatchTime(String matchTime) {
+		this.matchTime = matchTime;
+	}
 	
 }

@@ -8,8 +8,6 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,9 +17,6 @@ import javax.servlet.ServletContextListener;
 
 import org.apache.log4j.Logger;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.gzhd.util.StringUtil;
 import com.gzhd.util.TimeUtil;
 
@@ -74,7 +69,8 @@ public class FootballDataListener implements ServletContextListener {
 		String inputLine = "";
 
 		try {
-			url = new URL(dataUrl + TimeUtil.getCurDate("yyyyMMdd"));
+			String lastDayUrl = dataUrl + TimeUtil.dateFormat(TimeUtil.getDateRelateToDate(new Date(), -1), "yyyyMMdd");
+			url = new URL(lastDayUrl);
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
 			con.setRequestProperty("Content-Type", "application/json;charset=utf-8");
@@ -97,7 +93,7 @@ public class FootballDataListener implements ServletContextListener {
 			
 			Thread.sleep(5000);   //先睡眠5秒，否则接口网站会认为恶意操作
 			//==========================================
-			String nextDayUrl = dataUrl + TimeUtil.dateFormat(TimeUtil.getDateRelateToDate(new Date(), 1), "yyyyMMdd");
+			String nextDayUrl = dataUrl + TimeUtil.getCurDate("yyyyMMdd");
 			System.out.println(nextDayUrl);
 			url = new URL(nextDayUrl);
 			con = (HttpURLConnection) url.openConnection();
@@ -119,7 +115,7 @@ public class FootballDataListener implements ServletContextListener {
 			Thread.sleep(5000);
 			
 			//==========================================
-			String next2DayUrl = dataUrl + TimeUtil.dateFormat(TimeUtil.getDateRelateToDate(new Date(), 2), "yyyyMMdd");
+			String next2DayUrl = dataUrl + TimeUtil.dateFormat(TimeUtil.getDateRelateToDate(new Date(), 1), "yyyyMMdd");
 			url = new URL(next2DayUrl);
 			
 			con = (HttpURLConnection) url.openConnection(); 

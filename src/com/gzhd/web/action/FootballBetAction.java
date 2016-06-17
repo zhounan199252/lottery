@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 import com.gzhd.common.ConstantValues;
 import com.gzhd.model.FootballBetModel;
 import com.gzhd.model.FrontUserModel;
+import com.gzhd.model.PageModel;
 import com.gzhd.service.itf.FootballBetService;
 import com.gzhd.util.TimeUtil;
 import com.opensymphony.xwork2.ActionContext;
@@ -18,6 +19,8 @@ import com.opensymphony.xwork2.ActionContext;
 
 @Action(value = "footballBet", results = { //
 		@Result(name = "toMatch", location = "match!toMatchIndex.action", type = "redirectAction"),//
+		@Result(name = "toList", location = "footballBet!listFootballBet.action", type = "redirectAction"),//
+		@Result(name = "list", location = "/WEB-INF/pages/back_page/football/footballList.jsp")//
 })
 @Scope("prototype")
 public class FootballBetAction extends BaseAction<FootballBetModel> {
@@ -43,4 +46,51 @@ public class FootballBetAction extends BaseAction<FootballBetModel> {
 		
 		return "toMatch";
 	}
+	
+	
+	public String listFootballBet() {
+		
+		PageModel pageModel = service.getForPageModel(model.getPageNum(), ConstantValues.PAGE_SIZE, model);
+
+		ActionContext.getContext().put("pageModel", pageModel);
+
+		return "list";
+	}
+	
+	public String doFulfil() {
+		
+		service.updateFulfilStatus(model.getId());
+		
+		
+		return "toList";
+	}
+	
+	public String deleteFootballBet() {
+		
+		service.deleteFootballBet(model.getId());
+		
+		return "toList";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
