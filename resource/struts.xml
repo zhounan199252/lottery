@@ -59,7 +59,8 @@
 						toFrontLogin,toRegister,frontLogin,listFrontUser,addFrontUserPage,addFrontUser,editFrontUserPage,
 						editFrontUser,deleteFrontUser,initFrontUserPassword,checkFrontUsernameIsExist,toRechargePage,recharge,register,
 						validPassword,frontLogout,logout,getCodeForFront,getCodeForBack,toDefault,announcementList,favorList,getSingleAnnouncement,
-						getSingleFavor,listBackBetMessage,toMatchIndex,getSingleFavor,toHighFrequency,addBetMessage,listBackBetMessage,deleteById,updateBetMessage,myBetRecord
+						getSingleFavor,listBackBetMessage,toMatchIndex,getSingleFavor,toHighFrequency,addBetMessage,listBackBetMessage,deleteById,updateBetMessage,myBetRecord,
+						listFootballBet,doFulfil,deleteFootballBet
 
 
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->

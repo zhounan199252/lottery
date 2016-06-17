@@ -69,9 +69,13 @@
 						text : '前台用户管理',
 						href : '${pageContext.request.contextPath}/frontUser!listFrontUser.action'
 					} ,{
-						id : 'front_user',
+						id : 'front_user_bet',
 						text : '前台用户投注信息',
 						href : '${pageContext.request.contextPath}/betmessage!listBackBetMessage.action'
+					} ,{
+						id : 'football',
+						text : '足球竞彩',
+						href : '${pageContext.request.contextPath}/footballBet!listFootballBet.action'
 					}]
 				} ]
 			} ];

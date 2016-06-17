@@ -16,7 +16,7 @@ public class FootballBetModel {
 
 	private String awayTeam;
 
-	private String odds;
+	private double odds;
 
 	private String rangQiu;
 
@@ -25,6 +25,20 @@ public class FootballBetModel {
 	private int multiple;
 	
 	private double totalCount;
+	
+	private String isFulfil;
+	
+	private String matchTime;
+	
+	private String betTimeBegin;
+	
+	private String betTimeEnd;
+	
+	private String matchTimeBegin;
+	
+	private String matchTimeEnd;
+	
+	private int pageNum = 1;
 
 	public String getId() {
 		return id;
@@ -74,14 +88,6 @@ public class FootballBetModel {
 		this.awayTeam = awayTeam;
 	}
 
-	public String getOdds() {
-		return odds;
-	}
-
-	public void setOdds(String odds) {
-		this.odds = odds;
-	}
-
 	public String getRangQiu() {
 		return rangQiu;
 	}
@@ -113,5 +119,70 @@ public class FootballBetModel {
 	public void setTotalCount(double totalCount) {
 		this.totalCount = totalCount;
 	}
+
+	public int getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	public String getIsFulfil() {
+		return isFulfil;
+	}
+
+	public void setIsFulfil(String isFulfil) {
+		this.isFulfil = isFulfil;
+	}
+
+	public double getOdds() {
+		return odds;
+	}
+
+	public void setOdds(double odds) {
+		this.odds = odds;
+	}
+
+	public String getMatchTime() {
+		return matchTime;
+	}
+
+	public void setMatchTime(String matchTime) {
+		this.matchTime = matchTime;
+	}
+
+	public String getBetTimeBegin() {
+		return betTimeBegin;
+	}
+
+	public void setBetTimeBegin(String betTimeBegin) {
+		this.betTimeBegin = betTimeBegin;
+	}
+
+	public String getBetTimeEnd() {
+		return betTimeEnd;
+	}
+
+	public void setBetTimeEnd(String betTimeEnd) {
+		this.betTimeEnd = betTimeEnd;
+	}
+
+	public String getMatchTimeBegin() {
+		return matchTimeBegin;
+	}
+
+	public void setMatchTimeBegin(String matchTimeBegin) {
+		this.matchTimeBegin = matchTimeBegin;
+	}
+
+	public String getMatchTimeEnd() {
+		return matchTimeEnd;
+	}
+
+	public void setMatchTimeEnd(String matchTimeEnd) {
+		this.matchTimeEnd = matchTimeEnd;
+	}
+	
 	
 }
