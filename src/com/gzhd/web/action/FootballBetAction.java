@@ -1,6 +1,9 @@
 
 package com.gzhd.web.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -13,12 +16,13 @@ import com.gzhd.model.FootballBetModel;
 import com.gzhd.model.FrontUserModel;
 import com.gzhd.model.PageModel;
 import com.gzhd.service.itf.FootballBetService;
+import com.gzhd.util.FormatUtil;
 import com.gzhd.util.TimeUtil;
 import com.opensymphony.xwork2.ActionContext;
 
 
 @Action(value = "footballBet", results = { //
-		@Result(name = "toMatch", location = "match!toMatchIndex.action", type = "redirectAction"),//
+		@Result(name = "toMatch", location = "match!toMatchIndex.action?message=${message}", type = "redirectAction"),//
 		@Result(name = "toList", location = "footballBet!listFootballBet.action", type = "redirectAction"),//
 		@Result(name = "list", location = "/WEB-INF/pages/back_page/football/footballList.jsp")//
 })
@@ -43,6 +47,8 @@ public class FootballBetAction extends BaseAction<FootballBetModel> {
 		String curtime = TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
 		
 		service.addFootballBet(model, userModel.getId(), curtime);
+		
+		model.setMessage("投注成功！");
 		
 		return "toMatch";
 	}
@@ -74,10 +80,30 @@ public class FootballBetAction extends BaseAction<FootballBetModel> {
 	
 	
 	
+	public void countBonusBySeriesNum() {
+		
+		Double bonus = service.countBonusBySeriesNum(model.getSeriesNum());
+		
+		Map<String, String> result = new HashMap<String, String>();
+		
+		if(bonus == 0) {
+			 result.put("success", "false");
+		} else {
+			result.put("success", "true");
+			result.put("bonus", FormatUtil.amountFormatII(bonus));
+		}
+		
+		writeJsonToJsp(result);
+	}
 	
 	
-	
-	
+	public String fulfilBySeriesNum() {
+		
+		
+		service.updateFulfilBySeriesNum(model.getSeriesNum());
+		
+		return "toList";
+	}
 	
 	
 	

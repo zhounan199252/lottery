@@ -7,7 +7,7 @@
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
+<meta name="keywords" content="天天趣玩网, 彩票, 篮球竞彩, 足球竞彩, 双色球, 大乐透" />
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/globle/js/front_bootstrap/megamenu.js"></script>
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/megamenu.js"></script>

@@ -60,7 +60,7 @@
 						editFrontUser,deleteFrontUser,initFrontUserPassword,checkFrontUsernameIsExist,toRechargePage,recharge,register,
 						validPassword,frontLogout,logout,getCodeForFront,getCodeForBack,toDefault,announcementList,favorList,getSingleAnnouncement,
 						getSingleFavor,listBackBetMessage,toMatchIndex,getSingleFavor,toHighFrequency,addBetMessage,listBackBetMessage,deleteById,updateBetMessage,myBetRecord,
-						listFootballBet,doFulfil,deleteFootballBet
+						listFootballBet,doFulfil,deleteFootballBet,countBonusBySeriesNum,fulfilBySeriesNum
 
 
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->

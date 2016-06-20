@@ -65,6 +65,17 @@
 				<comment>是否已兑奖</comment>
 			</column>
 		</property>
+		
+		<property name="type" type="string">
+			<column name="type" length="7">
+				<comment>投注类型（单关或多串一）</comment>
+			</column>
+		</property>
+		<property name="seriesNum" type="string">
+			<column name="seriesNum" length="20">
+				<comment>多串一的串号</comment>
+			</column>
+		</property>
 	</class>
 
 

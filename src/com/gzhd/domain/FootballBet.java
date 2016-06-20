@@ -23,6 +23,10 @@ public class FootballBet {
 	private String isFulfil;
 	
 	private String matchTime;
+	
+	private String type;
+	
+	private String seriesNum;
 
 	public String getId() {
 		return id;
@@ -110,6 +114,22 @@ public class FootballBet {
 
 	public void setMatchTime(String matchTime) {
 		this.matchTime = matchTime;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getSeriesNum() {
+		return seriesNum;
+	}
+
+	public void setSeriesNum(String seriesNum) {
+		this.seriesNum = seriesNum;
 	}
 	
 }

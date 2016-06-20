@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +10,7 @@
 
 <script type="text/javascript">
 	var selectedItemIds = []; 
+	var selectedTypeValue = "single";
 
 	/** 
 	 *删除数组指定下标或指定对象 
@@ -39,6 +38,25 @@
 
 		setInterval(reflushData, 60000)
 		reflushData();
+		
+		var message = "${requestScope.message}";
+		if(message) {
+			alert(message);
+		}
+		
+		$("input:radio[name='type']").click(function() {
+			if("series" == $(this).val()) {
+				$(".td_multiple").css("display", "none");
+				$("#series_multiple").css("visibility", "visible");
+				selectedTypeValue = "series";
+			} else {
+				$(".td_multiple").css("display","block");
+				$("#series_multiple").css("visibility", "hidden");
+				selectedTypeValue = "single";
+			}
+			
+			cacularTotalCount();
+		});
 		
 	});
 	function reflushData() {
@@ -120,10 +138,15 @@
 				selected += '<td style="width: 13%">' + options[4] + '</td>';
 				selected += '<td style="width: 13%">' + options[5] + '</td>';
 				selected += '<td style="width: 13%">' + options[6] + '</td>';
-				selected += '<td style="width: 15%"><button onclick="minusNum(this)">-</button>&nbsp;&nbsp;<input readonly="readonly" type="text" style="width: 80px" value="1" data-option="' + option + '" id="' + options[0] + '_' + options[6] + '_multiple">&nbsp;&nbsp;<button onclick="plusNum(this)">+</button></td>';
+				selected += '<td style="width: 240px"  class="td_multiple"><button onclick="minusNum(this)">-</button>&nbsp;&nbsp;<input readonly="readonly" type="text" style="width: 80px" value="1" data-option="' + option + '" id="' + options[0] + '_' + options[6] + '_multiple">&nbsp;&nbsp;<button onclick="plusNum(this)">+</button></td>';
 				selected += '<td style="width: 5%"><button onclick="deleteSelected(this);" onclick="" id="' + options[0] + '_' + options[6] + '">删除</button>';
 				selected += "</tr>";
 				$("#bet_table").append(selected);
+			}
+			
+			if("series" == selectedTypeValue) {
+				$("#rad_single").click();
+				$("#rad_series").click();
 			}
 
 			cacularTotalCount();
@@ -163,6 +186,24 @@
 
 		cacularTotalCount();
 	}
+	
+	function plusNumFroSeries(node) { //倍数加1  
+		var value = $(node).siblings("input").val();
+
+		$(node).siblings("input").val(parseInt(value) + 1);
+
+		cacularTotalCount();
+	}
+
+	function minusNumFroSeries(node) { //倍数减1
+		var value = $(node).siblings("input").val();
+
+		if (value != 1) {
+			$(node).siblings("input").val(parseInt(value) - 1);
+		}
+
+		cacularTotalCount();
+	}
 
 	function deleteSelected(node) {
 
@@ -175,14 +216,23 @@
 	}
 
 	function cacularTotalCount() { //计算总额
-		var inputValues = $("#bet_table input");
+		
+		var selectLength = $("#bet_table input").length;
+		
+		if("single" == selectedTypeValue) {
+			var inputValues = $("#bet_table input");
 
-		var totalValue = 0;
-		for (var i = 0; i < inputValues.length; i++) {
-			totalValue += parseInt($(inputValues[i]).val());
+			var totalValue = 0;
+			for (var i = 0; i < inputValues.length; i++) {
+				totalValue += parseInt($(inputValues[i]).val());
+			}
+
+			$("#totalCount").val(totalValue * 2);
+		} else {
+			var series_multiple = $("#txt_series_multiple").val();
+			
+			$("#totalCount").val(parseInt(selectLength) * parseInt(series_multiple) * 2);
 		}
-
-		$("#totalCount").val(totalValue * 2);
 	}
 
 	function betSubmit() {
@@ -192,7 +242,6 @@
 		var trs = $("#bet_table input");
 
 		var isValid = "true";
-
 		var data = [];
 		for (var i = 0; i < trs.length; i++) {
 			var option = $(trs[i]).attr("data-option");
@@ -206,10 +255,17 @@
 				break;
 			}
 
-			var multiple = $("#" + options[0] + "_" + options[6] + "_multiple").val();
+			if("single" == selectedTypeValue) {
+				var multiple = $("#" + options[0] + "_" + options[6] + "_multiple").val();
 
-			data.push(option + ";" + multiple);
+				$("#txt_type").val("single");
+				data.push(option + ";" + multiple + ";single");
+			} else {
+				var multiple = $("#txt_series_multiple").val();
+				$("#txt_type").val("series");
 
+				data.push(option + ";" + multiple + ";series");
+			}
 		}
 
 		if (isValid == "false") {
@@ -262,10 +318,19 @@
 		</div>
 
 		<div style="width: 100%; border: 1px solid green; display: none" id="basketball">篮球</div>
-		<div style="border: 1px solid blue; width: 100%; min-height: 300px; overflow: auto" id="bet_div">
+		<div style="border: 1px solid blue; width: 100%; min-height: 300px; overflow: auto;" id="bet_div">
+			<div style="width: 100%">
+				过关方式：<input type="radio" name="type" value="single" checked="checked" id="rad_single">单关&nbsp;<input type="radio" id="rad_series" name="type" value="series">多串一&nbsp;&nbsp;
 			<span style="color: red; font-size: 20px">当前投注总额：<input type="text" style="width: 100px" id="totalCount" value="0" readonly="readonly">元
 			</span>&nbsp;&nbsp;
-			<button onclick="betSubmit();">提交投注</button>
+			<button onclick="betSubmit();">提交投注</button>&nbsp;&nbsp;
+			倍数：
+			<span id="series_multiple" style="visibility: hidden;">
+				<button id="" onclick="minusNumFroSeries(this)">-</button>
+				<input type="text" id="txt_series_multiple" value="1" style="width: 80px" readonly="readonly">
+				<button id="" onclick="plusNumFroSeries(this)">+</button>
+			</span>
+			</div>
 			<table border="1px" style="width: 100%; text-align: center;" class="table" id="bet_table">
 				<tr>
 					<td style="width: 10%">停售时间</td>
@@ -274,7 +339,7 @@
 					<td style="width: 13%">赔率</td>
 					<td style="width: 13%">让球</td>
 					<td style="width: 13%">胜负</td>
-					<td style="width: 15%">倍数</td>
+					<td style="width: 240px;" class="td_multiple">倍数</td>
 					<td style="width: 5%">操作</td>
 				</tr>
 			</table>
@@ -283,6 +348,7 @@
 
 	<form action="${pageContext.request.contextPath}/subfootbet.url" style="display: none" method="post" id="bet_form">
 		<input type="text" id="txt_bet_data" name="data"> <input type="text" id="txt_totalCount" name="totalCount">
+		<input type="text" id="txt_type" name="type">
 	</form>
 </body>
 </html>

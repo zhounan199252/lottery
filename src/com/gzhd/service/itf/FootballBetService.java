@@ -14,4 +14,8 @@ public interface FootballBetService {
 	public void deleteFootballBet(String ids);
 	
 	public void updateFulfilStatus(String ids);
+
+	public Double countBonusBySeriesNum(String seriesNum);
+
+	public void updateFulfilBySeriesNum(String seriesNum);
 }

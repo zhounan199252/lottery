@@ -19,6 +19,8 @@ import com.gzhd.model.FootballBetModel;
 import com.gzhd.model.FrontUserModel;
 import com.gzhd.model.PageModel;
 import com.gzhd.service.itf.FootballBetService;
+import com.gzhd.util.FormatUtil;
+import com.gzhd.util.StringUtil;
 
 @Service(value=FootballBetService.BEAN_NAME)
 public class FootballBetServiceImpl implements FootballBetService {
@@ -46,25 +48,55 @@ public class FootballBetServiceImpl implements FootballBetService {
 		
 		FootballBet footballBet = null;
 		
-		for(String singleData : datas) {
-			
-			//33676;英格兰;威尔士;2016-06-16 20:45:00;1.42;无;胜;倍数
-			String[] singleDatas = singleData.split(";");
-			
-			footballBet = new FootballBet();
-			
-			footballBet.setHomeTeam(singleDatas[1]);
-			footballBet.setAwayTeam(singleDatas[2]);
-			footballBet.setOdds(Double.parseDouble(singleDatas[4]));
-			footballBet.setBetTime(curTime);
-			footballBet.setMultiple(Integer.parseInt(singleDatas[8]));
-			footballBet.setUser(frontUser);
-			footballBet.setRangQiu(singleDatas[5]);
-			footballBet.setWinOrLose(singleDatas[6]);
-			footballBet.setMatchTime(singleDatas[7]);
-			
-			baseDao.save(footballBet);
+		if("single".equals(model.getType())) {
+			for(String singleData : datas) {
+				
+				//33676;英格兰;威尔士;2016-06-16 20:45:00;1.42;无;胜;倍数
+				String[] singleDatas = singleData.split(";");
+				
+				footballBet = new FootballBet();
+				
+				footballBet.setHomeTeam(singleDatas[1]);
+				footballBet.setAwayTeam(singleDatas[2]);
+				footballBet.setOdds(Double.parseDouble(singleDatas[4]));
+				footballBet.setBetTime(curTime);
+				footballBet.setMultiple(Integer.parseInt(singleDatas[8]));
+				footballBet.setUser(frontUser);
+				footballBet.setRangQiu(singleDatas[5]);
+				footballBet.setWinOrLose(singleDatas[6]);
+				footballBet.setMatchTime(singleDatas[7]);
+				footballBet.setType(singleDatas[9]);
+				footballBet.setIsFulfil("no");
+				footballBet.setSeriesNum("无");
+				
+				baseDao.save(footballBet);
+			}
+		} else {
+			String seriesNum = StringUtil.generateSeriesNum();
+			for(String singleData : datas) {
+				
+				//33676;英格兰;威尔士;2016-06-16 20:45:00;1.42;无;胜;倍数
+				String[] singleDatas = singleData.split(";");
+				
+				footballBet = new FootballBet();
+				
+				footballBet.setHomeTeam(singleDatas[1]);
+				footballBet.setAwayTeam(singleDatas[2]);
+				footballBet.setOdds(Double.parseDouble(singleDatas[4]));
+				footballBet.setBetTime(curTime);
+				footballBet.setMultiple(Integer.parseInt(singleDatas[8]));
+				footballBet.setUser(frontUser);
+				footballBet.setRangQiu(singleDatas[5]);
+				footballBet.setWinOrLose(singleDatas[6]);
+				footballBet.setMatchTime(singleDatas[7]);
+				footballBet.setType(singleDatas[9]);
+				footballBet.setSeriesNum(seriesNum);
+				footballBet.setIsFulfil("no");
+				
+				baseDao.save(footballBet);
+			}
 		}
+		
 		
 		frontUser.setBalance(remain);
 		
@@ -83,6 +115,16 @@ public class FootballBetServiceImpl implements FootballBetService {
 		if(null != model.getUser() && StringUtils.isNotBlank(model.getUser().getNickname())) {
 			queryHql.append(" and b.user.nickname like :nickname");
 			params.put("nickname", "%%" + model.getUser().getNickname() + "%%");
+		}
+		
+		if(StringUtils.isNotBlank(model.getType())) {
+			queryHql.append(" and b.type = :type");
+			params.put("type", model.getType());
+		}
+		
+		if(StringUtils.isNotBlank(model.getSeriesNum())) {
+			queryHql.append(" and b.seriesNum like :seriesNum");
+			params.put("seriesNum", "%%" + model.getSeriesNum() + "%%");
 		}
 		
 		if(StringUtils.isNotBlank(model.getHomeTeam())) {
@@ -171,5 +213,78 @@ public class FootballBetServiceImpl implements FootballBetService {
 		
 	}
 
+	@Override
+	public Double countBonusBySeriesNum(String seriesNum) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("seriesNum", seriesNum);
+		
+		List<FootballBet> list = baseDao.find("from FootballBet b where b.seriesNum = :seriesNum", params);
+		
+		double bonus = 0;
+		
+		if(null == list || list.size() == 0) {
+			return bonus;
+		}
+		
+		double totalOdds = 1;
+		int multiple = 0;
+		
+		for(FootballBet bean : list) {
+			double odds = bean.getOdds();
+			totalOdds = totalOdds * odds;
+			multiple = bean.getMultiple();
+		}
+	
+		bonus = totalOdds * 2 * multiple;
+		return bonus;
+	}
+
+	@Override
+	public void updateFulfilBySeriesNum(String seriesNum) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("seriesNum", seriesNum);
+		
+		List<FootballBet> list = baseDao.find("from FootballBet b where b.seriesNum = :seriesNum", params);
+		
+		for(FootballBet bean : list) {
+			
+			bean.setIsFulfil("yes");
+			
+			baseDao.update(bean);
+		}
+	}
+
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

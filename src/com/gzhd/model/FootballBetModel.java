@@ -38,6 +38,13 @@ public class FootballBetModel {
 	
 	private String matchTimeEnd;
 	
+	private String message;
+	
+	private String type;
+	
+	private String seriesNum;
+
+	
 	private int pageNum = 1;
 
 	public String getId() {
@@ -182,6 +189,30 @@ public class FootballBetModel {
 
 	public void setMatchTimeEnd(String matchTimeEnd) {
 		this.matchTimeEnd = matchTimeEnd;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getSeriesNum() {
+		return seriesNum;
+	}
+
+	public void setSeriesNum(String seriesNum) {
+		this.seriesNum = seriesNum;
 	}
 	
 	

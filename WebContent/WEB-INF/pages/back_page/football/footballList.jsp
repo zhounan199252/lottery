@@ -12,8 +12,16 @@
 		var checkboxs = $("[name=ids]:checked");
 
 		var count = 0.0;
+		var isValid = "true";
 		for (var i = 0; i < checkboxs.length; i++) {
 			var id = $(checkboxs[i]).prop("value");
+
+			if ("无" != $("#" + id + "_seriesNum").text()) {
+
+				BUI.Message.Alert("请先去除多串一的投注项！");
+				isValid = "false";
+				break;
+			}
 
 			var oddText = $("#" + id + "_odds").text();
 			var multipleText = $("#" + id + "_multiple").text();
@@ -21,12 +29,16 @@
 			count += parseFloat(parseFloat(oddText) * parseInt(multipleText));
 		}
 
-		BUI.Message.Alert("您选择的" + checkboxs.length + "个投注项的总兑奖金额为：" + count + " 元！");
+		if ("true" == isValid) {
+			BUI.Message.Alert("您选择的" + checkboxs.length + "个投注项的总兑奖金额为：" + count.toFixed(2) + " 元！");
+		}
 	}
 
 	function doFulfil(url) {
 
 		var checkboxs = $("[name=ids]:checked");
+		
+		var isValid = "true";
 
 		if (checkboxs.length <= 0) {
 			BUI.Message.Alert("请至少选择一条投注项兑奖！");
@@ -39,6 +51,12 @@
 		var ids = "";
 		for (var i = 0; i < checkboxs.length; i++) {
 			var id = $(checkboxs[i]).prop("value");
+			if ("无" != $("#" + id + "_seriesNum").text()) {
+
+				BUI.Message.Alert("请先去除多串一的投注项！");
+				isValid = "false";
+				break;
+			}
 
 			var oddText = $("#" + id + "_odds").text();
 			var multipleText = $("#" + id + "_multiple").text();
@@ -48,12 +66,13 @@
 			ids += id + ","
 		}
 
-		BUI.Message.Confirm("您选择的" + checkboxs.length + "个投注项的总兑奖金额为：" + count + " 元！确定要对选中的 " + checkboxs.length + " 条投注项进行兑奖操作吗？", function() {
+		if ("true" == isValid) {
+			BUI.Message.Confirm("您选择的" + checkboxs.length + "个投注项的总兑奖金额为：" + count.toFixed(2) + " 元！确定要对选中的 " + checkboxs.length + " 条投注项进行兑奖操作吗？", function() {
 
-			var _url = url + "?id=" + ids.substring(0, ids.length - 1);
-			location.href = _url;
-		}, 'question');
-
+				var _url = url + "?id=" + ids.substring(0, ids.length - 1);
+				location.href = _url;
+			}, 'question');
+		}
 	}
 </script>
 
@@ -90,14 +109,26 @@
 					</div> --%>
 
 					<div class="control-group span8">
+						<label class="control-label">类型：</label>
+						<div class="controls">
+							<s:select name="type" list="#{'single':'单关','series':'多串一'}" listKey="key" listValue="value" headerKey="" headerValue="--请选择--"></s:select>
+						</div>
+					</div>
+
+					<div class="control-group span8">
 						<label class="control-label">是否已兑奖：</label>
 						<div class="controls">
 							<s:select name="isFulfil" list="#{'yes':'已兑奖','no':'未兑奖'}" listKey="key" listValue="value" headerKey="" headerValue="--请选择--"></s:select>
 						</div>
 					</div>
-
 				</div>
 				<div class="row" style="width: 100%">
+					<div class="control-group span8">
+						<label class="control-label">串号：</label>
+						<div class="controls">
+							<s:textfield cssClass="control-text" name="seriesNum"></s:textfield>
+						</div>
+					</div>
 
 					<div class="control-group span12">
 						<label class="control-label">投注时间：</label>
@@ -137,9 +168,13 @@
 			<div class="row" style="padding: 10px 0 0 10px;">
 				<div class="control-group span24">
 					<label class="control-label">
-						<button class="button" onclick="doCount();">统计兑奖金额</button>
+						<button class="button" onclick="doCount();">统计单关兑奖金额</button>
 					</label> <label class="control-label">
-						<button class="button" onclick="doFulfil('${pageContext.request.contextPath}/footballBet!doFulfil.action')">兑奖</button>
+						<button class="button" id="showSeries">统计串号兑奖金额</button>
+					</label> <label class="control-label">
+						<button class="button" onclick="doFulfil('${pageContext.request.contextPath}/footballBet!doFulfil.action')">单关兑奖</button>
+					</label> <label class="control-label">
+						<button class="button" id="fulfilSeries">串号兑奖</button>
 					</label> <label class="control-label">
 						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/footballBet!deleteFootballBet.action')">删除</button>
 					</label> <label class="control-label">
@@ -156,6 +191,8 @@
 							<th style="width: 2%"><input type="checkbox" id="chk_ids" onclick="$('[name=ids]').prop('checked', this.checked)" title="全选"></th>
 							<th style="width: 8%">投注用户</th>
 							<th style="width: 10%">投注时间</th>
+							<th style="width: 8%">类型</th>
+							<th style="width: 8%">串号</th>
 							<th style="width: 8%">主队</th>
 							<th style="width: 8%">客队</th>
 							<th style="width: 10%">比赛时间</th>
@@ -163,6 +200,7 @@
 							<th style="width: 8%">赔率</th>
 							<th style="width: 8%">倍数</th>
 							<th style="width: 8%">让球</th>
+
 							<th style="width: 10%">是否已兑奖</th>
 						</tr>
 
@@ -171,6 +209,12 @@
 								<td><input type="checkbox" name="ids" value="${id}"></td>
 								<td>${user.nickname}</td>
 								<td>${betTime}</td>
+								<td><s:if test="type == 'single'">
+										单关
+									</s:if> <s:else>
+										多串一
+									</s:else></td>
+								<td id="${id}_seriesNum">${seriesNum}</td>
 								<td>${homeTeam}</td>
 								<td>${awayTeam}</td>
 								<td>${matchTime}</td>
@@ -197,17 +241,88 @@
 				</div>
 			</div>
 		</div>
-
-
+		
 	</div>
 
 
+<script type="text/javascript">
+BUI.use('bui/overlay', function(Overlay) {
+	var dialog = new Overlay.Dialog({
+		title : '填写串号',
+		width : 250,
+		height : 120,
+		//配置文本
+		bodyContent : '<h2>请输入需要统计的串号</h2><br>串号：<input type="text" id="txt_seriesNum" style="height:20px">',
+		success : function() {
+			//this.close();
+			var seriesNum = $("#txt_seriesNum").val();
+			if(seriesNum.length <= 0) {
+				BUI.Message.Alert("请填写串号！");
+				return false;
+			}
+			this.close();
+			$.ajax({
+				url : "${pageContext.request.contextPath}/footballBet!countBonusBySeriesNum.action",
+				type : "post",
+				data : {"seriesNum" : seriesNum},
+				success : function(res) {
+					var data = $.parseJSON(res);
+					
+					if("false" == data.success) {
+						BUI.Message.Alert("没有找到指定串号的投注记录！");
+					} else {
+						BUI.Message.Alert("该串号的兑奖金额为：" + data.bonus + " 元！");
+						$("#txt_seriesNum").val("");
+					}
+				}
+			});
+		}
+	});
+	$('#showSeries').on('click', function() {
+		dialog.show();
+	});
+	
+	var dialog2 = new Overlay.Dialog({
+		title : '填写串号',
+		width : 250,
+		height : 120,
+		//配置文本
+		bodyContent : '<h2>请输入需要兑奖的串号</h2><br>串号：<input type="text" id="txt_seriesNum" style="height:20px">',
+		success : function() {
+			//this.close();
+			var seriesNum = $("#txt_seriesNum").val();
+			if(seriesNum.length <= 0) {
+				BUI.Message.Alert("请填写串号！");
+				return false;
+			}
+			
+			$.ajax({
+				url : "${pageContext.request.contextPath}/footballBet!countBonusBySeriesNum.action",
+				type : "post",
+				data : {"seriesNum" : seriesNum},
+				success : function(res) {
+					var data = $.parseJSON(res);
+					
+					if("false" == data.success) {
+						BUI.Message.Alert("没有找到指定串号的投注记录！");
+					} else {
+						
+						BUI.Message.Confirm("您选择的串号为 " + seriesNum + " 投注项的总兑奖金额为：" + data.bonus + " 元！确定要进行兑奖操作吗？", function() {
 
-
-
-
-
-
+							location.href = "${pageContext.request.contextPath}/footballBet!fulfilBySeriesNum.action?seriesNum=" + seriesNum;
+						}, 'question');
+						
+						
+					}
+				}
+			});
+		}
+	});
+	$('#fulfilSeries').on('click', function() {
+		dialog2.show();
+	});
+});
+</script>
 
 
 

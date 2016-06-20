@@ -3,7 +3,9 @@ package com.gzhd.web.action;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.context.annotation.Scope;
@@ -32,6 +34,16 @@ public class MatchAction extends BaseAction<Object> {
 
 	private static final Logger logger = Logger.getLogger(MatchAction.class);
 	
+	private String message;
+	
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	@Resource(name = FrontUserService.BEAN_NAME)
 	private FrontUserService service;
 
@@ -43,6 +55,11 @@ public class MatchAction extends BaseAction<Object> {
 			FrontUserModel userModel = service.getUserById(user.getId());
 			
 			ActionContext.getContext().put("balance", userModel.getBalance());
+		}
+		
+		if("".equals(message)) {
+			//ActionContext.getContext().put("message", "投注成功！");   
+			ServletActionContext.getRequest().setAttribute("message", "投注成功！");
 		}
 		
 		return "matchIndex";
