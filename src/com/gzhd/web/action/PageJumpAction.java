@@ -8,7 +8,8 @@ import org.springframework.context.annotation.Scope;
 
 
 @Action(value = "pageJump", results = { 
-		@Result(name = "toHighFrequency", location = "/WEB-INF/pages/highFrequency/index.jsp")
+		@Result(name = "toHighFrequency", location = "/WEB-INF/pages/highFrequency/index.jsp"),
+		@Result(name = "recharge", location = "/WEB-INF/pages/highFrequency/recharge.jsp")
 	
 })
 
@@ -25,6 +26,13 @@ public class PageJumpAction {
 	 */
 	public String toHighFrequency() {
 		return "toHighFrequency";
+	}
+	
+	/**
+	 * 账户充值
+	 */
+	public String recharge() {
+		return "recharge";
 	}
 	
 }
