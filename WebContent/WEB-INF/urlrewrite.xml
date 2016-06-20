@@ -128,6 +128,11 @@
 		<from>/numLottery.url</from>
 		<to>/pageJump!toHighFrequency.action</to>
 	</rule>
+	
+	<rule>
+		<from>/recharge.url</from>
+		<to>/pageJump!recharge.action</to>
+	</rule>
 	<!-- 跳转数字彩票 -->
 	
 		<!-- 跳转数字彩票-->

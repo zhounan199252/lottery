@@ -71,6 +71,7 @@
 						<s:else>
 							<li>欢迎您，${sessionScope.frontCurrentLoginUser.nickname}</li>
 							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/myC.url');">我的账户</a></li>
+							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/recharge.url');">账户充值</a></li>
 							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/myB.url');">投注记录</a></li>
 							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/tcp.url');">修改密码</a></li>
 							<li><a href="javascript:doLogout();">退出</a></li>
