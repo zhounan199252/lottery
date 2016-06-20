@@ -11,7 +11,19 @@
 <script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script type="text/ecmascript" src="${pageContext.request.contextPath}/globle/js/md5.js"></script>
 <script type="text/javascript">
-	 
+
+   function randomString(len) {
+　　len = len || 30;
+　　var $chars = '0123456789';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+　　var maxPos = $chars.length;
+　　var pwd = '';
+　　for (i = 0; i < len; i++) {
+　　　　pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+　　 }
+　　return pwd;
+   }
+  
+  
 function getNowDate() {
     var date = new Date();
     var month = date.getMonth() + 1;
@@ -28,11 +40,27 @@ function getNowDate() {
 
 } 
 
+
+function recharge() {	
+	 var  data= "<Ips><GateWayRsp><head><ReferenceID></ReferenceID><RspCode>000000</RspCode><RspMsg><![CDATA[交易成功！]]>"+
+"</RspMsg><ReqDate>20160620232636</ReqDate><RspDate>20160620232756</RspDate><Signature>18c739ca80b6d5f811c884ade79ec43b"+
+"</Signature></head><body><MerBillNo>00000100012311</MerBillNo><CurrencyType>156</CurrencyType><Amount"+
+">0.1</Amount><Date>20160620</Date><Status>Y</Status><Msg><![CDATA[支付成功！]]></Msg><IpsBillNo>BO2016062016540222593"+
+"</IpsBillNo><IpsTradeNo>2016062011063671694</IpsTradeNo><RetEncodeType>17</RetEncodeType><BankBillNo"+
+">710002784421</BankBillNo><ResultType>0</ResultType><IpsBillTime>20160620232703</IpsBillTime></body>"+
+"</GateWayRsp></Ips>"; 
+ $("#pay1").val(data);  
+ $("#paymoney1").submit();
+ 
+}
+	
+
 function rechargeSave() {	
 	   var  balance =parseFloat($("#txt_balance").val());
 	   var  bank =  $('#bank option:selected') .val();
-	   var date= getNowDate();
-	   var  signature= "<body><MerBillNo>00000100012311</MerBillNo><Amount>"+balance+"</Amount><Date>"+date+"</Date><CurrencyType>156</CurrencyType>"+
+	   var date= getNowDate();   
+	  var merBillNo = randomString();
+	   var  signature= "<body><MerBillNo>"+merBillNo+"</MerBillNo><Amount>"+balance+"</Amount><Date>"+date+"</Date><CurrencyType>156</CurrencyType>"+
      "<GatewayType>01</GatewayType><Lang></Lang><Merchanturl>http://ttquwan.com/</Merchanturl><FailUrl></FailUrl>"+
     "<Attach></Attach><OrderEncodeType>5</OrderEncodeType><RetEncodeType>17</RetEncodeType><RetType>1</RetType>"+
     "<ServerUrl>http://ttquwan.com/</ServerUrl><BillEXP></BillEXP><GoodsName>彩票</GoodsName><IsCredit>1</IsCredit>"+
@@ -40,14 +68,14 @@ function rechargeSave() {
 	   var hash = MD5(signature);
 	 var  data= "<Ips><GateWayReq><head><Version>v1.0.0</Version><MerCode>180566</MerCode><MerName>ttquwan</MerName>"+
   "<Account>1805660014</Account><MsgId></MsgId><ReqDate>20160617162015</ReqDate><Signature>"+hash+"</Signature></head>"+
- "<body><MerBillNo>00000100012311</MerBillNo><Amount>"+balance+"</Amount><Date>"+date+"</Date><CurrencyType>156</CurrencyType>"+
+ "<body><MerBillNo>"+merBillNo+"</MerBillNo><Amount>"+balance+"</Amount><Date>"+date+"</Date><CurrencyType>156</CurrencyType>"+
  "<GatewayType>01</GatewayType><Lang></Lang><Merchanturl>http://ttquwan.com/</Merchanturl><FailUrl></FailUrl>"+
 "<Attach></Attach><OrderEncodeType>5</OrderEncodeType><RetEncodeType>17</RetEncodeType><RetType>1</RetType>"+
 "<ServerUrl>http://ttquwan.com/</ServerUrl><BillEXP></BillEXP><GoodsName>彩票</GoodsName><IsCredit>1</IsCredit>"+
 "<BankCode>"+bank+"</BankCode><ProductType>1</ProductType></body></GateWayReq></Ips>"; 
  $("#pay").val(data);  
  $("#paymoney").submit();
-	//$("#form_recharge").submit();
+ 
 }
 	
 
@@ -56,6 +84,9 @@ function rechargeSave() {
 <body>
 <form  style="display:none;" action="https://newpay.ips.com.cn/psfp-entry/gateway/payment.do" method="post" id="paymoney"> 
 <input name="pGateWayReq" value=""   id="pay"/>
+</form> 
+<form  style="display:none;" action="betmessage!bankRecharge.action" method="post" id="paymoney1"> 
+<input name="paymentResult" value=""   id="pay1"/>
 </form> 
     <table class="table table-striped">
 			<tr>
@@ -79,7 +110,7 @@ function rechargeSave() {
 			</tr>
 			<tr>
 				<th>
-					<button type="submit" class="button button-primary" onclick="rechargeSave();">保存</button>
+					<button type="submit" class="button button-primary" onclick="recharge();">保存</button>
 					<button type="reset" class="button" onclick="goBack();">取消</button>
 				</th>
 				<td></td>

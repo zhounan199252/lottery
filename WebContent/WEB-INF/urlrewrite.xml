@@ -131,7 +131,7 @@
 	
 	<rule>
 		<from>/recharge.url</from>
-		<to>/pageJump!recharge.action</to>
+		<to>/pageJump!toBankRecharge.action</to>
 	</rule>
 	<!-- 跳转数字彩票 -->
 	

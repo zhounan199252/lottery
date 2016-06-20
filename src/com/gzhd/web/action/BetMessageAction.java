@@ -59,6 +59,36 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 		}
 
 	}
+	
+	public void bankRecharge() {
+		
+		String result = (String)ActionContext.getContext().get("paymentResult");
+		System.out.print(result);
+		
+//		String currentTime = TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
+//		model.setBetDate(currentTime);
+//		FrontUserModel frontUserModel = frontUserService.getUserById(model
+//				.getBetPerson());
+//		if (!frontUserModel.equals("") && frontUserModel != null) {
+//			double yue = frontUserModel.getBalance();
+//			double amount = Double.valueOf(model.getBetQuan())
+//					* model.getBetPrice();
+//			if (yue >= amount) {
+//				frontUserModel.setBalance(yue - amount);
+//				frontUserService.updateUserBalanceById(frontUserModel);
+//				String id = betMessageService.addBetMessage(model);
+//				if (id != null) {
+//					writeJsonToJsp("投注成功");
+//				} else {
+//					writeJsonToJsp("投注失败，请重新下注");
+//				}
+//			} else {
+//				writeJsonToJsp("金额不足，请联系客服人员充值");
+//			}
+//
+//		}
+
+	}
 
 	/**
 	 * 跳转后台查看用户投注信息界面
