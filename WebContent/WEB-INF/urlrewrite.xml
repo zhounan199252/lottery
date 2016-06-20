@@ -167,7 +167,10 @@
 		<to>/footballBet!addFootballBet.action</to>
 	</rule>
 	
-	
+	<rule>
+		<from>/subbasketbet.url</from>
+		<to>/footballBet!addBasketballBet.action</to>
+	</rule>
 	
 	<!-- 体育赛事 end -->
 </urlrewrite> 

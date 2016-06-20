@@ -25,13 +25,13 @@ public class FrontSessionInterceptor extends MethodFilterInterceptor {
 
 	@Override
 	protected String doIntercept(ActionInvocation actionInvocation) throws Exception {
-		/*FrontUserModel frontUserModel = (FrontUserModel) ServletActionContext.getRequest().getSession().getAttribute(ConstantValues.FRONT_CURRENT_USER_LOGIN);
+		FrontUserModel frontUserModel = (FrontUserModel) ServletActionContext.getRequest().getSession().getAttribute(ConstantValues.FRONT_CURRENT_USER_LOGIN);
 		logger.info("进入session拦截器->访问路径为[" + ServletActionContext.getRequest().getServletPath() + "]");
 		if(null == frontUserModel) {
 			String errMsg = "请先登录本系统！";
 			ActionContext.getContext().put("msg", errMsg);
 			return "frontNoSession";
-		}*/
+		}
 		
 		return actionInvocation.invoke();
 	}

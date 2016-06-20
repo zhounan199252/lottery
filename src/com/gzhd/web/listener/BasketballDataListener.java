@@ -20,9 +20,9 @@ import org.apache.log4j.Logger;
 import com.gzhd.util.StringUtil;
 import com.gzhd.util.TimeUtil;
 
-public class FootballDataListener implements ServletContextListener {
+public class BasketballDataListener implements ServletContextListener {
 
-	private static final Logger logger = Logger.getLogger(FootballDataListener.class);
+	private static final Logger logger = Logger.getLogger(BasketballDataListener.class);
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
@@ -35,7 +35,6 @@ public class FootballDataListener implements ServletContextListener {
 		final ServletContext application = sce.getServletContext();
 
 		Timer timer = new Timer();
-		Timer timer2 = new Timer();
 
 		timer.schedule(new TimerTask() {
 
@@ -44,23 +43,15 @@ public class FootballDataListener implements ServletContextListener {
 				getFootballData(application);
 			}
 		}, 2000, 1000 * 60 * 10);
-
-		timer2.schedule(new TimerTask() {
-
-			@Override
-			public void run() {
-				application.setAttribute("currentTime", TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss"));
-			}
-		}, 2000, 1000);
 	}
 
 	/**
-	 * @param 获取足球
+	 * @param 获取篮球
 	 *            上一天，当天，后一天的赛事数据
 	 */
 	private void getFootballData(ServletContext application) {
 
-		String dataUrl = "http://api.caipiaokong.com/live/?name=jczq&format=json&uid=420845&token=4d5aa35ebeb48e7d3e4c8f7e16e1c7942c4cebee&phase=";
+		String dataUrl = "http://api.caipiaokong.com/live/?name=jclq&format=json&uid=420845&token=4d5aa35ebeb48e7d3e4c8f7e16e1c7942c4cebee&phase=";
 
 		BufferedReader br = null;
 		URL url = null;
@@ -85,9 +76,9 @@ public class FootballDataListener implements ServletContextListener {
 
 			if (response.toString().length() > 100) {
 
-				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"")
-						.replaceAll("\"3\"", "\"t3\"");
-				application.setAttribute("currentDayData", json);
+				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
+				application.setAttribute("currentDayBasketballData", json);
+				logger.info(json);
 			}
 
 			Thread.sleep(5000); // 先睡眠5秒，否则接口网站会认为恶意操作
@@ -106,10 +97,9 @@ public class FootballDataListener implements ServletContextListener {
 
 			if (response.toString().length() > 100) {
 
-				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"")
-						.replaceAll("\"3\"", "\"t3\"");
-				application.setAttribute("nextDayData", json);
-
+				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
+				application.setAttribute("nextDayBasketballData", json);
+				logger.info(json);
 			}
 			Thread.sleep(5000);
 
@@ -128,9 +118,9 @@ public class FootballDataListener implements ServletContextListener {
 			}
 
 			if (response.toString().length() > 100) {
-				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"")
-						.replaceAll("\"3\"", "\"t3\"");
-				application.setAttribute("next2DayData", json);
+				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
+				application.setAttribute("next2DayBasketballData", json);
+				logger.info(json);
 			}
 
 		} catch (MalformedURLException e) {

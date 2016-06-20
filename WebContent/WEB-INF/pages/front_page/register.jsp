@@ -133,6 +133,12 @@
 			</tr>
 			
 			<tr>
+				<th>推荐人</th>
+				<td><s:textfield name="recommender" id="txt_recommender" cssClass="control-text"  maxLength="11"></s:textfield></td>
+				<td></td>
+			</tr>
+			
+			<tr>
 				<th>
 				</th>
 				<td></td>

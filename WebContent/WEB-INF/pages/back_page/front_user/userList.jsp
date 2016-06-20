@@ -154,6 +154,7 @@
 							<th>身份证号码</th>
 							<th>电话号码</th>
 							<th>注册时间</th>
+							<th>推荐人</th>
 							<th>最后登录时间</th>
 						</tr>
 
@@ -166,6 +167,7 @@
 								<td>${idCardNum}</td>
 								<td>${phoneNum}</td>
 								<td>${registerTime}</td>
+								<td>${recommender}</td>
 								<td>${lastLoginTime}</td>
 							</tr>
 						</s:iterator>

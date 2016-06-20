@@ -57,6 +57,11 @@
 				<comment>账户余额</comment>
 			</column>
 		</property>
+		<property name="recommender" type="string">
+			<column name="recommender" length="20">
+				<comment>推荐人</comment>
+			</column>
+		</property>
 
 
 

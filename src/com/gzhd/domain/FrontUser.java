@@ -19,6 +19,8 @@ public class FrontUser {
 	private String lastLoginTime;
 	
 	private double balance;
+	
+	private String recommender;
 
 	public String getId() {
 		return id;
@@ -90,6 +92,14 @@ public class FrontUser {
 
 	public void setBalance(double balance) {
 		this.balance = balance;
+	}
+
+	public String getRecommender() {
+		return recommender;
+	}
+
+	public void setRecommender(String recommender) {
+		this.recommender = recommender;
 	}
 	
 	

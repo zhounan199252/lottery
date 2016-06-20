@@ -221,7 +221,11 @@ public class FrontUserServiceImpl implements FrontUserService {
 
 		FrontUser frontUser = baseDao.get(FrontUser.class, model.getId());
 		
-		frontUser.setBalance(model.getBalance());
+		double balance = frontUser.getBalance();
+		
+		balance += model.getBalance();
+		
+		frontUser.setBalance(balance);
 		
 		baseDao.update(frontUser);
 	}

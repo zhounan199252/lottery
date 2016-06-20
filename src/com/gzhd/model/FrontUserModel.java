@@ -34,6 +34,8 @@ public class FrontUserModel {
 	
 	private double balanceEnd;
 	
+	private String recommender;
+	
 	private int pageNum = 1; // 一定要有默认值1，不然会报错
 
 	public String getId() {
@@ -170,6 +172,14 @@ public class FrontUserModel {
 
 	public void setBalanceEnd(double balanceEnd) {
 		this.balanceEnd = balanceEnd;
+	}
+
+	public String getRecommender() {
+		return recommender;
+	}
+
+	public void setRecommender(String recommender) {
+		this.recommender = recommender;
 	}
 	
 	
