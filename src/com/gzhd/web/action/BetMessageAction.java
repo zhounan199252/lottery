@@ -52,7 +52,7 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 			double amount = Double.valueOf(model.getBetQuan())
 					* model.getBetPrice();
 			if (yue >= amount) {
-				frontUserModel.setBalance(yue - amount);
+				frontUserModel.setBalance(amount*(-1));
 				frontUserService.updateUserBalanceById(frontUserModel);
 				String id = betMessageService.addBetMessage(model);
 				if (id != null) {
