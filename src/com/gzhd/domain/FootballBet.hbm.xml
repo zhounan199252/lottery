@@ -76,6 +76,11 @@
 				<comment>多串一的串号</comment>
 			</column>
 		</property>
+		<property name="matchType" type="string">
+			<column name="matchType" length="10">
+				<comment>竞彩类型（足球或篮球）</comment>
+			</column>
+		</property>
 	</class>
 
 

@@ -78,9 +78,8 @@ public class BasketballDataListener implements ServletContextListener {
 
 				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
 				application.setAttribute("currentDayBasketballData", json);
-				logger.info(json);
+				//logger.info("json1:" + json);
 			}
-
 			Thread.sleep(5000); // 先睡眠5秒，否则接口网站会认为恶意操作
 			// ==========================================
 			String nextDayUrl = dataUrl + TimeUtil.getCurDate("yyyyMMdd");
@@ -99,10 +98,9 @@ public class BasketballDataListener implements ServletContextListener {
 
 				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
 				application.setAttribute("nextDayBasketballData", json);
-				logger.info(json);
+				//logger.info("json2:" + json);
 			}
 			Thread.sleep(5000);
-
 			// ==========================================
 			String next2DayUrl = dataUrl + TimeUtil.dateFormat(TimeUtil.getDateRelateToDate(new Date(), 1), "yyyyMMdd");
 			url = new URL(next2DayUrl);
@@ -120,9 +118,9 @@ public class BasketballDataListener implements ServletContextListener {
 			if (response.toString().length() > 100) {
 				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
 				application.setAttribute("next2DayBasketballData", json);
-				logger.info(json);
+				//logger.info("json3:" + json);
 			}
-
+			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (ProtocolException e) {

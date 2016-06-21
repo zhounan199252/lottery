@@ -76,6 +76,10 @@
 						id : 'football',
 						text : '足球竞彩',
 						href : '${pageContext.request.contextPath}/footballBet!listFootballBet.action'
+					},{
+						id : 'basketball',
+						text : '篮球竞彩',
+						href : '${pageContext.request.contextPath}/footballBet!listBasketballBet.action'
 					}]
 				} ]
 			} ];

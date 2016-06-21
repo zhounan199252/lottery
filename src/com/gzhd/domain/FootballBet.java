@@ -27,6 +27,8 @@ public class FootballBet {
 	private String type;
 	
 	private String seriesNum;
+	
+	private String matchType;
 
 	public String getId() {
 		return id;
@@ -130,6 +132,14 @@ public class FootballBet {
 
 	public void setSeriesNum(String seriesNum) {
 		this.seriesNum = seriesNum;
+	}
+
+	public String getMatchType() {
+		return matchType;
+	}
+
+	public void setMatchType(String matchType) {
+		this.matchType = matchType;
 	}
 	
 }

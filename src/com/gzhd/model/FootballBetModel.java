@@ -43,6 +43,8 @@ public class FootballBetModel {
 	private String type;
 	
 	private String seriesNum;
+	
+	private String matchType;
 
 	
 	private int pageNum = 1;
@@ -213,6 +215,14 @@ public class FootballBetModel {
 
 	public void setSeriesNum(String seriesNum) {
 		this.seriesNum = seriesNum;
+	}
+
+	public String getMatchType() {
+		return matchType;
+	}
+
+	public void setMatchType(String matchType) {
+		this.matchType = matchType;
 	}
 	
 	

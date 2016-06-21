@@ -59,7 +59,7 @@ public class MatchAction extends BaseAction<Object> {
 		
 		if("".equals(message)) {
 			//ActionContext.getContext().put("message", "投注成功！");   
-			ServletActionContext.getRequest().setAttribute("message", "投注成功！");
+			ServletActionContext.getRequest().setAttribute("message", "1111");
 		}
 		
 		return "matchIndex";

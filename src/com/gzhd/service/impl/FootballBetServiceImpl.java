@@ -68,6 +68,7 @@ public class FootballBetServiceImpl implements FootballBetService {
 				footballBet.setType(singleDatas[9]);
 				footballBet.setIsFulfil("no");
 				footballBet.setSeriesNum("无");
+				footballBet.setMatchType(singleDatas[10]);
 				
 				baseDao.save(footballBet);
 			}
@@ -92,11 +93,11 @@ public class FootballBetServiceImpl implements FootballBetService {
 				footballBet.setType(singleDatas[9]);
 				footballBet.setSeriesNum(seriesNum);
 				footballBet.setIsFulfil("no");
+				footballBet.setMatchType(singleDatas[10]);
 				
 				baseDao.save(footballBet);
 			}
 		}
-		
 		
 		frontUser.setBalance(remain);
 		
@@ -166,6 +167,11 @@ public class FootballBetServiceImpl implements FootballBetService {
 		if(StringUtils.isNotBlank(model.getMatchTimeEnd())) {
 			queryHql.append(" and b.matchTime <= :matchTimeEnd");
 			params.put("matchTimeEnd", model.getMatchTimeEnd());
+		}
+		
+		if(StringUtils.isNotBlank(model.getMatchType())) {
+			queryHql.append(" and b.matchType = :matchType");
+			params.put("matchType", model.getMatchType());
 		}
 
 		queryHql.append(" order by b.isFulfil asc, b.betTime desc"); // 
