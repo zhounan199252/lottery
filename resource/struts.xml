@@ -59,7 +59,7 @@
 						toFrontLogin,toRegister,frontLogin,listFrontUser,addFrontUserPage,addFrontUser,editFrontUserPage,
 						editFrontUser,deleteFrontUser,initFrontUserPassword,checkFrontUsernameIsExist,toRechargePage,recharge,register,
 						validPassword,frontLogout,logout,getCodeForFront,getCodeForBack,toDefault,announcementList,favorList,getSingleAnnouncement,
-						getSingleFavor,listBackBetMessage,toMatchIndex,getSingleFavor,listBackBetMessage,deleteById,updateBetMessage,
+						getSingleFavor,listBackBetMessage,toMatchIndex,getSingleFavor,toHighFrequency,listBackBetMessage,deleteById,updateBetMessage,toBankRecharge,bankRecharge,myCount,
 						listFootballBet,doFulfil,deleteFootballBet,countBonusBySeriesNum,fulfilBySeriesNum
 
 

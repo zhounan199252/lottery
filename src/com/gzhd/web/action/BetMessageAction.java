@@ -1,6 +1,6 @@
 package com.gzhd.web.action;
 
-import java.util.Iterator;
+import java.math.BigDecimal;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -25,7 +25,7 @@ import com.opensymphony.xwork2.ActionContext;
 
 @Action(value = "betmessage", results = {
 		@Result(name = "list", location = "/WEB-INF/pages/highFrequency/backBetMessage.jsp"),
-		@Result(name = "toBankRecharge", location = "pageJump!toBankRecharge.action", type = "redirectAction"),
+		@Result(name = "myCount",location = "frontUser!myCount.action", type = "redirectAction"),
 		@Result(name = "toList", location = "betmessage!listBackBetMessage.action", type = "redirectAction") })
 @Scope("prototype")
 public class BetMessageAction extends BaseAction<BetMessageModel> {
@@ -71,8 +71,7 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 	public String bankRecharge()  {
 		
 		Map params  =  ActionContext.getContext().getParameters();	
-		 String[] result=	(String[]) params.get("paymentResult");
-		System.out.print(result[0]);		
+		 String[] result=	(String[]) params.get("paymentResult");	
 		try {
 			Document doc =  DocumentHelper.parseText(result[0]);
 			Element rootElt = doc.getRootElement(); // 获取根节点
@@ -88,7 +87,9 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 				model.setBetDate(currentTime);
 				FrontUserModel frontUserModel = frontUserService.getUserById(attach);
 				if (!frontUserModel.equals("") && frontUserModel != null) {
-						frontUserModel.setBalance(Double.valueOf(amount));
+					BigDecimal   b   =   new   BigDecimal(Double.valueOf(amount));
+					 double   f1   =   b.setScale(2,   BigDecimal.ROUND_HALF_UP).doubleValue();
+						frontUserModel.setBalance(f1);
 						frontUserService.updateUserBalanceById(frontUserModel);	
 	            }
 			 
@@ -97,8 +98,8 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 		} catch (DocumentException e) {	
 			e.printStackTrace();
 		}
-		
-		 return "toBankRecharge";  
+		ActionContext.getContext().put("bankRecharge", "充值成功，请查询余额");
+		 return "myCount";  
 
 	}
 

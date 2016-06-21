@@ -52,17 +52,17 @@ function recharge() {
 	   var merBillNo = randomString();
 	   var userId= '${sessionScope.frontCurrentLoginUser.id}';
 	   var  signature= "<body><MerBillNo>"+merBillNo+"</MerBillNo><Amount>"+balance+"</Amount><Date>"+date+"</Date><CurrencyType>156</CurrencyType>"+
-     "<GatewayType>01</GatewayType><Lang></Lang><Merchanturl>http://ttquwan.com/</Merchanturl><FailUrl></FailUrl>"+
+     "<GatewayType>01</GatewayType><Lang></Lang><Merchanturl>http://ttquwan.com/betmessage!bankRecharge.action</Merchanturl><FailUrl></FailUrl>"+
     "<Attach>"+userId+"</Attach><OrderEncodeType>5</OrderEncodeType><RetEncodeType>17</RetEncodeType><RetType>1</RetType>"+
-    "<ServerUrl>http://ttquwan.com/betmessage!bankRecharge.action</ServerUrl><BillEXP></BillEXP><GoodsName>彩票</GoodsName><IsCredit>1</IsCredit>"+
+    "<ServerUrl>http://ttquwan.com</ServerUrl><BillEXP></BillEXP><GoodsName>彩票</GoodsName><IsCredit>1</IsCredit>"+
     "<BankCode>"+bank+"</BankCode><ProductType>1</ProductType></body>180566xYXXG0JJMAGd3SysQ496j6aAOa6e2jdluBRXcrWQw1Nzjb3YtFmD0S6meOYas6T350vAZdUqJDJC0Zq9pBoGSVK6P2Ycg7p7NfSzlMnVKkqKhfjN1BVzDyfOJWuXuWzD"; 
 	   var hash = MD5(signature);
 	 var  data= "<Ips><GateWayReq><head><Version>v1.0.0</Version><MerCode>180566</MerCode><MerName>ttquwan</MerName>"+
   "<Account>1805660014</Account><MsgId></MsgId><ReqDate>20160617162015</ReqDate><Signature>"+hash+"</Signature></head>"+
  "<body><MerBillNo>"+merBillNo+"</MerBillNo><Amount>"+balance+"</Amount><Date>"+date+"</Date><CurrencyType>156</CurrencyType>"+
- "<GatewayType>01</GatewayType><Lang></Lang><Merchanturl>http://ttquwan.com/</Merchanturl><FailUrl></FailUrl>"+
+ "<GatewayType>01</GatewayType><Lang></Lang><Merchanturl>http://ttquwan.com/betmessage!bankRecharge.action</Merchanturl><FailUrl></FailUrl>"+
 "<Attach>"+userId+"</Attach><OrderEncodeType>5</OrderEncodeType><RetEncodeType>17</RetEncodeType><RetType>1</RetType>"+
-"<ServerUrl>http://ttquwan.com/betmessage!bankRecharge.action</ServerUrl><BillEXP></BillEXP><GoodsName>彩票</GoodsName><IsCredit>1</IsCredit>"+
+"<ServerUrl>http://ttquwan.com</ServerUrl><BillEXP></BillEXP><GoodsName>彩票</GoodsName><IsCredit>1</IsCredit>"+
 "<BankCode>"+bank+"</BankCode><ProductType>1</ProductType></body></GateWayReq></Ips>"; 
  $("#pay").val(data);  
  $("#paymoney").submit();
@@ -77,7 +77,7 @@ function recharge() {
    <table class="table table-striped" style="width: 50%" >
 			<tr>
 				<th>用户名</th>
-				<td><s:textfield name="username" id="txt_username" cssClass="control-text"  maxLength="20" readonly="true"></s:textfield></td>
+				<td>${sessionScope.frontCurrentLoginUser.nickname}</td>
 				<td></td>
 			</tr>
 			<tr>
@@ -103,6 +103,8 @@ function recharge() {
 				<td></td>
 			</tr>
 	 </table>
+	 
+	   <div   align="center" > ${requestScope.bankRecharge} </div>
 </div>
 
 <form  style="display:none;" action="https://newpay.ips.com.cn/psfp-entry/gateway/payment.do" method="post" id="paymoney"> 

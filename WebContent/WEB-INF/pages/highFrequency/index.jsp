@@ -165,7 +165,7 @@ margin-bottom: 5px;
  //判断选号是否正确
   function checkLengh(name) {
        if(name=="gd11x5"){
-        var num = $("#select"+name).children(".checked").length;
+        var num = $("#select1"+name).children(".checked").length;
         if(num<2||num>5){
 			return false;
 			}
@@ -232,7 +232,7 @@ margin-bottom: 5px;
 	        	    }
 	        	    betType="广东11选5";
 	        	   betPeriod =parseInt(getNowPeroid(id))+1;
-	        	   $("#select"+id).children(".checked").each(function (index, domEle) { 
+	        	   $("#select1"+id).children(".checked").each(function (index, domEle) { 
 	                   var num= $(domEle).text(); 
 	                     betNum =betNum+num+",";
 	  			   });
