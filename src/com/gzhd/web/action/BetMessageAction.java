@@ -1,10 +1,17 @@
 package com.gzhd.web.action;
 
+import java.math.BigDecimal;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.springframework.context.annotation.Scope;
 
 import com.gzhd.common.ConstantValues;
@@ -18,6 +25,7 @@ import com.opensymphony.xwork2.ActionContext;
 
 @Action(value = "betmessage", results = {
 		@Result(name = "list", location = "/WEB-INF/pages/highFrequency/backBetMessage.jsp"),
+		@Result(name = "myCount",location = "frontUser!myCount.action", type = "redirectAction"),
 		@Result(name = "toList", location = "betmessage!listBackBetMessage.action", type = "redirectAction") })
 @Scope("prototype")
 public class BetMessageAction extends BaseAction<BetMessageModel> {
@@ -44,7 +52,7 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 			double amount = Double.valueOf(model.getBetQuan())
 					* model.getBetPrice();
 			if (yue >= amount) {
-				frontUserModel.setBalance(yue - amount);
+				frontUserModel.setBalance(amount*(-1));
 				frontUserService.updateUserBalanceById(frontUserModel);
 				String id = betMessageService.addBetMessage(model);
 				if (id != null) {
@@ -57,6 +65,41 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 			}
 
 		}
+
+	}
+	
+	public String bankRecharge()  {
+		
+		Map params  =  ActionContext.getContext().getParameters();	
+		 String[] result=	(String[]) params.get("paymentResult");	
+		try {
+			Document doc =  DocumentHelper.parseText(result[0]);
+			Element rootElt = doc.getRootElement(); // 获取根节点
+			Element gateWayRsp = rootElt.element("GateWayRsp"); 
+			Element head = gateWayRsp.element("head"); 
+			String  rspCode= head.elementText(("RspCode"));
+			
+			Element body = gateWayRsp.element("body"); 
+			String  amount= body.elementText(("Amount"));
+			String  attach= body.elementText(("Attach"));	
+	        if(rspCode.equals("000000")){
+				String currentTime = TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
+				model.setBetDate(currentTime);
+				FrontUserModel frontUserModel = frontUserService.getUserById(attach);
+				if (!frontUserModel.equals("") && frontUserModel != null) {
+					BigDecimal   b   =   new   BigDecimal(Double.valueOf(amount));
+					 double   f1   =   b.setScale(2,   BigDecimal.ROUND_HALF_UP).doubleValue();
+						frontUserModel.setBalance(f1);
+						frontUserService.updateUserBalanceById(frontUserModel);	
+	            }
+			 
+	        }			
+			     
+		} catch (DocumentException e) {	
+			e.printStackTrace();
+		}
+		ActionContext.getContext().put("bankRecharge", "充值成功，请查询余额");
+		 return "myCount";  
 
 	}
 

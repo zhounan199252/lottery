@@ -62,7 +62,6 @@
 						getSingleFavor,listBackBetMessage,toMatchIndex,getSingleFavor,toHighFrequency,addBetMessage,listBackBetMessage,deleteById,updateBetMessage,myBetRecord,
 						listFootballBet,doFulfil,deleteFootballBet,countBonusBySeriesNum,fulfilBySeriesNum,listBasketballBet,doFulfilForBasketball,deleteBasketballBet,fulfilBySeriesNumForBasketball
 
-
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
 				</interceptor-ref>
 			</interceptor-stack>
@@ -73,7 +72,7 @@
 					<param name="excludeMethods">
 						toBackLogin,backLogin,announcementList,favorList,getSingleAnnouncement,checkFrontUsernameIsExist,getSingleFavor,toFrontLogin,toRegister,
 						frontLogin,register,myCount,toChangePassword,validPassword,changePassword,frontLogout,logout,getCodeForBack,getCodeForFront,toDefault,updateFrontUserInfo,
-						myBetRecord,addFootballBet,toMatchIndex,myBetRecord,toHighFrequency,addBetMessage,listBackBetMessage,deleteById,updateBetMessage,myBetRecord
+						myBetRecord,addFootballBet,toMatchIndex,myBetRecord,toHighFrequency,addBetMessage,toBankRecharge,bankRecharge
 
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
 				</interceptor-ref>

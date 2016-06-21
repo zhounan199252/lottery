@@ -7,9 +7,10 @@ import org.apache.struts2.convention.annotation.Result;
 import org.springframework.context.annotation.Scope;
 
 
+
 @Action(value = "pageJump", results = { 
 		@Result(name = "toHighFrequency", location = "/WEB-INF/pages/highFrequency/index.jsp"),
-		@Result(name = "recharge", location = "/WEB-INF/pages/highFrequency/recharge.jsp")
+		@Result(name = "toBankRecharge", location = "/WEB-INF/pages/highFrequency/recharge.jsp")
 	
 })
 
@@ -18,7 +19,7 @@ import org.springframework.context.annotation.Scope;
  * 用于页面间的跳转
  */
 @Scope("prototype")
-public class PageJumpAction {
+public class PageJumpAction  extends BaseAction<Object>{
 
 
 	/**
@@ -31,8 +32,8 @@ public class PageJumpAction {
 	/**
 	 * 账户充值
 	 */
-	public String recharge() {
-		return "recharge";
+	public String toBankRecharge() {
+		return "toBankRecharge";
 	}
 	
 }
