@@ -33,7 +33,7 @@ public class PageJumpAction  extends BaseAction<Object>{
 	 * 账户充值
 	 */
 	public String toBankRecharge() {
-		return "toBankrecharge";
+		return "toBankRecharge";
 	}
 	
 }

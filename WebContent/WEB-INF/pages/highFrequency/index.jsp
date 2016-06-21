@@ -378,7 +378,7 @@ margin-bottom: 5px;
 	           var re = /^[1-9]+[0-9]*]*$/ ;
 	           if(!re.test(betQuan)){
 	        	     waring("投注倍数为整数");
-	        	     return;betQuan==1;
+	        	     return;
 	             }	  
 	          var url= "${pageContext.request.contextPath}/addBetM.url"; 
 	          $.ajax({

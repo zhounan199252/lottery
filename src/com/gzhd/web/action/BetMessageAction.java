@@ -1,10 +1,17 @@
 package com.gzhd.web.action;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.springframework.context.annotation.Scope;
 
 import com.gzhd.common.ConstantValues;
@@ -18,6 +25,7 @@ import com.opensymphony.xwork2.ActionContext;
 
 @Action(value = "betmessage", results = {
 		@Result(name = "list", location = "/WEB-INF/pages/highFrequency/backBetMessage.jsp"),
+		@Result(name = "toBankRecharge", location = "pageJump!toBankRecharge.action", type = "redirectAction"),
 		@Result(name = "toList", location = "betmessage!listBackBetMessage.action", type = "redirectAction") })
 @Scope("prototype")
 public class BetMessageAction extends BaseAction<BetMessageModel> {
@@ -60,33 +68,37 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 
 	}
 	
-	public void bankRecharge() {
+	public String bankRecharge()  {
 		
-		String result = (String)ActionContext.getContext().get("paymentResult");
-		System.out.print(result);
+		Map params  =  ActionContext.getContext().getParameters();	
+		 String[] result=	(String[]) params.get("paymentResult");
+		System.out.print(result[0]);		
+		try {
+			Document doc =  DocumentHelper.parseText(result[0]);
+			Element rootElt = doc.getRootElement(); // 获取根节点
+			Element gateWayRsp = rootElt.element("GateWayRsp"); 
+			Element head = gateWayRsp.element("head"); 
+			String  rspCode= head.elementText(("RspCode"));
+			
+			Element body = gateWayRsp.element("body"); 
+			String  amount= body.elementText(("Amount"));
+			String  attach= body.elementText(("Attach"));	
+	        if(rspCode.equals("000000")){
+				String currentTime = TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
+				model.setBetDate(currentTime);
+				FrontUserModel frontUserModel = frontUserService.getUserById(attach);
+				if (!frontUserModel.equals("") && frontUserModel != null) {
+						frontUserModel.setBalance(Double.valueOf(amount));
+						frontUserService.updateUserBalanceById(frontUserModel);	
+	            }
+			 
+	        }			
+			     
+		} catch (DocumentException e) {	
+			e.printStackTrace();
+		}
 		
-//		String currentTime = TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
-//		model.setBetDate(currentTime);
-//		FrontUserModel frontUserModel = frontUserService.getUserById(model
-//				.getBetPerson());
-//		if (!frontUserModel.equals("") && frontUserModel != null) {
-//			double yue = frontUserModel.getBalance();
-//			double amount = Double.valueOf(model.getBetQuan())
-//					* model.getBetPrice();
-//			if (yue >= amount) {
-//				frontUserModel.setBalance(yue - amount);
-//				frontUserService.updateUserBalanceById(frontUserModel);
-//				String id = betMessageService.addBetMessage(model);
-//				if (id != null) {
-//					writeJsonToJsp("投注成功");
-//				} else {
-//					writeJsonToJsp("投注失败，请重新下注");
-//				}
-//			} else {
-//				writeJsonToJsp("金额不足，请联系客服人员充值");
-//			}
-//
-//		}
+		 return "toBankRecharge";  
 
 	}
 
