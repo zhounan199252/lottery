@@ -67,7 +67,7 @@ public class BackUserAction extends BaseAction<BackUserModel> {
 				json.addProperty("message", "用户名或密码错误，请刷新后重新登陆！");
 			} else {
 				json.addProperty("success", true);
-				json.addProperty("object", "backIndex!toBackIndex.action");
+				json.addProperty("object", "tbi.url");
 
 				// 若用户已经登陆，则移除登陆信息
 				if (null != ActionContext.getContext().getSession().get(ConstantValues.BACK_CURRENT_USER_LOGIN)) {

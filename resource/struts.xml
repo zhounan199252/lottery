@@ -37,12 +37,17 @@
 	<!-- struts2自定义标签主题 -->
 	<constant name="struts.ui.theme" value="simple" />
 
-	<package name="defaultPackage" extends="struts-default" namespace="/">
+	<package name="defaultPackage" extends="struts-default"
+		namespace="/">
 		<interceptors>
-			<interceptor name="encodingInterceptor" class="com.gzhd.web.interceptor.EncodingInterceptor" />
-			<interceptor name="frontSessionInterceptor" class="com.gzhd.web.interceptor.FrontSessionInterceptor" />
-			<interceptor name="backSessionInterceptor" class="com.gzhd.web.interceptor.BackSessionInterceptor" />
-			<interceptor name="authInterceptor" class="com.gzhd.web.interceptor.AuthInterceptor" />
+			<interceptor name="encodingInterceptor"
+				class="com.gzhd.web.interceptor.EncodingInterceptor" />
+			<interceptor name="frontSessionInterceptor"
+				class="com.gzhd.web.interceptor.FrontSessionInterceptor" />
+			<interceptor name="backSessionInterceptor"
+				class="com.gzhd.web.interceptor.BackSessionInterceptor" />
+			<interceptor name="authInterceptor"
+				class="com.gzhd.web.interceptor.AuthInterceptor" />
 
 			<interceptor-stack name="encodingStack">
 				<interceptor-ref name="defaultStack"></interceptor-ref>
@@ -60,19 +65,20 @@
 						editFrontUser,deleteFrontUser,initFrontUserPassword,checkFrontUsernameIsExist,toRechargePage,recharge,register,
 						validPassword,frontLogout,logout,getCodeForFront,getCodeForBack,toDefault,announcementList,favorList,getSingleAnnouncement,
 						getSingleFavor,listBackBetMessage,toMatchIndex,getSingleFavor,toHighFrequency,addBetMessage,listBackBetMessage,deleteById,updateBetMessage,myBetRecord,
-						listFootballBet,doFulfil,deleteFootballBet,countBonusBySeriesNum,fulfilBySeriesNum,listBasketballBet,doFulfilForBasketball,deleteBasketballBet,fulfilBySeriesNumForBasketball
+						listFootballBet,doFulfil,deleteFootballBet,countBonusBySeriesNum,fulfilBySeriesNum,listBasketballBet,doFulfilForBasketball,deleteBasketballBet,fulfilBySeriesNumForBasketball,
+
 
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
 				</interceptor-ref>
 			</interceptor-stack>
-			
+
 			<interceptor-stack name="backSessionStack">
 				<interceptor-ref name="frontSessionStack"></interceptor-ref>
 				<interceptor-ref name="backSessionInterceptor">
 					<param name="excludeMethods">
 						toBackLogin,backLogin,announcementList,favorList,getSingleAnnouncement,checkFrontUsernameIsExist,getSingleFavor,toFrontLogin,toRegister,
 						frontLogin,register,myCount,toChangePassword,validPassword,changePassword,frontLogout,logout,getCodeForBack,getCodeForFront,toDefault,updateFrontUserInfo,
-						myBetRecord,addFootballBet,toMatchIndex,myBetRecord,toHighFrequency,addBetMessage,toBankRecharge,bankRecharge
+						myBetRecord,addFootballBet,toMatchIndex,myBetRecord,toHighFrequency,addBetMessage,toBankRecharge,bankRecharge,toBetRecord,listMyFootballBetRecord,listMyBasketballBetRecord
 
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
 				</interceptor-ref>
@@ -95,7 +101,8 @@
 		</global-results>
 
 		<global-exception-mappings>
-			<exception-mapping result="strutsException" exception="java.lang.Exception"></exception-mapping>
+			<exception-mapping result="strutsException"
+				exception="java.lang.Exception"></exception-mapping>
 		</global-exception-mappings>
 	</package>
 </struts>

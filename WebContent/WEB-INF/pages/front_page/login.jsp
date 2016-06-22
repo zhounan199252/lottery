@@ -14,8 +14,10 @@
 <script type="application/x-javascript">
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 </script>
@@ -23,94 +25,7 @@
 <link href="${pageContext.request.contextPath}/globle/css/front_bootstrap/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="${pageContext.request.contextPath}/globle/css/front_bootstrap/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 
-<style type="text/css">
-html, body {
-	height: 100%;
-}
 
-.box {
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6699FF',
-		endColorstr='#6699FF'); /*  IE */
-	background-image: linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
-	background-image: -o-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
-	background-image: -moz-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
-	background-image: -webkit-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
-	background-image: -ms-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
-	margin: 0 auto;
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-
-.login-box {
-	width: 100%;
-	max-width: 500px;
-	height: 440px;
-	position: absolute;
-	top: 50%;
-	margin-top: -200px;
-	/*设置负值，为要定位子盒子的一半高度*/
-}
-
-@media screen and (min-width:500px) {
-	.login-box {
-		left: 50%;
-		/*设置负值，为要定位子盒子的一半宽度*/
-		margin-left: -250px;
-	}
-}
-
-.form {
-	width: 100%;
-	max-width: 500px;
-	height: 415px;
-	margin: 25px auto 0px auto;
-	padding-top: 25px;
-}
-
-.login-content {
-	height: 340px;
-	width: 100%;
-	max-width: 500px;
-	background-color: rgba(255, 250, 2550, .6);
-	float: left;
-}
-
-.input-group {
-	margin: 0px 0px 30px 0px !important;
-}
-
-.form-control, .input-group {
-	height: 40px;
-}
-
-.form-group {
-	margin-bottom: 0px !important;
-}
-
-.login-title {
-	padding: 20px 10px;
-	background-color: rgba(0, 0, 0, .6);
-}
-
-.login-title h1 {
-	margin-top: 10px !important;
-}
-
-.login-title small {
-	color: #fff;
-}
-
-.link p {
-	line-height: 20px;
-	margin-top: 30px;
-}
-
-.btn-sm {
-	padding: 8px 24px !important;
-	font-size: 16px !important;
-}
-</style>
 
 <script type="text/javascript">
 	$(function() {
@@ -198,34 +113,31 @@ html, body {
 </head>
 
 <body>
-	<div class="login" >
+	<div class="login">
 		<div class="container">
 			<div class="login-grids">
 				<div class="col-md-6 log">
 					<h3>登录</h3>
 					<div class="strip"></div>
 					<form action="${pageContext.request.contextPath }/rlo.url" method="post" id="form_login">
-					<ul>
-						<li class="text-info">用户名:</li>
-						<li><input type="text" value="" style="height: 30px" name="username" id="txt_username" maxlength="20"/></li>
-						<li></li>
-					</ul>
-					<ul>
-						<li class="text-info">密码:</li>
-						<li>
-							<input type="password" value="" style="height: 30px" name="passwordForLogin" id="txt_passwordForLogin" maxlength="20"/>
-							<input type="hidden" name="password" id="txt_password" maxlength="20"/>
-						</li>
-						<li></li>
-					</ul>
-					<ul>
-						<li class="text-info">验证码:<img src="${pageContext.request.contextPath }/cff.url" id="img_code" onclick="changeValidateCode(this)" title="点击图片刷新验证码" style="width: 80px; height: 36px"/></li>
-						<li><input type="text" style="height: 30px"  name="code" maxlength="20"/></li>
-						<li></li>
-					</ul>
-						<input type="submit" value="登录" onclick="$('#form_login').submit();" id="btn_login"/> 
+						<ul>
+							<li class="text-info">用户名:</li>
+							<li><input type="text" value="" style="height: 30px" name="username" id="txt_username" maxlength="20" /></li>
+							<li></li>
+						</ul>
+						<ul>
+							<li class="text-info">密码:</li>
+							<li><input type="password" value="" style="height: 30px" name="passwordForLogin" id="txt_passwordForLogin" maxlength="20" /> <input type="hidden" name="password" id="txt_password" maxlength="20" /></li>
+							<li></li>
+						</ul>
+						<ul>
+							<li class="text-info">验证码:<img src="${pageContext.request.contextPath }/cff.url" id="img_code" onclick="changeValidateCode(this)" title="点击图片刷新验证码" style="width: 80px; height: 36px" /></li>
+							<li><input type="text" style="height: 30px" name="code" maxlength="20" /></li>
+							<li></li>
+						</ul>
+						<input type="submit" value="登录" onclick="$('#form_login').submit();" id="btn_login" />
 					</form>
-					<a href="#">忘记密码 ？请联系在线客服</a>
+					<a href="Javascript:void(0)">忘记密码 ？请联系在线客服</a>
 				</div>
 
 			</div>

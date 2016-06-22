@@ -70,7 +70,7 @@
 								<div class="banner-inf">
 									<h1>六合彩</h1>
 									<p>
-										广东十一选五<br>双色球<br>大乐透<br>七星彩<br>
+										广东十一选五<br>双色球<br>大乐透<br>重庆时时彩<br>北京pk10
 									</p>
 									<div class="buy">
 										<a href="">点击查看</a>
@@ -121,7 +121,17 @@
 					</li>
 					<li>
 						<div class="sliderfig-grid">
-							<img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/qxc.jpg" alt="七星彩" title="七星彩" class="img-responsive" />
+							<img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/syxw.jpg" alt="广东十一选五" title="广东十一选五" class="img-responsive" />
+						</div>
+					</li>
+					<li>
+						<div class="sliderfig-grid">
+							<img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/cqssc.jpg" alt="重庆时时彩" title="重庆时时彩" class="img-responsive" />
+						</div>
+					</li>
+					<li>
+						<div class="sliderfig-grid">
+							<img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/pk10.jpg" alt="北京pk10" title="北京pk10" class="img-responsive" />
 						</div>
 					</li>
 				</ul>
@@ -158,6 +168,6 @@
 			<div class="clearfix"></div>
 		</div>
 	</div>
-	
+
 </body>
 </html>

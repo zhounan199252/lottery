@@ -4,7 +4,7 @@
 
 <urlrewrite>
 	<!-- 前往后台登录界面 begin -->
-		<rule>
+	<rule>
 		<from>/tbul.url</from>
 		<to>/backIndex!toBackLogin.action</to>
 	</rule>
@@ -14,6 +14,10 @@
 	<rule>
 		<from>/bul.url</from>
 		<to>/backUser!backLogin.action</to>
+	</rule>
+	<rule>
+		<from>/tbi.url</from>
+		<to>/backIndex!toBackIndex.action</to>
 	</rule>
 	<!-- 后台登录 end -->
 	<!-- 后台登录验证码 begin -->
@@ -65,7 +69,7 @@
 		<from>/rlo.url</from>
 		<to>/frontUser!frontLogin.action</to>
 	</rule>
-	
+
 	<rule>
 		<from>/tore.url</from>
 		<to>/frontIndex!toRegister.action</to>
@@ -78,26 +82,40 @@
 		<from>/lre.url</from>
 		<to>/frontUser!register.action</to>
 	</rule>
-	
+
 	<rule>
 		<from>/cfu.url</from>
 		<to>/frontUser!updateFrontUserInfo.action</to>
 	</rule>
 	<!-- 注册和登录 begin -->
 
-	
+
 	<!-- 查看我的账户 begin -->
 	<rule>
 		<from>/myC.url</from>
 		<to>/frontUser!myCount.action</to>
 	</rule>
 	<!-- 查看我的账户 begin -->
-	
+
 	<!-- 查看我的投注 begin -->
 	<rule>
 		<from>/myB.url</from>
 		<to>/frontUser!myBetRecord.action</to>
 	</rule>
+	<rule>
+		<from>/tmyB.url</from>
+		<to>/frontIndex!toBetRecord.action</to>
+	</rule>
+	<rule>
+		<from>/tfb.url</from>
+		<to>/footballBet!listMyFootballBetRecord.action</to>
+	</rule>
+	<rule>
+		<from>/tbb.url</from>
+		<to>/footballBet!listMyBasketballBetRecord.action</to>
+	</rule>
+
+
 	<!-- 查看我的投注 begin -->
 
 
@@ -115,27 +133,27 @@
 		<to>/frontUser!validPassword.action</to>
 	</rule>
 	<!-- 修改密码 begin -->
-	
+
 	<!-- 退出登录 begin -->
 	<rule>
 		<from>/flo.url</from>
 		<to>/frontUser!frontLogout.action</to>
 	</rule>
 	<!-- 退出登录 begin -->
-	
-	<!-- 跳转数字彩票-->
+
+	<!-- 跳转数字彩票 -->
 	<rule>
 		<from>/numLottery.url</from>
 		<to>/pageJump!toHighFrequency.action</to>
 	</rule>
-	
+
 	<rule>
 		<from>/recharge.url</from>
 		<to>/pageJump!toBankRecharge.action</to>
 	</rule>
 	<!-- 跳转数字彩票 -->
-	
-		<!-- 跳转数字彩票-->
+
+	<!-- 跳转数字彩票 -->
 	<rule>
 		<from>/addBetM.url</from>
 		<to>/betmessage!addBetMessage.action</to>
@@ -146,33 +164,35 @@
 		<to>/betmessage!listBackBetMessage.action</to>
 	</rule>
 	<!-- 后台显示数字彩票信息 -->
-    
-    <!-- 后台删除数字彩票信息 -->
+
+	<!-- 后台删除数字彩票信息 -->
 	<rule>
 		<from>/deleteBetM.url</from>
 		<to>/betmessage!deleteById.action</to>
 	</rule>
 	<!-- 后台删除数字彩票信息 -->
-    <!-- 后台修改数字彩票信息 -->
+	<!-- 后台修改数字彩票信息 -->
 	<rule>
 		<from>/updateBetM.url</from>
 		<to>/betmessage!updateBetMessage.action</to>
 	</rule>
 	<!-- 后台修改数字彩票信息 -->
-    
+
 
 	<!-- 体育赛事 begin -->
 	<rule>
 		<from>/tmi.url</from>
 		<to>/match!toMatchIndex.action</to>
 	</rule>
-	
+
 	<rule>
 		<from>/subfootbet.url</from>
 		<to>/footballBet!addFootballBet.action</to>
 	</rule>
-	
+
 	<!-- 体育赛事 end -->
+
+
 </urlrewrite> 
 
 

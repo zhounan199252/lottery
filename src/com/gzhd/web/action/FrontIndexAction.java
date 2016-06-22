@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ActionContext;
 @Action(value = "frontIndex", results = { //
 		@Result(name = "toDefault", location = "/WEB-INF/pages/front_page/default.jsp"),//
 		@Result(name = "toLogin", location = "/WEB-INF/pages/front_page/login.jsp"),//
+		@Result(name = "toBetRecord", location = "/WEB-INF/pages/front_page/myBetRecord.jsp"), //
 		@Result(name = "toRegister", location = "/WEB-INF/pages/front_page/register.jsp")//
 })
 @Scope("prototype")
@@ -46,6 +47,12 @@ public class FrontIndexAction extends BaseAction<Object> {
 		ActionContext.getContext().getSession().put("thirdKey_fr", "!?dfdfDFFFf1sdfsds52FG-");
 		
 		return "toRegister";
+	}
+	
+	public String toBetRecord() {
+		
+		
+		return "toBetRecord";
 	}
 
 }

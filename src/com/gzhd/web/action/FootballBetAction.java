@@ -25,7 +25,9 @@ import com.opensymphony.xwork2.ActionContext;
 		@Result(name = "toList", location = "footballBet!listFootballBet.action", type = "redirectAction"), //
 		@Result(name = "toListBasketball", location = "footballBet!listBasketballBet.action", type = "redirectAction"), //
 		@Result(name = "list", location = "/WEB-INF/pages/back_page/football/footballList.jsp"), //
-		@Result(name = "listBasketball", location = "/WEB-INF/pages/back_page/basketball/basketballList.jsp")//
+		@Result(name = "listBasketball", location = "/WEB-INF/pages/back_page/basketball/basketballList.jsp"),//
+		@Result(name = "listMyBasketballBetRecord", location = "/WEB-INF/pages/front_page/betRecord/basketballBet.jsp"),//
+		@Result(name = "listMyFootballBetRecord", location = "/WEB-INF/pages/front_page/betRecord/footballBet.jsp")//
 })
 @Scope("prototype")
 public class FootballBetAction extends BaseAction<FootballBetModel> {
@@ -133,4 +135,35 @@ public class FootballBetAction extends BaseAction<FootballBetModel> {
 		return "toListBasketball";
 	}
 
+	
+	public String listMyFootballBetRecord() {
+		
+		model.setMatchType("football");
+		
+		FrontUserModel userModel = (FrontUserModel) ActionContext.getContext().getSession().get(ConstantValues.FRONT_CURRENT_USER_LOGIN);
+
+		model.setUserId(userModel.getId());
+
+		PageModel pageModel = service.getForPageModel(model.getPageNum(), ConstantValues.PAGE_SIZE, model);
+
+		ActionContext.getContext().put("pageModel", pageModel);
+		
+		return "listMyFootballBetRecord";
+	}
+	
+	
+	public String listMyBasketballBetRecord() {
+		
+		model.setMatchType("basketball");
+		
+		FrontUserModel userModel = (FrontUserModel) ActionContext.getContext().getSession().get(ConstantValues.FRONT_CURRENT_USER_LOGIN);
+
+		model.setUserId(userModel.getId());
+
+		PageModel pageModel = service.getForPageModel(model.getPageNum(), ConstantValues.PAGE_SIZE, model);
+
+		ActionContext.getContext().put("pageModel", pageModel);
+		
+		return "listMyBasketballBetRecord";
+	}
 }

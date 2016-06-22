@@ -45,6 +45,8 @@ public class FootballBetModel {
 	private String seriesNum;
 	
 	private String matchType;
+	
+	private String userId;
 
 	
 	private int pageNum = 1;
@@ -223,6 +225,14 @@ public class FootballBetModel {
 
 	public void setMatchType(String matchType) {
 		this.matchType = matchType;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	

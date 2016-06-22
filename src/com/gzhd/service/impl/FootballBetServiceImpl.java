@@ -118,6 +118,11 @@ public class FootballBetServiceImpl implements FootballBetService {
 			params.put("nickname", "%%" + model.getUser().getNickname() + "%%");
 		}
 		
+		if(StringUtils.isNotBlank(model.getUserId())) {
+			queryHql.append(" and b.user.id = :userId");
+			params.put("userId", model.getUserId());
+		}
+		
 		if(StringUtils.isNotBlank(model.getType())) {
 			queryHql.append(" and b.type = :type");
 			params.put("type", model.getType());
