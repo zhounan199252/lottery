@@ -40,7 +40,7 @@ public class BasketballDataListener implements ServletContextListener {
 
 			@Override
 			public void run() {
-				getFootballData(application);
+				getBasketballData(application);
 			}
 		}, 2000, 1000 * 60 * 10);
 	}
@@ -49,7 +49,7 @@ public class BasketballDataListener implements ServletContextListener {
 	 * @param 获取篮球
 	 *            上一天，当天，后一天的赛事数据
 	 */
-	private void getFootballData(ServletContext application) {
+	private void getBasketballData(ServletContext application) {
 
 		String dataUrl = "http://api.caipiaokong.com/live/?name=jclq&format=json&uid=420845&token=4d5aa35ebeb48e7d3e4c8f7e16e1c7942c4cebee&phase=";
 

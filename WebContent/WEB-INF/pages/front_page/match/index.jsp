@@ -445,9 +445,17 @@
 
 			$("#totalCount").val(totalValue * 2);
 		} else {
-			var series_multiple = $("#txt_series_multiple").val();
+			var selectLength = $("#bet_table input").length;
+			
+			if(selectLength == 0) {
+				$("#totalCount").val(0);
+			} else {
+				var series_multiple = $("#txt_series_multiple").val();
 
-			$("#totalCount").val(parseInt(series_multiple) * 2); //*
+				$("#totalCount").val(parseInt(series_multiple) * 2); //*
+			}
+			
+		
 		}
 	}
 
@@ -463,9 +471,16 @@
 
 			$("#totalCountForBasketball").val(totalValue * 2);
 		} else {
-			var series_multiple = $("#txt_series_multipleForBasketball").val();
+			
+			var selectLength = $("#bet_tableForBasketball input").length;
+			
+			if(selectLength == 0) {
+				$("#totalCountForBasketball").val(0);
+			} else {
+				var series_multiple = $("#txt_series_multipleForBasketball").val();
 
-			$("#totalCountForBasketball").val(parseInt(series_multiple) * 2); //*
+				$("#totalCountForBasketball").val(parseInt(series_multiple) * 2); //*
+			}
 		}
 	}
 
@@ -631,8 +646,8 @@
 <body>
 	<div style="margin-left: auto; margin-right: auto; border: 1px solid red; width: 68%; height: 100%; overflow: auto;" align="center" id="main">
 		<ul class="nav nav-pills" style="width: 100%">
-			<li id="" style="" class="active for_active2" onclick="changeProject('football', 'basketball');"><a href="#"><span class="glyphicon glyphicon-th-large"></span>足球竞彩</a></li>
-			<li id="" class="for_active2" style="" onclick="changeProject('basketball', 'football');"><a href="#"><span class="glyphicon glyphicon-th-large"></span>篮球竞彩</a></li>
+			<li id="" style="" class="active for_active2" onclick="changeProject('football', 'basketball');"><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>足球竞彩</a></li>
+			<li id="" class="for_active2" style="" onclick="changeProject('basketball', 'football');"><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>篮球竞彩</a></li>
 		</ul>
 		<div style="width: 100%;" id="football">
 			<table border="1px" style="width: 100%; text-align: center;" class="table">

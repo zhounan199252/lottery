@@ -9,9 +9,10 @@
 			<div class="control-group span12">
 				<ul class="pagination">
 					<li><a href="javascript: gotoPage(1)" title="首页">&larr;</a></li>
-
+					
 					<s:iterator begin="%{#pageModel.beginPageIndex}" end="%{#pageModel.endPageIndex}" var="num">
-						<s:if test="currentPage == #num">
+					
+						<s:if test="#pageModel.currentPage == #num">
 							<%-- 当前页 --%>
 							<li class="active"><a href="javascript:void(0)">${num}</a></li>
 						</s:if>

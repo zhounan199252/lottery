@@ -6,12 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
+<link href="${pageContext.request.contextPath}/bootstrap-3.3.5/css/bootstrap.css" rel="stylesheet" />
+<script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div align="center">
 		<div class="row">
 		<div class="control-group" style="width: 68%">
-			<table class="table table-striped table-bordered">
+			<table class="table">
 				<tr>
 					<th>标题</th>
 					<th>发布时间</th>

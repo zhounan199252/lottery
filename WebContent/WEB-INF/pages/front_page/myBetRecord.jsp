@@ -6,79 +6,90 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/bootstrap-3.3.5/css/bootstrap.css" rel="stylesheet" />
+<script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+	$(function() {
+		
+		$(".for_active2").on("click", function() {
+			
+			$(this).addClass("active");
+			$(this).siblings("li").removeClass("active");
+			
+			var id = $(this).attr("id");
+			
+			$("#" + id + "_mian").css("display", "block");
+			$("#" + id + "_mian").siblings("div").css("display", "none");
+		});
+		
+	});
 </script>
 </head>
 <body>
+	<div style="margin-left: auto; margin-right: auto; border: 1px solid red; width: 80%; height: 100%; overflow: auto;" align="center" id="main">
+		<ul class="nav nav-pills" style="width: 100%">
+			<li id="numberBet" style="" class="active for_active2" ><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>数字彩</a></li>
+			<li id="football" style="" class="for_active2" ><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>足球竞彩</a></li>
+			<li id="basketball" class="for_active2" style="" ><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>篮球竞彩</a></li>
+		</ul>
 
-	<div class="container" style="padding: 20px 0 20px 0; width: 68%">
-	<div class="row" style="width: 100%;">
-			<s:form action="myB.url" method="post" id="form_search" cssClass="form-horizontal">
-			</s:form>
+
+		<div class="container" style="width: 100%; padding-left: 8px" id="numberBet_mian">
+			<iframe width="100%" frameBorder="0" id="iframe_main" src="${pageContext.request.contextPath}/myB.url" style="width: 100%; height: 100%"></iframe>
 		</div>
-		<span style="font-size: 20px; color: red"> 以下为您的已投注信息： </span>
-	</div>
-
-	<div class="container" style="width: 68%; padding-left: 8px">
-		<div class="row" style="width: 100%;">
-			<div class="row" style="width: 100%">
-				<div class="control-group span24" style="width: 98%">
-					<table class="table table-striped table-bordered">
-						<tr>
-<!-- 							<th style="width: 30px"><input type="checkbox" id="chk_ids" onclick="$('[name=ids]').prop('checked', this.checked)" title="全选"></th> -->
-<!-- 							<th>投注人</th> -->
-							<th>投注类型</th>
-							<th>投注期数</th>
-							<th>投注倍数</th>
-							<th>投注号码</th>
-							<th>投注日期</th>
-							<th>是否兑奖</th>
-						</tr>
-
-						<s:iterator value="#pageModel.recordList">
-							<tr>
-<%-- 								<td><input type="checkbox" name="ids" value="${id}"></td> --%>
-<%-- 								<td>${betPersonName}</td> --%>
-								<td>${betType}</td>
-								<td>${betPeriod}</td>
-								<td>${betQuan}</td>
-								<td>${betNum}</td>
-								<td>${betDate}</td>
-								<td>${exchangeFlag}</td>
-							</tr>
-						</s:iterator>
-
-					</table>
-
-
-				</div>
-			</div>
-			<div class="row" style="padding-left: 10px">
-				<div class="control-group span24 ">
-					<jsp:include page="/globle/jsp/pageView.jsp"></jsp:include>
-				</div>
-			</div>
+		
+		
+		<div class="container" style="width: 100%; padding-left: 8px;display: none" id="football_mian">
+			<iframe width="100%" frameBorder="0" id="iframe_main" src="${pageContext.request.contextPath}/tfb.url" style="width: 100%; height: 1000px"></iframe>
 		</div>
-
-
+		<div class="container" style="width: 100%; padding-left: 8px;display: none" id="basketball_mian">
+			<iframe width="100%" frameBorder="0" id="iframe_main" src="${pageContext.request.contextPath}/tbb.url" style="width: 100%; height: 1000px"></iframe>
+		</div>
+		
+		
 	</div>
-
-
-	<div></div>
-
-
-
-
-
-
-
-
-	<script type="text/javascript">
-		BUI.use('bui/form', function(Form) {
-			new Form.Form({
-				srcNode : '#form_search'
-			}).render();
-		});
-	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -28,7 +28,7 @@ import com.opensymphony.xwork2.ActionContext;
 		@Result(name = "toRechargePage", location = "/WEB-INF/pages/back_page/front_user/recharge.jsp"), //
 		@Result(name = "toDefault", location = "frontIndex!toDefault.action", type = "redirectAction"), //
 		@Result(name = "showCount", location = "/WEB-INF/pages/front_page/myCount.jsp"), //
-		@Result(name = "betRecord", location = "/WEB-INF/pages/front_page/myBetRecord.jsp"), //
+		@Result(name = "betRecord", location = "/WEB-INF/pages/front_page/betRecord/numberBet.jsp"), //
 		@Result(name = "toChangePassword", location = "/WEB-INF/pages/front_page/changePassword.jsp")//
 })
 @Scope("prototype")
@@ -72,7 +72,7 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 				json.addProperty("message", "用户名或密码错误，请刷新后重新登陆！");
 			} else {
 				json.addProperty("success", true);
-				json.addProperty("object", "/");
+				json.addProperty("object", "index.jsp");
 
 				// 若用户已经登陆，则移除登陆信息
 				if (null != ActionContext.getContext().getSession().get(ConstantValues.FRONT_CURRENT_USER_LOGIN)) {
