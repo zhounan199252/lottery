@@ -146,6 +146,31 @@
 		<from>/numLottery.url</from>
 		<to>/pageJump!toHighFrequency.action</to>
 	</rule>
+	<rule>
+		<from>/gdx.url</from>
+		<to>/pageJump!toGd11x5.action</to>
+	</rule>
+	
+	<rule>
+		<from>/ssq.url</from>
+		<to>/pageJump!toSsq.action</to>
+	</rule>
+	
+	<rule>
+		<from>/dlt.url</from>
+		<to>/pageJump!toDlt.action</to>
+	</rule>
+	
+	<rule>
+		<from>/cqssc.url</from>
+		<to>/pageJump!toCqssc.action</to>
+	</rule>
+	
+	<rule>
+		<from>/bjpk.url</from>
+		<to>/pageJump!toBjpk10.action</to>
+	</rule>
+	
 
 	<rule>
 		<from>/recharge.url</from>
