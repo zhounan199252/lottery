@@ -53,7 +53,7 @@
 
 </head>
 
-<body  style="background:#FFEC8B">
+<body  style="background:#FFC">
 	<!-- top-header -->
 	<div class="top_bg">
 		<div class="container">
@@ -124,9 +124,9 @@
 
 
 	<!-- 主体部分 -->
-	<div class="banner" style="height: 700px; width: 100%;background:#FFC;">
-		<div class="container" style="height: 700px; width: 100%">
-			<iframe width="100%" frameBorder="0" id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%; height: 700px;background:#FFC;"></iframe>
+	<div class="banner" style="height: 900px; width: 100%;background:#FFC;">
+		<div class="container" style="height: 900px; width: 100%">
+			<iframe width="100%" frameBorder="0" id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%; height: 900px;background:#FFC;"></iframe>
 		</div>
 	</div>
 

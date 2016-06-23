@@ -270,28 +270,28 @@ margin-bottom: 5px;
 </script>
  
 
- <body>
+ <body style="background:#FFC" >
 
  <div align="center"   id="main" style="height: 100%; overflow: auto;" >
  
- <div   id="divgd11x5"  style="width:1086px;height:1000px;"  align="left">
+ <div   id="divgd11x5"  style="width:1086px"  align="left">
  
- <div class="panel panel panel-info"  style="width: 50%;height:200px;float:right;" >
+ <div class="panel panel panel-info"  style="width: 50%;height:200px;float:right;background:#FFC" >
   <div class="panel-heading">最近开奖信息</div>
   <div class="panel-body"  id="div1gd11x5" >
  </div>
 </div>
 
-  <div class="panel panel panel-info"  style="width: 50%;float:right;height:200px;" >
+  <div class="panel panel panel-info"  style="width: 50%;float:right;height:200px;background:#FFC" >
   <div class="panel-heading"  id="div2gd11x5"></div>
   <div class="panel-body"   id="div3gd11x5" ></div>
   <div class="panel-body"   id="div4gd11x5" ></div>
   </div>
 
- <div class="panel panel panel-info"  style="width: 100%;height:541px" >
+ <div class="panel panel panel-info"  style="width: 100%;height:741px;background:#FFC" >
   <div class="panel-heading">购买</div>
   <div class="panel-body"  >
-  <div  class="well well-lg"  id='select1gd11x5'> <div style='margin-bottom: 5px;'>选号区:</div>
+  <div  class="well well-lg" style="background:#FFC" id='select1gd11x5'> <div style='margin-bottom: 5px;'>选号区:</div>
   <span onclick='check(this)' class="span_cicle">01</span>
   <span onclick='check(this)' class="span_cicle">02</span>
   <span onclick='check(this)' class="span_cicle">03</span>
@@ -304,7 +304,7 @@ margin-bottom: 5px;
   <span onclick='check(this)' class="span_cicle">10</span>
   <span onclick='check(this)' class="span_cicle">11</span>
   </div>
-   <div  class="well well-lg" > <div style='margin-bottom: 5px;'>操作区:</div>
+   <div  class="well well-lg" style="background:#FFC"> <div style='margin-bottom: 5px;'>操作区:</div>
        投注倍数<input id='quangd11x5'></input>   
   <button type='button' class='btn btn-default' onclick='buy()'>购买</button>
   </div> 

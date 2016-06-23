@@ -100,7 +100,7 @@
 	}
 </script>
 </head>
-<body style="overflow: scroll;">
+<body style="overflow: scroll;background:#FFC" >
 	<div class="reg-form">
 		<div class="container" >
 			<div class="reg" >

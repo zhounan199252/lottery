@@ -9,7 +9,7 @@
 <link href="${pageContext.request.contextPath}/bootstrap-3.3.5/css/bootstrap.css" rel="stylesheet" />
 <script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background:#FFC">
 	<div align="center">
 		<div class="row">
 		<div class="control-group" style="width: 68%">

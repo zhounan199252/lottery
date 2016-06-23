@@ -72,12 +72,12 @@ function recharge() {
 
 </script>
 </head>
-<body>
+<body style="background:#FFC">
 <div   align="center" >
-   <table class="table table-striped" style="width: 50%" >
+   <table class="table" style="width: 50%" >
 			<tr>
 				<th>用户名</th>
-				<td>${sessionScope.frontCurrentLoginUser.nickname}</td>
+				<td >${sessionScope.frontCurrentLoginUser.nickname}</td>
 				<td></td>
 			</tr>
 			<tr>

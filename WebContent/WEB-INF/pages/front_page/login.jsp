@@ -112,7 +112,7 @@
 
 </head>
 
-<body>
+<body style="background:#FFC">
 	<div class="login">
 		<div class="container">
 			<div class="login-grids">

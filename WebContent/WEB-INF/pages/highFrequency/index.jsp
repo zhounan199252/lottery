@@ -11,7 +11,7 @@
 <script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 
 
- <body >
+ <body  style="background:#FFC">
 
  <div align="center"   id="main" style="height: 100%; overflow: auto;" >
 <ul  class="nav nav-pills" style="width:1086px;" >

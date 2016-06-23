@@ -8,7 +8,7 @@
 <title></title>
 
 </head>
-<body>
+<body style="background:#FFC">
 
 	<div class="container" style="padding: 20px 0 0 30px; width: 100%">
 		<div class="row" style="width: 100%;">

@@ -54,7 +54,7 @@
 	}
 </script>
 </head>
-<body>
+<body  style="background:#FFC">
 	<div class="container" style="width: 68%;padding: 14px 0 20px 0">
 		<span style="font-size: 24px; color: blue"> 您的账户当前余额为：${balance}，如要充值，请联系客服！！ </span>
 	</div>
@@ -62,7 +62,7 @@
 	<div align="center" style="width: 100%">
 		<s:form action="/cfu.url" id="form_add" cssStyle="width: 68%">
 			<s:hidden name="id"></s:hidden>
-			<table class="table table-striped">
+			<table class="table">
 				<tr>
 					<th style="width: 20%">真实姓名</th>
 					<td style="width: 20%"><s:textfield name="nickname" id="txt_nickname" cssClass="control-text" maxLength="20"></s:textfield></td>

@@ -10,7 +10,7 @@
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 
- <body>
+ <body style="background:#FFC">
 
  <div align="center"   id="main" style="height: 100%; overflow: auto;" >
 <div  style="width: 1086px;" align="left">

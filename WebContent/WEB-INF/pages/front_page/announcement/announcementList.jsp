@@ -12,7 +12,7 @@
 
 </script>
 </head>
-<body>
+<body style="background:#FFC">
 	<div align="center">
 		<div class="row">
 			<div class="control-group" style="width: 68%">
