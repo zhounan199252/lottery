@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>天天趣玩网_安全买彩票，幸福中大奖</title>
+<title>天天现金网_安全买彩票，幸福中大奖</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -53,14 +53,14 @@
 
 </head>
 
-<body>
+<body  style="background:#FFEC8B">
 	<!-- top-header -->
 	<div class="top_bg">
 		<div class="container">
 			<div class="header_top-sec">
 				<div class="top_right">
 					<ul>
-						<li><a href="javascript:void(0)">你好,欢迎来到天天趣玩网彩票！</a></li>
+						<li><a href="javascript:void(0)">你好,欢迎来到天天现金网彩票！</a></li>
 					</ul>
 				</div>
 				<div class="top_left" id="nav">
@@ -85,10 +85,10 @@
 	</div>
 
 	<!-- 标题栏 -->
-	<div class="header_top" style="height: 90px">
+	<div class="header_top" style="height: 90px;">
 		<div class="container">
 			<div class="logo">
-				<a href="javascript:void(0)">天天趣玩网</a>
+				<a href="javascript:void(0)">天天现金网</a>
 			</div>
 			<div class="header_right">
 				<div class="cart box_1">
@@ -103,16 +103,19 @@
 
 
 	<!-- 菜单栏-->
-	<div class="mega_nav">
+	<div class="mega_nav" style="background:#FFC;">
 		<div class="container">
 			<div class="menu_sec">
 				<!-- start header menu -->
-				<ul class="megamenu skyblue">
+				<ul class="megamenu ">
 					<li class="active grid for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/default.url');">首页</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/an.url');">消息公告</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/tmi.url');">体育赛事</a></li>
 					<li class="for_active"><a class="color1" onclick="javascript:gotoPage('${pageContext.request.contextPath}/numLottery.url');">数字彩</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/fa.url');">优惠活动</a></li>
+					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/ttxy.url');">天天信誉</a></li>
+					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/jpzy.url');">金牌专业</a></li>
+					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/aqzd.url');">安全制度</a></li>
 					<!-- <li><a class="color1" href="#">在线客服</a></li> -->
 				</ul>
 			</div>
@@ -121,16 +124,17 @@
 
 
 	<!-- 主体部分 -->
-	<div class="banner" style="height: 700px; width: 100%">
+	<div class="banner" style="height: 700px; width: 100%;background:#FFC;">
 		<div class="container" style="height: 700px; width: 100%">
-			<iframe width="100%" frameBorder="0" id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%; height: 700px"></iframe>
+			<iframe width="100%" frameBorder="0" id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%; height: 700px;background:#FFC;"></iframe>
 		</div>
 	</div>
 
 
-	<div class="footer-copy" style="height: 100px">
+	<div class="footer-copy" style="height: 100px;background:#FFC;" >
 		<p style="color: black; margin-top: 20px">
-			Copyright &copy; 2015 - 2016.<a href="http://www.ttquwan.com" target="_blank">天天趣玩网</a> 版权所有 <a href="http://www.ttquwan.com/tbul.url" target="_blank" title="后台管理" class="color1">后台管理</a><br> 提醒：购买彩票有风险，在线投注需谨慎，不向未满18周岁的青少年出售彩票及提供彩票代购服务
+			<a href="http://www.ttquwan.com" target="_blank">天天现金网</a> 版权所有 <a href="http://www.ttquwan.com/tbul.url" target="_blank" title="后台管理" class="color1">后台管理</a><br>
+			天天现金网2000年度我们以提供最佳体育博彩，在线娱乐服务而自豪，然而博彩只是一种娱乐消遣的方式，我们希望阁下您不会过度沉迷于游戏以至于对其经济，事业，家庭和社会产生负面影响。我们的游戏规则不允许任何未满18岁人士向我们投注或领奖。如果您未满18岁，请马上退出网站。
 		</p>
 	</div>
 </body>

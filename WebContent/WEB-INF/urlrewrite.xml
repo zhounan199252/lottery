@@ -171,6 +171,19 @@
 		<to>/pageJump!toBjpk10.action</to>
 	</rule>
 	
+     <rule>
+		<from>/aqzd.url</from>
+		<to>/pageJump!toAqzd.action</to>
+	</rule>
+	
+     <rule>
+		<from>/ttxy.url</from>
+		<to>/pageJump!toTtxy.action</to>
+	</rule>
+	 <rule>
+		<from>/jpzy.url</from>
+		<to>/pageJump!toJpzy.action</to>
+	</rule>
 
 	<rule>
 		<from>/recharge.url</from>

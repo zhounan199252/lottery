@@ -15,6 +15,9 @@ import org.springframework.context.annotation.Scope;
 		@Result(name = "toDlt", location = "/WEB-INF/pages/highFrequency/dlt.jsp"),
 		@Result(name = "toCqssc", location = "/WEB-INF/pages/highFrequency/cqssc.jsp"),
 		@Result(name = "toBjpk10", location = "/WEB-INF/pages/highFrequency/bjpk10.jsp"),
+		@Result(name = "toTtxy", location = "/WEB-INF/pages/highFrequency/ttxy.jsp"),
+		@Result(name = "toJpzy", location = "/WEB-INF/pages/highFrequency/jpzy.jsp"),
+		@Result(name = "toAqzd", location = "/WEB-INF/pages/highFrequency/aqzd.jsp"),
 		@Result(name = "toBankRecharge", location = "/WEB-INF/pages/highFrequency/recharge.jsp")
 	
 })
@@ -63,6 +66,24 @@ public class PageJumpAction  extends BaseAction<Object>{
 	 */
 	public String toBjpk10() {
 		return "toBjpk10";
+	}
+	/**
+	 * 高频彩票
+	 */
+	public String toTtxy() {
+		return "toTtxy";
+	}
+	/**
+	 * 高频彩票
+	 */
+	public String toJpzy() {
+		return "toJpzy";
+	}
+	/**
+	 * 高频彩票
+	 */
+	public String toAqzd() {
+		return "toAqzd";
 	}
 	
 	/**

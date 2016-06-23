@@ -10,18 +10,14 @@
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 
-
- <body >
+ <body>
 
  <div align="center"   id="main" style="height: 100%; overflow: auto;" >
-<ul  class="nav nav-pills" style="width:1086px;" >
-<li  ><a href="gdx.url">广东11选5</a> </li>  
-<li><a href="ssq.url">双色球</a></li>
-<li><a href="dlt.url">大乐透</a></li>
-<li><a href="cqssc.url">重庆时时彩</a></li>
-<li><a href="bjpk.url">北京pk10</a></li>
-</ul>
+<div  style="width: 1086px;" align="left">
+天天现金网拥有目前最值得信赖的软硬件系统，尽全力为客户设立安全的游戏环境，确保客户能不间断、安心地参与各种博彩项目。<br>
+天天现金网严格执行客户隐私制度，倾全力提供最好的保密措施。天天现金网所独具的安全操作系统设定，任何第三方若有需要向我们查询客户数据时，也必须严格遵守我们的保密准则，以确保您的个人数据不被泄露的同时使您在本公司的合法权益不会受到任何的侵犯。
 
+</div>
 </div>
 
 </body>

@@ -65,7 +65,7 @@
 						editFrontUser,deleteFrontUser,initFrontUserPassword,checkFrontUsernameIsExist,toRechargePage,recharge,register,
 						validPassword,frontLogout,logout,getCodeForFront,getCodeForBack,toDefault,announcementList,favorList,getSingleAnnouncement,
 						getSingleFavor,listBackBetMessage,toMatchIndex,getSingleFavor,
-						toHighFrequency,toGd11x5,toSsq,toDlt,toCqssc,toBjpk10,listBackBetMessage,deleteById,updateBetMessage,bankRecharge,myBetRecord,
+						toHighFrequency,toGd11x5,toSsq,toDlt,toCqssc,toBjpk10,listBackBetMessage,deleteById,updateBetMessage,bankRecharge,myBetRecord,,toTtxy,toJpzy,toAqzd,
 						listFootballBet,doFulfil,deleteFootballBet,countBonusBySeriesNum,fulfilBySeriesNum,listBasketballBet,doFulfilForBasketball,deleteBasketballBet,fulfilBySeriesNumForBasketball,
 
 
@@ -80,7 +80,7 @@
 						toBackLogin,backLogin,announcementList,favorList,getSingleAnnouncement,checkFrontUsernameIsExist,getSingleFavor,toFrontLogin,toRegister,
 						frontLogin,register,myCount,toChangePassword,validPassword,changePassword,frontLogout,logout,getCodeForBack,getCodeForFront,toDefault,updateFrontUserInfo,
 						addFootballBet,toMatchIndex,toBetRecord,listMyFootballBetRecord,listMyBasketballBetRecord,
-						toHighFrequency,toGd11x5,toSsq,toDlt,toCqssc,toBjpk10,addBetMessage,addBetMessage,toBankRecharge,bankRecharge,myBetRecord
+						toHighFrequency,toGd11x5,toSsq,toDlt,toCqssc,toBjpk10,addBetMessage,addBetMessage,toBankRecharge,bankRecharge,myBetRecord,toTtxy,toJpzy,toAqzd
 
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
 				</interceptor-ref>
