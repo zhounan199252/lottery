@@ -75,9 +75,10 @@ margin-bottom: 5px;
 		    async:false,
 			success : function(result) {
 				var data= result.data;
-				if (data.length > 0) {   
+				if (data.length > 0) { 
+					expect3=  data[0].expect;	
 			      
-				    var date1 = new Date();
+				/*     var date1 = new Date();
 				    var date2 = eval('new Date(' + data[0].opentime.replace(/\d+(?=-[^-]+$)/,
 					         function (a) { return parseInt(a, 10) - 1; }).match(/\d+/g) + ')');
                       if(date1.getTime()-date2.getTime()<300000){
@@ -88,7 +89,7 @@ margin-bottom: 5px;
                         expect3=  parseInt(data[0].expect)+1;	
 				      }else{
 				       expect3= parseInt(data[0].expect)+1;
-				      } 
+				      }  */
 		
 				 }
 				}
@@ -152,7 +153,7 @@ margin-bottom: 5px;
 	        	      }
 	        	      betType="北京pk10";
 	        	      if(expect3!=""){
-	        	       betPeriod = parseInt(expect3)+1;
+	        	       betPeriod = parseInt(expect3)+3;
 	        	      }else {
 	        	      setTimeout("buy()",100); 
 	        	       return;
@@ -243,24 +244,24 @@ margin-bottom: 5px;
 	function getOpenTime(date,minute,interval){
 		
 		var newMinutes= (parseInt(minute/interval)+1)*interval;
-			if(newMinutes>60){
-				date.setHours(date.getHours()+1,newMinutes-63,0,0); 
+			if(newMinutes==60){
+				date.setMinutes(59,59,999); 
 			}else{
-				 date.setMinutes(newMinutes-3,0,0); 
+				 date.setMinutes(newMinutes,0,0); 
 			}
 		
 		return date;
 	}
 	
 	
-	var inter2 ="";
+
 	function timeCountBjpk10() {
 	    	  if(expect3!=""){
 	    		    var date = new Date();
 	    		    var date1 = new Date();
 	    	        var minute= date.getMinutes();
 	    	      
-	    		   date=getOpenTime(date,minute+3,10);
+	    		   date=getOpenTime(date,minute,10);
 	   	 	      var time=date.getTime()-date1.getTime();
 	    		  setTimeout("clearTimeCount()",time); 	
 	    		  
@@ -269,10 +270,10 @@ margin-bottom: 5px;
 	    		  	    $('#div3bjpk10').text("北京pk10每天投注时间为9-24时"); 
 	    		  	    $('#div4bjpk10').text("");   
 	    	      }else{
-	    	    	  var  betPeriod =parseInt(expect3)+1;
+	    	    	  var  betPeriod =parseInt(expect3)+3;
 		  	  	      $('#div2bjpk10').text("第"+betPeriod+"正在销售中"); 
-		  	  	     $('#div3bjpk10').text("截止销售时间："+date.Format("yyyy-MM-dd hh:mm:ss"));
-		  	  		 inter2=setInterval(function(){ShowCountDown(date,"bjpk10");}, 1000); 	    	  	  	     
+		  	  	      $('#div3bjpk10').text("销售在当前已开奖期数基础上延迟三期"); 
+		  	  	    	  	  	     
 	    	        }
 	    		  }else{
 	    			  setTimeout("timeCountBjpk10()",1000); 
@@ -282,12 +283,12 @@ margin-bottom: 5px;
 	
 	
 	function clearTimeCount(){	
-		clearInterval(inter2);
-		timeCount();	
+		 timeCount();
+		 look();
 		}
 	
 	
-	function ShowCountDown(endDate) { 	
+	/* function ShowCountDown(endDate) { 	
 	var leftTime=endDate.getTime()- new Date().getTime(); 
 	var leftsecond = parseInt(leftTime/1000); 
 	//var day1=parseInt(leftsecond/(24*60*60*6)); 
@@ -297,7 +298,7 @@ margin-bottom: 5px;
 	var second=Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60); 
 	  $('#div4bjpk10').text("距开奖时间还有："+day1+"天"+hour+"小时"+minute+"分"+second+"秒");  
 
-	} 
+	}  */
 		
 	
 </script>

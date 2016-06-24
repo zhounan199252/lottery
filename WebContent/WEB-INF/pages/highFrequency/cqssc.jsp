@@ -283,7 +283,8 @@ margin-bottom: 5px;
 	
 	function clearTimeCount(){	
 		clearInterval(inter1);
-		timeCount();	
+		timeCount();
+		 look();
 		}
 	
 	

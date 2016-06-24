@@ -209,6 +209,7 @@ margin-bottom: 5px;
 	
 	function timeCount() {	
 		timeCountGd11x5();	
+		 look();
 	}
 	
 	
