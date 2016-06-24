@@ -14,7 +14,9 @@
 
  <div align="center"   id="main" style="height: 100%; overflow: auto;" >
 <div  style="width: 1086px;" align="left">
-
+<div align="center" >
+<img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/jpzy.png">
+</div>
 
 
 <h3> 天天现金网是获得菲律宾卡格扬经济特区政府认证的合法互联网体育博彩公司.自2000年开始正式投入服务至今，一直秉持诚信可靠，服务周到的企业宗旨为广大体育彩迷服务，由全球体育博彩业界精英组成的金牌团队，以超专业的服务素质，最先进完备的网上博彩系统每天为成千上万的体育彩迷提供难忘的博彩体验，因此“天天现金网体育彩票”在网上娱乐博彩业界已奠下了不可动摇的地位，成为广大体育彩迷信赖的合法网上娱乐博彩网站.</h3>
