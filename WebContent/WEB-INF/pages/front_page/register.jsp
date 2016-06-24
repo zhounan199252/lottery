@@ -138,9 +138,8 @@
 						<li></li>
 					</ul>
 					<ul>
-						<li class="text-info">推荐人:</li>
-						<li><input type="text" value="" style="height: 30px" name="recommender" id="txt_recommender" maxlength="20"></li>
-						<li></li>
+					
+						<li><input type="hidden" value="${param.id}" name="recommender" > </li>
 					</ul>
 					<input type="submit" value="注册" onclick="addSave();"> 
 				</form>

@@ -68,7 +68,7 @@
 						<s:if test="#session.frontCurrentLoginUser == null">
 							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/tolo.url');">登录</a></li>
 							<li>|</li>
-							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/tore.url');">注册</a></li>
+							<li><a href="javascript:gotoPage('${pageContext.request.contextPath}/tore.url?id=${param.id}');">注册</a></li>
 						</s:if>
 						<s:else>
 							<li>欢迎您，${sessionScope.frontCurrentLoginUser.nickname}</li>
