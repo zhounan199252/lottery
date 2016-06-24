@@ -184,6 +184,11 @@
 		<from>/jpzy.url</from>
 		<to>/pageJump!toJpzy.action</to>
 	</rule>
+	
+	 <rule>
+		<from>/lmhz.url</from>
+		<to>/pageJump!toLmhz.action</to>
+	</rule>
 
 	<rule>
 		<from>/recharge.url</from>

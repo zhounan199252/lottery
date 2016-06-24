@@ -116,6 +116,7 @@
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/ttxy.url');">天天信誉</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/jpzy.url');">金牌专业</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/aqzd.url');">安全制度</a></li>
+					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/lmhz.url');">联盟合作</a></li>
 					<!-- <li><a class="color1" href="#">在线客服</a></li> -->
 				</ul>
 			</div>

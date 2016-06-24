@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Scope;
 		@Result(name = "toTtxy", location = "/WEB-INF/pages/highFrequency/ttxy.jsp"),
 		@Result(name = "toJpzy", location = "/WEB-INF/pages/highFrequency/jpzy.jsp"),
 		@Result(name = "toAqzd", location = "/WEB-INF/pages/highFrequency/aqzd.jsp"),
+		@Result(name = "toLmhz", location = "/WEB-INF/pages/highFrequency/lmhz.jsp"),
 		@Result(name = "toBankRecharge", location = "/WEB-INF/pages/highFrequency/recharge.jsp")
 	
 })
@@ -37,54 +38,43 @@ public class PageJumpAction  extends BaseAction<Object>{
 		return "toHighFrequency";
 	}
 	
-	/**
-	 * 高频彩票
-	 */
+
 	public String toGd11x5() {
 		return "toGd11x5";
 	}
-	/**
-	 * 高频彩票
-	 */
+
 	public String toSsq() {
 		return "toSsq";
 	}
-	/**
-	 * 高频彩票
-	 */
+	
 	public String toDlt() {
 		return "toDlt";
 	}
-	/**
-	 * 高频彩票
-	 */
+	
 	public String toCqssc() {
 		return "toCqssc";
 	}
-	/**
-	 * 高频彩票
-	 */
+
 	public String toBjpk10() {
 		return "toBjpk10";
 	}
-	/**
-	 * 高频彩票
-	 */
+	
 	public String toTtxy() {
 		return "toTtxy";
 	}
-	/**
-	 * 高频彩票
-	 */
+
 	public String toJpzy() {
 		return "toJpzy";
 	}
-	/**
-	 * 高频彩票
-	 */
+
 	public String toAqzd() {
 		return "toAqzd";
 	}
+	
+	public String toLmhz() {
+		return "toLmhz";
+	}
+	
 	
 	/**
 	 * 账户充值
