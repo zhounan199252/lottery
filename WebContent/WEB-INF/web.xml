@@ -79,7 +79,12 @@
 		<listener-class>com.gzhd.web.listener.BasketballDataListener</listener-class>
 	</listener>
 	
-	
+	<listener>
+		<listener-class>com.gzhd.web.listener.HighFrequencyDataListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.gzhd.web.listener.LowFrequencyDataListener</listener-class>
+	</listener>
 	
 	<session-config>
 		<session-timeout>30</session-timeout>
