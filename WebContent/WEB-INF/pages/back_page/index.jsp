@@ -70,7 +70,7 @@
 						href : '${pageContext.request.contextPath}/frontUser!listFrontUser.action'
 					} ,{
 						id : 'front_user_bet',
-						text : '前台用户投注信息',
+						text : '数字彩',
 						href : '${pageContext.request.contextPath}/betmessage!listBackBetMessage.action'
 					} ,{
 						id : 'football',
@@ -80,6 +80,10 @@
 						id : 'basketball',
 						text : '篮球竞彩',
 						href : '${pageContext.request.contextPath}/footballBet!listBasketballBet.action'
+					},{
+						id : 'depositHandle',
+						text : '提现信息',
+						href : '${pageContext.request.contextPath}/depositApply!listDepositMessage.action'
 					}]
 				} ]
 			} ];

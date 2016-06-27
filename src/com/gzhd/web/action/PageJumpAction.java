@@ -19,7 +19,8 @@ import org.springframework.context.annotation.Scope;
 		@Result(name = "toJpzy", location = "/WEB-INF/pages/highFrequency/jpzy.jsp"),
 		@Result(name = "toAqzd", location = "/WEB-INF/pages/highFrequency/aqzd.jsp"),
 		@Result(name = "toLmhz", location = "/WEB-INF/pages/highFrequency/lmhz.jsp"),
-		@Result(name = "toBankRecharge", location = "/WEB-INF/pages/highFrequency/recharge.jsp")
+		@Result(name = "toBankRecharge", location = "/WEB-INF/pages/highFrequency/recharge.jsp"),
+		@Result(name = "toDepositApply", location = "/WEB-INF/pages/highFrequency/depositApply.jsp")
 	
 })
 
@@ -81,6 +82,13 @@ public class PageJumpAction  extends BaseAction<Object>{
 	 */
 	public String toBankRecharge() {
 		return "toBankRecharge";
+	}
+	
+	/**
+	 * 账户提现
+	 */
+	public String toDepositApply() {
+		return "toDepositApply";
 	}
 	
 }

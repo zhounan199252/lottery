@@ -98,7 +98,6 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 		} catch (DocumentException e) {	
 			e.printStackTrace();
 		}
-		ActionContext.getContext().put("bankRecharge", "充值成功，请查询余额");
 		 return "myCount";  
 
 	}

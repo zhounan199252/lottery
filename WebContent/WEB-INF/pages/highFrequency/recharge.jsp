@@ -76,7 +76,7 @@ function recharge() {
 <div   align="center" >
    <table class="table" style="width: 50%" >
 			<tr>
-				<th>用户名</th>
+				<th>姓名</th>
 				<td >${sessionScope.frontCurrentLoginUser.nickname}</td>
 				<td></td>
 			</tr>
@@ -102,9 +102,7 @@ function recharge() {
 				<td></td>
 				<td></td>
 			</tr>
-	 </table>
-	 
-	   <div   align="center" > ${requestScope.bankRecharge} </div>
+	 </table>	 
 	   
 	   <div  style="width: 50%" align="left" >
                        充值须知：<br>
