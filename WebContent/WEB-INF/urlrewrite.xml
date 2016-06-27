@@ -146,6 +146,49 @@
 		<from>/numLottery.url</from>
 		<to>/pageJump!toHighFrequency.action</to>
 	</rule>
+	<rule>
+		<from>/gdx.url</from>
+		<to>/pageJump!toGd11x5.action</to>
+	</rule>
+	
+	<rule>
+		<from>/ssq.url</from>
+		<to>/pageJump!toSsq.action</to>
+	</rule>
+	
+	<rule>
+		<from>/dlt.url</from>
+		<to>/pageJump!toDlt.action</to>
+	</rule>
+	
+	<rule>
+		<from>/cqssc.url</from>
+		<to>/pageJump!toCqssc.action</to>
+	</rule>
+	
+	<rule>
+		<from>/bjpk.url</from>
+		<to>/pageJump!toBjpk10.action</to>
+	</rule>
+	
+     <rule>
+		<from>/aqzd.url</from>
+		<to>/pageJump!toAqzd.action</to>
+	</rule>
+	
+     <rule>
+		<from>/ttxy.url</from>
+		<to>/pageJump!toTtxy.action</to>
+	</rule>
+	 <rule>
+		<from>/jpzy.url</from>
+		<to>/pageJump!toJpzy.action</to>
+	</rule>
+	
+	 <rule>
+		<from>/lmhz.url</from>
+		<to>/pageJump!toLmhz.action</to>
+	</rule>
 
 	<rule>
 		<from>/recharge.url</from>

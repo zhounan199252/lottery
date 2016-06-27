@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body style="background:#FFC">
 
 	<div class="row" style="width: 100%;">
 				<s:form action="myB.url" method="post" id="form_search" cssClass="form-horizontal">

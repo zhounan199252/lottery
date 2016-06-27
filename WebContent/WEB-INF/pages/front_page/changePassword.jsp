@@ -72,10 +72,10 @@
 	}
 </script>
 </head>
-<body>
+<body style="background:#FFC">
 	<div style="width: 68%; padding: 12px 0 0 15%" align="center">
 		<s:form action="/cp.url" id="form_changePassword">
-			<table class="table table-striped">
+			<table class="table">
 				<tr>
 					<th>原密码</th>
 					<td><s:password name="oldPassword" id="txt_oldPassword" cssClass="control-text" maxLength="50"></s:password></td>

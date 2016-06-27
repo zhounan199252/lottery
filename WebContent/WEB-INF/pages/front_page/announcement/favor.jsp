@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body style="background:#FFC">
 	<div align="center">
 		<div align="left" style="font-size: 20px; padding-left: 16%">当前位置：优惠活动>>${requestScope.favor.title}</div>
 		<div style="width: 68%; overflow: auto">

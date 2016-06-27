@@ -112,7 +112,7 @@
 
 </head>
 
-<body>
+<body style="background:#FFC;height: 100%; overflow: auto;" >
 	<div class="login">
 		<div class="container">
 			<div class="login-grids">

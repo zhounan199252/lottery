@@ -100,7 +100,7 @@
 	}
 </script>
 </head>
-<body style="overflow: scroll;">
+<body style="height: 100%; overflow: auto;background:#FFC" >
 	<div class="reg-form">
 		<div class="container" >
 			<div class="reg" >
@@ -138,9 +138,8 @@
 						<li></li>
 					</ul>
 					<ul>
-						<li class="text-info">推荐人:</li>
-						<li><input type="text" value="" style="height: 30px" name="recommender" id="txt_recommender" maxlength="20"></li>
-						<li></li>
+					
+						<li><input type="hidden" value="${param.id}" name="recommender" > </li>
 					</ul>
 					<input type="submit" value="注册" onclick="addSave();"> 
 				</form>

@@ -23,6 +23,18 @@ public class FrontIndexAction extends BaseAction<Object> {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = Logger.getLogger(FrontIndexAction.class);
+    
+	private  String id;
+	
+	
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String toDefault() {
 
@@ -40,7 +52,6 @@ public class FrontIndexAction extends BaseAction<Object> {
 	}
 	
 	public String toRegister() {
-		
 		// des密钥
 		ActionContext.getContext().getSession().put("firstKey_fr", "-I2Love2Jdfdfdava-");
 		ActionContext.getContext().getSession().put("secondKey_fr", "-dfxcese23DDgggs2FQd3HJGFO?!4saxffsDSs-");

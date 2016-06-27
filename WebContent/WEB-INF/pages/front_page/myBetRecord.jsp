@@ -25,9 +25,9 @@
 	});
 </script>
 </head>
-<body>
-	<div style="margin-left: auto; margin-right: auto; border: 1px solid red; width: 80%; height: 100%; overflow: auto;" align="center" id="main">
-		<ul class="nav nav-pills" style="width: 100%">
+<body style="background:#FFC">
+	<div style="margin-left: auto; margin-right: auto;  width: 80%;overflow:auto;" align="center" id="main">
+		<ul class="nav nav-pills" style="width: 100%;background:#FFC">
 			<li id="numberBet" style="" class="active for_active2" ><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>数字彩</a></li>
 			<li id="football" style="" class="for_active2" ><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>足球竞彩</a></li>
 			<li id="basketball" class="for_active2" style="" ><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>篮球竞彩</a></li>

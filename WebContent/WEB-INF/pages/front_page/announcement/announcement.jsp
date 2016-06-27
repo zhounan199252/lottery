@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 
 </head>
-<body>
+<body style="background:#FFC">
 	<div align="center">
 		<div align="left" style="font-size: 20px; padding-left: 16%">
 			当前位置：消息公告>>${requestScope.announcement.title}
