@@ -37,7 +37,9 @@ public class FootballBetServiceImpl implements FootballBetService {
 		FrontUser frontUser = frontUserDao.get(FrontUser.class, userId);
 
 		double balance = frontUser.getBalance();
+		double consumption = frontUser.getConsumption();
 		double remain = balance - model.getTotalCount();
+		double consumptionCount = consumption + model.getTotalCount();
 
 		if (remain < 0) { // 如果余额不足
 			return "";
@@ -96,12 +98,14 @@ public class FootballBetServiceImpl implements FootballBetService {
 				footballBet.setIsFulfil("no");
 				footballBet.setMatchType(singleDatas[10]);
 				footballBet.setMatchId(singleDatas[0]);
+				footballBet.setIsWinning("no");
 
 				baseDao.save(footballBet);
 			}
 		}
 
 		frontUser.setBalance(remain);
+		frontUser.setConsumption(consumptionCount);
 
 		frontUserDao.update(frontUser); // 更新账户余额
 
@@ -326,10 +330,32 @@ public class FootballBetServiceImpl implements FootballBetService {
 		List<FootballBet> list = baseDao.find("from FootballBet b where b.seriesNum = :seriesNum", params);
 
 		if ("true" == isWinning) {
+			
+			double bonus = 0;
+
+			double totalOdds = 1;
+			int multiple = 0;
+
+			for (FootballBet bean : list) {
+				double odds = bean.getOdds();
+				totalOdds = totalOdds * odds;
+				multiple = bean.getMultiple();
+			}
+
+			bonus = totalOdds * 2 * multiple;
+			
+			FrontUser frontUser = frontUserDao.get(FrontUser.class, list.get(0).getUser().getId());
+			
+			double balance = frontUser.getBalance() + bonus;
+			
+			frontUser.setBalance(balance);
+			
+			frontUserDao.update(frontUser);
 
 			for (FootballBet bean : list) {
 
 				bean.setIsWinning("true");
+				bean.setIsFulfil("yes");
 
 				baseDao.update(bean);
 			}
@@ -352,7 +378,19 @@ public class FootballBetServiceImpl implements FootballBetService {
 		FootballBet bean = baseDao.get(FootballBet.class, id);
 
 		if ("true".equals(isWinning)) {
+			
+			FrontUser frontUser = frontUserDao.get(FrontUser.class, bean.getUser().getId());
+			
+			double bonus = bean.getOdds() * bean.getMultiple() * 2;
+			
+			double balance = frontUser.getBalance() + bonus;
+			
+			frontUser.setBalance(balance);
+			
+			frontUserDao.update(frontUser);
+			
 			bean.setIsWinning("true");
+			bean.setIsFulfil("yes");
 		} else {
 			bean.setIsWinning("false");
 			bean.setIsFulfil("yes");

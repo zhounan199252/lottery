@@ -23,7 +23,9 @@ public class FrontUser {
 	private String recommender;
 	
 	private String isValid;
-
+	
+	private double consumption;
+	
 	public String getId() {
 		return id;
 	}
@@ -111,6 +113,15 @@ public class FrontUser {
 	public void setIsValid(String isValid) {
 		this.isValid = isValid;
 	}
-	
+
+	public double getConsumption() {
+		return consumption;
+	}
+
+	public void setConsumption(double consumption) {
+		this.consumption = consumption;
+	}
+
+
 	
 }

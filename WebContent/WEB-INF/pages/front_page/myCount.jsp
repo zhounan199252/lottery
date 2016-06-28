@@ -56,7 +56,7 @@
 </head>
 <body style="background: #FFC">
 	<div class="container" style="width: 68%; padding: 14px 0 20px 0">
-		<span style="font-size: 24px; color: blue"> 您的账户当前余额为：${balance}，如要充值，请联系客服！！ </span>
+		<span style="font-size: 24px; color: blue"> 您的账户当前余额为：${balance}，历史消费金额为：${consumption}，如要充值，请联系客服！！ </span>
 	</div>
 
 	<div align="center" style="width: 100%">

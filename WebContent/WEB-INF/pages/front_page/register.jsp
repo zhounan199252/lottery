@@ -26,7 +26,7 @@
 
 			submitHandler : function(form) {// 当表单验证全部通过后，会执行此方法
 
-				var passowrdEnc = strEnc($("#txt_password").val(), "${sessionScope.firstKey_fr}", "${sessionScope.secondKey_fr}", "${sessionScope.thirdKey_fr}");
+				var passowrdEnc = strEnc($("#txt_passwordForRegister").val(), "${sessionScope.firstKey_fr}", "${sessionScope.secondKey_fr}", "${sessionScope.thirdKey_fr}");
 				$("#txt_password").val(passowrdEnc);
 
 				form.submit();
@@ -50,13 +50,13 @@
 				nickname : {
 					required : true
 				},
-				password : {
+				passwordForRegister : {
 					required : true,
 					minlength : 8
 				},
 				rePassword : {
 					required : true,
-					equalTo : "#txt_password" // 表示与那个节点的数值相等
+					equalTo : "#txt_passwordForRegister" // 表示与那个节点的数值相等
 				},
 				idCardNum : {
 					required : true
@@ -74,7 +74,7 @@
 				nickname : {
 					required : "请输入姓名"
 				},
-				password : {
+				passwordForRegister : {
 					required : "请输入密码",
 					minlength : "密码不能小于8位"
 				},
@@ -121,7 +121,10 @@
 					</ul>
 					<ul>
 						<li class="text-info">密码:</li>
-						<li><input type="password" value="" style="height: 30px" name="password" id="txt_password" maxlength="20"></li>
+						<li>
+							<input type="password" value="" style="height: 30px" name="passwordForRegister" id="txt_passwordForRegister" maxlength="20">
+							<input type="hidden" name="password" id="txt_password" maxlength="20">
+						</li>
 						<li></li>
 					</ul>
 					<ul>

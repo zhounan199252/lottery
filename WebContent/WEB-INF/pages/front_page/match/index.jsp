@@ -8,6 +8,9 @@
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 
+<script type="text/javascript" src="${pageContext.request.contextPath }/globle/js/showloading/jquery.showLoading.js"></script>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/globle/js/showloading/bootstrap/showLoading.css" />
+
 <script type="text/javascript">
 	var selectedItemIds = [];
 	var selectedTypeValue = "single";
@@ -44,10 +47,10 @@
 			$(this).siblings("li").removeClass("active");
 		});
 
-		setInterval(reflushData, 1000 * 60 * 10)
+		setInterval(reflushData, 1000 * 60 * 10);
 		reflushData();
 
-		setInterval(reflushDataForBasketball, 1000 * 60 * 10)
+		setInterval(reflushDataForBasketball, 1000 * 60 * 10);
 		reflushDataForBasketball();
 
 		var message = "${requestScope.message}";
@@ -130,6 +133,11 @@
 	});
 
 	function reflushData() {
+		
+		$.showLoading({     //打开全局遮罩
+			overlayHeight : "2000"
+		});     
+		
 		var data1 = '${applicationScope.currentDayData}';
 		var data2 = '${applicationScope.nextDayData}';
 		var data3 = '${applicationScope.next2DayData}';
@@ -339,6 +347,8 @@
 		for (var index = 0; index < selectedItemIdsForBasketball.length; index++) {
 			$("td[data-id='" + selectedItemIdsForBasketball[index] + "']").css("background-color", "yellow");
 		}
+		
+		$.hideLoading();  //隐藏遮罩
 	}
 
 	function plusNum(node) { //倍数加1  
@@ -380,7 +390,7 @@
 	function deleteSelected(node) {
 
 		var id = $(node).attr("id");
-		$("#" + id + "_td").css("background-color", "white");
+		$("#" + id + "_td").css("background-color", "#FFC");
 
 		$(node).parent('td').parent('tr').remove();
 
@@ -426,7 +436,7 @@
 	function deleteSelectedForBasketball(node) {
 
 		var id = $(node).attr("id");
-		$("#" + id + "_td").css("background-color", "white");
+		$("#" + id + "_td").css("background-color", "#FFC");
 
 		$(node).parent('td').parent('tr').remove();
 

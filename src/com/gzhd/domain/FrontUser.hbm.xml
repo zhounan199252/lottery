@@ -58,6 +58,12 @@
 			</column>
 		</property>
 		
+		<property name="consumption" type="double">
+			<column name="consumption" length="20">
+				<comment>历史总消费金额</comment>
+			</column>
+		</property>
+		
 		<property name="recommender" type="string">
 			<column name="recommender" length="20">
 				<comment>推荐人</comment>

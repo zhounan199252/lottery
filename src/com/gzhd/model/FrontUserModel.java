@@ -39,7 +39,9 @@ public class FrontUserModel {
 	private int pageNum = 1; // 一定要有默认值1，不然会报错
 	
 	private String isValid;
-
+	
+	private double consumption;
+	
 	public String getId() {
 		return id;
 	}
@@ -191,6 +193,14 @@ public class FrontUserModel {
 	public void setIsValid(String isValid) {
 		this.isValid = isValid;
 	}
-	
+
+	public double getConsumption() {
+		return consumption;
+	}
+
+	public void setConsumption(double consumption) {
+		this.consumption = consumption;
+	}
+
 	
 }
