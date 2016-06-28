@@ -6,6 +6,7 @@ public class BetMessage {
 	private String id;
 	private String betPeriod;  //投注期数
 	private String   betType;   //投注类型
+	private String   betChildType;   //投注次类型
 	private String betPerson;   //投注人	
 	private String betQuan;    //投注数量
 	private String betNum;   //投注号码
@@ -58,6 +59,12 @@ public class BetMessage {
 	}
 	public void setBetDate(String betDate) {
 		this.betDate = betDate;
+	}
+	public String getBetChildType() {
+		return betChildType;
+	}
+	public void setBetChildType(String betChildType) {
+		this.betChildType = betChildType;
 	}
 	
 	

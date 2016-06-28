@@ -21,6 +21,11 @@
 				<comment>投注类型</comment>
 			</column>
 		</property>
+		 <property name="betChildType" type="string">
+			<column name="betChildType" length="20">
+				<comment>投注类型</comment>
+			</column>
+		</property>
 		<property name="betPerson" type="string">
 			<column name="betPerson" length="32">
 				<comment>投注人</comment>

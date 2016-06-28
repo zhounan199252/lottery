@@ -6,6 +6,7 @@ public class BetMessageModel {
 
 	private String betPeriod; // 投注期数
 	private String betType; // 投注类型
+	private String   betChildType;   //投注次类型
 	private String betPerson; // 投注人id
 	private String betQuan; // 投注数量
 	private String betNum; // 投注号码
@@ -103,5 +104,15 @@ public class BetMessageModel {
 	public void setExchangeFlag(String exchangeFlag) {
 		this.exchangeFlag = exchangeFlag;
 	}
+
+	public String getBetChildType() {
+		return betChildType;
+	}
+
+	public void setBetChildType(String betChildType) {
+		this.betChildType = betChildType;
+	}
+	
+	
 
 }

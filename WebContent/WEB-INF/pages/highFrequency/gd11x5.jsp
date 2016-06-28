@@ -25,6 +25,11 @@
 .span_style {
 	
 }
+
+  label {
+margin-right: 10px;	
+}
+
 </style>
 
 <script>
@@ -109,11 +114,39 @@
  }
  
  //判断选号是否正确
-  function checkLengh() {    
-        var num = $("#select1gd11x5").children(".checked").length;
-        if(num<2||num>5){
-			return false;
-			}          	
+  function checkLengh() {  
+		var betChildType = $("[name=betChildType]:checked").val(); 
+	     var num1 = $("#select1gd11x5").children(".checked").length;
+	     var num2 = $("#select2gd11x5").children(".checked").length;
+	     var num3 = $("#select3gd11x5").children(".checked").length;
+		var  type=  betChildType.substring(0, 1); 
+		var  num4=  betChildType.substring(1, 2); 
+		if(type=="r"){
+			  if(num1!=num4){
+					return false;
+					}  	
+		}else{
+		  if(num4=="1"){
+			 if(num1!="1"){
+				 return false; 
+			 }
+			  
+		  }else if(num4=="2"){
+			  if(num1!="1"||num2!="1"){
+					 return false; 
+				 }
+			  
+		  }else if(num4=="3"){
+			 
+			  if(num1!="1"||num2!="1"||num3!="1"){
+					 return false; 
+				 }
+		  }
+			
+		}
+		
+  
+                 	
 	 return true;
  }
  
@@ -127,13 +160,16 @@
 	           var betNum="";
 	           var betType="";
 	           var betQuan="";
-	           var betPerson="";    
+	           var betPerson="";
+	           var betChildType="";
+	         
 	        	   if(timeLimate()==false){
 	        		   waring("已过投注时间");
 	        	     return;
 	        	    }
+	        	  
 	        	    if(checkLengh()==false){
-	        	    	waring("请选择2-5个号码");
+	        	    	waring("号码选择错误，请重新选择");
 	        	     return;
 	        	    }
 	        	    betType="广东11选5";
@@ -142,9 +178,10 @@
 	                   var num= $(domEle).text(); 
 	                     betNum =betNum+num+",";
 	  			   });
-	         
+	        
 	           
 	            betNum=betNum.substring(0, betNum.length-1);
+	            betChildType = $("[name=betChildType]:checked").val();
 	            //判断投注人是否为空
 	            betPerson='${sessionScope.frontCurrentLoginUser.id}';
 	            if(betPerson==""){
@@ -167,7 +204,8 @@
 	  				 "betNum":betNum,
 	  				"betQuan":betQuan,
 	  				"betType":betType,
-	  				"betPerson":betPerson
+	  				"betPerson":betPerson,
+	  				"betChildType":betChildType
 	  				
 	  			},
 	  			success : function(result) {
@@ -264,17 +302,28 @@
 	var minute=Math.floor((leftsecond-day1*24*60*60-hour*3600)/60); 
 	var second=Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60); 
      $('#div4gd11x5').text("距开奖时间还有："+day1+"天"+hour+"小时"+minute+"分"+second+"秒");   	
-	
-	 
 
 	} 
 		
+	
+	function show(type){	
+		if(type==2){
+			$("#select2gd11x5").show();
+			$("#select3gd11x5").show();
+		}else if(type==1){
+			$("#select2gd11x5").show();
+			$("#select3gd11x5").hide(); 
+		}else{
+			$("#select2gd11x5").hide(); 
+			$("#select3gd11x5").hide(); 
+		}
+		}
+	
 	
 </script>
 
 
 <body style="background: #FFC">
-
 	<div align="center" id="main" style="height: 100%; overflow: auto;">
 
 		<div id="divgd11x5" style="width: 1086px" align="left">
@@ -290,10 +339,32 @@
 				<div class="panel-body" id="div4gd11x5"></div>
 			</div>
 
-			<div class="panel panel panel-info" style="width: 100%; height: 741px; background: #FFC">
+			<div class="panel panel panel-info" style="width: 100%; height: 780px; background: #FFC">
 				<div class="panel-heading">购买</div>
 				<div class="panel-body">
+				
+				<div class="well well-lg" style="background: #FFC" >
+					<div style='margin-bottom: 5px;'>投注类型:</div>
+					<label onclick="show(0)" ><input name="betChildType" type="radio" checked="checked"  value="r2" />任选二 </label>
+				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r3" />任选三 </label>
+				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r4" />任选四 </label>
+				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r5" />任选五</label>
+				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r6" />任选六 </label>
+				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r7" />任选七 </label>
+				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r8" />任选八 </label>
+				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="q1" />前一</label>
+				    <label onclick="show(1)" ><input name="betChildType" type="radio" value="q2" />前二 </label>
+				    <label onclick="show(2)" ><input name="betChildType" type="radio" value="q3" />前三</label>	
+					</div>
 					<div class="well well-lg" style="background: #FFC" id='select1gd11x5'>
+						<div style='margin-bottom: 5px;'>选号区:</div>
+						<span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span> <span onclick='check(this)' class="span_cicle">11</span>
+					</div>
+						<div class="well well-lg" style="display:none;background: #FFC" id='select2gd11x5'>
+						<div style='margin-bottom: 5px;'>选号区:</div>
+						<span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span> <span onclick='check(this)' class="span_cicle">11</span>
+					</div>
+						<div class="well well-lg" style="display:none;background: #FFC" id='select3gd11x5'>
 						<div style='margin-bottom: 5px;'>选号区:</div>
 						<span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span> <span onclick='check(this)' class="span_cicle">11</span>
 					</div>
@@ -310,5 +381,7 @@
 
 	</div>
 
+
+           
 </body>
 </html>
