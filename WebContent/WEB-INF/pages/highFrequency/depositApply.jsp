@@ -6,9 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>账户充值</title>
-<link href="${pageContext.request.contextPath}/bootstrap-3.3.5/css/bootstrap.css" rel="stylesheet" />
-<script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery-1.11.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script type="text/ecmascript" src="${pageContext.request.contextPath}/globle/js/md5.js"></script>
 <script type="text/javascript">
 
@@ -46,16 +43,13 @@ function add() {
 				<td><s:textfield name="bankNum" id="bankNum" cssClass="control-text"  maxLength="20" value=""></s:textfield></td>
 				<td></td>
 			</tr>				
-			<tr>
-				<th>
-					<button type="submit" class="button button-primary" onclick="add();">保存</button>
-					<button type="reset" class="button" onclick="goBack();">取消</button>
-				</th>
-				<td></td>
-				<td></td>
-			</tr>
 	 </table>
-	 </form> 	   
+	 </form> 	
+	 
+	<div  style="width: 50%"  align="left" >
+			<button type="submit" class="button button-primary" onclick="add();">保存</button>
+			 <button type="reset" class="button" onclick="goBack();">取消</button>
+	</div>	 
 	   
 </div>
 

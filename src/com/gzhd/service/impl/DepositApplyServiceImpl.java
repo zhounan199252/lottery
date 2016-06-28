@@ -103,6 +103,18 @@ public class DepositApplyServiceImpl implements DepositApplyService {
 		return new PageModel(pageNum, pageSize, modelList, allRows);
 	}
 
+	@Override
+	public DepositApplyModel get(String id) {
+		DepositApply depositApply=baseDao.get(DepositApply.class, id);
+		
+		 DepositApplyModel depositApplyModel = new DepositApplyModel();
+		 if(depositApply!=null){
+			 BeanUtils.copyProperties(depositApply, depositApplyModel); 
+		 }
+			
+		return depositApplyModel;
+	}
+
 
 
 }

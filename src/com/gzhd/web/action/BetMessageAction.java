@@ -47,7 +47,7 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 		model.setBetDate(currentTime);
 		FrontUserModel frontUserModel = frontUserService.getUserById(model
 				.getBetPerson());
-		if (!frontUserModel.equals("") && frontUserModel != null) {
+		if (frontUserModel.getId()!=null) {
 			double yue = frontUserModel.getBalance();
 			double amount = Double.valueOf(model.getBetQuan())
 					* model.getBetPrice();
@@ -86,7 +86,7 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 				String currentTime = TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
 				model.setBetDate(currentTime);
 				FrontUserModel frontUserModel = frontUserService.getUserById(attach);
-				if (!frontUserModel.equals("") && frontUserModel != null) {
+				if (frontUserModel.getId()!=null) {
 					BigDecimal   b   =   new   BigDecimal(Double.valueOf(amount));
 					 double   f1   =   b.setScale(2,   BigDecimal.ROUND_HALF_UP).doubleValue();
 						frontUserModel.setBalance(f1);
