@@ -42,6 +42,7 @@ public class CheckMatchResultListener implements ServletContextListener {
 			public void run() {
 				checkResult(matchResultService, footballBetService);
 			}
+
 		}, 40000, 1000 * 60 * 10);
 	}
 
@@ -87,8 +88,8 @@ public class CheckMatchResultListener implements ServletContextListener {
 			} else {
 
 				String result = resultMap.get(model.getMatchId());
-				
-				if(StringUtils.isNotBlank(result)) {
+
+				if (StringUtils.isNotBlank(result)) {
 					String winOrLose = model.getWinOrLose();
 
 					String[] results = result.split(";");

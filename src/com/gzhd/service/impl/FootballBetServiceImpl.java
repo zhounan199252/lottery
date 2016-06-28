@@ -178,6 +178,11 @@ public class FootballBetServiceImpl implements FootballBetService {
 			queryHql.append(" and b.matchType = :matchType");
 			params.put("matchType", model.getMatchType());
 		}
+		
+		if (StringUtils.isNotBlank(model.getIsWinning())) {
+			queryHql.append(" and b.isWinning = :isWinning");
+			params.put("isWinning", model.getIsWinning());
+		}
 
 		queryHql.append(" order by b.isFulfil asc, b.betTime desc"); //
 

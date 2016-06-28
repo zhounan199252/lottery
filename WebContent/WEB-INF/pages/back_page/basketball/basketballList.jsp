@@ -147,12 +147,18 @@
 							<s:textfield cssClass="control-text Wdate" name="matchTimeEnd" readonly="true" id="txt_matchTimeEnd" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(txt_matchTimeBegin)}'})"></s:textfield>
 						</div>
 					</div>
-					<div class="control-group span8">
+					<%-- <div class="control-group span8">
 						<label class="control-label">投注项目：</label>
 						<div class="controls">
 							<s:select name="winOrLose" list="#{'胜':'胜','平':'平','负':'负','让球胜':'让球胜','让球平':'让球平','让球负':'让球负'}" listKey="key" listValue="value" headerKey="" headerValue="--请选择--"></s:select>
 						</div>
-					</div>
+					</div> --%>
+					<div class="control-group span8">
+						<label class="control-label">是否投中：</label>
+						<div class="controls">
+							<s:select name="isWinning" list="#{'no':'未开奖', 'true':'投中', 'false':'未投中'}" listKey="key" listValue="value" headerKey="" headerValue="--请选择--"></s:select>
+						</div>
+					</div> 
 
 				</div>
 				<div class="row" style="width: 100%">
@@ -199,7 +205,7 @@
 							<th style="width: 5%">投注项目</th>
 							<th style="width: 5%">赔率</th>
 							<th style="width: 5%">倍数</th>
-							<th style="width: 5%">让分</th>
+							<!-- <th style="width: 5%">让分</th> -->
 
 							<th style="width: 10%">是否投中</th>
 							<th style="width: 10%">是否已兑奖</th>
@@ -222,7 +228,7 @@
 								<td>${winOrLose}</td>
 								<td id="${id}_odds">${odds}</td>
 								<td id="${id}_multiple">${multiple}</td>
-								<td>${rangQiu}</td>
+								<%-- <td>${rangQiu}</td> --%>
 								<td>
 									<s:if test="isWinning == 'no'">
 										未开奖

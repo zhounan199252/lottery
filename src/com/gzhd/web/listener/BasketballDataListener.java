@@ -88,7 +88,7 @@ public class BasketballDataListener implements ServletContextListener {
 
 				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
 				application.setAttribute("currentDayBasketballData", json);
-				// logger.info("json1:" + json);
+				logger.info("json1:" + json);
 
 				JSONArray jsonArray = JSONArray.parseArray(json);
 
@@ -159,7 +159,7 @@ public class BasketballDataListener implements ServletContextListener {
 
 				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
 				application.setAttribute("nextDayBasketballData", json);
-				// logger.info("json2:" + json);
+				logger.info("json2:" + json);
 
 				JSONArray jsonArray = JSONArray.parseArray(json);
 
@@ -230,7 +230,7 @@ public class BasketballDataListener implements ServletContextListener {
 			if (response.toString().length() > 100) {
 				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
 				application.setAttribute("next2DayBasketballData", json);
-				// logger.info("json3:" + json);
+				logger.info("json3:" + json);
 			}
 
 		} catch (MalformedURLException e) {

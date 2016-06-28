@@ -267,7 +267,7 @@
 				var currentTime = "${applicationScope.currentTime}";
 				if (match.time_endsale < currentTime) {
 					continue;
-				}
+				} 
 
 				if (j == 0) {
 					currentDay = match.phase.substring(0, 4) + '年' + match.phase.substring(4, 6) + '月' + match.phase.substring(6, 8) + '日';
