@@ -76,8 +76,13 @@ function recharge() {
 	<div align="center">
 		<table class="table" style="width: 50%">
 			<tr>
+
 				<th>用户名</th>
 				<td>${sessionScope.frontCurrentLoginUser.nickname}</td>
+
+				<th>姓名</th>
+				<td >${sessionScope.frontCurrentLoginUser.nickname}</td>
+
 				<td></td>
 			</tr>
 			<tr>
@@ -102,7 +107,13 @@ function recharge() {
 				<td></td>
 				<td></td>
 			</tr>
+
 		</table>
+
+	   
+	   <div  style="width: 50%" align="left" >
+                       充值须知：<br>
+                      最低存款为￥100人民币，最高存款无限制。 未开通网银的会员，请您去银行柜台办理。 如有任何问题，请24小时线上客服!<br>
 
 		<div align="center">${requestScope.bankRecharge}</div>
 
@@ -116,7 +127,7 @@ function recharge() {
 		<input name="pGateWayReq" value="" id="pay" />
 	</form>
 
-
+</div>
 
 </body>
 </html>

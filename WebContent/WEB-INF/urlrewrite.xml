@@ -194,6 +194,12 @@
 		<from>/recharge.url</from>
 		<to>/pageJump!toBankRecharge.action</to>
 	</rule>
+	
+	<rule>
+		<from>/depApp.url</from>
+		<to>/pageJump!toDepositApply.action</to>
+	</rule>
+	
 	<!-- 跳转数字彩票 -->
 
 	<!-- 跳转数字彩票 -->
