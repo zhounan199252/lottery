@@ -112,8 +112,8 @@
 				<ul class="megamenu ">
 					<li class="active grid for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/default.url');">首页</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/an.url');">消息公告</a></li>
-					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/tmi.url');">体育赛事</a></li>
-					<li class="for_active"><a class="color1" onclick="javascript:gotoPage('${pageContext.request.contextPath}/numLottery.url');">数字彩</a></li>
+					<li class="for_active"  id="a_sport"><a class="color1" href="javascript:void(0)" onclick="gotoPage('${pageContext.request.contextPath}/tmi.url');">体育赛事</a></li>
+					<li class="for_active" id="a_number"><a class="color1" href="javascript:void(0)" onclick="gotoPage('${pageContext.request.contextPath}/numLottery.url');">数字彩</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/fa.url');">优惠活动</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/ttxy.url');">天天信誉</a></li>
 					<li class="for_active"><a class="color1" href="javascript:gotoPage('${pageContext.request.contextPath}/jpzy.url');">金牌专业</a></li>

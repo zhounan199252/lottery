@@ -15,6 +15,11 @@
 	$(document).ready(function() {
 		$(".megamenu").megamenu();
 	});
+	
+	function gotoPage2(id) {
+		$("#" + id, window.parent.document).children("a").click();
+		$("#" + id, window.parent.document).click();
+	}
 </script>
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/megamenu.js"></script>
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/simpleCart.min.js"></script>
@@ -58,7 +63,7 @@
 									</p>
 
 									<div class="buy">
-										<a href="">点击查看</a>
+										<a href="javascript:gotoPage2('a_sport');">点击查看</a>
 									</div>
 								</div>
 							</div>
@@ -73,7 +78,7 @@
 										广东十一选五<br>双色球<br>大乐透<br>重庆时时彩<br>北京pk10
 									</p>
 									<div class="buy">
-										<a href="">点击查看</a>
+										<a href="javascript:gotoPage2('a_number');">点击查看</a>
 									</div>
 								</div>
 							</div>

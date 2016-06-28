@@ -177,11 +177,14 @@
 						<button class="button" onclick="doCount();">统计单关兑奖金额</button>
 					</label> <label class="control-label">
 						<button class="button" id="showSeries">统计串号兑奖金额</button>
-					</label> <label class="control-label">
+					</label> 
+					<%-- <label class="control-label">
 						<button class="button" onclick="doFulfil('${pageContext.request.contextPath}/footballBet!doFulfil.action')">单关兑奖</button>
-					</label> <label class="control-label">
+					</label> 
+					<label class="control-label">
 						<button class="button" id="fulfilSeries">串号兑奖</button>
-					</label> <label class="control-label">
+					</label>  --%>
+					<label class="control-label">
 						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/footballBet!deleteFootballBet.action')">删除</button>
 					</label> <label class="control-label">
 						<button class="button" onclick="doSearch();">搜索</button>
