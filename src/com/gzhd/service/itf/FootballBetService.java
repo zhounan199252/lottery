@@ -1,5 +1,7 @@
 package com.gzhd.service.itf;
 
+import java.util.List;
+
 import com.gzhd.model.FootballBetModel;
 import com.gzhd.model.PageModel;
 
@@ -18,4 +20,12 @@ public interface FootballBetService {
 	public Double countBonusBySeriesNum(String seriesNum);
 
 	public void updateFulfilBySeriesNum(String seriesNum);
+	
+	public List<FootballBetModel> getNotFulfilFootballBet();
+	
+	public List<FootballBetModel> getFootballBetBySeriesNum(String seriesNum);
+
+	public void updateFootballBetWinningBySeriesNum(String isWinning, String seriesNum);
+
+	public void updateFootballBetWinningById(String isWinning, String id);
 }

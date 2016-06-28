@@ -67,17 +67,14 @@
 			<div class="row" style="padding: 10px 0 0 10px;">
 				<div class="control-group span24">
 					<label class="control-label">
-							<button class="button" onclick="doSearch();">搜索</button>
-						</label> 
-						<label class="control-label">
-							<button class="button" onclick="doClear();">清空</button>
-						</label>
-						<label class="control-label">
+						<button class="button" onclick="doSearch();">搜索</button>
+					</label> <label class="control-label">
+						<button class="button" onclick="doClear();">清空</button>
+					</label> <label class="control-label">
 						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/deleteBetM.url');">删除</button>
-					   </label> 
-					   <label class="control-label">
+					</label> <label class="control-label">
 						<button class="button" onclick="doChange('${pageContext.request.contextPath}/updateBetM.url');">兑奖</button>
-					  </label> 
+					</label>
 				</div>
 			</div>
 			<div class="row" style="width: 100%">
@@ -122,7 +119,7 @@
 
 	</div>
 
-<script type="text/javascript">
+	<script type="text/javascript">
   BUI.use('bui/form',function (Form) {
     new Form.Form({
       srcNode : '#form_search'

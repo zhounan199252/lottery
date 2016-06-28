@@ -48,6 +48,50 @@
 		var _url = url + "?id=" + id;
 		location.href = _url;
 	}
+	
+	function doChangeStatusToEnable(url) {
+		var checkboxs = $("[name=ids]:checked");
+		
+		if(checkboxs.length <= 0) {
+			BUI.Message.Alert("请至少选择一个用户！");
+			return false;
+		}
+		
+		 
+		BUI.Message.Confirm('确定要启用选择的用户吗？', function() {
+
+			var id = "";
+			for (var i = 0; i < checkboxs.length; i++) {
+				id += $(checkboxs[i]).prop("value") + ",";
+			}
+
+			var _url = url + "?id=" + id.substring(0, id.length - 1);
+			location.href = _url;
+		}, 'question');
+	} 
+	
+	function doChangeStatusToDisable(url) {
+		var checkboxs = $("[name=ids]:checked");
+		
+		if(checkboxs.length <= 0) {
+			BUI.Message.Alert("请至少选择一个用户！");
+			return false;
+		}
+		
+		 
+		BUI.Message.Confirm('确定要锁定选择的用户吗？', function() {
+
+			var id = "";
+			for (var i = 0; i < checkboxs.length; i++) {
+				id += $(checkboxs[i]).prop("value") + ",";
+			}
+
+			var _url = url + "?id=" + id.substring(0, id.length - 1);
+			location.href = _url;
+		}, 'question');
+	} 
+	
+	
 </script>
 
 </head>
@@ -81,6 +125,12 @@
 							<s:textfield cssClass="control-text" name="phoneNum"></s:textfield>
 						</div>
 					</div>
+					<div class="control-group span8">
+						<label class="control-label">状态：</label>
+						<div class="controls">
+							<s:select list="#{'true':'启用', 'false':'锁定'}" listKey="key" listValue="value" headerKey="" headerValue="请选择" name="isValid"></s:select>
+						</div>
+					</div>
 
 				</div>
 				<div class="row" style="width: 100%">
@@ -88,7 +138,8 @@
 					<div class="control-group span12">
 						<label class="control-label">注册时间：</label>
 						<div class="controls">
-							<s:textfield cssClass="control-text Wdate" name="registerTimeBegin" readonly="true" id="txt_registerTimeBegin" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(txt_registerTimeEnd)}'})"></s:textfield> - 
+							<s:textfield cssClass="control-text Wdate" name="registerTimeBegin" readonly="true" id="txt_registerTimeBegin" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(txt_registerTimeEnd)}'})"></s:textfield>
+							-
 							<s:textfield cssClass="control-text Wdate" name="registerTimeEnd" readonly="true" id="txt_registerTimeEnd" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(txt_registerTimeBegin)}'})"></s:textfield>
 						</div>
 					</div>
@@ -96,7 +147,8 @@
 					<div class="control-group span12">
 						<label class="control-label">最后登录时间：</label>
 						<div class="controls">
-							<s:textfield cssClass="control-text Wdate" name="lastLoginTimeBegin" readonly="true" id="txt_lastLoginTimeBegin" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(txt_lastLoginTimeEnd)}'})"></s:textfield> - 
+							<s:textfield cssClass="control-text Wdate" name="lastLoginTimeBegin" readonly="true" id="txt_lastLoginTimeBegin" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(txt_lastLoginTimeEnd)}'})"></s:textfield>
+							-
 							<s:textfield cssClass="control-text Wdate" name="lastLoginTimeEnd" readonly="true" id="txt_lastLoginTimeEnd" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(txt_lastLoginTimeBegin)}'})"></s:textfield>
 						</div>
 					</div>
@@ -104,17 +156,16 @@
 					<div class="control-group span12">
 						<label class="control-label">余额：</label>
 						<div class="controls">
-							<s:textfield cssClass="control-text" name="balanceBegin" data-rules="{number:true}"></s:textfield> - <s:textfield data-rules="{number:true}" cssClass="control-text" name="balanceEnd"></s:textfield>
+							<s:textfield cssClass="control-text" name="balanceBegin" data-rules="{number:true}"></s:textfield>
+							-
+							<s:textfield data-rules="{number:true}" cssClass="control-text" name="balanceEnd"></s:textfield>
 						</div>
 					</div>
 
 				</div>
 				<div class="row" style="width: 100%">
 
-					<div class="control-group span6">
-						
-
-					</div>
+					<div class="control-group span6"></div>
 				</div>
 			</s:form>
 		</div>
@@ -134,13 +185,15 @@
 						<button class="button" onclick="doInitPassword('${pageContext.request.contextPath}/frontUser!initFrontUserPassword.action');">初始化密码</button>
 					</label> <label class="control-label">
 						<button class="button" onclick="doRecharge('${pageContext.request.contextPath}/frontUser!toRechargePage.action');">充值</button>
+					</label> <label class="control-label">
+						<button class="button" onclick="doChangeStatusToEnable('${pageContext.request.contextPath}/frontUser!changeStatusToEnable.action');">启用用户</button>
+					</label> <label class="control-label">
+						<button class="button" onclick="doChangeStatusToDisable('${pageContext.request.contextPath}/frontUser!changeStatusToDisable.action');">锁定用户</button>
+					</label> <label class="control-label">
+						<button class="button" onclick="doSearch();">搜索</button>
+					</label> <label class="control-label">
+						<button class="button" onclick="doClear();">清空</button>
 					</label>
-					<label class="control-label">
-							<button class="button" onclick="doSearch();">搜索</button>
-						</label> 
-						<label class="control-label">
-							<button class="button" onclick="doClear();">清空</button>
-						</label>
 				</div>
 			</div>
 			<div class="row" style="width: 100%">
@@ -154,6 +207,7 @@
 							<th>身份证号码</th>
 							<th>电话号码</th>
 							<th>注册时间</th>
+							<th>状态</th>
 							<th>推荐人</th>
 							<th>最后登录时间</th>
 						</tr>
@@ -167,6 +221,11 @@
 								<td>${idCardNum}</td>
 								<td>${phoneNum}</td>
 								<td>${registerTime}</td>
+								<td><s:if test="isValid == 'true'">
+										启用
+									</s:if> <s:else>
+										<label style="color: red">锁定</label>
+									</s:else></td>
 								<td>${recommender}</td>
 								<td>${lastLoginTime}</td>
 							</tr>
@@ -191,7 +250,7 @@
 
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
   BUI.use('bui/form',function (Form) {
     new Form.Form({
       srcNode : '#form_search'

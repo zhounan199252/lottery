@@ -81,6 +81,8 @@ public class FileUploadAction extends BaseAction<FileUploadModel> {
 			
 			response.getWriter().print(ok);
 			
+			response.flushBuffer();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

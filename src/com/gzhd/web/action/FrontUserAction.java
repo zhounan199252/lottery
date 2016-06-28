@@ -71,17 +71,23 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 				json.addProperty("success", false);
 				json.addProperty("message", "用户名或密码错误，请刷新后重新登陆！");
 			} else {
-				json.addProperty("success", true);
-				json.addProperty("object", "index.jsp");
+				
+				if("false".equals(u.getIsValid())) {
+					json.addProperty("success", false);
+					json.addProperty("message", "账户尚未通过审核，请耐心等待！");
+				} else {
+					json.addProperty("success", true);
+					json.addProperty("object", "index.jsp");
 
-				// 若用户已经登陆，则移除登陆信息
-				if (null != ActionContext.getContext().getSession().get(ConstantValues.FRONT_CURRENT_USER_LOGIN)) {
-					ActionContext.getContext().getSession().remove(ConstantValues.FRONT_CURRENT_USER_LOGIN);
+					// 若用户已经登陆，则移除登陆信息
+					if (null != ActionContext.getContext().getSession().get(ConstantValues.FRONT_CURRENT_USER_LOGIN)) {
+						ActionContext.getContext().getSession().remove(ConstantValues.FRONT_CURRENT_USER_LOGIN);
+					}
+
+					ActionContext.getContext().getSession().put(ConstantValues.FRONT_CURRENT_USER_LOGIN, u);
+
+					service.updateLoginTimeById(u.getId(), TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss"));
 				}
-
-				ActionContext.getContext().getSession().put(ConstantValues.FRONT_CURRENT_USER_LOGIN, u);
-
-				service.updateLoginTimeById(u.getId(), TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss"));
 			}
 		}
 
@@ -107,6 +113,8 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 		String currentTime = TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
 
 		model.setRegisterTime(currentTime);
+		
+		model.setIsValid("false");
 
 		service.addUser(model);
 
@@ -177,6 +185,8 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 		String currentTime = TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
 
 		model.setRegisterTime(currentTime);
+		
+		model.setIsValid("false");
 
 		service.addUser(model);
 
@@ -275,4 +285,49 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 		
 		return "betRecord";
 	}
+	
+	
+	public String changeStatusToEnable() {
+		
+		service.updateUserStatus(model.getId(), "true");
+		
+		return "toList";
+	}
+	
+	public String changeStatusToDisable() {
+		
+		service.updateUserStatus(model.getId(), "false");
+		
+		return "toList";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

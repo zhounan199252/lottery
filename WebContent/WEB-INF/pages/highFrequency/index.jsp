@@ -11,18 +11,18 @@
 <script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 
 
- <body  style="background:#FFC">
+<body style="background: #FFC">
 
- <div align="center"   id="main" style="height: 100%; overflow: auto;" >
-<ul  class="nav nav-pills" style="width:1086px;" >
-<li  ><a href="gdx.url">广东11选5</a> </li>  
-<li><a href="ssq.url">双色球</a></li>
-<li><a href="dlt.url">大乐透</a></li>
-<li><a href="cqssc.url">重庆时时彩</a></li>
-<li><a href="bjpk.url">北京pk10</a></li>
-</ul>
+	<div align="center" id="main" style="height: 100%; overflow: auto;">
+		<ul class="nav nav-pills" style="width: 1086px;">
+			<li><a href="gdx.url">广东11选5</a></li>
+			<li><a href="ssq.url">双色球</a></li>
+			<li><a href="dlt.url">大乐透</a></li>
+			<li><a href="cqssc.url">重庆时时彩</a></li>
+			<li><a href="bjpk.url">北京pk10</a></li>
+		</ul>
 
-</div>
+	</div>
 
 </body>
 </html>

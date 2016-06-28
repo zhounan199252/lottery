@@ -37,6 +37,8 @@ public class FrontUserModel {
 	private String recommender;
 	
 	private int pageNum = 1; // 一定要有默认值1，不然会报错
+	
+	private String isValid;
 
 	public String getId() {
 		return id;
@@ -180,6 +182,14 @@ public class FrontUserModel {
 
 	public void setRecommender(String recommender) {
 		this.recommender = recommender;
+	}
+
+	public String getIsValid() {
+		return isValid;
+	}
+
+	public void setIsValid(String isValid) {
+		this.isValid = isValid;
 	}
 	
 	

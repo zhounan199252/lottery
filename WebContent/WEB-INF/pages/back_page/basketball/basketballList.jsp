@@ -189,18 +189,19 @@
 					<table class="table table-striped table-bordered">
 						<tr>
 							<th style="width: 2%"><input type="checkbox" id="chk_ids" onclick="$('[name=ids]').prop('checked', this.checked)" title="全选"></th>
-							<th style="width: 8%">投注用户</th>
+							<th style="width: 6%">投注用户</th>
 							<th style="width: 10%">投注时间</th>
-							<th style="width: 8%">类型</th>
+							<th style="width: 4%">类型</th>
 							<th style="width: 8%">串号</th>
-							<th style="width: 8%">主队</th>
-							<th style="width: 8%">客队</th>
+							<th style="width: 5%">主队</th>
+							<th style="width: 5%">客队</th>
 							<th style="width: 10%">比赛时间</th>
-							<th style="width: 8%">投注项目</th>
-							<th style="width: 8%">赔率</th>
-							<th style="width: 8%">倍数</th>
-							<th style="width: 8%">让分</th>
+							<th style="width: 5%">投注项目</th>
+							<th style="width: 5%">赔率</th>
+							<th style="width: 5%">倍数</th>
+							<th style="width: 5%">让分</th>
 
+							<th style="width: 10%">是否投中</th>
 							<th style="width: 10%">是否已兑奖</th>
 						</tr>
 
@@ -222,6 +223,17 @@
 								<td id="${id}_odds">${odds}</td>
 								<td id="${id}_multiple">${multiple}</td>
 								<td>${rangQiu}</td>
+								<td>
+									<s:if test="isWinning == 'no'">
+										未开奖
+									</s:if> 
+									<s:elseif test="isWinning == 'true'">
+										<span style="color: red">投中</span>
+									</s:elseif>
+									<s:else>
+										未投中
+									</s:else>
+								</td>
 								<td><s:if test="isFulfil == 'yes'">
 										已兑奖
 									</s:if> <s:else>
@@ -241,11 +253,11 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
 BUI.use('bui/overlay', function(Overlay) {
 	var dialog = new Overlay.Dialog({
 		title : '填写串号',

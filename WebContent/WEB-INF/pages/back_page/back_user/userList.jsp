@@ -38,7 +38,7 @@
 	<form action="${pageContext.request.contextPath}/backUser!listBackUser.action" method="post" id="form_search"></form>
 
 
-	<div class="container" style="width: 100%;padding: 10px 0 0 20px">
+	<div class="container" style="width: 100%; padding: 10px 0 0 20px">
 		<div class="row">
 			<div class="row">
 				<div class="control-group span24" style="width: 100%">
@@ -48,8 +48,7 @@
 						<button class="button" onclick="doUpdate('${pageContext.request.contextPath}/backUser!editBackUserPage.action')">编辑</button>
 					</label> <label class="control-label">
 						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/backUser!deleteBackUser.action');">删除</button>
-					</label>
-					<label class="control-label">
+					</label> <label class="control-label">
 						<button class="button" onclick="doInitPassword('${pageContext.request.contextPath}/backUser!initBackUserPassword.action');">初始化密码</button>
 					</label>
 				</div>

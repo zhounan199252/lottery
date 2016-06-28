@@ -88,5 +88,8 @@ public interface FrontUserService {
 
 	public void updateUserPassword(FrontUserModel model);
 
+	public void updateUserStatus(String id, String string);
+
+
 
 }

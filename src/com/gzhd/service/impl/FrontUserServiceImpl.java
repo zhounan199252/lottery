@@ -119,6 +119,11 @@ public class FrontUserServiceImpl implements FrontUserService {
 			params.put("idCardNum", "%%" + model.getIdCardNum() + "%%");
 		}
 		
+		if(StringUtils.isNotBlank(model.getIsValid())) {
+			queryHql.append(" and u.isValid like :isValid");
+			params.put("isValid", model.getIsValid());
+		}
+		
 		if(model.getBalanceBegin() != 0.0) {
 			queryHql.append(" and u.balance >= :balanceBegin");
 			params.put("balanceBegin", model.getBalanceBegin());
@@ -261,6 +266,21 @@ public class FrontUserServiceImpl implements FrontUserService {
 		user.setPassword(Encrypt.md5AndSha(model.getPassword()));
 		
 		baseDao.update(user);
+	}
+
+	@Override
+	public void updateUserStatus(String id, String status) {
+
+		String[] ids = id.split(",");
+		
+		for(String sigleId : ids) {
+			FrontUser user = baseDao.get(FrontUser.class, sigleId);
+
+			user.setIsValid(status);
+			
+			baseDao.update(user);
+		}
+		
 	}
 	
 

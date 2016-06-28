@@ -37,7 +37,7 @@
 	function doFulfil(url) {
 
 		var checkboxs = $("[name=ids]:checked");
-		
+
 		var isValid = "true";
 
 		if (checkboxs.length <= 0) {
@@ -189,18 +189,19 @@
 					<table class="table table-striped table-bordered">
 						<tr>
 							<th style="width: 2%"><input type="checkbox" id="chk_ids" onclick="$('[name=ids]').prop('checked', this.checked)" title="全选"></th>
-							<th style="width: 8%">投注用户</th>
+							<th style="width: 6%">投注用户</th>
 							<th style="width: 10%">投注时间</th>
-							<th style="width: 8%">类型</th>
+							<th style="width: 4%">类型</th>
 							<th style="width: 8%">串号</th>
-							<th style="width: 8%">主队</th>
-							<th style="width: 8%">客队</th>
+							<th style="width: 5%">主队</th>
+							<th style="width: 5%">客队</th>
 							<th style="width: 10%">比赛时间</th>
-							<th style="width: 8%">投注项目</th>
-							<th style="width: 8%">赔率</th>
-							<th style="width: 8%">倍数</th>
-							<th style="width: 8%">让球</th>
+							<th style="width: 5%">投注项目</th>
+							<th style="width: 5%">赔率</th>
+							<th style="width: 5%">倍数</th>
+							<th style="width: 5%">让球</th>
 
+							<th style="width: 10%">是否投中</th>
 							<th style="width: 10%">是否已兑奖</th>
 						</tr>
 
@@ -222,6 +223,17 @@
 								<td id="${id}_odds">${odds}</td>
 								<td id="${id}_multiple">${multiple}</td>
 								<td>${rangQiu}</td>
+								<td>
+									<s:if test="isWinning == 'no'">
+										未开奖
+									</s:if> 
+									<s:elseif test="isWinning == 'true'">
+										<span style="color: red">投中</span>
+									</s:elseif>
+									<s:else>
+										未投中
+									</s:else>
+								</td>
 								<td><s:if test="isFulfil == 'yes'">
 										已兑奖
 									</s:if> <s:else>
@@ -241,88 +253,91 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 
 
-<script type="text/javascript">
-BUI.use('bui/overlay', function(Overlay) {
-	var dialog = new Overlay.Dialog({
-		title : '填写串号',
-		width : 250,
-		height : 120,
-		//配置文本
-		bodyContent : '<h2>请输入需要统计的串号</h2><br>串号：<input type="text" id="txt_seriesNum" style="height:20px">',
-		success : function() {
-			//this.close();
-			var seriesNum = $("#txt_seriesNum").val();
-			if(seriesNum.length <= 0) {
-				BUI.Message.Alert("请填写串号！");
-				return false;
-			}
-			this.close();
-			$.ajax({
-				url : "${pageContext.request.contextPath}/footballBet!countBonusBySeriesNum.action",
-				type : "post",
-				data : {"seriesNum" : seriesNum},
-				success : function(res) {
-					var data = $.parseJSON(res);
-					
-					if("false" == data.success) {
-						BUI.Message.Alert("没有找到指定串号的投注记录！");
-					} else {
-						BUI.Message.Alert("该串号的兑奖金额为：" + data.bonus + " 元！");
-						$("#txt_seriesNum").val("");
+	<script type="text/javascript">
+		BUI.use('bui/overlay', function(Overlay) {
+			var dialog = new Overlay.Dialog({
+				title : '填写串号',
+				width : 250,
+				height : 120,
+				//配置文本
+				bodyContent : '<h2>请输入需要统计的串号</h2><br>串号：<input type="text" id="txt_seriesNum" style="height:20px">',
+				success : function() {
+					//this.close();
+					var seriesNum = $("#txt_seriesNum").val();
+					if (seriesNum.length <= 0) {
+						BUI.Message.Alert("请填写串号！");
+						return false;
 					}
-				}
-			});
-		}
-	});
-	$('#showSeries').on('click', function() {
-		dialog.show();
-	});
-	
-	var dialog2 = new Overlay.Dialog({
-		title : '填写串号',
-		width : 250,
-		height : 120,
-		//配置文本
-		bodyContent : '<h2>请输入需要兑奖的串号</h2><br>串号：<input type="text" id="txt_seriesNum" style="height:20px">',
-		success : function() {
-			//this.close();
-			var seriesNum = $("#txt_seriesNum").val();
-			if(seriesNum.length <= 0) {
-				BUI.Message.Alert("请填写串号！");
-				return false;
-			}
-			
-			$.ajax({
-				url : "${pageContext.request.contextPath}/footballBet!countBonusBySeriesNum.action",
-				type : "post",
-				data : {"seriesNum" : seriesNum},
-				success : function(res) {
-					var data = $.parseJSON(res);
-					
-					if("false" == data.success) {
-						BUI.Message.Alert("没有找到指定串号的投注记录！");
-					} else {
-						
-						BUI.Message.Confirm("您选择的串号为 " + seriesNum + " 投注项的总兑奖金额为：" + data.bonus + " 元！确定要进行兑奖操作吗？", function() {
+					this.close();
+					$.ajax({
+						url : "${pageContext.request.contextPath}/footballBet!countBonusBySeriesNum.action",
+						type : "post",
+						data : {
+							"seriesNum" : seriesNum
+						},
+						success : function(res) {
+							var data = $.parseJSON(res);
 
-							location.href = "${pageContext.request.contextPath}/footballBet!fulfilBySeriesNum.action?seriesNum=" + seriesNum;
-						}, 'question');
-						
-						
-					}
+							if ("false" == data.success) {
+								BUI.Message.Alert("没有找到指定串号的投注记录！");
+							} else {
+								BUI.Message.Alert("该串号的兑奖金额为：" + data.bonus + " 元！");
+								$("#txt_seriesNum").val("");
+							}
+						}
+					});
 				}
 			});
-		}
-	});
-	$('#fulfilSeries').on('click', function() {
-		dialog2.show();
-	});
-});
-</script>
+			$('#showSeries').on('click', function() {
+				dialog.show();
+			});
+
+			var dialog2 = new Overlay.Dialog({
+				title : '填写串号',
+				width : 250,
+				height : 120,
+				//配置文本
+				bodyContent : '<h2>请输入需要兑奖的串号</h2><br>串号：<input type="text" id="txt_seriesNum" style="height:20px">',
+				success : function() {
+					//this.close();
+					var seriesNum = $("#txt_seriesNum").val();
+					if (seriesNum.length <= 0) {
+						BUI.Message.Alert("请填写串号！");
+						return false;
+					}
+
+					$.ajax({
+						url : "${pageContext.request.contextPath}/footballBet!countBonusBySeriesNum.action",
+						type : "post",
+						data : {
+							"seriesNum" : seriesNum
+						},
+						success : function(res) {
+							var data = $.parseJSON(res);
+
+							if ("false" == data.success) {
+								BUI.Message.Alert("没有找到指定串号的投注记录！");
+							} else {
+
+								BUI.Message.Confirm("您选择的串号为 " + seriesNum + " 投注项的总兑奖金额为：" + data.bonus + " 元！确定要进行兑奖操作吗？", function() {
+
+									location.href = "${pageContext.request.contextPath}/footballBet!fulfilBySeriesNum.action?seriesNum=" + seriesNum;
+								}, 'question');
+
+							}
+						}
+					});
+				}
+			});
+			$('#fulfilSeries').on('click', function() {
+				dialog2.show();
+			});
+		});
+	</script>
 
 
 

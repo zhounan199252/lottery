@@ -9,33 +9,33 @@
 <link href="${pageContext.request.contextPath}/bootstrap-3.3.5/css/bootstrap.css" rel="stylesheet" />
 <script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 </head>
-<body style="background:#FFC">
+<body style="background: #FFC">
 	<div align="center">
 		<div class="row">
-		<div class="control-group" style="width: 68%">
-			<table class="table">
-				<tr>
-					<th>标题</th>
-					<th>发布时间</th>
-				</tr>
-
-				<s:iterator value="#pageModel.recordList">
+			<div class="control-group" style="width: 68%">
+				<table class="table">
 					<tr>
-						<td><a href="${pageContext.request.contextPath}/sfa.url?id=<%=SecurityHelper.encode((String)request.getAttribute("id"))%>" target="_self" style="cursor:pointer;">${title }</a>  </td>
-						<td>${publishTime}</td>
+						<th>标题</th>
+						<th>发布时间</th>
 					</tr>
-				</s:iterator>
 
-			</table>
+					<s:iterator value="#pageModel.recordList">
+						<tr>
+							<td><a href="${pageContext.request.contextPath}/sfa.url?id=<%=SecurityHelper.encode((String)request.getAttribute("id"))%>" target="_self" style="cursor: pointer;">${title }</a></td>
+							<td>${publishTime}</td>
+						</tr>
+					</s:iterator>
+
+				</table>
 
 
+			</div>
 		</div>
-	</div>
-	<div class="row" style="padding-left: 10px">
-		<div class="control-group">
-			<jsp:include page="/globle/jsp/pageView.jsp"></jsp:include>
+		<div class="row" style="padding-left: 10px">
+			<div class="control-group">
+				<jsp:include page="/globle/jsp/pageView.jsp"></jsp:include>
+			</div>
 		</div>
-	</div>
 	</div>
 </body>
 </html>

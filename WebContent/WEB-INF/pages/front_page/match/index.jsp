@@ -189,7 +189,7 @@
 			//alert($(this).css("background-color"));
 
 			if ("rgb(255, 255, 0)" == $(this).css("background-color")) {
-				$(this).css("background-color", "white");
+				$(this).css("background-color", "rgba(0,0,0,0)");
 
 				selectedItemIds.remove(id);
 			} else {
@@ -295,7 +295,7 @@
 			//alert($(this).css("background-color"));
 
 			if ("rgb(255, 255, 0)" == $(this).css("background-color")) {
-				$(this).css("background-color", "white");
+				$(this).css("background-color", "rgba(0,0,0,0)");
 
 				selectedItemIdsForBasketball.remove(id);
 			} else {
@@ -643,7 +643,7 @@
 </script>
 
 </head>
-<body style="background:#FFC">
+<body style="background: #FFC">
 	<div style="margin-left: auto; margin-right: auto; border: 1px solid red; width: 68%; height: 100%; overflow: auto;" align="center" id="main">
 		<ul class="nav nav-pills" style="width: 100%">
 			<li id="" style="" class="active for_active2" onclick="changeProject('football', 'basketball');"><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>足球竞彩</a></li>
@@ -703,7 +703,7 @@
 			</table>
 			<div style="width: 100%" id="basketball_matchData"></div>
 			<div style="border: 1px solid blue; width: 100%; min-height: 300px; overflow: auto;" id="bet_divForBasketball">
-				<div style="width: 100%">																		
+				<div style="width: 100%">
 					过关方式：<input type="radio" name="typeForBasketball" value="single" checked="checked" id="rad_singletypeForBasketball">单关&nbsp;<input type="radio" id="rad_seriestypeForBasketball" name="typeForBasketball" value="series">多串一&nbsp;&nbsp; <span style="color: red; font-size: 20px">当前投注总额：<input type="text" style="width: 100px" id="totalCountForBasketball" value="0" readonly="readonly">元
 					</span>&nbsp;&nbsp;
 					<button onclick="betSubmitForBasketball();">提交投注</button>

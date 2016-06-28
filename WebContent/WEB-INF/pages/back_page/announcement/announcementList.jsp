@@ -73,7 +73,7 @@
 							<s:textfield cssClass="control-text Wdate" name="publishTimeEnd" readonly="true" id="txt_publishTimeEnd" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(txt_publishTimeBegin)}'})"></s:textfield>
 						</div>
 					</div>
-					
+
 					<div class="control-group span8">
 						<label class="control-label">状态：</label>
 						<div class="controls">
@@ -97,8 +97,7 @@
 						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/backAnnouncement!deleteAnnouncement.action');">删除</button>
 					</label><label class="control-label">
 						<button class="button" onclick="doPublish('${pageContext.request.contextPath}/backAnnouncement!publishAnnouncement.action');">发布</button>
-					</label> 
-					<label class="control-label">
+					</label> <label class="control-label">
 						<button class="button" onclick="doUnPublish('${pageContext.request.contextPath}/backAnnouncement!unPublishAnnouncement.action');">取消发布</button>
 					</label> <label class="control-label">
 						<button class="button" onclick="doSearch();">搜索</button>
@@ -122,24 +121,18 @@
 						<s:iterator value="#pageModel.recordList">
 							<tr>
 								<td><input type="checkbox" name="ids" value="${id}"></td>
-								<td>
-									<s:if test="type == 'favor'">
+								<td><s:if test="type == 'favor'">
 										优惠活动
-									</s:if>
-									<s:else>
+									</s:if> <s:else>
 										消息公告
-									</s:else>
-								</td>
+									</s:else></td>
 								<td>${title}</td>
 								<td>${editTime}</td>
-								<td>
-									<s:if test="status == 'no'">
+								<td><s:if test="status == 'no'">
 										未发布
-									</s:if>
-									<s:else>
+									</s:if> <s:else>
 										已发布
-									</s:else>
-								</td>
+									</s:else></td>
 								<td>${publishTime}</td>
 							</tr>
 						</s:iterator>

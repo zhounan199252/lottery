@@ -81,6 +81,16 @@
 				<comment>竞彩类型（足球或篮球）</comment>
 			</column>
 		</property>
+		<property name="matchId" type="string">
+			<column name="matchId" length="20">
+				<comment>赛事id</comment>
+			</column>
+		</property>
+		<property name="isWinning" type="string">
+			<column name="isWinning" length="10">
+				<comment>是否投中</comment>
+			</column>
+		</property>
 	</class>
 
 

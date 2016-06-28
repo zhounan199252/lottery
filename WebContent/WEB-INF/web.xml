@@ -79,6 +79,10 @@
 		<listener-class>com.gzhd.web.listener.BasketballDataListener</listener-class>
 	</listener>
 	
+	<listener>
+		<listener-class>com.gzhd.web.listener.CheckMatchResultListener</listener-class>
+	</listener>
+	
 	
 	
 	<session-config>

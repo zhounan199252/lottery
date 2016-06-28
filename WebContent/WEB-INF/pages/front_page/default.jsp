@@ -19,7 +19,7 @@
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/megamenu.js"></script>
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/simpleCart.min.js"></script>
 </head>
-<body style="background:#FFC">
+<body style="background: #FFC">
 	<!-- banner -->
 	<div class="banner">
 		<div class="container">
@@ -165,7 +165,7 @@
 				<script type="text/javascript" src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery.flexisel.js"></script>
 			</div>
 			<!-- //slider -->
-			<div class="clearfix" ></div>
+			<div class="clearfix"></div>
 		</div>
 	</div>
 

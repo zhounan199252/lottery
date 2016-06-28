@@ -11,22 +11,23 @@
 <script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 
 <style type="text/css">
- .checked{
- color:white;
- background-color:red; 
- }
- 
- .span_cicle{
-border-radius: 14px;
-border:1px solid #000; 
-margin-bottom: 5px;
-}
- .span_style{
+.checked {
+	color: white;
+	background-color: red;
 }
 
+.span_cicle {
+	border-radius: 14px;
+	border: 1px solid #000;
+	margin-bottom: 5px;
+}
+
+.span_style {
+	
+}
 </style>
 
- <script>
+<script>
  $(function(){ 
     look();
     timeCount();  
@@ -232,96 +233,55 @@ margin-bottom: 5px;
 		
 	
 </script>
- 
-
- <body style="background:#FFC">
-
- <div align="center"   id="main" style="height: 100%; background:#FFC" >
 
 
-<div   id="divdlt"  style="width: 1086px;" align="left">
-<div class="panel panel panel-info"  style="width: 50%;float:right;height:200px;background:#FFC" >
-  <div class="panel-heading">最近开奖信息</div>
-  <div class="panel-body"  id="div1dlt" >
- </div>
-</div>
-<div class="panel panel panel-info"  style="width: 50%;float:right;height:200px;background:#FFC" >
-  <div class="panel-heading"   id="div2dlt"></div>
-  <div class="panel-body"    id="div3dlt" >
- </div>
- 
-</div>
+<body style="background: #FFC">
 
- <div class="panel panel panel-info"  style="width: 100%;height:741px;background:#FFC" >
-  <div class="panel-heading">购买</div>
-  <div class="panel-body" > 
-<div  class="well well-lg"  style="background:#FFC" > <div style='margin-bottom: 5px;'>选号区:</div> 
-  <div  class="well well-lg" style="background:#FFC"><div>前区:</div> 
-  <div  style="height:30px" id='select1dlt'>
-  <span onclick='check(this)' class="span_cicle">01</span> 
-  <span onclick='check(this)' class="span_cicle">02</span> 
-  <span onclick='check(this)' class="span_cicle">03</span> 
-  <span onclick='check(this)' class="span_cicle">04</span> 
-  <span onclick='check(this)' class="span_cicle">05</span> 
-  <span onclick='check(this)' class="span_cicle">06</span> 
-  <span onclick='check(this)' class="span_cicle">07</span> 
-  <span onclick='check(this)' class="span_cicle">08</span> 
-  <span onclick='check(this)' class="span_cicle">09</span> 
-  <span onclick='check(this)' class="span_cicle">10</span> 
-  <span onclick='check(this)' class="span_cicle">11</span> 
-  <span onclick='check(this)' class="span_cicle">12</span> 
-  <span onclick='check(this)' class="span_cicle">13</span> 
-  <span onclick='check(this)' class="span_cicle">14</span> 
-  <span onclick='check(this)' class="span_cicle">15</span> 
-  <span onclick='check(this)' class="span_cicle">16</span> 
-  <span onclick='check(this)' class="span_cicle">17</span> 
-  <span onclick='check(this)' class="span_cicle">18</span> 
-  <span onclick='check(this)' class="span_cicle">19</span> 
-  <span onclick='check(this)' class="span_cicle">20</span> 
-  <span onclick='check(this)' class="span_cicle">21</span> 
-  <span onclick='check(this)' class="span_cicle">22</span> 
-  <span onclick='check(this)' class="span_cicle">23</span> 
-  <span onclick='check(this)' class="span_cicle">24</span> 
-  <span onclick='check(this)' class="span_cicle">25</span> 
-  <span onclick='check(this)' class="span_cicle">26</span> 
-  <span onclick='check(this)' class="span_cicle">27</span> 
-  <span onclick='check(this)' class="span_cicle">28</span> 
-  <span onclick='check(this)' class="span_cicle">29</span> 
-  <span onclick='check(this)' class="span_cicle">30</span> 
-  <span onclick='check(this)' class="span_cicle">31</span> 
-  <span onclick='check(this)' class="span_cicle">32</span> 
-  <span onclick='check(this)' class="span_cicle">33</span> 
-  <span onclick='check(this)' class="span_cicle">34</span> 
-  <span onclick='check(this)' class="span_cicle">35</span> 
-   </div >
-  </div >
-  <div  class="well well-lg" style="background:#FFC" ><div>后区:</div> 
-  <div  style="height:30px" id='select2dlt'>
-   <span onclick='check(this)' class="span_cicle">01</span> 
-  <span onclick='check(this)' class="span_cicle">02</span> 
-  <span onclick='check(this)' class="span_cicle">03</span> 
-  <span onclick='check(this)' class="span_cicle">04</span> 
-  <span onclick='check(this)' class="span_cicle">05</span> 
-  <span onclick='check(this)' class="span_cicle">06</span> 
-  <span onclick='check(this)' class="span_cicle">07</span> 
-  <span onclick='check(this)' class="span_cicle">08</span> 
-  <span onclick='check(this)' class="span_cicle">09</span> 
-  <span onclick='check(this)' class="span_cicle">10</span> 
-  <span onclick='check(this)' class="span_cicle">11</span> 
-  <span onclick='check(this)' class="span_cicle">12</span>
-   </div > 
-  </div>
-  </div> 
-  <div  class="well well-lg" style="background:#FFC"> <div style='margin-bottom: 5px;'>操作区:</div> 
-       投注倍数<input id='quandlt'></input>   
-  <button type='button' class='btn btn-default' onclick='buy()'>购买</button>
-  </div> 
- </div>
-</div>
-</div>
+	<div align="center" id="main" style="height: 100%; background: #FFC">
 
 
-</div>
+		<div id="divdlt" style="width: 1086px;" align="left">
+			<div class="panel panel panel-info" style="width: 50%; float: right; height: 200px; background: #FFC">
+				<div class="panel-heading">最近开奖信息</div>
+				<div class="panel-body" id="div1dlt"></div>
+			</div>
+			<div class="panel panel panel-info" style="width: 50%; float: right; height: 200px; background: #FFC">
+				<div class="panel-heading" id="div2dlt"></div>
+				<div class="panel-body" id="div3dlt"></div>
+
+			</div>
+
+			<div class="panel panel panel-info" style="width: 100%; height: 741px; background: #FFC">
+				<div class="panel-heading">购买</div>
+				<div class="panel-body">
+					<div class="well well-lg" style="background: #FFC">
+						<div style='margin-bottom: 5px;'>选号区:</div>
+						<div class="well well-lg" style="background: #FFC">
+							<div>前区:</div>
+							<div style="height: 30px" id='select1dlt'>
+								<span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span> <span onclick='check(this)' class="span_cicle">11</span> <span onclick='check(this)' class="span_cicle">12</span> <span onclick='check(this)' class="span_cicle">13</span> <span onclick='check(this)' class="span_cicle">14</span> <span onclick='check(this)' class="span_cicle">15</span> <span onclick='check(this)' class="span_cicle">16</span> <span onclick='check(this)' class="span_cicle">17</span> <span
+									onclick='check(this)' class="span_cicle">18</span> <span onclick='check(this)' class="span_cicle">19</span> <span onclick='check(this)' class="span_cicle">20</span> <span onclick='check(this)' class="span_cicle">21</span> <span onclick='check(this)' class="span_cicle">22</span> <span onclick='check(this)' class="span_cicle">23</span> <span onclick='check(this)' class="span_cicle">24</span> <span onclick='check(this)' class="span_cicle">25</span> <span onclick='check(this)' class="span_cicle">26</span> <span onclick='check(this)' class="span_cicle">27</span> <span onclick='check(this)' class="span_cicle">28</span> <span onclick='check(this)' class="span_cicle">29</span> <span onclick='check(this)' class="span_cicle">30</span> <span onclick='check(this)' class="span_cicle">31</span> <span onclick='check(this)' class="span_cicle">32</span> <span onclick='check(this)' class="span_cicle">33</span> <span onclick='check(this)' class="span_cicle">34</span> <span onclick='check(this)'
+									class="span_cicle">35</span>
+							</div>
+						</div>
+						<div class="well well-lg" style="background: #FFC">
+							<div>后区:</div>
+							<div style="height: 30px" id='select2dlt'>
+								<span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span> <span onclick='check(this)' class="span_cicle">11</span> <span onclick='check(this)' class="span_cicle">12</span>
+							</div>
+						</div>
+					</div>
+					<div class="well well-lg" style="background: #FFC">
+						<div style='margin-bottom: 5px;'>操作区:</div>
+						投注倍数<input id='quandlt'></input>
+						<button type='button' class='btn btn-default' onclick='buy()'>购买</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
 
 </body>
 </html>

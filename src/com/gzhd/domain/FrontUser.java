@@ -21,6 +21,8 @@ public class FrontUser {
 	private double balance;
 	
 	private String recommender;
+	
+	private String isValid;
 
 	public String getId() {
 		return id;
@@ -100,6 +102,14 @@ public class FrontUser {
 
 	public void setRecommender(String recommender) {
 		this.recommender = recommender;
+	}
+
+	public String getIsValid() {
+		return isValid;
+	}
+
+	public void setIsValid(String isValid) {
+		this.isValid = isValid;
 	}
 	
 	

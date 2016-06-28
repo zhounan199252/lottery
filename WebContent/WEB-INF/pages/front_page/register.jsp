@@ -100,14 +100,16 @@
 	}
 </script>
 </head>
-<body style="height: 100%; overflow: auto;background:#FFC" >
+<body style="height: 100%; overflow: auto; background: #FFC">
 	<div class="reg-form">
-		<div class="container" >
-			<div class="reg" >
+		<div class="container">
+			<div class="reg">
 				<h3>注册用户</h3>
-				<p>欢迎您！请输入以下注册信息<span style="color:red">(以下信息关乎兑奖成功与否，请确保信息的真实性，谢谢)</span> </p>
+				<p>
+					欢迎您！请输入以下注册信息<span style="color: red">(以下信息关乎兑奖成功与否，请确保信息的真实性，谢谢)</span>
+				</p>
 				<form action="${pageContext.request.contextPath}/lre.url" id="form_add" method="post">
-					<ul >
+					<ul>
 						<li class="text-info">真实姓名:</li>
 						<li><input type="text" value="" style="height: 30px" name="nickname" id="txt_nickname" maxlength="20"></li>
 						<li></li>
@@ -138,10 +140,10 @@
 						<li></li>
 					</ul>
 					<ul>
-					
-						<li><input type="hidden" value="${param.id}" name="recommender" > </li>
+
+						<li><input type="hidden" value="${param.id}" name="recommender"></li>
 					</ul>
-					<input type="submit" value="注册" onclick="addSave();"> 
+					<input type="submit" value="注册" onclick="addSave();">
 				</form>
 			</div>
 		</div>

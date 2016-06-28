@@ -12,7 +12,7 @@
 
 </script>
 </head>
-<body style="background:#FFC">
+<body style="background: #FFC">
 	<div align="center">
 		<div class="row">
 			<div class="control-group" style="width: 68%">
@@ -27,7 +27,7 @@
 							<td><a href="${pageContext.request.contextPath}/san.url?id=<%=SecurityHelper.encode((String)request.getAttribute("id"))%>" target="_self" style="cursor: pointer;">${title }</a></td>
 							<td>${publishTime}</td>
 						</tr>
-					</s:iterator>    
+					</s:iterator>
 
 				</table>
 

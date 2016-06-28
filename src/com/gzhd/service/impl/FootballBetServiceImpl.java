@@ -22,40 +22,39 @@ import com.gzhd.service.itf.FootballBetService;
 import com.gzhd.util.FormatUtil;
 import com.gzhd.util.StringUtil;
 
-@Service(value=FootballBetService.BEAN_NAME)
+@Service(value = FootballBetService.BEAN_NAME)
 public class FootballBetServiceImpl implements FootballBetService {
-	
-	@Resource(name=BaseDao.BEAN_NAME)
+
+	@Resource(name = BaseDao.BEAN_NAME)
 	private BaseDao<FootballBet> baseDao;
-	
-	@Resource(name=BaseDao.BEAN_NAME)
+
+	@Resource(name = BaseDao.BEAN_NAME)
 	private BaseDao<FrontUser> frontUserDao;
 
 	@Override
 	public String addFootballBet(FootballBetModel model, String userId, String curTime) {
 
 		FrontUser frontUser = frontUserDao.get(FrontUser.class, userId);
-		
-		
+
 		double balance = frontUser.getBalance();
 		double remain = balance - model.getTotalCount();
-		
-		if(remain < 0) {   //如果余额不足
+
+		if (remain < 0) { // 如果余额不足
 			return "";
 		}
-		
+
 		String[] datas = model.getData().split("&");
-		
+
 		FootballBet footballBet = null;
-		
-		if("single".equals(model.getType())) {
-			for(String singleData : datas) {
-				
-				//33676;英格兰;威尔士;2016-06-16 20:45:00;1.42;无;胜;倍数
+
+		if ("single".equals(model.getType())) {
+			for (String singleData : datas) {
+
+				// 33676;英格兰;威尔士;2016-06-16 20:45:00;1.42;无;胜;倍数
 				String[] singleDatas = singleData.split(";");
-				
+
 				footballBet = new FootballBet();
-				
+
 				footballBet.setHomeTeam(singleDatas[1]);
 				footballBet.setAwayTeam(singleDatas[2]);
 				footballBet.setOdds(Double.parseDouble(singleDatas[4]));
@@ -69,18 +68,20 @@ public class FootballBetServiceImpl implements FootballBetService {
 				footballBet.setIsFulfil("no");
 				footballBet.setSeriesNum("无");
 				footballBet.setMatchType(singleDatas[10]);
-				
+				footballBet.setMatchId(singleDatas[0]);
+				footballBet.setIsWinning("no");
+
 				baseDao.save(footballBet);
 			}
 		} else {
 			String seriesNum = StringUtil.generateSeriesNum();
-			for(String singleData : datas) {
-				
-				//33676;英格兰;威尔士;2016-06-16 20:45:00;1.42;无;胜;倍数
+			for (String singleData : datas) {
+
+				// 33676;英格兰;威尔士;2016-06-16 20:45:00;1.42;无;胜;倍数
 				String[] singleDatas = singleData.split(";");
-				
+
 				footballBet = new FootballBet();
-				
+
 				footballBet.setHomeTeam(singleDatas[1]);
 				footballBet.setAwayTeam(singleDatas[2]);
 				footballBet.setOdds(Double.parseDouble(singleDatas[4]));
@@ -94,92 +95,91 @@ public class FootballBetServiceImpl implements FootballBetService {
 				footballBet.setSeriesNum(seriesNum);
 				footballBet.setIsFulfil("no");
 				footballBet.setMatchType(singleDatas[10]);
-				
+				footballBet.setMatchId(singleDatas[0]);
+
 				baseDao.save(footballBet);
 			}
 		}
-		
+
 		frontUser.setBalance(remain);
-		
-		frontUserDao.update(frontUser);   //更新账户余额
-		
+
+		frontUserDao.update(frontUser); // 更新账户余额
+
 		return "ok";
 	}
 
 	@Override
 	public PageModel getForPageModel(int pageNum, int pageSize, FootballBetModel model) {
 
-
 		Map<String, Object> params = new HashMap<String, Object>();
 		StringBuffer queryHql = new StringBuffer("from FootballBet b where 1=1 ");
-		
-		if(null != model.getUser() && StringUtils.isNotBlank(model.getUser().getNickname())) {
+
+		if (null != model.getUser() && StringUtils.isNotBlank(model.getUser().getNickname())) {
 			queryHql.append(" and b.user.nickname like :nickname");
 			params.put("nickname", "%%" + model.getUser().getNickname() + "%%");
 		}
-		
-		if(StringUtils.isNotBlank(model.getUserId())) {
+
+		if (StringUtils.isNotBlank(model.getUserId())) {
 			queryHql.append(" and b.user.id = :userId");
 			params.put("userId", model.getUserId());
 		}
-		
-		if(StringUtils.isNotBlank(model.getType())) {
+
+		if (StringUtils.isNotBlank(model.getType())) {
 			queryHql.append(" and b.type = :type");
 			params.put("type", model.getType());
 		}
-		
-		if(StringUtils.isNotBlank(model.getSeriesNum())) {
+
+		if (StringUtils.isNotBlank(model.getSeriesNum())) {
 			queryHql.append(" and b.seriesNum like :seriesNum");
 			params.put("seriesNum", "%%" + model.getSeriesNum() + "%%");
 		}
-		
-		if(StringUtils.isNotBlank(model.getHomeTeam())) {
+
+		if (StringUtils.isNotBlank(model.getHomeTeam())) {
 			queryHql.append(" and b.homeTeam like :homeTeam");
 			params.put("homeTeam", "%%" + model.getHomeTeam() + "%%");
 		}
-		
-		if(StringUtils.isNotBlank(model.getAwayTeam())) {
+
+		if (StringUtils.isNotBlank(model.getAwayTeam())) {
 			queryHql.append(" and b.awayTeam like :awayTeam");
 			params.put("awayTeam", "%%" + model.getAwayTeam() + "%%");
 		}
-		
-		if(StringUtils.isNotBlank(model.getIsFulfil())) {
+
+		if (StringUtils.isNotBlank(model.getIsFulfil())) {
 			queryHql.append(" and b.isFulfil like :isFulfil");
 			params.put("isFulfil", "%%" + model.getIsFulfil() + "%%");
 		}
-		
-		if(StringUtils.isNotBlank(model.getWinOrLose())) {
+
+		if (StringUtils.isNotBlank(model.getWinOrLose())) {
 			queryHql.append(" and b.winOrLose like :winOrLose");
 			params.put("winOrLose", "%%" + model.getWinOrLose() + "%%");
 		}
-		
-		
-		if(StringUtils.isNotBlank(model.getBetTimeBegin())) {
+
+		if (StringUtils.isNotBlank(model.getBetTimeBegin())) {
 			queryHql.append(" and b.betTime >= :betTimeBegin");
 			params.put("betTimeBegin", model.getBetTimeBegin());
 		}
-		
-		if(StringUtils.isNotBlank(model.getBetTimeEnd())) {
+
+		if (StringUtils.isNotBlank(model.getBetTimeEnd())) {
 			queryHql.append(" and b.betTime <= :betTimeEnd");
 			params.put("betTimeEnd", model.getBetTimeEnd());
 		}
-		
-		if(StringUtils.isNotBlank(model.getMatchTimeBegin())) {
+
+		if (StringUtils.isNotBlank(model.getMatchTimeBegin())) {
 			queryHql.append(" and b.matchTime >= :matchTimeBegin");
 			params.put("matchTimeBegin", model.getMatchTimeBegin());
 		}
-		
-		if(StringUtils.isNotBlank(model.getMatchTimeEnd())) {
+
+		if (StringUtils.isNotBlank(model.getMatchTimeEnd())) {
 			queryHql.append(" and b.matchTime <= :matchTimeEnd");
 			params.put("matchTimeEnd", model.getMatchTimeEnd());
 		}
-		
-		if(StringUtils.isNotBlank(model.getMatchType())) {
+
+		if (StringUtils.isNotBlank(model.getMatchType())) {
 			queryHql.append(" and b.matchType = :matchType");
 			params.put("matchType", model.getMatchType());
 		}
 
-		queryHql.append(" order by b.isFulfil asc, b.betTime desc"); // 
+		queryHql.append(" order by b.isFulfil asc, b.betTime desc"); //
 
 		List<FootballBet> list = baseDao.find(queryHql.toString(), params, pageNum, pageSize);
 
@@ -200,28 +200,28 @@ public class FootballBetServiceImpl implements FootballBetService {
 	public void deleteFootballBet(String id) {
 
 		String[] ids = id.split(",");
-		
-		for(String sigleId : ids) {
+
+		for (String sigleId : ids) {
 			FootballBet footballBet = baseDao.get(FootballBet.class, sigleId);
 
 			baseDao.delete(footballBet);
 		}
-		
+
 	}
 
 	@Override
 	public void updateFulfilStatus(String id) {
 
 		String[] ids = id.split(",");
-		
-		for(String sigleId : ids) {
+
+		for (String sigleId : ids) {
 			FootballBet footballBet = baseDao.get(FootballBet.class, sigleId);
-			
+
 			footballBet.setIsFulfil("yes");
 
 			baseDao.update(footballBet);
 		}
-		
+
 	}
 
 	@Override
@@ -229,24 +229,24 @@ public class FootballBetServiceImpl implements FootballBetService {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("seriesNum", seriesNum);
-		
+
 		List<FootballBet> list = baseDao.find("from FootballBet b where b.seriesNum = :seriesNum", params);
-		
+
 		double bonus = 0;
-		
-		if(null == list || list.size() == 0) {
+
+		if (null == list || list.size() == 0) {
 			return bonus;
 		}
-		
+
 		double totalOdds = 1;
 		int multiple = 0;
-		
-		for(FootballBet bean : list) {
+
+		for (FootballBet bean : list) {
 			double odds = bean.getOdds();
 			totalOdds = totalOdds * odds;
 			multiple = bean.getMultiple();
 		}
-	
+
 		bonus = totalOdds * 2 * multiple;
 		return bonus;
 	}
@@ -255,47 +255,105 @@ public class FootballBetServiceImpl implements FootballBetService {
 	public void updateFulfilBySeriesNum(String seriesNum) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("seriesNum", seriesNum);
-		
+
 		List<FootballBet> list = baseDao.find("from FootballBet b where b.seriesNum = :seriesNum", params);
-		
-		for(FootballBet bean : list) {
-			
+
+		for (FootballBet bean : list) {
+
 			bean.setIsFulfil("yes");
-			
+
 			baseDao.update(bean);
 		}
 	}
 
-	
+	@Override
+	public List<FootballBetModel> getNotFulfilFootballBet() {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("isWinning", "no");
+
+		List<FootballBet> list = baseDao.find("from FootballBet b where b.isWinning = :isWinning", params);
+
+		List<FootballBetModel> modelList = new ArrayList<FootballBetModel>();
+
+		FootballBetModel model = null;
+
+		for (FootballBet bean : list) {
+			model = new FootballBetModel();
+
+			BeanUtils.copyProperties(bean, model);
+
+			modelList.add(model);
+
+		}
+
+		return modelList;
+	}
+
+	@Override
+	public List<FootballBetModel> getFootballBetBySeriesNum(String seriesNum) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("seriesNum", seriesNum);
+
+		List<FootballBet> list = baseDao.find("from FootballBet b where b.seriesNum = :seriesNum", params);
+
+		List<FootballBetModel> modelList = new ArrayList<FootballBetModel>();
+
+		FootballBetModel model = null;
+
+		for (FootballBet bean : list) {
+			model = new FootballBetModel();
+
+			BeanUtils.copyProperties(bean, model);
+
+			modelList.add(model);
+		}
+
+		return modelList;
+	}
+
+	@Override
+	public void updateFootballBetWinningBySeriesNum(String isWinning, String seriesNum) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("seriesNum", seriesNum);
+
+		List<FootballBet> list = baseDao.find("from FootballBet b where b.seriesNum = :seriesNum", params);
+
+		if ("true" == isWinning) {
+
+			for (FootballBet bean : list) {
+
+				bean.setIsWinning("true");
+
+				baseDao.update(bean);
+			}
+		} else {
+			for (FootballBet bean : list) {
+
+				bean.setIsWinning("false");
+				bean.setIsFulfil("yes");
+
+				baseDao.update(bean);
+			}
+
+		}
+
+	}
+
+	@Override
+	public void updateFootballBetWinningById(String isWinning, String id) {
+
+		FootballBet bean = baseDao.get(FootballBet.class, id);
+
+		if ("true".equals(isWinning)) {
+			bean.setIsWinning("true");
+		} else {
+			bean.setIsWinning("false");
+			bean.setIsFulfil("yes");
+		}
+
+		baseDao.update(bean);
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

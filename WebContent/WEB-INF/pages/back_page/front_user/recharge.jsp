@@ -44,37 +44,37 @@
 </script>
 </head>
 <body>
-	<div style="width: 90%;padding: 12px 0 0 12px">
-	<h2>前台用户管理--账户充值</h2>
-	
+	<div style="width: 90%; padding: 12px 0 0 12px">
+		<h2>前台用户管理--账户充值</h2>
+
 		<s:form action="frontUser!recharge.action" id="form_recharge">
-		<s:hidden name="id"></s:hidden>
-		<table class="table table-striped">
-			<tr>
-				<th style="width: 20%">姓名</th>
-				<td style="width: 20%"><s:textfield name="nickname" id="txt_nickname" cssClass="control-text" maxLength="20" readonly="true"></s:textfield></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th>用户名</th>
-				<td><s:textfield name="username" id="txt_username" cssClass="control-text"  maxLength="20" readonly="true"></s:textfield></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th>金额</th>
-				<td><s:textfield name="balance" id="txt_balance" cssClass="control-text"  maxLength="20" value=""></s:textfield></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th>
-					<button type="submit" class="button button-primary" onclick="rechargeSave();">保存</button>
-					<button type="reset" class="button" onclick="goBack();">取消</button>
-				</th>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
-	</s:form>
+			<s:hidden name="id"></s:hidden>
+			<table class="table table-striped">
+				<tr>
+					<th style="width: 20%">姓名</th>
+					<td style="width: 20%"><s:textfield name="nickname" id="txt_nickname" cssClass="control-text" maxLength="20" readonly="true"></s:textfield></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>用户名</th>
+					<td><s:textfield name="username" id="txt_username" cssClass="control-text" maxLength="20" readonly="true"></s:textfield></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>金额</th>
+					<td><s:textfield name="balance" id="txt_balance" cssClass="control-text" maxLength="20" value=""></s:textfield></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>
+						<button type="submit" class="button button-primary" onclick="rechargeSave();">保存</button>
+						<button type="reset" class="button" onclick="goBack();">取消</button>
+					</th>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</s:form>
 	</div>
 
 

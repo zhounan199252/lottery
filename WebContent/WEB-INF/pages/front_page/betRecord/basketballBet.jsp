@@ -8,7 +8,7 @@
 <title></title>
 
 </head>
-<body style="background:#FFC">
+<body style="background: #FFC">
 
 	<div class="container" style="padding: 20px 0 0 30px; width: 100%">
 		<div class="row" style="width: 100%;">
@@ -108,6 +108,7 @@
 							<th style="width: 8%">倍数</th>
 							<th style="width: 8%">让分</th>
 
+							<th style="width: 10%">是否投中</th>
 							<th style="width: 10%">是否已兑奖</th>
 						</tr>
 
@@ -127,6 +128,17 @@
 								<td id="${id}_odds">${odds}</td>
 								<td id="${id}_multiple">${multiple}</td>
 								<td>${rangQiu}</td>
+								<td>
+									<s:if test="isWinning == 'no'">
+										未开奖
+									</s:if> 
+									<s:elseif test="isWinning == 'true'">
+										<span style="color: red">投中</span>
+									</s:elseif>
+									<s:else>
+										未投中
+									</s:else>
+								</td>
 								<td><s:if test="isFulfil == 'yes'">
 										已兑奖
 									</s:if> <s:else>
@@ -146,7 +158,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 </body>
 </html>

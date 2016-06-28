@@ -67,6 +67,7 @@
 						getSingleFavor,listBackBetMessage,toMatchIndex,getSingleFavor,
 						toHighFrequency,toGd11x5,toSsq,toDlt,toCqssc,toBjpk10,listBackBetMessage,deleteById,updateBetMessage,bankRecharge,myBetRecord,,toTtxy,toJpzy,toAqzd,toLmhz,
 						listFootballBet,doFulfil,deleteFootballBet,countBonusBySeriesNum,fulfilBySeriesNum,listBasketballBet,doFulfilForBasketball,deleteBasketballBet,fulfilBySeriesNumForBasketball,
+						changeStatusToEnable,changeStatusToDisable
 
 
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->

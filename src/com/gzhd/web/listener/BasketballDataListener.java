@@ -15,8 +15,15 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.gzhd.model.MatchResultModel;
+import com.gzhd.service.itf.MatchResultService;
 import com.gzhd.util.StringUtil;
 import com.gzhd.util.TimeUtil;
 
@@ -33,6 +40,9 @@ public class BasketballDataListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 
 		final ServletContext application = sce.getServletContext();
+		
+		ApplicationContext ac = WebApplicationContextUtils.getWebApplicationContext(application);
+		final MatchResultService matchResultService = (MatchResultService) ac.getBean(MatchResultService.BEAN_NAME);
 
 		Timer timer = new Timer();
 
@@ -40,16 +50,16 @@ public class BasketballDataListener implements ServletContextListener {
 
 			@Override
 			public void run() {
-				getBasketballData(application);
+				getBasketballData(application, matchResultService);
 			}
-		}, 2000, 1000 * 60 * 10);
+		}, 20000, 1000 * 60 * 10);
 	}
 
 	/**
 	 * @param 获取篮球
 	 *            上一天，当天，后一天的赛事数据
 	 */
-	private void getBasketballData(ServletContext application) {
+	private void getBasketballData(ServletContext application, MatchResultService matchResultService) {
 
 		String dataUrl = "http://api.caipiaokong.com/live/?name=jclq&format=json&uid=420845&token=4d5aa35ebeb48e7d3e4c8f7e16e1c7942c4cebee&phase=";
 
@@ -78,7 +88,58 @@ public class BasketballDataListener implements ServletContextListener {
 
 				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
 				application.setAttribute("currentDayBasketballData", json);
-				//logger.info("json1:" + json);
+				// logger.info("json1:" + json);
+
+				JSONArray jsonArray = JSONArray.parseArray(json);
+
+				MatchResultModel model = null;
+				for (int i = 0; i < jsonArray.size(); i++) {
+
+					JSONObject currentObj = jsonArray.getJSONObject(i);
+
+					if (StringUtils.isNotBlank(currentObj.getString("final_score"))) {
+						if (!matchResultService.checkResultIsExistByMatchId(currentObj.getString("id"))) {
+							model = new MatchResultModel();
+
+							String score = currentObj.getString("final_score");
+							String handicapString = currentObj.getString("handicap");
+
+							model.setMatchId(currentObj.getString("id"));
+							model.setMatchTime(currentObj.getString("match_date"));
+							model.setResult(score);
+							model.setType("basketball");
+
+							String[] scores = score.split(":");
+
+							StringBuilder sb = new StringBuilder();
+
+							float homeScore = Float.parseFloat(scores[0]); // 主队分数
+							float awayScore = Float.parseFloat(scores[1]); // 客队分数
+							float handicap = Float.parseFloat(handicapString);
+
+							if (homeScore > awayScore) {
+								sb.append("胜;");
+							} else if (homeScore == awayScore) {
+								sb.append("平;");
+							} else if (homeScore < awayScore) {
+								sb.append("负;");
+							}
+
+							if (homeScore + handicap > awayScore) {
+								sb.append("让分胜");
+							} else if (homeScore + handicap == awayScore) {
+								sb.append("让分平");
+							} else if (homeScore + handicap < awayScore) {
+								sb.append("让分负");
+							}
+
+							String winOrLose = sb.toString();
+							model.setWinOrLose(winOrLose);
+
+							matchResultService.addMatchResult(model); // 把结果保存到数据库
+						}
+					}
+				}
 			}
 			Thread.sleep(5000); // 先睡眠5秒，否则接口网站会认为恶意操作
 			// ==========================================
@@ -98,7 +159,58 @@ public class BasketballDataListener implements ServletContextListener {
 
 				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
 				application.setAttribute("nextDayBasketballData", json);
-				//logger.info("json2:" + json);
+				// logger.info("json2:" + json);
+
+				JSONArray jsonArray = JSONArray.parseArray(json);
+
+				MatchResultModel model = null;
+				for (int i = 0; i < jsonArray.size(); i++) {
+
+					JSONObject currentObj = jsonArray.getJSONObject(i);
+
+					if (StringUtils.isNotBlank(currentObj.getString("final_score"))) {
+						if (!matchResultService.checkResultIsExistByMatchId(currentObj.getString("id"))) {
+							model = new MatchResultModel();
+
+							String score = currentObj.getString("final_score");
+							String handicapString = currentObj.getString("handicap");
+
+							model.setMatchId(currentObj.getString("id"));
+							model.setMatchTime(currentObj.getString("match_date"));
+							model.setResult(score);
+							model.setType("basketball");
+
+							String[] scores = score.split(":");
+
+							StringBuilder sb = new StringBuilder();
+
+							float homeScore = Float.parseFloat(scores[0]); // 主队分数
+							float awayScore = Float.parseFloat(scores[1]); // 客队分数
+							float handicap = Float.parseFloat(handicapString);
+
+							if (homeScore > awayScore) {
+								sb.append("胜;");
+							} else if (homeScore == awayScore) {
+								sb.append("平;");
+							} else if (homeScore < awayScore) {
+								sb.append("负;");
+							}
+
+							if (homeScore + handicap > awayScore) {
+								sb.append("让分胜");
+							} else if (homeScore + handicap == awayScore) {
+								sb.append("让分平");
+							} else if (homeScore + handicap < awayScore) {
+								sb.append("让分负");
+							}
+
+							String winOrLose = sb.toString();
+							model.setWinOrLose(winOrLose);
+
+							matchResultService.addMatchResult(model); // 把结果保存到数据库
+						}
+					}
+				}
 			}
 			Thread.sleep(5000);
 			// ==========================================
@@ -118,9 +230,9 @@ public class BasketballDataListener implements ServletContextListener {
 			if (response.toString().length() > 100) {
 				json = response.toString().replaceAll("\"0\"", "\"t0\"").replaceAll("\"1\"", "\"t1\"").replaceAll("\"3\"", "\"t3\"");
 				application.setAttribute("next2DayBasketballData", json);
-				//logger.info("json3:" + json);
+				// logger.info("json3:" + json);
 			}
-			
+
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (ProtocolException e) {

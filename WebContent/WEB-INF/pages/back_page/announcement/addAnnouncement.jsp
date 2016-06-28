@@ -36,42 +36,37 @@
 </script>
 </head>
 <body>
-	<div style="width: 90%;padding: 12px 0 0 12px">
-	<h2>消息公告--添加公告</h2>
-	
+	<div style="width: 90%; padding: 12px 0 0 12px">
+		<h2>消息公告--添加公告</h2>
+
 		<s:form action="backAnnouncement!addAnnouncement.action" id="form_add">
-		<table class="table table-striped">
-			<tr>
-				<th style="width: 16%">类型</th>
-				<td style="width: 80%">
-					<s:select list="#{'announcement':'消息公告', 'favor':'优惠活动'}" listKey="key" listValue="value" headerKey="" headerValue="--请选择--" name="type" id="sel_type"></s:select>
-				</td>
-				<td></td>
-			</tr>
-			<tr>
-				<th style="width: 16%">标题</th>
-				<td style="width: 80%"><s:textfield name="title" id="txt_title" cssClass="control-text" maxLength="20"></s:textfield></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th>内容</th>
-				<td>
-					<s:textarea name="content" id="txt_content"></s:textarea>
-				</td>
-				<td></td>
-			</tr>
-			
-			<tr>
-				<th>
-				</th>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
-	</s:form>
-	
-	<button class="button button-primary" onclick="addSave();">保存</button>
-	<button class="button" onclick="goBack();">取消</button>
+			<table class="table table-striped">
+				<tr>
+					<th style="width: 16%">类型</th>
+					<td style="width: 80%"><s:select list="#{'announcement':'消息公告', 'favor':'优惠活动'}" listKey="key" listValue="value" headerKey="" headerValue="--请选择--" name="type" id="sel_type"></s:select></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th style="width: 16%">标题</th>
+					<td style="width: 80%"><s:textfield name="title" id="txt_title" cssClass="control-text" maxLength="20"></s:textfield></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>内容</th>
+					<td><s:textarea name="content" id="txt_content"></s:textarea></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<th></th>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</s:form>
+
+		<button class="button button-primary" onclick="addSave();">保存</button>
+		<button class="button" onclick="goBack();">取消</button>
 	</div>
 
 	<script type="text/javascript">

@@ -72,7 +72,7 @@
 	}
 </script>
 </head>
-<body style="background:#FFC">
+<body style="background: #FFC">
 	<div style="width: 68%; padding: 12px 0 0 15%" align="center">
 		<s:form action="/cp.url" id="form_changePassword">
 			<table class="table">

@@ -72,20 +72,20 @@ function recharge() {
 
 </script>
 </head>
-<body style="background:#FFC">
-<div   align="center" >
-   <table class="table" style="width: 50%" >
+<body style="background: #FFC">
+	<div align="center">
+		<table class="table" style="width: 50%">
 			<tr>
 				<th>用户名</th>
-				<td >${sessionScope.frontCurrentLoginUser.nickname}</td>
+				<td>${sessionScope.frontCurrentLoginUser.nickname}</td>
 				<td></td>
 			</tr>
 			<tr>
 				<th>金额</th>
-				<td><s:textfield name="balance" id="txt_balance" cssClass="control-text"  maxLength="20" value=""></s:textfield></td>
+				<td><s:textfield name="balance" id="txt_balance" cssClass="control-text" maxLength="20" value=""></s:textfield></td>
 				<td></td>
 			</tr>
-				<tr>
+			<tr>
 				<th>银行名</th>
 				<td><s:select list="#{'1100':'工商银行', '1101':'农业银行', '1106':'建设银行', '1102':'招商银行',
 				                      '1103':'兴业银行', '1104':'中信银行', '1107':'中国银行', '1108':'交通银行',
@@ -102,24 +102,20 @@ function recharge() {
 				<td></td>
 				<td></td>
 			</tr>
-	 </table>
-	 
-	   <div   align="center" > ${requestScope.bankRecharge} </div>
-	   
-	   <div  style="width: 50%" align="left" >
-                       充值须知：<br>
-                      最低存款为￥100人民币，最高存款无限制。 未开通网银的会员，请您去银行柜台办理。 如有任何问题，请24小时线上客服!<br>
+		</table>
 
-                       为了防止会员支付密码泄露和资金安全问题天天现金网只支持第三方网银转账充值存款方式，目前提供23个网银在线支付，中国工商银行、中国农业银行、中国建设银行，中国邮政银行，信业银行，民生银行，上海银行，等等以下银行可选择 
-                      ，也支持信用卡转账充值存款方式，支持15种信用卡转账充值方式，您选择方便的转帐方式转帐完成后，在页面下方填写您的汇款金额，转账支付成功，额度将立即自动加入您的天天现金网会员帐户，十分钟之内金额没有到平台帐户，请即时联系天天在线客服
-      </div>
-	   
-</div>
+		<div align="center">${requestScope.bankRecharge}</div>
 
-<form  style="display:none;" action="https://newpay.ips.com.cn/psfp-entry/gateway/payment.do" method="post" id="paymoney"> 
-<input name="pGateWayReq" value=""   id="pay"/>
-</form> 
- 
+		<div style="width: 50%" align="left">
+			充值须知：<br> 最低存款为￥100人民币，最高存款无限制。 未开通网银的会员，请您去银行柜台办理。 如有任何问题，请24小时线上客服!<br> 为了防止会员支付密码泄露和资金安全问题天天现金网只支持第三方网银转账充值存款方式，目前提供23个网银在线支付，中国工商银行、中国农业银行、中国建设银行，中国邮政银行，信业银行，民生银行，上海银行，等等以下银行可选择 ，也支持信用卡转账充值存款方式，支持15种信用卡转账充值方式，您选择方便的转帐方式转帐完成后，在页面下方填写您的汇款金额，转账支付成功，额度将立即自动加入您的天天现金网会员帐户，十分钟之内金额没有到平台帐户，请即时联系天天在线客服
+		</div>
+
+	</div>
+
+	<form style="display: none;" action="https://newpay.ips.com.cn/psfp-entry/gateway/payment.do" method="post" id="paymoney">
+		<input name="pGateWayReq" value="" id="pay" />
+	</form>
+
 
 
 </body>

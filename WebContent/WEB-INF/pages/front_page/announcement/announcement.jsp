@@ -8,11 +8,9 @@
 <title>Insert title here</title>
 
 </head>
-<body style="background:#FFC">
+<body style="background: #FFC">
 	<div align="center">
-		<div align="left" style="font-size: 20px; padding-left: 16%">
-			当前位置：消息公告>>${requestScope.announcement.title}
-		</div>
+		<div align="left" style="font-size: 20px; padding-left: 16%">当前位置：消息公告>>${requestScope.announcement.title}</div>
 		<div style="width: 68%; overflow: auto">
 			<h1>标题：${requestScope.announcement.title}</h1>
 			<br>
