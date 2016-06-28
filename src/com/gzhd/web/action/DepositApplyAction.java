@@ -18,6 +18,7 @@ import com.opensymphony.xwork2.ActionContext;
 
 @Action(value = "depositApply", results = {
 		@Result(name = "list", location = "/WEB-INF/pages/highFrequency/depositHandle.jsp"),
+		@Result(name = "tolist", location = "depositApply!listDepositMessage.action", type = "redirectAction"),
 		@Result(name = "myCount",location = "frontUser!myCount.action", type = "redirectAction") })
 @Scope("prototype")
 public class DepositApplyAction extends BaseAction<DepositApplyModel> {
@@ -53,7 +54,7 @@ public class DepositApplyAction extends BaseAction<DepositApplyModel> {
 		}	
 		
 		
-		return null;
+		return "tolist";
 		
 	}
 	

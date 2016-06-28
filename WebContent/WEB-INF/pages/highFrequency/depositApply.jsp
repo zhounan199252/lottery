@@ -13,12 +13,14 @@
 <script type="text/javascript">
 
 
-function addSave() {
+function add() {
 	  var re = /^[0-9]+[.]?[0-9]*]*$/ ;
       if(!re.test($("#money").val())){
   	   alert("不是数字") ;return;
+       }else{
+    	 $("#form_add").submit();  
        }
-	$("#form_add").submit();
+	
 }
 	
 
@@ -46,7 +48,7 @@ function addSave() {
 			</tr>				
 			<tr>
 				<th>
-					<button type="submit" class="button button-primary" onclick="addSave();">保存</button>
+					<button type="submit" class="button button-primary" onclick="add();">保存</button>
 					<button type="reset" class="button" onclick="goBack();">取消</button>
 				</th>
 				<td></td>
