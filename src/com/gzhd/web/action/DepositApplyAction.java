@@ -2,6 +2,8 @@ package com.gzhd.web.action;
 
 
 
+import java.math.BigDecimal;
+
 import javax.annotation.Resource;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -10,15 +12,18 @@ import org.springframework.context.annotation.Scope;
 
 import com.gzhd.common.ConstantValues;
 import com.gzhd.model.DepositApplyModel;
+import com.gzhd.model.FrontUserModel;
 import com.gzhd.model.PageModel;
 import com.gzhd.service.itf.DepositApplyService;
+import com.gzhd.service.itf.FrontUserService;
 import com.gzhd.util.TimeUtil;
 import com.opensymphony.xwork2.ActionContext;
 
 
 @Action(value = "depositApply", results = {
 		@Result(name = "list", location = "/WEB-INF/pages/highFrequency/depositHandle.jsp"),
-		@Result(name = "myCount",location = "frontUser!myCount.action", type = "redirectAction") })
+		@Result(name = "tolist", location = "depositApply!listDepositMessage.action", type = "redirectAction"),
+		@Result(name = "toDefault", location = "/WEB-INF/pages/front_page/default.jsp")})
 @Scope("prototype")
 public class DepositApplyAction extends BaseAction<DepositApplyModel> {
 
@@ -30,7 +35,8 @@ public class DepositApplyAction extends BaseAction<DepositApplyModel> {
 	
 	@Resource(name = DepositApplyService.BEAN_NAME)
 	private DepositApplyService depositApplyService;
-	
+	@Resource(name = FrontUserService.BEAN_NAME)
+	private FrontUserService frontUserService;
 	
 	
 	
@@ -38,22 +44,42 @@ public class DepositApplyAction extends BaseAction<DepositApplyModel> {
 		model.setStatus("待处理");
 		model.setApplyTime(TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss"));
 		depositApplyService.addDepositApply(model);
-		return "myCount";
+		return "toDefault";
 		
 	}
 	
 	
 	public String updateDepositApply() {
 		String[] ids = model.getId().split(",");
-		for (String sigleId : ids) {
-			model.setId(sigleId);
-			model.setStatus("已处理");
-			model.setHandletime(TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss"));
-			depositApplyService.updateDepositApply(model);
+		for (String sigleId : ids) {			
+			DepositApplyModel depositApplyModel=depositApplyService.get(sigleId);
+			if(depositApplyModel.getMoney()!=null){
+				FrontUserModel frontUserModel = frontUserService.getUserById(depositApplyModel.getUserId());
+				if (frontUserModel.getId()!=null&&!depositApplyModel.getStatus().equals("已处理")) {					
+					double yue = frontUserModel.getBalance();
+					BigDecimal   b   =   new   BigDecimal(Double.valueOf(depositApplyModel.getMoney()));
+					 double   f1   =   b.setScale(2,   BigDecimal.ROUND_HALF_UP).doubleValue();
+					model.setId(sigleId);
+					if (yue >= f1) {
+							frontUserModel.setBalance(f1*-1);
+							frontUserService.updateUserBalanceById(frontUserModel);	
+							model.setStatus("已处理");
+							
+					} else {
+						   model.setStatus("余额不足");
+					}
+					model.setHandletime(TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss"));
+					depositApplyService.updateDepositApply(model);
+
+				
+	            }
+			}
+			
+		
 		}	
 		
 		
-		return null;
+		return "tolist";
 		
 	}
 	

@@ -4,6 +4,7 @@ public class DepositApplyModel {
 	
 	private String id;
 	private String   userId;  //申请人
+	private String   userName;  //申请人
 	private String   money;  //金额
 	private String   bankNum;  //银行卡号
 	private String   applyTime;   //申请时间
@@ -59,6 +60,12 @@ public class DepositApplyModel {
 	}
 	public void setPageNum(int pageNum) {
 		this.pageNum = pageNum;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	

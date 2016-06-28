@@ -76,10 +76,6 @@ function recharge() {
 	<div align="center">
 		<table class="table" style="width: 50%">
 			<tr>
-
-				<th>用户名</th>
-				<td>${sessionScope.frontCurrentLoginUser.nickname}</td>
-
 				<th>姓名</th>
 				<td >${sessionScope.frontCurrentLoginUser.nickname}</td>
 
@@ -109,13 +105,6 @@ function recharge() {
 			</tr>
 
 		</table>
-
-	   
-	   <div  style="width: 50%" align="left" >
-                       充值须知：<br>
-                      最低存款为￥100人民币，最高存款无限制。 未开通网银的会员，请您去银行柜台办理。 如有任何问题，请24小时线上客服!<br>
-
-		<div align="center">${requestScope.bankRecharge}</div>
 
 		<div style="width: 50%" align="left">
 			充值须知：<br> 最低存款为￥100人民币，最高存款无限制。 未开通网银的会员，请您去银行柜台办理。 如有任何问题，请24小时线上客服!<br> 为了防止会员支付密码泄露和资金安全问题天天现金网只支持第三方网银转账充值存款方式，目前提供23个网银在线支付，中国工商银行、中国农业银行、中国建设银行，中国邮政银行，信业银行，民生银行，上海银行，等等以下银行可选择 ，也支持信用卡转账充值存款方式，支持15种信用卡转账充值方式，您选择方便的转帐方式转帐完成后，在页面下方填写您的汇款金额，转账支付成功，额度将立即自动加入您的天天现金网会员帐户，十分钟之内金额没有到平台帐户，请即时联系天天在线客服

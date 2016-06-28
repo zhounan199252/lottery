@@ -26,6 +26,12 @@ public interface DepositApplyService {
 	
 	/**
 	 * 
+	 *根据id获取信息
+	 */
+	public DepositApplyModel get(String id);
+	
+	/**
+	 * 
 	 *分页获取
 	 */
 	public PageModel getForPageModel(int pageNum, int pageSize,DepositApplyModel model);

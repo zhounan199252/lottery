@@ -12,16 +12,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import com.gzhd.dao.itf.BaseDao;
-import com.gzhd.domain.BetMessage;
 import com.gzhd.domain.DepositApply;
-
-import com.gzhd.model.BetMessageModel;
 import com.gzhd.model.DepositApplyModel;
 import com.gzhd.model.FrontUserModel;
 import com.gzhd.model.PageModel;
 import com.gzhd.service.itf.DepositApplyService;
 import com.gzhd.service.itf.FrontUserService;
-import com.gzhd.util.TimeUtil;
+
 
 @Service(DepositApplyService.BEAN_NAME)
 public class DepositApplyServiceImpl implements DepositApplyService {
@@ -48,7 +45,7 @@ public class DepositApplyServiceImpl implements DepositApplyService {
 	@Override
 	public String updateDepositApply(DepositApplyModel model) {
 			DepositApply depositApply = baseDao.get(DepositApply.class, model.getId());
-			BeanUtils.copyProperties(model, depositApply, new String[]{"userId", " money", "bankNum", "applyTime"});
+			BeanUtils.copyProperties(model, depositApply, new String[]{"userId", "money", "bankNum", "applyTime"});
 			baseDao.save(depositApply);	
 		return null;
 	}
@@ -62,8 +59,8 @@ public class DepositApplyServiceImpl implements DepositApplyService {
 				"from DepositApply a where 1=1 ");
 
 	
-		if (StringUtils.isNotBlank(model.getUserId())) {
-			String userId= frontUserService.getIdByFrontUsername(model.getUserId());
+		if (StringUtils.isNotBlank(model.getUserName())) {
+			String userId= frontUserService.getIdByFrontUsername(model.getUserName());
 			if (StringUtils.isNotBlank(userId)) {
 				model.setUserId(userId);
 			}else{
@@ -77,7 +74,7 @@ public class DepositApplyServiceImpl implements DepositApplyService {
 			params.put("userId", model.getUserId());
 		}
 	
-		queryHql.append(" order by a.betDate desc");
+		queryHql.append(" order by a.applyTime desc");
 
 		List<DepositApply> list = baseDao.find(queryHql.toString(), params,
 				pageNum, pageSize);
@@ -91,9 +88,9 @@ public class DepositApplyServiceImpl implements DepositApplyService {
 			FrontUserModel frontUserModel = frontUserService
 					.getUserById(depositApplyModel.getUserId());
 			if (frontUserModel.getUsername() != null) {
-				depositApplyModel.setUserId(frontUserModel.getUsername());
+				depositApplyModel.setUserName(frontUserModel.getUsername());
 			} else {
-				depositApplyModel.setUserId("");
+				depositApplyModel.setUserName("");
 			}
 
 			modelList.add(depositApplyModel);
@@ -104,6 +101,18 @@ public class DepositApplyServiceImpl implements DepositApplyService {
 		int allRows = baseDao.count(countHql.toString(), params).intValue();
 
 		return new PageModel(pageNum, pageSize, modelList, allRows);
+	}
+
+	@Override
+	public DepositApplyModel get(String id) {
+		DepositApply depositApply=baseDao.get(DepositApply.class, id);
+		
+		 DepositApplyModel depositApplyModel = new DepositApplyModel();
+		 if(depositApply!=null){
+			 BeanUtils.copyProperties(depositApply, depositApplyModel); 
+		 }
+			
+		return depositApplyModel;
 	}
 
 

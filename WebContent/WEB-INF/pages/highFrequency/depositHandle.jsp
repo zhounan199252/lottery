@@ -16,7 +16,7 @@
 					<div class="control-group span8">
 						<label class="control-label">申请人：</label>
 						<div class="controls">
-							<s:textfield cssClass="control-text" name="userId"></s:textfield>
+							<s:textfield cssClass="control-text" name="UserName"></s:textfield>
 						</div>
 					</div>
 
@@ -35,11 +35,8 @@
 						<label class="control-label">
 							<button class="button" onclick="doClear();">清空</button>
 						</label>
-						<label class="control-label">
-						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/deleteBetM.url');">删除</button>
-					   </label> 
 					   <label class="control-label">
-						<button class="button" onclick="doChange('${pageContext.request.contextPath}/depositApply!updateDepositApply.action');">兑奖</button>
+						<button class="button" onclick="doUpdate('${pageContext.request.contextPath}/depositApply!updateDepositApply.action');">处理</button>
 					  </label> 
 				</div>
 			</div>
@@ -51,14 +48,16 @@
 							<th>申请人</th>
 							<th>金额</th>
 							<th>银行卡号</th>
+							<th>状态</th>
 						</tr>
 
 						<s:iterator value="#pageModel.recordList">
 							<tr>
 								<td><input type="checkbox" name="ids" value="${id}"></td>
-								<td>${userId}</td>
+								<td>${UserName}</td>
 								<td>${money}</td>
 								<td>${bankNum}</td>
+								<td>${status}</td>
 							</tr>
 						</s:iterator>
 
