@@ -343,7 +343,13 @@ margin-right: 10px;
 
 <body style="background: #FFC">
 	<div align="center" id="main" style="height: 100%; overflow: auto;">
-
+        	<ul class="nav nav-pills" style="width: 1086px;">
+			<li><a href="gdx.url">广东11选5</a></li>
+			<li><a href="ssq.url">双色球</a></li>
+			<li><a href="dlt.url">大乐透</a></li>
+			<li><a href="cqssc.url">重庆时时彩</a></li>
+			<li><a href="bjpk.url">北京pk10</a></li>
+		</ul>
 		<div id="divgd11x5" style="width: 1086px" align="left">
 
 			<div class="panel panel panel-info" style="width: 50%; height: 200px; float: right; background: #FFC">
