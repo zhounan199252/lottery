@@ -77,7 +77,7 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 					json.addProperty("message", "账户尚未通过审核，请耐心等待！");
 				} else {
 					json.addProperty("success", true);
-					json.addProperty("object", "index.jsp");
+					json.addProperty("object", "/");
 
 					// 若用户已经登陆，则移除登陆信息
 					if (null != ActionContext.getContext().getSession().get(ConstantValues.FRONT_CURRENT_USER_LOGIN)) {
@@ -186,7 +186,7 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 
 		model.setRegisterTime(currentTime);
 		
-		model.setIsValid("false");
+		model.setIsValid("true");
 
 		service.addUser(model);
 

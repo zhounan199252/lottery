@@ -100,7 +100,7 @@
 			success : function(res) {
 				var data = $.parseJSON(res);
 				if (data.success) {
-					parent.location.href = "${pageContext.request.contextPath}/" + data.object;
+					parent.location.href = "${pageContext.request.contextPath}" + data.object;
 				} else {
 					BUI.Message.Alert(data.message);
 					//alert(data.message);

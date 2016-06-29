@@ -60,28 +60,31 @@ public class CheckMatchResultListener implements ServletContextListener {
 				if (!existSeriesNumList.contains(model.getSeriesNum())) {
 					List<FootballBetModel> footballBetListOfSeriesNum = footballBetService.getFootballBetBySeriesNum(model.getSeriesNum());
 
-					String matchId = footballBetListOfSeriesNum.get(0).getMatchId();
-					if (StringUtils.isNotBlank(resultMap.get(matchId))) {
-						boolean isValid = true;
+					boolean isValid = true;
+					boolean isAllMatchIsOk = true;
 
-						for (FootballBetModel betModel : footballBetListOfSeriesNum) {
+					for (FootballBetModel betModel : footballBetListOfSeriesNum) {
 
+						String result = resultMap.get(betModel.getMatchId()); // 根据赛事id拿到比赛结果
+
+						if (StringUtils.isNotBlank(result)) {
 							String winOrLose = betModel.getWinOrLose();
-
-							String result = resultMap.get(betModel.getMatchId()); // 根据赛事id拿到比赛结果
 
 							String[] results = result.split(";");
 
 							if (!results[0].trim().equals(winOrLose.trim()) && !results[1].trim().equals(winOrLose.trim())) { // 没投中
 								isValid = false;
 							}
-						}
-
-						if (isValid) { // 全部都投中了
-							footballBetService.updateFootballBetWinningBySeriesNum("true", model.getSeriesNum());
 						} else {
-							footballBetService.updateFootballBetWinningBySeriesNum("false", model.getSeriesNum());
+							isAllMatchIsOk = false; // 多串一的赛事中其中一场或几场还没开奖
+							break;
 						}
+					}
+
+					if (isValid && isAllMatchIsOk) { // 全部都投中了
+						footballBetService.updateFootballBetWinningBySeriesNum("true", model.getSeriesNum());
+					} else if (!isValid && isAllMatchIsOk) {
+						footballBetService.updateFootballBetWinningBySeriesNum("false", model.getSeriesNum());
 					}
 					existSeriesNumList.add(model.getSeriesNum());
 				}
