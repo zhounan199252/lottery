@@ -282,6 +282,19 @@ public class FrontUserServiceImpl implements FrontUserService {
 		}
 		
 	}
+
+	@Override
+	public void updateUserConsumptionById(FrontUserModel model) {
+      FrontUser frontUser = baseDao.get(FrontUser.class, model.getId());
+		
+		double consumption = frontUser.getConsumption();
+		
+		consumption += model.getConsumption();
+		
+		frontUser.setConsumption(consumption);
+		
+		baseDao.update(frontUser);
+	}
 	
 
 }

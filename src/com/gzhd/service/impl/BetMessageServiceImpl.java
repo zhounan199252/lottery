@@ -52,6 +52,14 @@ public class BetMessageServiceImpl implements BetMessageService {
 			queryHql.append(" and a.betType like :betType");
 			params.put("betType", "%%" + model.getBetType() + "%%" );
 		}
+		if (StringUtils.isNotBlank(model.getBetChildType())) {
+			queryHql.append(" and a.betChildType = :betChildType");
+			params.put("betChildType",model.getBetChildType()  );
+		}
+		if (StringUtils.isNotBlank(model.getExchangeFlag())) {
+			queryHql.append(" and a.exchangeFlag = :exchangeFlag");
+			params.put("exchangeFlag", model.getExchangeFlag());
+		}
 
 		if (StringUtils.isNotBlank(model.getBetPersonName())) {
 			String userId= frontUserService.getIdByFrontUsername(model.getBetPersonName());
@@ -121,10 +129,57 @@ public class BetMessageServiceImpl implements BetMessageService {
 			model.setId(sigleId);
 			BetMessage betMessage = baseDao
 					.get(BetMessage.class, model.getId());
-			BeanUtils.copyProperties(model, betMessage, new String[]{"betPeriod", "betType", "betPerson", "betQuan", "betNum", "betDate"});
+			betMessage.setExchangeFlag(model.getExchangeFlag());
 			baseDao.save(betMessage);
 		}
 
+	}
+
+	@Override
+	public List<BetMessageModel> getAll(BetMessageModel model) {
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		StringBuilder queryHql = new StringBuilder(
+				"from BetMessage a where 1=1 ");
+
+		if (StringUtils.isNotBlank(model.getBetType())) {
+			queryHql.append(" and a.betType like :betType");
+			params.put("betType", "%%" + model.getBetType() + "%%" );
+		}
+	
+		if (StringUtils.isNotBlank(model.getExchangeFlag())) {
+			queryHql.append(" and a.exchangeFlag = :exchangeFlag");
+			params.put("exchangeFlag", model.getExchangeFlag() );
+		}
+
+		if (StringUtils.isNotBlank(model.getBetPeriod())) {
+			queryHql.append(" and a.betPeriod like :betPeriod");
+			params.put("betPeriod","%%" +model.getBetPeriod() + "%%" );
+		}
+
+		queryHql.append(" order by a.betDate desc");
+
+		List<BetMessage> list = baseDao.find(queryHql.toString(), params);
+		List<BetMessageModel> modelList = new ArrayList<BetMessageModel>();
+
+		for (BetMessage betMessage : list) {
+			BetMessageModel betMessageModel = new BetMessageModel();
+			BeanUtils.copyProperties(betMessage, betMessageModel);
+
+			FrontUserModel frontUserModel = frontUserService
+					.getUserById(betMessageModel.getBetPerson());
+			if (frontUserModel.getUsername() != null) {
+				betMessageModel.setBetPersonName(frontUserModel.getUsername());
+			} else {
+				betMessageModel.setBetPersonName("");
+			}
+
+			modelList.add(betMessageModel);
+		}
+
+	
+
+		return  modelList;
 	}
 
 }

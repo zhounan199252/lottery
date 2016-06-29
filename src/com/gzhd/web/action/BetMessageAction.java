@@ -45,6 +45,7 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 	public void addBetMessage() {
 		String currentTime = TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
 		model.setBetDate(currentTime);
+		model.setExchangeFlag("待开奖");
 		FrontUserModel frontUserModel = frontUserService.getUserById(model
 				.getBetPerson());
 		if (frontUserModel.getId()!=null) {
@@ -54,6 +55,8 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 			if (yue >= amount) {
 				frontUserModel.setBalance(amount*(-1));
 				frontUserService.updateUserBalanceById(frontUserModel);
+				frontUserModel.setConsumption(amount);
+				frontUserService.updateUserConsumptionById(frontUserModel);
 				String id = betMessageService.addBetMessage(model);
 				if (id != null) {
 					writeJsonToJsp("投注成功");

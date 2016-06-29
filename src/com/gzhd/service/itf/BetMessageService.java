@@ -1,12 +1,14 @@
 package com.gzhd.service.itf;
 
+import java.util.List;
+
 import com.gzhd.model.BetMessageModel;
 import com.gzhd.model.PageModel;
 
 
 public interface BetMessageService {
 	
-	public static final String BEAN_NAME = "com.gzhd.service.itf.BeatMessageService";
+	public static final String BEAN_NAME = "com.gzhd.service.itf.BetMessageService";
 
 	/**
 	 * 
@@ -19,6 +21,12 @@ public interface BetMessageService {
 	 *分页获取
 	 */
 	public PageModel getForPageModel(int pageNum, int pageSize,BetMessageModel model);
+	
+	/**
+	 * 
+	 *获取
+	 */
+	public List<BetMessageModel> getAll(BetMessageModel model);
 	/**
 	 * @Description:根据id删除信息
 	 * @param id
