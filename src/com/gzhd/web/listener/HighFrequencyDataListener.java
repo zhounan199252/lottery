@@ -3,12 +3,14 @@ package com.gzhd.web.listener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.annotation.Resource;
@@ -23,10 +25,13 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.gzhd.common.ConstantValues;
 import com.gzhd.domain.OpenMessage;
 import com.gzhd.model.BetMessageModel;
+import com.gzhd.model.FrontUserModel;
 import com.gzhd.model.OpenMessageModel;
 import com.gzhd.service.itf.BetMessageService;
+import com.gzhd.service.itf.FrontUserService;
 import com.gzhd.service.itf.OpenMessageService;
 import com.gzhd.util.StringUtil;
 
@@ -66,6 +71,7 @@ public class HighFrequencyDataListener implements ServletContextListener {
 				.getWebApplicationContext(application);
 		final OpenMessageService openMessageService = (OpenMessageService) ac.getBean("com.gzhd.service.itf.OpenMessageService");
 		final BetMessageService  betMessageService = (BetMessageService) ac.getBean("com.gzhd.service.itf.BetMessageService");
+		final FrontUserService  frontUserService = (FrontUserService) ac.getBean("com.gzhd.service.itf.FrontUserService");
 		String dataUrl = "http://f.apiplus.cn/gd11x5-04.json";
 
 		BufferedReader br = null;
@@ -76,7 +82,6 @@ public class HighFrequencyDataListener implements ServletContextListener {
 		String  data= null;
 		JSONArray jsonArray=null;
 		JSONObject jsonObject = null;
-		
 
 		try {
 			url = new URL(dataUrl);
@@ -100,7 +105,7 @@ public class HighFrequencyDataListener implements ServletContextListener {
 	                             model.setType("广东11选5");
 				            	if(openMessageService.getOpenMessage(model)==null){		
 				            		openMessageService.addOpenMessage(model);
-				            		openAward(betMessageService,model);
+				            		openAward(betMessageService,frontUserService,model);
 				            	
 				            	}
 				            	 			      
@@ -129,7 +134,8 @@ public class HighFrequencyDataListener implements ServletContextListener {
 			             if(model != null){
                              model.setType("重庆时时彩");
 			            	if(openMessageService.getOpenMessage(model)==null){		
-			            		openMessageService.addOpenMessage(model);	
+			            		openMessageService.addOpenMessage(model);		
+			            		openAward(betMessageService,frontUserService,model);
 			            	}
 			            	 			      
 			             } 
@@ -192,13 +198,15 @@ public class HighFrequencyDataListener implements ServletContextListener {
 	
 	
 	
-	private void  openAward(BetMessageService  betMessageService,OpenMessageModel model){
+	private void  openAward(BetMessageService  betMessageService,FrontUserService  frontUserService,OpenMessageModel model){
 		BetMessageModel  betMessageModel= new BetMessageModel();
 		betMessageModel.setBetType(model.getType());
 		betMessageModel.setExchangeFlag("待开奖");
 		betMessageModel.setBetPeriod(model.getExpect());
 		List<BetMessageModel> list=betMessageService.getAll(betMessageModel);
+		 Map<String, String> map= ConstantValues.getAwardMoney();
 		 String ids="";
+		 String ids2="";
 		for(BetMessageModel bet:list){	
 			String childType= bet.getBetChildType();
 			List<String> list1= Arrays.asList(model.getOpencode().split(","));
@@ -210,18 +218,34 @@ public class HighFrequencyDataListener implements ServletContextListener {
 				flag =list2.containsAll(list1) ;
 			}else if(childType.equals("q1")||childType.equals("q2")||childType.equals("q3")){
 				flag =model.getOpencode().startsWith(bet.getBetNum()) ;
+			}else if(childType.equals("x1")||childType.equals("x2")||childType.equals("x3")||childType.equals("x5")){
+				flag =model.getOpencode().endsWith(bet.getBetNum()) ;
 			}
 			 if(flag){
 			    	ids +=bet.getId()+",";
-			    }
+			    	FrontUserModel frontUserModel = frontUserService.getUserById(bet.getBetPerson());
+					if (frontUserModel.getId()!=null) {
+						BigDecimal   b   =   new   BigDecimal(Double.valueOf(bet.getBetQuan())*Double.valueOf(map.get(childType)));
+						 double   f1   =   b.setScale(2,   BigDecimal.ROUND_HALF_UP).doubleValue();
+							frontUserModel.setBalance(f1);
+							frontUserService.updateUserBalanceById(frontUserModel);	
+		            }
+			    }else{
+			    	ids2 +=bet.getId()+",";
+	            }
 					
 		}
 		      if(ids.length()>1){
 			  betMessageModel.setId(ids.substring(0, ids.length()-1));
 			  betMessageModel.setExchangeFlag("1");
 			  betMessageService.updateBetMessage(betMessageModel);	
-		}
-		
+		       }
+			  
+			   if(ids2.length()>1){
+					  betMessageModel.setId(ids2.substring(0, ids2.length()-1));
+					  betMessageModel.setExchangeFlag("2");
+					  betMessageService.updateBetMessage(betMessageModel);	
+			   }
 		
 	}
 	

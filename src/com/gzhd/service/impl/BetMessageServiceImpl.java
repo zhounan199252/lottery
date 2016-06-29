@@ -124,6 +124,10 @@ public class BetMessageServiceImpl implements BetMessageService {
 		String[] ids = model.getId().split(",");
 		if(model.getExchangeFlag().equals("1")){
 			model.setExchangeFlag("已兑换");
+		}else if(model.getExchangeFlag().equals("2")){
+			model.setExchangeFlag("未中奖");
+		}else{
+			model.setExchangeFlag("金额过大");
 		}
 		for (String sigleId : ids) {
 			model.setId(sigleId);
