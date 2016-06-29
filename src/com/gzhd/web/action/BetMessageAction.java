@@ -45,6 +45,7 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 	public void addBetMessage() {
 		String currentTime = TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss");
 		model.setBetDate(currentTime);
+		model.setExchangeFlag("待开奖");
 		FrontUserModel frontUserModel = frontUserService.getUserById(model
 				.getBetPerson());
 		if (frontUserModel.getId()!=null) {

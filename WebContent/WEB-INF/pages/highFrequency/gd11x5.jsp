@@ -344,7 +344,7 @@ margin-right: 10px;
 <body style="background: #FFC">
 	<div align="center" id="main" style="height: 100%; overflow: auto;">
         	<ul class="nav nav-pills" style="width: 1086px;">
-			<li><a href="gdx.url">广东11选5</a></li>
+			<li class="active"><a href="gdx.url">广东11选5</a></li>
 			<li><a href="ssq.url">双色球</a></li>
 			<li><a href="dlt.url">大乐透</a></li>
 			<li><a href="cqssc.url">重庆时时彩</a></li>

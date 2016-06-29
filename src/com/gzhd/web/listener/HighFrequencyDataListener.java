@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.annotation.Resource;
@@ -22,7 +24,9 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.gzhd.domain.OpenMessage;
+import com.gzhd.model.BetMessageModel;
 import com.gzhd.model.OpenMessageModel;
+import com.gzhd.service.itf.BetMessageService;
 import com.gzhd.service.itf.OpenMessageService;
 import com.gzhd.util.StringUtil;
 
@@ -61,7 +65,7 @@ public class HighFrequencyDataListener implements ServletContextListener {
 		ApplicationContext ac = WebApplicationContextUtils
 				.getWebApplicationContext(application);
 		final OpenMessageService openMessageService = (OpenMessageService) ac.getBean("com.gzhd.service.itf.OpenMessageService");
-
+		final BetMessageService  betMessageService = (BetMessageService) ac.getBean("com.gzhd.service.itf.BetMessageService");
 		String dataUrl = "http://f.apiplus.cn/gd11x5-04.json";
 
 		BufferedReader br = null;
@@ -95,7 +99,9 @@ public class HighFrequencyDataListener implements ServletContextListener {
 				             if(model != null){
 	                             model.setType("广东11选5");
 				            	if(openMessageService.getOpenMessage(model)==null){		
-				            		openMessageService.addOpenMessage(model);	
+				            		openMessageService.addOpenMessage(model);
+				            		openAward(betMessageService,model);
+				            	
 				            	}
 				            	 			      
 				             } 
@@ -178,4 +184,47 @@ public class HighFrequencyDataListener implements ServletContextListener {
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	private void  openAward(BetMessageService  betMessageService,OpenMessageModel model){
+		BetMessageModel  betMessageModel= new BetMessageModel();
+		betMessageModel.setBetType(model.getType());
+		betMessageModel.setExchangeFlag("待开奖");
+		betMessageModel.setBetPeriod(model.getExpect());
+		List<BetMessageModel> list=betMessageService.getAll(betMessageModel);
+		 String ids="";
+		for(BetMessageModel bet:list){	
+			String childType= bet.getBetChildType();
+			List<String> list1= Arrays.asList(model.getOpencode().split(","));
+			List<String> list2= Arrays.asList(bet.getBetNum().split(","));
+			boolean  flag =false;
+			if(childType.equals("r2")||childType.equals("r3")||childType.equals("r4")||childType.equals("r5")){
+				flag =list1.containsAll(list2) ;   
+			}else if(childType.equals("r6")||childType.equals("r7")||childType.equals("r8")){
+				flag =list2.containsAll(list1) ;
+			}else if(childType.equals("q1")||childType.equals("q2")||childType.equals("q3")){
+				flag =model.getOpencode().startsWith(bet.getBetNum()) ;
+			}
+			 if(flag){
+			    	ids +=bet.getId()+",";
+			    }
+					
+		}
+		      if(ids.length()>1){
+			  betMessageModel.setId(ids.substring(0, ids.length()-1));
+			  betMessageModel.setExchangeFlag("1");
+			  betMessageService.updateBetMessage(betMessageModel);	
+		}
+		
+		
+	}
+	
+	
+
 }
