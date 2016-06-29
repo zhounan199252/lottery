@@ -54,6 +54,8 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 			if (yue >= amount) {
 				frontUserModel.setBalance(amount*(-1));
 				frontUserService.updateUserBalanceById(frontUserModel);
+				frontUserModel.setConsumption(amount);
+				frontUserService.updateUserConsumptionById(frontUserModel);
 				String id = betMessageService.addBetMessage(model);
 				if (id != null) {
 					writeJsonToJsp("投注成功");

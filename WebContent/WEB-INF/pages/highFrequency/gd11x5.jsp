@@ -174,14 +174,32 @@ margin-right: 10px;
 	        	    }
 	        	    betType="广东11选5";
 	        	   betPeriod =parseInt(getNowPeroid())+1;
+	        	   
+	        	   betChildType = $("[name=betChildType]:checked").val();
 	        	   $("#select1gd11x5").children(".checked").each(function (index, domEle) { 
 	                   var num= $(domEle).text(); 
 	                     betNum =betNum+num+",";
 	  			   });
+	        	   
+	        	   if(betChildType=="q2"){
+	        		   $("#select2gd11x5").children(".checked").each(function (index, domEle) { 
+		                   var num= $(domEle).text(); 
+		                     betNum =betNum+num+",";
+		  			   }); 
+	        	   }else if(betChildType=="q3"){
+	        		   $("#select2gd11x5").children(".checked").each(function (index, domEle) { 
+		                   var num= $(domEle).text(); 
+		                     betNum =betNum+num+",";
+		  			   }); 
+	        		   $("#select3gd11x5").children(".checked").each(function (index, domEle) { 
+		                   var num= $(domEle).text(); 
+		                     betNum =betNum+num+",";
+		  			   });
+	        	   }
 	        
 	           
 	            betNum=betNum.substring(0, betNum.length-1);
-	            betChildType = $("[name=betChildType]:checked").val();
+	           
 	            //判断投注人是否为空
 	            betPerson='${sessionScope.frontCurrentLoginUser.id}';
 	            if(betPerson==""){

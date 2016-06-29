@@ -81,6 +81,8 @@ public interface FrontUserService {
 	public String getIdByFrontUsername(String username);
 
 	public void updateUserBalanceById(FrontUserModel model);
+	
+	public void updateUserConsumptionById(FrontUserModel model);
 
 	public FrontUserModel getUserCount(String id);
 
