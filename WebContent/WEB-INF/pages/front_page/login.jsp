@@ -116,7 +116,7 @@
 	<div class="login">
 		<div class="container">
 			<div class="login-grids">
-				<div class="col-md-6 log">
+				<div class="reg">
 					<h3>登录</h3>
 					<div class="strip"></div>
 					<form action="${pageContext.request.contextPath }/rlo.url" method="post" id="form_login">

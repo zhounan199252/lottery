@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <jsp:include page="/globle/jsp/base.jsp"></jsp:include>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -73,8 +73,9 @@ function recharge() {
 </script>
 </head>
 <body style="background: #FFC">
-	<div align="center">
-		<table class="table" style="width: 50%">
+	<div style="width: 68%; padding: 12px 0 0 20%"    align="center">
+	  <h3>账户充值</h3>
+		<table class="table" >
 			<tr>
 				<th>姓名</th>
 				<td >${sessionScope.frontCurrentLoginUser.nickname}</td>
@@ -106,11 +107,9 @@ function recharge() {
 
 		</table>
 
-		<div style="width: 50%" align="left">
+		<div align="left">
 			充值须知：<br> 最低存款为￥100人民币，最高存款无限制。 未开通网银的会员，请您去银行柜台办理。 如有任何问题，请24小时线上客服!<br> 为了防止会员支付密码泄露和资金安全问题天天现金网只支持第三方网银转账充值存款方式，目前提供23个网银在线支付，中国工商银行、中国农业银行、中国建设银行，中国邮政银行，信业银行，民生银行，上海银行，等等以下银行可选择 ，也支持信用卡转账充值存款方式，支持15种信用卡转账充值方式，您选择方便的转帐方式转帐完成后，在页面下方填写您的汇款金额，转账支付成功，额度将立即自动加入您的天天现金网会员帐户，十分钟之内金额没有到平台帐户，请即时联系天天在线客服
 		</div>
-
-	</div>
 
 	<form style="display: none;" action="https://newpay.ips.com.cn/psfp-entry/gateway/payment.do" method="post" id="paymoney">
 		<input name="pGateWayReq" value="" id="pay" />

@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <jsp:include page="/globle/jsp/base.jsp"></jsp:include>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>账户充值</title>
+<title></title>
+<link href="${pageContext.request.contextPath}/bootstrap-3.3.5/css/bootstrap.css" rel="stylesheet" />
+<script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/jquery-1.11.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script type="text/ecmascript" src="${pageContext.request.contextPath}/globle/js/md5.js"></script>
 <script type="text/javascript">
 
@@ -24,10 +27,11 @@ function add() {
 </script>
 </head>
 <body style="background:#FFC">
-<div   align="center" >
-          <h3>提现申请</h3>
+
+<div   style="width: 68%; padding: 12px 0 0 20%"   align="center" > 
+               <h3>提现申请</h3>
 				<form action="${pageContext.request.contextPath}/depositApply!addDepositApply.action" id="form_add" method="post">
-              <table class="table" style="width: 50%" >
+              <table class="table" >
 			<tr>
 				<th>姓名</th>
 				<td >${sessionScope.frontCurrentLoginUser.nickname}</td>
@@ -46,7 +50,7 @@ function add() {
 	 </table>
 	 </form> 	
 	 
-	<div  style="width: 50%"  align="left" >
+	<div align="left" >
 			<button type="submit" class="button button-primary" onclick="add();">保存</button>
 			 <button type="reset" class="button" onclick="goBack();">取消</button>
 	</div>	 

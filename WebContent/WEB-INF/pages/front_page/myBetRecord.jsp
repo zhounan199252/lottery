@@ -26,7 +26,7 @@
 </script>
 </head>
 <body style="background: #FFC">
-	<div style="margin-left: auto; margin-right: auto; width: 80%; overflow: auto;" align="center" id="main">
+	<div style="width: 80%; padding:14px 0 0 20%" align="center" id="main">
 		<ul class="nav nav-pills" style="width: 100%; background: #FFC">
 			<li id="numberBet" style="" class="active for_active2"><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>数字彩</a></li>
 			<li id="football" style="" class="for_active2"><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>足球竞彩</a></li>

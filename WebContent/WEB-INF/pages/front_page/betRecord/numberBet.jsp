@@ -17,7 +17,7 @@
 	<div class="row" style="width: 100%;">
 		<div class="row" style="width: 100%">
 			<div class="control-group span24" style="width: 100%">
-				<table class="table table-striped table-bordered">
+				<table class="table">
 					<tr>
 						<th>投注类型</th>
 						<th>投注期数</th>
