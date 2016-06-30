@@ -81,7 +81,7 @@
 						toBackLogin,backLogin,announcementList,favorList,getSingleAnnouncement,checkFrontUsernameIsExist,getSingleFavor,toFrontLogin,toRegister,
 						frontLogin,register,myCount,toChangePassword,validPassword,changePassword,frontLogout,logout,getCodeForBack,getCodeForFront,toDefault,updateFrontUserInfo,
 						addFootballBet,toMatchIndex,toBetRecord,listMyFootballBetRecord,listMyBasketballBetRecord,
-						toHighFrequency,toGd11x5,toSsq,toDlt,toCqssc,toBjpk10,addBetMessage,addBetMessage,toBankRecharge,bankRecharge,myBetRecord,toTtxy,toJpzy,toAqzd,toLmhz,toDepositApply,addDepositApply
+						toHighFrequency,toGd11x5,toSsq,toDlt,toCqssc,toBjpk10,addBetMessage,addBetMessage,toBankRecharge,bankRecharge,myBetRecord,toTtxy,toJpzy,toAqzd,toLmhz,toDepositApply,addDepositApply,listFrontUserbyRec
 
 					</param>    <!-- excludeMethods:不需要经过拦截器的方法 -->
 				</interceptor-ref>

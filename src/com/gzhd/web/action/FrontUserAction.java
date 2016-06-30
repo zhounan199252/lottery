@@ -29,7 +29,8 @@ import com.opensymphony.xwork2.ActionContext;
 		@Result(name = "toDefault", location = "frontIndex!toDefault.action", type = "redirectAction"), //
 		@Result(name = "showCount", location = "/WEB-INF/pages/front_page/myCount.jsp"), //
 		@Result(name = "betRecord", location = "/WEB-INF/pages/front_page/betRecord/numberBet.jsp"), //
-		@Result(name = "toChangePassword", location = "/WEB-INF/pages/front_page/changePassword.jsp")//
+		@Result(name = "toChangePassword", location = "/WEB-INF/pages/front_page/changePassword.jsp"),//
+		@Result(name = "toReclist", location = "/WEB-INF/pages/front_page/recommender.jsp")//
 })
 @Scope("prototype")
 public class FrontUserAction extends BaseAction<FrontUserModel> {
@@ -101,6 +102,16 @@ public class FrontUserAction extends BaseAction<FrontUserModel> {
 		ActionContext.getContext().put("pageModel", pageModel);
 
 		return "list";
+	}
+	
+	public String listFrontUserbyRec() {
+		FrontUserModel frontUserModel = (FrontUserModel) ServletActionContext.getRequest().getSession().getAttribute(ConstantValues.FRONT_CURRENT_USER_LOGIN);
+        model.setRecommender(frontUserModel.getId());
+		PageModel pageModel = service.getForPageModel(model.getPageNum(), ConstantValues.PAGE_SIZE, model);
+
+		ActionContext.getContext().put("pageModel", pageModel);
+
+		return "toReclist";
 	}
 
 	public String addFrontUserPage() {

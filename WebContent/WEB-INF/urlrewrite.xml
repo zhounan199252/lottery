@@ -199,6 +199,10 @@
 		<from>/depApp.url</from>
 		<to>/pageJump!toDepositApply.action</to>
 	</rule>
+	<rule>
+		<from>/recom.url</from>
+		<to>/frontUser!listFrontUserbyRec.action</to>
+	</rule>
 	
 	<!-- 跳转数字彩票 -->
 

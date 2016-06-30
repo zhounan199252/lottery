@@ -79,6 +79,11 @@ public class FrontUserServiceImpl implements FrontUserService {
 		Map<String, Object> params = new HashMap<String, Object>();
 		StringBuffer queryHql = new StringBuffer("from FrontUser u where 1=1 ");
 		
+		
+		if(StringUtils.isNotBlank(model.getRecommender())) {
+			queryHql.append(" and u.recommender like :recommender");
+			params.put("recommender", model.getRecommender());
+		}
 		if(StringUtils.isNotBlank(model.getNickname())) {
 			queryHql.append(" and u.nickname like :nickname");
 			params.put("nickname", "%%" + model.getNickname() + "%%");
@@ -142,13 +147,19 @@ public class FrontUserServiceImpl implements FrontUserService {
 		for (FrontUser u : list) {
 			FrontUserModel userModel = new FrontUserModel();
 			BeanUtils.copyProperties(u, userModel);
+			FrontUserModel frontUserModel = getUserById(userModel.getRecommender());
+			if (frontUserModel.getUsername() != null) {
+				userModel.setRecommender(frontUserModel.getUsername());
+			} else {
+				userModel.setRecommender("");
+			}
 			userModels.add(userModel);
 		}
 
 		StringBuffer countHql = new StringBuffer("select count(1) ").append(queryHql);
 		int allRows = baseDao.count(countHql.toString(), params).intValue();
 
-		return new PageModel(pageNum, pageSize, list, allRows);
+		return new PageModel(pageNum, pageSize, userModels, allRows);
 	}
 
 	@Override
