@@ -165,6 +165,7 @@ public class HighFrequencyDataListener implements ServletContextListener {
 	                             model.setType("北京pk10");
 				            	if(openMessageService.getOpenMessage(model)==null){		
 				            		openMessageService.addOpenMessage(model);	
+				            		openAward(betMessageService,frontUserService,model);
 				            	}
 				            	 			      
 				             } 
@@ -207,34 +208,72 @@ public class HighFrequencyDataListener implements ServletContextListener {
 		 Map<String, String> map= ConstantValues.getAwardMoney();
 		 String ids="";
 		 String ids2="";
+		
+			
 		for(BetMessageModel bet:list){	
-			String childType= bet.getBetChildType();
-			List<String> list1= Arrays.asList(model.getOpencode().split(","));
-			List<String> list2= Arrays.asList(bet.getBetNum().split(","));
-			boolean  flag =false;
-			if(childType.equals("r2")||childType.equals("r3")||childType.equals("r4")||childType.equals("r5")){
-				flag =list1.containsAll(list2) ;   
-			}else if(childType.equals("r6")||childType.equals("r7")||childType.equals("r8")){
-				flag =list2.containsAll(list1) ;
-			}else if(childType.equals("q1")||childType.equals("q2")||childType.equals("q3")){
-				flag =model.getOpencode().startsWith(bet.getBetNum()) ;
-			}else if(childType.equals("x1")||childType.equals("x2")||childType.equals("x3")||childType.equals("x5")){
-				flag =model.getOpencode().endsWith(bet.getBetNum()) ;
-			}
-			 if(flag){
+			if(bet.getBetType().equals("北京pk10")){
+				
+				String[] open=model.getOpencode().split(",");
+			    String[] betn= bet.getBetNum().split(",");
+				
+				int num=0;
+			    for(int i=0;i<betn.length/2;i++){
+			    	if(open[Integer.valueOf(betn[2*i])].equals(betn[2*i+1])){
+			    		num++;
+			    	}	
+			    }
+			    
+			    if(betn.length/2<=5&&num>=1){	
 			    	ids +=bet.getId()+",";
-			    	FrontUserModel frontUserModel = frontUserService.getUserById(bet.getBetPerson());
-					if (frontUserModel.getId()!=null) {
-						BigDecimal   b   =   new   BigDecimal(Double.valueOf(bet.getBetQuan())*Double.valueOf(map.get(childType)));
-						 double   f1   =   b.setScale(2,   BigDecimal.ROUND_HALF_UP).doubleValue();
-							frontUserModel.setBalance(f1);
-							frontUserService.updateUserBalanceById(frontUserModel);	
-		            }
+			    }else if(betn.length/2>5&&betn.length/2<=9&&num>=2){	
+			    	ids +=bet.getId()+",";
+			    }else if(betn.length/2==10&&(num==10||num==10)){	
+			    	ids +=bet.getId()+",";
 			    }else{
 			    	ids2 +=bet.getId()+",";
+			    }
+			    
+			    FrontUserModel frontUserModel = frontUserService.getUserById(bet.getBetPerson());
+				if (frontUserModel.getId()!=null) {
+					BigDecimal   b   =   new   BigDecimal(Double.valueOf(bet.getBetQuan())*Double.valueOf(map.get("p"+betn.length/2+num)));
+					 double   f1   =   b.setScale(2,   BigDecimal.ROUND_HALF_UP).doubleValue();
+						frontUserModel.setBalance(f1);
+						frontUserService.updateUserBalanceById(frontUserModel);	
 	            }
-					
-		}
+			}else{
+				
+				 String childType= bet.getBetChildType();
+				 List<String> list1= Arrays.asList(model.getOpencode().split(","));
+				 List<String> list2= Arrays.asList(bet.getBetNum().split(","));	
+				boolean  flag =false;
+				if(childType.equals("r2")||childType.equals("r3")||childType.equals("r4")||childType.equals("r5")){
+					flag =list1.containsAll(list2) ;   
+				}else if(childType.equals("r6")||childType.equals("r7")||childType.equals("r8")){
+					flag =list2.containsAll(list1) ;
+				}else if(childType.equals("q1")||childType.equals("q2")||childType.equals("q3")){
+					flag =model.getOpencode().startsWith(bet.getBetNum()) ;
+				}else if(childType.equals("x1")||childType.equals("x2")||childType.equals("x3")||childType.equals("x5")){
+					flag =model.getOpencode().endsWith(bet.getBetNum()) ;
+				}
+				 if(flag){
+				    	ids +=bet.getId()+",";
+				    	FrontUserModel frontUserModel = frontUserService.getUserById(bet.getBetPerson());
+						if (frontUserModel.getId()!=null) {
+							BigDecimal   b   =   new   BigDecimal(Double.valueOf(bet.getBetQuan())*Double.valueOf(map.get(childType)));
+							 double   f1   =   b.setScale(2,   BigDecimal.ROUND_HALF_UP).doubleValue();
+								frontUserModel.setBalance(f1);
+								frontUserService.updateUserBalanceById(frontUserModel);	
+			            }
+				    }else{
+				    	ids2 +=bet.getId()+",";
+		            }
+						
+			      }
+				
+			}
+		
+		    
+			
 		      if(ids.length()>1){
 			  betMessageModel.setId(ids.substring(0, ids.length()-1));
 			  betMessageModel.setExchangeFlag("1");

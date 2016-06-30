@@ -121,7 +121,7 @@
 	        	     return;
 	        	     }
 	        	     if(checkLengh()==false){
-	        	     waring("只能选择5个红球。2个蓝球");
+	        	     waring("只能选择前区5个,后区2个号码");
 	        	     return;
 	        	    }
 	        	     betType="大乐透";

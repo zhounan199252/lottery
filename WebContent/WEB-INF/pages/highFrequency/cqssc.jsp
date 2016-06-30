@@ -116,8 +116,10 @@ margin-right: 10px;
  function check(node) {
 	 if(!$(node).hasClass("checked")){
       $(node).addClass("checked");
+      $("span[class!='span_cicle checked']:contains("+$(node).text()+")").hide();
 	 }else{
 	  $(node).removeClass("checked");
+	  $("span[class!='span_cicle checked']:contains("+$(node).text()+")").show();
 	 } 
 	 
  }
@@ -155,7 +157,7 @@ margin-right: 10px;
 	        	     return;
 	        	    }
 	        	    if(checkLengh()==false){
-	        	    	waring("请每位选择一个");
+	        	    	waring("每位选择一个号码");
 	        	     return;
 	        	    }
 	        	    betType="重庆时时彩";
@@ -359,7 +361,7 @@ margin-right: 10px;
 				<div class="panel-body" id="div4cqssc"></div>
 			</div>
 
-			<div class="panel panel panel-info" style="width: 100%; height: 641px; background: #FFC">
+			<div class="panel panel panel-info" style="width: 100%; height: 700px; background: #FFC">
 				<div class="panel-heading">购买</div>
 				<div class="panel-body">
 				
@@ -373,19 +375,23 @@ margin-right: 10px;
 					
 					<div class="well well-lg" style="background: #FFC">
 						<div style='margin-bottom: 5px;'>选号区:</div>
-						<div style="height: 100px">
+						<div style="height: 130px">
 							<div id='select1cqssc' class="span_style">
 								<span class="span_style">个位:</span> <span onclick='check(this)' class="span_cicle">0</span> <span onclick='check(this)' class="span_cicle">1</span> <span onclick='check(this)' class="span_cicle">2</span> <span onclick='check(this)' class="span_cicle">3</span> <span onclick='check(this)' class="span_cicle">4</span> <span onclick='check(this)' class="span_cicle">5</span> <span onclick='check(this)' class="span_cicle">6</span> <span onclick='check(this)' class="span_cicle">7</span> <span onclick='check(this)' class="span_cicle">8</span> <span onclick='check(this)' class="span_cicle">9</span>
 							</div>
+							<br>
 							<div id='select2cqssc' class="span_style" style="display:none">
 								<span class="span_style">十位:</span> <span onclick='check(this)' class="span_cicle">0</span> <span onclick='check(this)' class="span_cicle">1</span> <span onclick='check(this)' class="span_cicle">2</span> <span onclick='check(this)' class="span_cicle">3</span> <span onclick='check(this)' class="span_cicle">4</span> <span onclick='check(this)' class="span_cicle">5</span> <span onclick='check(this)' class="span_cicle">6</span> <span onclick='check(this)' class="span_cicle">7</span> <span onclick='check(this)' class="span_cicle">8</span> <span onclick='check(this)' class="span_cicle">9</span>
 							</div>
+							<br>
 							<div id='select3cqssc' class="span_style" style="display:none">
 								<span class="span_style">百位:</span> <span onclick='check(this)' class="span_cicle">0</span> <span onclick='check(this)' class="span_cicle">1</span> <span onclick='check(this)' class="span_cicle">2</span> <span onclick='check(this)' class="span_cicle">3</span> <span onclick='check(this)' class="span_cicle">4</span> <span onclick='check(this)' class="span_cicle">5</span> <span onclick='check(this)' class="span_cicle">6</span> <span onclick='check(this)' class="span_cicle">7</span> <span onclick='check(this)' class="span_cicle">8</span> <span onclick='check(this)' class="span_cicle">9</span>
 							</div>
+							<br>
 							<div id='select4cqssc' class="span_style" style="display:none">
 								<span class="span_style">千位:</span> <span onclick='check(this)' class="span_cicle">0</span> <span onclick='check(this)' class="span_cicle">1</span> <span onclick='check(this)' class="span_cicle">2</span> <span onclick='check(this)' class="span_cicle">3</span> <span onclick='check(this)' class="span_cicle">4</span> <span onclick='check(this)' class="span_cicle">5</span> <span onclick='check(this)' class="span_cicle">6</span> <span onclick='check(this)' class="span_cicle">7</span> <span onclick='check(this)' class="span_cicle">8</span> <span onclick='check(this)' class="span_cicle">9</span>
 							</div>
+							<br>
 							<div id='select5cqssc' class="span_style" style="display:none">
 								<span class="span_style">万位:</span> <span onclick='check(this)' class="span_cicle">0</span> <span onclick='check(this)' class="span_cicle">1</span> <span onclick='check(this)' class="span_cicle">2</span> <span onclick='check(this)' class="span_cicle">3</span> <span onclick='check(this)' class="span_cicle">4</span> <span onclick='check(this)' class="span_cicle">5</span> <span onclick='check(this)' class="span_cicle">6</span> <span onclick='check(this)' class="span_cicle">7</span> <span onclick='check(this)' class="span_cicle">8</span> <span onclick='check(this)' class="span_cicle">9</span>
 							</div>

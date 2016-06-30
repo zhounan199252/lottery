@@ -120,7 +120,7 @@
 	        	     return;
 	        	    }
 	        	   if(checkLengh()==false){
-	        		   waring("只能选择6个红球。1个蓝球");
+	        		   waring("只能选择前区6个,后区1个号码");
 	        	     return;
 	        	    }
 	        	   betType="双色球";

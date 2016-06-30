@@ -72,7 +72,7 @@ public class LowFrequencyDataListener implements ServletContextListener {
 		final OpenMessageService openMessageService = (OpenMessageService) ac.getBean("com.gzhd.service.itf.OpenMessageService");
 		final BetMessageService  betMessageService = (BetMessageService) ac.getBean("com.gzhd.service.itf.BetMessageService");
 		final FrontUserService  frontUserService = (FrontUserService) ac.getBean("com.gzhd.service.itf.FrontUserService");
-		String dataUrl = "http://f.apiplus.cn/ssq-01.json";
+		String dataUrl = "http://f.apiplus.cn/ssq-02.json";
 
 		BufferedReader br = null;
 		URL url = null;
@@ -113,7 +113,7 @@ public class LowFrequencyDataListener implements ServletContextListener {
 				      }
 			}
 			Thread.sleep(5000); // 先睡眠5秒，否则接口网站会认为恶意操作
-			dataUrl = "http://f.apiplus.cn/dlt-01.json";
+			dataUrl = "http://f.apiplus.cn/dlt-02.json";
 			url = new URL(dataUrl);
 			con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
@@ -135,6 +135,7 @@ public class LowFrequencyDataListener implements ServletContextListener {
                              model.setType("大乐透");
 			            	if(openMessageService.getOpenMessage(model)==null){		
 			            		openMessageService.addOpenMessage(model);	
+			            		openAward(betMessageService,frontUserService,model);
 			            	}
 			            	 			      
 			             } 
@@ -178,12 +179,12 @@ public class LowFrequencyDataListener implements ServletContextListener {
 		 String ids2="";
 		 String ids3="";
 		for(BetMessageModel bet:list){	
-			String[] open=   model.getOpencode().split("+");
-			String[] betn =  bet.getBetNum().split("+");
+			String[] open=   model.getOpencode().split("[+]");
+			String[] betn =  bet.getBetNum().split("[+]");
 			String[] openq=   open[0].split(",");
-			String[] openh=   open[0].split(",");
+			String[] openh=   open[1].split(",");
 			String[] betnq =  betn[0].split(",");
-			String[] betnh =  betn[0].split(",");			
+			String[] betnh =  betn[1].split(",");			
 			List<String> list1= Arrays.asList(openq);
 			List<String> list2= Arrays.asList(openh);
 			
