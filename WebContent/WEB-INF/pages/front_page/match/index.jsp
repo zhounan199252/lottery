@@ -141,6 +141,7 @@
 		var data1 = '${applicationScope.currentDayData}';
 		var data2 = '${applicationScope.nextDayData}';
 		var data3 = '${applicationScope.next2DayData}';
+		
 
 		var matchHtml = "";
 		for (var i = 0; i < 3; i++) {
@@ -170,7 +171,7 @@
 				}
 
 				if (j == 0) {
-					currentDay = match.phase.substring(0, 4) + '年' + match.phase.substring(4, 6) + '月' + match.phase.substring(6, 8) + '日';
+					var currentDay = match.phase.substring(0, 4) + '年' + match.phase.substring(4, 6) + '月' + match.phase.substring(6, 8) + '日';
 					matchHtml += '<tr><td colspan="9" style="text-align: left">' + currentDay + '</tr>';
 				}
 
@@ -278,7 +279,7 @@
 				} 
 
 				if (j == 0) {
-					currentDay = match.phase.substring(0, 4) + '年' + match.phase.substring(4, 6) + '月' + match.phase.substring(6, 8) + '日';
+					var currentDay = match.phase.substring(0, 4) + '年' + match.phase.substring(4, 6) + '月' + match.phase.substring(6, 8) + '日';
 					matchHtml += '<tr><td colspan="9" style="text-align: left">' + currentDay + '</tr>';
 				}
 
