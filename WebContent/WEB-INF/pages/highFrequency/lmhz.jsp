@@ -43,7 +43,7 @@ div {
 			<div>
 				<span class="label label-primary">推广链接</span>
 				<h3>
-					<a class="color1" href="${pageContext.request.contextPath}/tore.url?id=${sessionScope.frontCurrentLoginUser.id}">http://localhost:8093/lottery?id=${sessionScope.frontCurrentLoginUser.id}</a>
+					<a class="color1" href="${pageContext.request.contextPath}/tore.url?id=${sessionScope.frontCurrentLoginUser.id}">http://ttquwan.com?id=${sessionScope.frontCurrentLoginUser.id}</a>
 				</h3>
 			</div>
 

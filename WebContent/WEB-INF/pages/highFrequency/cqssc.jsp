@@ -116,10 +116,8 @@ margin-right: 10px;
  function check(node) {
 	 if(!$(node).hasClass("checked")){
       $(node).addClass("checked");
-      $("span[class!='span_cicle checked']:contains("+$(node).text()+")").hide();
 	 }else{
 	  $(node).removeClass("checked");
-	  $("span[class!='span_cicle checked']:contains("+$(node).text()+")").show();
 	 } 
 	 
  }
