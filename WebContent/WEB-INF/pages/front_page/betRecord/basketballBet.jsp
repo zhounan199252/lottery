@@ -8,7 +8,7 @@
 <title></title>
 
 </head>
-<body style="background: #FFC">
+<body style="background: #FFC; overflow: auto;">
 
 	<div class="container" style="padding: 20px 0 0 30px; width: 100%">
 		<div class="row" style="width: 100%;">
@@ -33,22 +33,28 @@
 							<s:select name="type" list="#{'single':'单关','series':'多串一'}" listKey="key" listValue="value" headerKey="" headerValue="--请选择--"></s:select>
 						</div>
 					</div>
-
+				</div>
+				<div class="row" style="width: 100%">
 					<div class="control-group span8">
 						<label class="control-label">是否已兑奖：</label>
 						<div class="controls">
 							<s:select name="isFulfil" list="#{'yes':'已兑奖','no':'未兑奖'}" listKey="key" listValue="value" headerKey="" headerValue="--请选择--"></s:select>
 						</div>
 					</div>
-				</div>
-				<div class="row" style="width: 100%">
 					<div class="control-group span8">
 						<label class="control-label">串号：</label>
 						<div class="controls">
 							<s:textfield cssClass="control-text" name="seriesNum"></s:textfield>
 						</div>
 					</div>
-
+					<div class="control-group span8">
+						<label class="control-label">是否投中：</label>
+						<div class="controls">
+							<s:select name="isWinning" list="#{'no':'未开奖', 'true':'投中', 'false':'未投中'}" listKey="key" listValue="value" headerKey="" headerValue="--请选择--"></s:select>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="width: 100%">
 					<div class="control-group span12">
 						<label class="control-label">投注时间：</label>
 						<div class="controls">
@@ -66,18 +72,13 @@
 							<s:textfield cssClass="control-text Wdate" name="matchTimeEnd" readonly="true" id="txt_matchTimeEnd" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(txt_matchTimeBegin)}'})"></s:textfield>
 						</div>
 					</div>
-						<%-- <div class="control-group span8">
+					<%-- <div class="control-group span8">
 						<label class="control-label">投注项目：</label>
 						<div class="controls">
 							<s:select name="winOrLose" list="#{'胜':'胜','平':'平','负':'负','让球胜':'让球胜','让球平':'让球平','让球负':'让球负'}" listKey="key" listValue="value" headerKey="" headerValue="--请选择--"></s:select>
 						</div>
 					</div> --%>
-					<div class="control-group span8">
-						<label class="control-label">是否投中：</label>
-						<div class="controls">
-							<s:select name="isWinning" list="#{'no':'未开奖', 'true':'投中', 'false':'未投中'}" listKey="key" listValue="value" headerKey="" headerValue="--请选择--"></s:select>
-						</div>
-					</div> 
+
 
 				</div>
 				<div class="row" style="width: 100%">
@@ -109,7 +110,7 @@
 							<th style="width: 8%">主队</th>
 							<th style="width: 8%">客队</th>
 							<th style="width: 10%">比赛时间</th>
-							<th style="width: 8%">投注项目</th>
+							<th style="width: 10%">投注项目</th>
 							<th style="width: 8%">赔率</th>
 							<th style="width: 8%">倍数</th>
 							<!-- <th style="width: 8%">让分</th> -->
@@ -134,17 +135,13 @@
 								<td id="${id}_odds">${odds}</td>
 								<td id="${id}_multiple">${multiple}</td>
 								<%-- <td>${rangQiu}</td> --%>
-								<td>
-									<s:if test="isWinning == 'no'">
+								<td><s:if test="isWinning == 'no'">
 										未开奖
-									</s:if> 
-									<s:elseif test="isWinning == 'true'">
+									</s:if> <s:elseif test="isWinning == 'true'">
 										<span style="color: red">投中</span>
-									</s:elseif>
-									<s:else>
+									</s:elseif> <s:else>
 										未投中
-									</s:else>
-								</td>
+									</s:else></td>
 								<td><s:if test="isFulfil == 'yes'">
 										已兑奖
 									</s:if> <s:else>

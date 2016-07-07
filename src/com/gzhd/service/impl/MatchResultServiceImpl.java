@@ -53,8 +53,10 @@ public class MatchResultServiceImpl implements MatchResultService {
 
 	@Override
 	public Map<String, String> getMatchResultByDate() {
+		
+		Date dateRelateToDate = TimeUtil.getDateRelateToDate(new Date(), -1);
 
-		String lastDay = TimeUtil.dateFormat(TimeUtil.getDateRelateToDate(new Date(), -1), "yyyy-MM-dd HH:mm:ss");
+		String lastDay = TimeUtil.dateFormat(dateRelateToDate, "yyyy-MM-dd HH:mm:ss");
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("matchTime", lastDay);

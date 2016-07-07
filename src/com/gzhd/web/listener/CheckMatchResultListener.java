@@ -3,6 +3,7 @@ package com.gzhd.web.listener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,6 +12,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -19,6 +21,8 @@ import com.gzhd.service.itf.FootballBetService;
 import com.gzhd.service.itf.MatchResultService;
 
 public class CheckMatchResultListener implements ServletContextListener {
+	
+	private static final Logger logger = Logger.getLogger(CheckMatchResultListener.class);
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
@@ -43,13 +47,23 @@ public class CheckMatchResultListener implements ServletContextListener {
 				checkResult(matchResultService, footballBetService);
 			}
 
-		}, 40000, 1000 * 60 * 10);
+		}, 40000, 10 * 60 * 1000);
 	}
 
 	private void checkResult(MatchResultService matchResultService, FootballBetService footballBetService) {
 
 		Map<String, String> resultMap = matchResultService.getMatchResultByDate();
 		List<FootballBetModel> footballBetList = footballBetService.getNotFulfilFootballBet();
+		logger.error("===============================");
+		for(Entry<String, String> e : resultMap.entrySet()) {
+			logger.error(e.getKey() + " : " + e.getValue());
+		}
+		
+		for (FootballBetModel footballBetModel : footballBetList) {
+			logger.error(footballBetModel.getMatchId() + " , " + footballBetModel.getWinOrLose() + " , " + footballBetModel.getHomeTeam());
+		}
+		logger.error("===============================");
+		
 
 		List<String> existSeriesNumList = new ArrayList<String>();
 
