@@ -3,9 +3,13 @@ package com.gzhd.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Hashtable;
+import java.util.Random;
 import java.util.StringTokenizer;
 import java.util.Vector;
 import java.util.regex.Matcher;
@@ -287,7 +291,8 @@ public final class StringUtil {
 		}
 
 		if (str.length() > 51 && str.length() <= 68) {
-			newStr = str.substring(0, 17) + "\n" + str.substring(17, 34) + "\n" + str.substring(34, 51) + "\n" + str.substring(51, str.length());
+			newStr = str.substring(0, 17) + "\n" + str.substring(17, 34) + "\n" + str.substring(34, 51) + "\n"
+					+ str.substring(51, str.length());
 		}
 
 		return newStr;
@@ -459,7 +464,9 @@ public final class StringUtil {
 			for (int i = 0; i < chars.length; i++) {
 				byte[] bytes = ("" + chars[i]).getBytes();
 				if (bytes.length == 1) {
-					if (!(bytes[0] >= 65 && bytes[0] <= 90 || bytes[0] >= 95 && bytes[0] <= 127 || bytes[0] >= 32 && bytes[0] <= 90) && bytes[0] != 37 && bytes[0] != 34 && bytes[0] != 39) {
+					if (!(bytes[0] >= 65 && bytes[0] <= 90 || bytes[0] >= 95 && bytes[0] <= 127
+							|| bytes[0] >= 32 && bytes[0] <= 90) && bytes[0] != 37 && bytes[0] != 34
+							&& bytes[0] != 39) {
 						isXCharSet = false;
 						break;
 					}
@@ -522,7 +529,8 @@ public final class StringUtil {
 					int[] ints = new int[2];
 					ints[0] = bytes[0] & 0xff;
 					ints[1] = bytes[1] & 0xff;
-					if (!(ints[0] >= 0x81 && ints[0] <= 0xFE && (ints[1] >= 0x40 && ints[1] <= 0x7E || ints[1] >= 0x80 && ints[1] <= 0xFE))) {
+					if (!(ints[0] >= 0x81 && ints[0] <= 0xFE
+							&& (ints[1] >= 0x40 && ints[1] <= 0x7E || ints[1] >= 0x80 && ints[1] <= 0xFE))) {
 						isGBK = false;
 						break;
 					}
@@ -546,6 +554,85 @@ public final class StringUtil {
 	 */
 	public static boolean isEmpty(String value) {
 		return null == value || value.trim().length() < 1;
+	}
+
+	public static String convert(String source) {
+
+		char aChar;
+		int len = source.length();
+		StringBuilder outputBuilder = new StringBuilder(len);
+		for (int x = 0; x < len;) {
+			aChar = source.charAt(x++);
+			if (aChar == '\\') {
+				aChar = source.charAt(x++);
+				if (aChar == 'u') {
+					// Read the xxxx
+					int value = 0;
+					for (int i = 0; i < 4; i++) {
+						aChar = source.charAt(x++);
+						switch (aChar) {
+						case '0':
+						case '1':
+						case '2':
+						case '3':
+						case '4':
+						case '5':
+						case '6':
+						case '7':
+						case '8':
+						case '9':
+							value = (value << 4) + aChar - '0';
+							break;
+						case 'a':
+						case 'b':
+						case 'c':
+						case 'd':
+						case 'e':
+						case 'f':
+							value = (value << 4) + 10 + aChar - 'a';
+							break;
+						case 'A':
+						case 'B':
+						case 'C':
+						case 'D':
+						case 'E':
+						case 'F':
+							value = (value << 4) + 10 + aChar - 'A';
+							break;
+						default:
+							throw new IllegalArgumentException("Malformed   \\uxxxx   encoding.");
+						}
+					}
+					outputBuilder.append((char) value);
+				} else {
+					if (aChar == 't')
+						aChar = '\t';
+					else if (aChar == 'r')
+						aChar = '\r';
+					else if (aChar == 'n')
+						aChar = '\n';
+					else if (aChar == 'f')
+						aChar = '\f';
+					outputBuilder.append(aChar);
+				}
+			} else
+				outputBuilder.append(aChar);
+
+		}
+		return outputBuilder.toString();
+	}
+
+	public static final String generateSeriesNum() {
+		DateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		String format = df.format(new Date());
+
+		Random r = new Random();
+		// n 1000 0-999 99
+		for (int i = 0; i < 3; i++) {
+			format += r.nextInt(10);
+		}
+		
+		return format;
 	}
 
 }

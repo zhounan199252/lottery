@@ -13,6 +13,7 @@ import com.gzhd.common.ConstantValues;
 import com.gzhd.model.BackUserModel;
 import com.gzhd.model.PageModel;
 import com.gzhd.service.itf.BackUserService;
+import com.gzhd.util.Des;
 import com.gzhd.util.TimeUtil;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -25,7 +26,7 @@ import com.opensymphony.xwork2.ActionContext;
 		@Result(name = "toList", location = "backUser!listBackUser.action", type = "redirectAction"),//
 		@Result(name = "add", location = "/WEB-INF/pages/back_page/back_user/addUser.jsp"),//
 		@Result(name = "edit", location = "/WEB-INF/pages/back_page/back_user/editUser.jsp"),//
-		@Result(name = "toBackLogin", location = "/WEB-INF/pages/back_page/login.jsp")//
+		@Result(name = "toBackLogin", location = "backIndex!toBackLogin.action", type = "redirectAction")//
 })
 @Scope("prototype")
 public class BackUserAction extends BaseAction<BackUserModel> {
@@ -51,6 +52,14 @@ public class BackUserAction extends BaseAction<BackUserModel> {
 			json.addProperty("success", false);
 			json.addProperty("message", "验证码错误，请刷新后重新登陆！");
 		} else {
+			String firstKey = (String)ActionContext.getContext().getSession().get("firstKey");
+			String secondKey = (String)ActionContext.getContext().getSession().get("secondKey");
+			String thirdKey = (String)ActionContext.getContext().getSession().get("thirdKey");
+			
+			String passwordDesc = Des.strDec(model.getPassword(), firstKey, secondKey, thirdKey);   //对密码进行解密
+			
+			model.setPassword(passwordDesc);
+			
 			BackUserModel u = service.login(model);
 
 			if (null == u) {
@@ -58,7 +67,7 @@ public class BackUserAction extends BaseAction<BackUserModel> {
 				json.addProperty("message", "用户名或密码错误，请刷新后重新登陆！");
 			} else {
 				json.addProperty("success", true);
-				json.addProperty("object", "backIndex!toBackIndex.action");
+				json.addProperty("object", "tbi.url");
 
 				// 若用户已经登陆，则移除登陆信息
 				if (null != ActionContext.getContext().getSession().get(ConstantValues.BACK_CURRENT_USER_LOGIN)) {
@@ -143,7 +152,8 @@ public class BackUserAction extends BaseAction<BackUserModel> {
 	
 	public String logout() {
 		
-		ActionContext.getContext().getSession().remove(ConstantValues.BACK_CURRENT_USER_LOGIN);
+		//ActionContext.getContext().getSession().remove(ConstantValues.BACK_CURRENT_USER_LOGIN);
+		ActionContext.getContext().getSession().clear();
 		
 		return "toBackLogin";
 	}

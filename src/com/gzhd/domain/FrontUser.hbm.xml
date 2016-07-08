@@ -57,6 +57,24 @@
 				<comment>账户余额</comment>
 			</column>
 		</property>
+		
+		<property name="consumption" type="double">
+			<column name="consumption" length="20">
+				<comment>历史总消费金额</comment>
+			</column>
+		</property>
+		
+		<property name="recommender" type="string">
+			<column name="recommender" length="20">
+				<comment>推荐人</comment>
+			</column>
+		</property>
+		
+		<property name="isValid" type="string">
+			<column name="isValid" length="5">
+				<comment>是否启用</comment>
+			</column>
+		</property>
 
 
 

@@ -77,8 +77,21 @@ public interface FrontUserService {
 	public FrontUserModel login(FrontUserModel model);
 
 	public boolean checkFrontUsernameIsExist(String username);
+	
+	public String getIdByFrontUsername(String username);
 
 	public void updateUserBalanceById(FrontUserModel model);
+	
+	public void updateUserConsumptionById(FrontUserModel model);
+
+	public FrontUserModel getUserCount(String id);
+
+	public boolean validPassword(FrontUserModel model);
+
+	public void updateUserPassword(FrontUserModel model);
+
+	public void updateUserStatus(String id, String string);
+
 
 
 }

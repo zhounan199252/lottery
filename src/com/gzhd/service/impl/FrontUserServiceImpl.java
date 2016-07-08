@@ -37,7 +37,9 @@ public class FrontUserServiceImpl implements FrontUserService {
 	public FrontUserModel getUserById(String id) {
 		FrontUser u = baseDao.get(FrontUser.class, id);
 		FrontUserModel model = new FrontUserModel();
-		BeanUtils.copyProperties(u, model);
+		if(u!=null){
+	     BeanUtils.copyProperties(u, model);
+		}
 		return model;
 	}
 
@@ -77,6 +79,11 @@ public class FrontUserServiceImpl implements FrontUserService {
 		Map<String, Object> params = new HashMap<String, Object>();
 		StringBuffer queryHql = new StringBuffer("from FrontUser u where 1=1 ");
 		
+		
+		if(StringUtils.isNotBlank(model.getRecommender())) {
+			queryHql.append(" and u.recommender like :recommender");
+			params.put("recommender", model.getRecommender());
+		}
 		if(StringUtils.isNotBlank(model.getNickname())) {
 			queryHql.append(" and u.nickname like :nickname");
 			params.put("nickname", "%%" + model.getNickname() + "%%");
@@ -117,6 +124,11 @@ public class FrontUserServiceImpl implements FrontUserService {
 			params.put("idCardNum", "%%" + model.getIdCardNum() + "%%");
 		}
 		
+		if(StringUtils.isNotBlank(model.getIsValid())) {
+			queryHql.append(" and u.isValid like :isValid");
+			params.put("isValid", model.getIsValid());
+		}
+		
 		if(model.getBalanceBegin() != 0.0) {
 			queryHql.append(" and u.balance >= :balanceBegin");
 			params.put("balanceBegin", model.getBalanceBegin());
@@ -135,20 +147,26 @@ public class FrontUserServiceImpl implements FrontUserService {
 		for (FrontUser u : list) {
 			FrontUserModel userModel = new FrontUserModel();
 			BeanUtils.copyProperties(u, userModel);
+			FrontUserModel frontUserModel = getUserById(userModel.getRecommender());
+			if (frontUserModel.getUsername() != null) {
+				userModel.setRecommender(frontUserModel.getUsername());
+			} else {
+				userModel.setRecommender("");
+			}
 			userModels.add(userModel);
 		}
 
-		StringBuffer countHql = new StringBuffer("select count(*) ").append(queryHql);
+		StringBuffer countHql = new StringBuffer("select count(1) ").append(queryHql);
 		int allRows = baseDao.count(countHql.toString(), params).intValue();
 
-		return new PageModel(pageNum, pageSize, list, allRows);
+		return new PageModel(pageNum, pageSize, userModels, allRows);
 	}
 
 	@Override
 	public void updateUser(FrontUserModel model) {
 		FrontUser user = baseDao.get(FrontUser.class, model.getId());
 
-		BeanUtils.copyProperties(model, user, new String[]{"password", "registerTime", "lastLoginTime"});
+		BeanUtils.copyProperties(model, user, new String[]{"password", "registerTime", "lastLoginTime", "balance"});
 
 		baseDao.update(user);
 	}
@@ -190,6 +208,19 @@ public class FrontUserServiceImpl implements FrontUserService {
 		}
 	}
 
+	
+	@Override
+	public String getIdByFrontUsername(String username) {
+         Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", username);
+		FrontUser FrontUser = baseDao.get("from FrontUser f where f.username = :username", params); 
+		if(null != FrontUser) {
+			return FrontUser.getId();
+		} else {
+			return "";
+		}
+	}
+
 	@Override
 	public void updateLoginTimeById(String id, String loginTime) {
 
@@ -206,7 +237,72 @@ public class FrontUserServiceImpl implements FrontUserService {
 
 		FrontUser frontUser = baseDao.get(FrontUser.class, model.getId());
 		
-		frontUser.setBalance(model.getBalance());
+		double balance = frontUser.getBalance();
+		
+		balance += model.getBalance();
+		
+		frontUser.setBalance(balance);
+		
+		baseDao.update(frontUser);
+	}
+
+	@Override
+	public FrontUserModel getUserCount(String id) {
+		FrontUser user = baseDao.get(FrontUser.class, id);
+		
+		FrontUserModel model = new FrontUserModel();
+		
+		BeanUtils.copyProperties(user, model);
+		
+		return model;
+	}
+
+	@Override
+	public boolean validPassword(FrontUserModel model) {
+
+		FrontUser user = baseDao.get(FrontUser.class, model.getId());
+		
+		if(null != user && user.getPassword().equals(Encrypt.md5AndSha(model.getPassword()))) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public void updateUserPassword(FrontUserModel model) {
+
+		FrontUser user = baseDao.get(FrontUser.class, model.getId());
+		
+		user.setPassword(Encrypt.md5AndSha(model.getPassword()));
+		
+		baseDao.update(user);
+	}
+
+	@Override
+	public void updateUserStatus(String id, String status) {
+
+		String[] ids = id.split(",");
+		
+		for(String sigleId : ids) {
+			FrontUser user = baseDao.get(FrontUser.class, sigleId);
+
+			user.setIsValid(status);
+			
+			baseDao.update(user);
+		}
+		
+	}
+
+	@Override
+	public void updateUserConsumptionById(FrontUserModel model) {
+      FrontUser frontUser = baseDao.get(FrontUser.class, model.getId());
+		
+		double consumption = frontUser.getConsumption();
+		
+		consumption += model.getConsumption();
+		
+		frontUser.setConsumption(consumption);
 		
 		baseDao.update(frontUser);
 	}

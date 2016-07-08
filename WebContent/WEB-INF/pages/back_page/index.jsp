@@ -4,31 +4,31 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>后台管理主页面</title>
+<title>天天趣玩网--后台管理页面</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript">
-
 	function doLogout() {
-		
+
 		BUI.Message.Confirm('确认要退出本系统吗？', function() {
 			location.href = "${pageContext.request.contextPath}/backUser!logout.action";
 		}, 'question');
 	}
-
 </script>
 </head>
 <body>
 
 	<div class="header">
-	
 
-		<div class="dl-title" align="center">彩票中心--后台管理系统</div>
+
+		<div class="dl-title" align="center">天天趣玩网--后台管理系统</div>
 
 		<div class="dl-log">
-			欢迎您，<span class="dl-log-user">${sessionScope.backCurrentLoginUser.nickname}</span>
-			<a href="javascript:doLogout();" title="退出系统" class="dl-log-quit">[退出]</a>
+			欢迎您，
+			<%-- <span class="dl-log-user">${sessionScope.backCurrentLoginUser.nickname}</span> --%>
+			<span> <a id="systemOperate" href="javascript:void(0);" class="dl-log-quit" title="系统操作" style="padding: 0 25px 0 0">${sessionScope.backCurrentLoginUser.nickname}</a>
+			</span>
 		</div>
-		
+
 	</div>
 	<div class="content">
 		<div class="dl-main-nav">
@@ -63,17 +63,61 @@
 					items : [ {
 						id : 'message',
 						text : '消息发布',
-						href : '${pageContext.request.contextPath}/announcement!listAnnouncement.action'
+						href : '${pageContext.request.contextPath}/backAnnouncement!listAnnouncement.action'
 					}, {
 						id : 'front_user',
 						text : '前台用户管理',
 						href : '${pageContext.request.contextPath}/frontUser!listFrontUser.action'
-					} ]
+					} ,{
+						id : 'front_user_bet',
+						text : '数字彩',
+						href : '${pageContext.request.contextPath}/betmessage!listBackBetMessage.action'
+					} ,{
+						id : 'football',
+						text : '足球竞彩',
+						href : '${pageContext.request.contextPath}/footballBet!listFootballBet.action'
+					},{
+						id : 'basketball',
+						text : '篮球竞彩',
+						href : '${pageContext.request.contextPath}/footballBet!listBasketballBet.action'
+					},{
+						id : 'depositHandle',
+						text : '提现信息',
+						href : '${pageContext.request.contextPath}/depositApply!listDepositMessage.action'
+					}]
 				} ]
 			} ];
 			new PageUtil.MainPage({
 				modulesConfig : config
 			});
+		});
+
+		BUI.use('bui/menu', function(Menu) {
+			dropMenu = new Menu.PopMenu({
+				trigger : '#systemOperate',
+				autoRender : true,
+				triggerEvent : 'mouseenter',
+				triggerHideEvent : 'mouseleave',
+				autoHideType : 'leave',
+				width : 140,
+				zIndex : 10001,
+				children : [ {
+					id : 'logout',
+					content : "退出系统"
+				}, {
+					id : "changePassowrd",
+					content : "修改密码"
+				} ]
+			});
+			dropMenu.on('itemselected', function() {
+				//alert(dropMenu2.getSelectedText() + '：' + dropMenu2.getSelectedValue());
+				if (dropMenu.getSelectedValue() == "logout") {
+					doLogout();
+				} else {
+
+				}
+			});
+
 		});
 	</script>
 </body>

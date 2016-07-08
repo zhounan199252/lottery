@@ -44,7 +44,7 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 		//通过反射生成model实例
 		try {
 			model = (T) clazz.newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 	}

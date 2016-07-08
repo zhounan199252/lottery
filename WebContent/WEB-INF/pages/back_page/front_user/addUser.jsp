@@ -88,54 +88,54 @@
 </script>
 </head>
 <body>
-	<div style="width: 90%;padding: 12px 0 0 12px">
-	<h2>前台用户管理--添加用户</h2>
-	
+	<div style="width: 90%; padding: 12px 0 0 12px">
+		<h2>前台用户管理--添加用户</h2>
+
 		<s:form action="frontUser!addFrontUser.action" id="form_add">
-		<table class="table table-striped">
-			<tr>
-				<th style="width: 20%">真实姓名</th>
-				<td style="width: 20%"><s:textfield name="nickname" id="txt_nickname" cssClass="control-text" maxLength="20"></s:textfield></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th>用户名</th>
-				<td><s:textfield name="username" id="txt_username" cssClass="control-text"  maxLength="20"></s:textfield></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th>密码</th>
-				<td><s:password name="password" id="txt_password" cssClass="control-text"  maxLength="20"></s:password></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th>确认密码</th>
-				<td><s:password name="rePassword" id="txt_rePassword" cssClass="control-text"  maxLength="20"></s:password></td>
-				<td></td>
-			</tr>
-			
-			<tr>
-				<th>身份证号码</th>
-				<td><s:textfield name="idCardNum" id="txt_idCardNum" cssClass="control-text"  maxLength="20"></s:textfield></td>
-				<td></td>
-			</tr>
-			
-			<tr>
-				<th>电话号码</th>
-				<td><s:textfield name="phoneNum" id="txt_phoneNum" cssClass="control-text"  maxLength="11"></s:textfield></td>
-				<td></td>
-			</tr>
-			
-			<tr>
-				<th>
-					<button type="submit" class="button button-primary" onclick="addSave();">保存</button>
-					<button type="reset" class="button" onclick="goBack();">取消</button>
-				</th>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
-	</s:form>
+			<table class="table table-striped">
+				<tr>
+					<th style="width: 20%">真实姓名</th>
+					<td style="width: 20%"><s:textfield name="nickname" id="txt_nickname" cssClass="control-text" maxLength="20"></s:textfield></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>用户名</th>
+					<td><s:textfield name="username" id="txt_username" cssClass="control-text" maxLength="20"></s:textfield></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>密码</th>
+					<td><s:password name="password" id="txt_password" cssClass="control-text" maxLength="20"></s:password></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>确认密码</th>
+					<td><s:password name="rePassword" id="txt_rePassword" cssClass="control-text" maxLength="20"></s:password></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<th>身份证号码</th>
+					<td><s:textfield name="idCardNum" id="txt_idCardNum" cssClass="control-text" maxLength="20"></s:textfield></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<th>电话号码</th>
+					<td><s:textfield name="phoneNum" id="txt_phoneNum" cssClass="control-text" maxLength="11"></s:textfield></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<th>
+						<button type="submit" class="button button-primary" onclick="addSave();">保存</button>
+						<button type="reset" class="button" onclick="goBack();">取消</button>
+					</th>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</s:form>
 	</div>
 
 

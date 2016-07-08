@@ -46,8 +46,6 @@ public class FileUploadAction extends BaseAction<FileUploadModel> {
 		BufferedInputStream bis = null;
 		BufferedOutputStream bos = null;
 		
-		//System.out.println(model.getNewFileFileName());
-		
 		try {
 			String imageExtension = FilenameUtils.getExtension(model.getNewFileFileName());
 			
@@ -58,8 +56,6 @@ public class FileUploadAction extends BaseAction<FileUploadModel> {
 			
 			String path = request.getServletContext().getRealPath("/file_uploads/" + dateFile);
 			
-			System.out.println(path);
-
 			File dirFile = new File(path);
 			
 			if(!dirFile.exists()) {
@@ -81,9 +77,11 @@ public class FileUploadAction extends BaseAction<FileUploadModel> {
 			}
 			
 			//返回url给fck
-			UploadResponse ok = UploadResponse.getOK("/file_uploads" + dateFile + newFileName);
+			UploadResponse ok = UploadResponse.getOK("/lottery/file_uploads" + dateFile + newFileName);
 			
 			response.getWriter().print(ok);
+			
+			response.flushBuffer();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

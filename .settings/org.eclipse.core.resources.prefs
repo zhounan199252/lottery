@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 encoding//WebContent/errorPage/backNoSession.jsp=UTF-8
+encoding//WebContent/errorPage/frontNoSession.jsp=UTF-8
 encoding//WebContent/errorPage/noSecurity.jsp=UTF-8
 encoding/<project>=UTF-8
