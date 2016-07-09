@@ -9,10 +9,12 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -252,8 +254,19 @@ public class HighFrequencyDataListener implements ServletContextListener {
 					flag =list2.containsAll(list1) ;
 				}else if(childType.equals("q1")||childType.equals("q2")||childType.equals("q3")){
 					flag =model.getOpencode().startsWith(bet.getBetNum()) ;
+				}else if(childType.equals("q2z")){
+					flag =list1.subList(0, 2).containsAll(list2);
+				}else if(childType.equals("q3z")){
+					flag =list1.subList(0, 3).containsAll(list2);
+				
 				}else if(childType.equals("x1")||childType.equals("x2")||childType.equals("x3")||childType.equals("x5")){
 					flag =model.getOpencode().endsWith(bet.getBetNum()) ;
+				}else if(childType.equals("x2z")){
+					flag =list1.subList(list1.size()-3, list1.size()).containsAll(list2);
+				}else if(childType.equals("x3z3")){
+					flag =list1.subList(list1.size()-3, list1.size()).containsAll(list2)&&(new HashSet<String>(list1.subList(list1.size()-3, list1.size())).size()!=list1.subList(list1.size()-3, list1.size()).size()) ;
+				}else if(childType.equals("x3z6")){
+					flag =list1.subList(list1.size()-3, list1.size()).containsAll(list2);
 				}
 				 if(flag){
 				    	ids +=bet.getId()+",";

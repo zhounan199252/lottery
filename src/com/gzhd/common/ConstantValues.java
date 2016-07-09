@@ -59,10 +59,18 @@ public class ConstantValues {
 		map.put("q1", "13");
 		map.put("q2", "130");
 		map.put("q3", "1170");
+		map.put("q2z", "65");
+		map.put("q3z", "195");
+		
+		
 		map.put("x1", "10");
 		map.put("x2", "100");
 		map.put("x3", "1000");
 		map.put("x5", "100000");
+		
+		map.put("x2z", "50");
+		map.put("x3z3", "320");
+		map.put("x3z6", "160");
 		
 		map.put("s0", "0");
 		map.put("s1", "0");

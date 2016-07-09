@@ -38,6 +38,11 @@ margin-right: 10px;
     timeCount();  
 	 });
  
+ //计算阶乘
+ function factorial(n){
+	    return n > 1 ? n * factorial(n-1) : 1;
+	}
+ 
  //提示信息
  function waring(message) {
 	var  waring='<div  style="position:absolute;left:30%;top:40%;" class="alert alert-info alert-dismissible" role="alert">'+
@@ -121,7 +126,7 @@ margin-right: 10px;
 	     var num1 = $("#select1gd11x5").children(".checked").length;
 		var  type=  betChildType.substring(0, 1); 
 		var  num4=  betChildType.substring(1, 2); 
-		if(type=="r"){
+		if(type=="r"||betChildType=="q2z"||betChildType=="q3z"){
 			  if(num1!=num4){
 					return false;
 					}  	
@@ -368,8 +373,10 @@ margin-right: 10px;
 				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r7" />任选七 </label>
 				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r8" />任选八 </label>
 				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="q1" />前一</label>
-				    <label onclick="show(2)" ><input name="betChildType" type="radio" value="q2" />前二 </label>
-				    <label onclick="show(3)" ><input name="betChildType" type="radio" value="q3" />前三</label>	
+				    <label onclick="show(2)" ><input name="betChildType" type="radio" value="q2" />前二直选 </label>
+				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="q2z" />前二组选</label>
+				    <label onclick="show(3)" ><input name="betChildType" type="radio" value="q3" />前三直选 </label>	
+				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="q3z" />前三组选 </label>
 					</div>
 					<div class="well well-lg" style="background: #FFC" >
 						<div style='margin-bottom: 5px;'>选号区:</div>
