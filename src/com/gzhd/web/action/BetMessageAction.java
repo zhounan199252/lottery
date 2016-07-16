@@ -1,9 +1,11 @@
 package com.gzhd.web.action;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Map;
 
 import javax.annotation.Resource;
+
 
 
 import org.apache.struts2.convention.annotation.Action;
@@ -50,8 +52,21 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 				.getBetPerson());
 		if (frontUserModel.getId()!=null) {
 			double yue = frontUserModel.getBalance();
-			double amount = Double.valueOf(model.getBetQuan())
-					* model.getBetPrice();
+			  double amount=0;
+			  if(model.getBetChildType().equals("dd")||model.getBetChildType().equals("pk10dd")
+			   ||model.getBetChildType().equals("wwdxd")||model.getBetChildType().equals("qwdxd")
+			   ||model.getBetChildType().equals("bwdxd")||model.getBetChildType().equals("swdxd")
+			   ||model.getBetChildType().equals("gwdxd")||model.getBetChildType().equals("pk1dxd")
+				||model.getBetChildType().equals("pk2dxd")||model.getBetChildType().equals("pk3dxd")||model.getBetChildType().equals("pk4dxd")
+				||model.getBetChildType().equals("pk5dxd")||model.getBetChildType().equals("pk6dxd")||model.getBetChildType().equals("pk7dxd")
+				||model.getBetChildType().equals("pk8dxd")||model.getBetChildType().equals("pk9dxd")||model.getBetChildType().equals("pk10dxd")){
+				  amount = Double.valueOf(model.getBetQuan())*Arrays.asList(model.getBetNum().split(",")).size()/2
+				  			* model.getBetPrice();  	
+	          }else{
+	        	amount = Double.valueOf(model.getBetQuan())
+	  			* model.getBetPrice();  
+	          }
+	    	
 			if (yue >= amount) {
 				frontUserModel.setBalance(amount*(-1));
 				frontUserService.updateUserBalanceById(frontUserModel);

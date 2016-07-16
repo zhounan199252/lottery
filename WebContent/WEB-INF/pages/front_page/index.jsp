@@ -96,7 +96,9 @@
 			<div class="header_right">
 				<div class="cart box_1">
 					<!-- <font style="color: red">TEL:5566335544</font>&nbsp; -->
-					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1904037944&site=qq&menu=yes"><img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/kefu.png" alt="在线客服" title="点击咨询在线客服" /></a>
+				<%-- 	<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1904037944&site=qq&menu=yes"><img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/kefu.png" alt="在线客服" title="点击咨询在线客服" /></a> --%>
+				<div ><a href="http://z1-pcok6.kuaishangkf.cn/bs/im.htm?cas=73251___240551&fi=73375">在线客服系统</a></div>
+			
 				</div>
 
 			</div>
@@ -128,9 +130,9 @@
 
 
 	<!-- 主体部分 -->
-	<div class="banner" style="height: 900px; width: 100%; background: #FFC;">
-		<div class="container" style="height: 900px; width: 100%">
-			<iframe width="100%" frameBorder="0" id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%; height: 900px; background: #FFC;"></iframe>
+	<div class="banner" style="height: 1000px; width: 100%; background: #FFC;">
+		<div class="container" style="height:1000px; width: 100%">
+			<iframe width="100%" frameBorder="0" id="iframe_main" src="${pageContext.request.contextPath}/default.url" style="width: 100%; height: 1000px; background: #FFC;"></iframe>
 		</div>
 	</div>
 

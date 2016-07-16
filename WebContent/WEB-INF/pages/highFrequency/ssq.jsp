@@ -139,7 +139,7 @@
 	                    var num= $(domEle).text(); 
 	                      betNum =betNum+num+",";
 	   			   });
-	         
+	        
 	           
 	            betNum=betNum.substring(0, betNum.length-1);
 	            //判断投注人是否为空
@@ -154,7 +154,7 @@
 	           if(!re.test(betQuan)){
 	        	     waring("投注倍数为整数");
 	        	     return;
-	             }	  
+	             }	
 	          var url= "${pageContext.request.contextPath}/addBetM.url"; 
 	          $.ajax({
 	  			url :url,
@@ -164,7 +164,8 @@
 	  				 "betNum":betNum,
 	  				"betQuan":betQuan,
 	  				"betType":betType,
-	  				"betPerson":betPerson
+	  				"betPerson":betPerson,
+	  				"betChildType": "ssq"  
 	  				
 	  			},
 	  			success : function(result) {

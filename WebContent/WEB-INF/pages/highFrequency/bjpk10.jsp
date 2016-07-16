@@ -25,6 +25,9 @@
 .span_style {
 	
 }
+  label {
+margin-right: 10px;	
+}
 </style>
 
 <script>
@@ -113,7 +116,10 @@
  function check(node) {
 	 if(!$(node).hasClass("checked")){
       $(node).addClass("checked");
-      $("span[class!='span_cicle checked']:contains("+$(node).text()+")").hide();
+      if($(node).text()!="大"&&$(node).text()!="小"&&$(node).text()!="单"&&$(node).text()!="双"){
+    	$("span[class!='span_cicle checked']:contains("+$(node).text()+")").hide();  
+      }
+ 
 	 }else{
 	  $(node).removeClass("checked");
 	   $("span[class!='span_cicle checked']:contains("+$(node).text()+")").show();
@@ -122,16 +128,61 @@
  }
  
  //判断选号是否正确
- function checkLengh() {
-   	      for(var i=1;i<=10;i++){
-	    	 var num=$("#select"+i+"bjpk10").children(".checked").length;
-	    	   if(num>1){
-    			return false;
-    			} 
-             }
-	       
- 
-	 return true;
+ function checkLengh() { 
+	  var betChildType = $("[name=betChildType]:checked").val();  
+		var  betNum="";
+		if(betChildType=="pk10q2"){
+			  for(var i=1;i<=2;i++){  
+				  if($("#select"+i+"bjpk10").children(".checked").length!=1){
+						return false; 
+				  }
+		    	  $("#select"+i+"bjpk10").children(".checked").each(function (index, domEle) { 
+	                  var num= $(domEle).text(); 
+	                    betNum =betNum+i+","+num+",";
+	 			   });
+		       }
+			
+			   if(betNum.length!=10){
+ 	     			return false;
+ 	     			} 
+			
+		}else if(betChildType=="pk10q3"){
+			  for(var i=1;i<=3;i++){
+				  if($("#select"+i+"bjpk10").children(".checked").length!=1){
+						return false; 
+				  }
+		    	  $("#select"+i+"bjpk10").children(".checked").each(function (index, domEle) { 
+	                  var num= $(domEle).text(); 
+	                    betNum =betNum+i+","+num+",";
+	 			   });
+		       }
+			  if(betNum.length!=15){
+	     			return false;
+	     			} 
+			
+		}else if(betChildType=="pk10dd"){
+			    for(var i=1;i<=10;i++){
+		    	  $("#select"+i+"bjpk10").children(".checked").each(function (index, domEle) { 
+	                  var num= $(domEle).text(); 
+	                    betNum =betNum+i+","+num+",";
+	 			   });
+		       }
+		}else if(betChildType=="pk10dxd"){
+			 betChildType = $("[name=betChildTypedxd]:checked").val(); 
+			 var  i="";
+			 if(betChildType.length==6){
+				 i= betChildType.substring(2, 3); 
+			 }else{
+				 i= betChildType.substring(2, 4);
+			 }
+				  $("#select"+i+"dxd").children(".checked").each(function (index, domEle) { 
+	                    var num= $(domEle).text(); 
+	                      betNum =betNum+i+","+num+",";
+	   			   });	
+				 
+			 }
+	   
+	 return  betNum;
 }
 
  
@@ -141,37 +192,33 @@
 	           var  betPeriod="";
 	           var betNum="";
 	           var betType="";
-	           var betQuan="";
+	           var  betChildType="";
 	           var betPerson="";
+	           var betQuan="";
 	        	       lookExpect();
-	        	      if(timeLimate()==false){
-	        		   waring("已过投注时间");
-	        	       return;
-	        	      }
-	        	      if(checkLengh()==false){
-		        	    	waring("请每位最多选择一个");
+	        	       if(timeLimate()==false){
+		        		   waring("已过投注时间");
+		        	       return;
+		        	      }
+	        	       if(expect3!=""){
+		        	       betPeriod = parseInt(expect3)+3;
+		        	      }else {
+		        	      setTimeout("buy()",100); 
+		        	       return;
+		        	      }
+	        	    
+	        	      betNum=checkLengh();
+	        	      if(betNum==false){
+		        	    	waring("号码选择错误，请重新选择");
 		        	     return;
 		        	    }
-	        	      betType="北京pk10";
-	        	      if(expect3!=""){
-	        	       betPeriod = parseInt(expect3)+3;
-	        	      }else {
-	        	      setTimeout("buy()",100); 
-	        	       return;
-	        	      }
-	       
-	            	     for(var i=1;i<=10;i++){
-	        	    	  $("#select"+i+"bjpk10").children(".checked").each(function (index, domEle) { 
-			                    var num= $(domEle).text(); 
-			                      betNum =betNum+(i-1)+","+num+",";
-			   			   });
-	        	     }
-	        	   
-	            	     if(betNum==""){
-	 	        	    	waring("每位最多选择一个号码");
-	 	        	        return;
-	 	        	      }   
-	            betNum=betNum.substring(0, betNum.length-1);
+	        	      betNum=betNum.substring(0, betNum.length-1);
+	        	      betType="北京pk10";  
+	                  betChildType = $("[name=betChildType]:checked").val(); 
+	                  if(betChildType=="pk10dxd"){
+	                	  betChildType = $("[name=betChildTypedxd]:checked").val();   
+	                  }
+		        	    	
 	            //判断投注人是否为空
 	            betPerson='${sessionScope.frontCurrentLoginUser.id}';
 	            if(betPerson==""){
@@ -194,7 +241,8 @@
 	  				 "betNum":betNum,
 	  				"betQuan":betQuan,
 	  				"betType":betType,
-	  				"betPerson":betPerson
+	  				"betPerson":betPerson, 
+	  				"betChildType": betChildType  
 	  				
 	  			},
 	  			success : function(result) {
@@ -303,7 +351,91 @@
 
 	}  */
 		
+	function show(type){
+		$("#select10dxd").hide();
+		$("#select9dxd").hide();
+		$("#select8dxd").hide(); 
+		$("#select7dxd").hide();
+		$("#select6dxd").hide();
+		$("#select5dxd").hide();
+		$("#select4dxd").hide();
+		$("#select3dxd").hide(); 
+		$("#select2dxd").hide();
+		$("#select1dxd").hide();
+	   if(type=='q2'){
+			$("#select1bjpk10").show();
+			$("#select2bjpk10").show();
+			$("#select3bjpk10").hide(); 
+			$("#select4bjpk10").hide();
+			$("#select5bjpk10").hide();
+			$("#select6bjpk10").hide();
+			$("#select7bjpk10").hide(); 
+			$("#select8bjpk10").hide();
+			$("#select9bjpk10").hide();
+			$("#select10bjpk10").hide();
+			$("#select2bjpk10").prevAll("br").show(); 
+		} else if(type=='q3'){
+			$("#select1bjpk10").show();
+			$("#select2bjpk10").show();
+			$("#select3bjpk10").show(); 
+			$("#select4bjpk10").hide();
+			$("#select5bjpk10").hide();
+			$("#select6bjpk10").hide();
+			$("#select7bjpk10").hide(); 
+			$("#select8bjpk10").hide();
+			$("#select9bjpk10").hide();
+			$("#select10bjpk10").hide();
+			$("#select3bjpk10").prevAll("br").show(); 
+		} else if(type=='all'){
+			$("#select1bjpk10").show();
+			$("#select2bjpk10").show();
+			$("#select3bjpk10").show(); 
+			$("#select4bjpk10").show();
+			$("#select5bjpk10").show();
+			$("#select6bjpk10").show();
+			$("#select7bjpk10").show(); 
+			$("#select8bjpk10").show();
+			$("#select9bjpk10").show();
+			$("#select10bjpk10").show();
+			$("#select10bjpk10").prevAll("br").show(); 
+		}else{
+			    $("#select1bjpk10").hide();
+				$("#select2bjpk10").hide();
+				$("#select3bjpk10").hide(); 
+				$("#select4bjpk10").hide();
+				$("#select5bjpk10").hide();
+				$("#select6bjpk10").hide();
+				$("#select7bjpk10").hide(); 
+				$("#select8bjpk10").hide();
+				$("#select9bjpk10").hide();
+				$("#select10bjpk10").hide();	
+				
+			
+             	$("#select"+type+"dxd").show(); 
+				$("#select"+type+"dxd").prevAll("br").hide(); 
+				$("#select"+type+"dxd").nextAll("br").show(); 
+		}
+			
+		}
 	
+	
+	
+	function detail(type){	
+		$("#"+type).show();
+		$("#"+type).siblings("div").hide();
+		$("#text").show();
+	    $("#select1bjpk10").hide();
+		$("#select2bjpk10").hide();
+		$("#select3bjpk10").hide(); 
+		$("#select4bjpk10").hide();
+		$("#select5bjpk10").hide();
+		$("#select6bjpk10").hide();
+		$("#select7bjpk10").hide(); 
+		$("#select8bjpk10").hide();
+		$("#select9bjpk10").hide();
+		$("#select10bjpk10").hide();
+
+	}
 </script>
 
 
@@ -330,51 +462,116 @@
 
 			</div>
 
-			<div class="panel panel panel-info" style="width: 100%; height: 750px; background: #FFC;">
+			<div class="panel panel panel-info" style="width: 100%; height: 850px; background: #FFC;">
 				<div class="panel-heading">购买</div>
 				<div class="panel-body">
+				
+				<div class="well well-lg" style="background: #FFC" >
+					<div  id="text" style='margin-bottom: 5px;'>投注类型:</div>
+					<label  ><input onclick="detail('text');show('all');"  name="betChildType" type="radio" checked="checked"  value="pk10dd" />定位胆选 </label> 
+					<label  ><input onclick="detail('text');show('q2');"   name="betChildType" type="radio"   value="pk10q2" />猜冠亚军 </label> 
+					<label  ><input onclick="detail('text');show('q3');"  name="betChildType" type="radio"   value="pk10q3" />猜前三名 </label> 
+					<label  ><input onclick="detail('dxd')"  name="betChildType" type="radio"   value="pk10dxd" />两面 </label> 
+					
+					
+					<br>
+				    <div id="dxd" style="display:none"><label onclick="show(1)" ><input name="betChildTypedxd" type="radio"  value="pk1dxd" />冠军</label>
+					<label onclick="show(2)" ><input name="betChildTypedxd" type="radio" value="pk2dxd" />亚军 </label>
+					<label onclick="show(3)" ><input name="betChildTypedxd" type="radio" value="pk3dxd" />季军</label>
+					<label onclick="show(4)" ><input name="betChildTypedxd" type="radio" value="pk4dxd" />四名</label>
+					<label onclick="show(5)" ><input name="betChildTypedxd" type="radio" value="pk5dxd" />五名</label>
+					<label onclick="show(6)" ><input name="betChildTypedxd" type="radio" value="pk6dxd" />六名</label>
+					<label onclick="show(7)" ><input name="betChildTypedxd" type="radio" value="pk7dxd" />七名</label>
+					<label onclick="show(8)" ><input name="betChildTypedxd" type="radio" value="pk8dxd" />八名</label>
+					<label onclick="show(9)" ><input name="betChildTypedxd" type="radio" value="pk9dxd" />九名</label>
+					<label onclick="show(10)" ><input name="betChildTypedxd" type="radio" value="pk10dxd" />十名</label>
+					</div>
+					
+			   </div>	
+			       
 					<div class="well well-lg" style="background: #FFC;">
 						<div style='margin-bottom: 5px;'>选号区:</div>
 						<div style="height: 250px">
 							<div id='select1bjpk10' class="span_style">
-								<span class="span_style">第一位:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
+								<span class="span_style">冠&nbsp;&nbsp;&nbsp;&nbsp;军:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
 							</div>
 							<br>
 							<div id='select2bjpk10' class="span_style">
-								<span class="span_style">第二位:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
+								<span class="span_style">亚&nbsp;&nbsp;&nbsp;&nbsp;军:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
 							</div>
 							<br>
 							<div id='select3bjpk10' class="span_style">
-								<span class="span_style">第三位:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
+								<span class="span_style">季&nbsp;&nbsp;&nbsp;&nbsp;军:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
 							</div>
 							<br>
 							<div id='select4bjpk10' class="span_style">
-								<span class="span_style">第四位:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
+								<span class="span_style">第四名:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
 							</div>
 							<br>
 							<div id='select5bjpk10' class="span_style">
-								<span class="span_style">第五位:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
+								<span class="span_style">第五名:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
 							</div>
 							<br>
 							<div id='select6bjpk10' class="span_style">
-								<span class="span_style">第六位:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
+								<span class="span_style">第六名:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
 							</div>
 							<br>
 							<div id='select7bjpk10' class="span_style">
-								<span class="span_style">第七位:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
+								<span class="span_style">第七名:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
 							</div>
 							<br>
 							<div id='select8bjpk10' class="span_style">
-								<span class="span_style">第八位:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
+								<span class="span_style">第八名:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
 							</div>
 							<br>
 							<div id='select9bjpk10' class="span_style">
-								<span class="span_style">第九位:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
+								<span class="span_style">第九名:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
 							</div>
 							<br>
 							<div id='select10bjpk10' class="span_style">
-								<span class="span_style">第十位:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
+								<span class="span_style">第十名:</span> <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span>
 							</div>
+							
+							<br>
+								<div id='select1dxd'  style="display:none" class="span_style" >
+								<span  class="span_style">冠军:</span> <span onclick='check(this)' class="span_cicle">大</span> <span onclick='check(this)' class="span_cicle">小</span> <span onclick='check(this)' class="span_cicle">单</span> <span onclick='check(this)' class="span_cicle">双</span> 
+							   </div>
+							   <br>
+							   <div id='select2dxd'  style="display:none" class="span_style" >
+								<span  class="span_style">亚军:</span> <span onclick='check(this)' class="span_cicle">大</span> <span onclick='check(this)' class="span_cicle">小</span> <span onclick='check(this)' class="span_cicle">单</span> <span onclick='check(this)' class="span_cicle">双</span> 
+							   </div>
+							   <br>
+							   <div id='select3dxd'  style="display:none" class="span_style" >
+								<span  class="span_style">季军:</span> <span onclick='check(this)' class="span_cicle">大</span> <span onclick='check(this)' class="span_cicle">小</span> <span onclick='check(this)' class="span_cicle">单</span> <span onclick='check(this)' class="span_cicle">双</span> 
+							   </div>
+							   <br>
+							   <div id='select4dxd'  style="display:none" class="span_style" >
+								<span  class="span_style">第四名:</span> <span onclick='check(this)' class="span_cicle">大</span> <span onclick='check(this)' class="span_cicle">小</span> <span onclick='check(this)' class="span_cicle">单</span> <span onclick='check(this)' class="span_cicle">双</span> 
+							   </div>
+							   <br>
+							   <div id='select5dxd'  style="display:none" class="span_style" >
+								<span  class="span_style">第五名:</span> <span onclick='check(this)' class="span_cicle">大</span> <span onclick='check(this)' class="span_cicle">小</span> <span onclick='check(this)' class="span_cicle">单</span> <span onclick='check(this)' class="span_cicle">双</span> 
+							   </div>
+							   <br>
+								<div id='select6dxd'  style="display:none" class="span_style" >
+								<span  class="span_style">第六名:</span> <span onclick='check(this)' class="span_cicle">大</span> <span onclick='check(this)' class="span_cicle">小</span> <span onclick='check(this)' class="span_cicle">单</span> <span onclick='check(this)' class="span_cicle">双</span> 
+							   </div>
+							   <br>
+							   <div id='select7dxd'  style="display:none" class="span_style" >
+								<span  class="span_style">第七名:</span> <span onclick='check(this)' class="span_cicle">大</span> <span onclick='check(this)' class="span_cicle">小</span> <span onclick='check(this)' class="span_cicle">单</span> <span onclick='check(this)' class="span_cicle">双</span> 
+							   </div>
+							   <br>
+							   <div id='select8dxd'  style="display:none" class="span_style" >
+								<span  class="span_style">第八名:</span> <span onclick='check(this)' class="span_cicle">大</span> <span onclick='check(this)' class="span_cicle">小</span> <span onclick='check(this)' class="span_cicle">单</span> <span onclick='check(this)' class="span_cicle">双</span> 
+							   </div>
+							   <br>
+							   <div id='select9dxd'  style="display:none" class="span_style" >
+								<span  class="span_style">第九名:</span> <span onclick='check(this)' class="span_cicle">大</span> <span onclick='check(this)' class="span_cicle">小</span> <span onclick='check(this)' class="span_cicle">单</span> <span onclick='check(this)' class="span_cicle">双</span> 
+							   </div>
+							   <br>
+							   <div id='select10dxd'  style="display:none" class="span_style" >
+								<span  class="span_style">第十名:</span> <span onclick='check(this)' class="span_cicle">大</span> <span onclick='check(this)' class="span_cicle">小</span> <span onclick='check(this)' class="span_cicle">单</span> <span onclick='check(this)' class="span_cicle">双</span> 
+							   </div>
 						</div>
 					</div>
 					<div class="well well-lg" style="background: #FFC;">

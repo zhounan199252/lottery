@@ -322,12 +322,15 @@ margin-right: 10px;
 	
 	function show(type){	
 		if(type==2){
+			$("#select1gd11x5span").show(); 
 			$("#select2gd11x5").show();
 			$("#select3gd11x5").hide(); 
 		}else if(type==3){
+			$("#select1gd11x5span").show(); 
 			$("#select2gd11x5").show();
 			$("#select3gd11x5").show();		
 		}else{
+			$("#select1gd11x5span").hide(); 
 			$("#select2gd11x5").hide(); 
 			$("#select3gd11x5").hide(); 
 		}
@@ -365,14 +368,14 @@ margin-right: 10px;
 				
 				<div class="well well-lg" style="background: #FFC" >
 					<div style='margin-bottom: 5px;'>投注类型:</div>
-					<label onclick="show(0)" ><input name="betChildType" type="radio" checked="checked"  value="r2" />任选二 </label>
+					<label onclick="show(0)" ><input name="betChildType" type="radio" checked="checked"   value="r1" />任选一</label>
+					<label onclick="show(0)" ><input name="betChildType" type="radio" value="r2" />任选二 </label>
 				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r3" />任选三 </label>
 				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r4" />任选四 </label>
 				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r5" />任选五</label>
 				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r6" />任选六 </label>
 				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r7" />任选七 </label>
-				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r8" />任选八 </label>
-				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="q1" />前一</label>
+				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="r8" />任选八 </label> 
 				    <label onclick="show(2)" ><input name="betChildType" type="radio" value="q2" />前二直选 </label>
 				    <label onclick="show(0)" ><input name="betChildType" type="radio" value="q2z" />前二组选</label>
 				    <label onclick="show(3)" ><input name="betChildType" type="radio" value="q3" />前三直选 </label>	
@@ -382,7 +385,7 @@ margin-right: 10px;
 						<div style='margin-bottom: 5px;'>选号区:</div>
 						<div style="height: 100px">
 						<div id='select1gd11x5' class="span_style">
-					    <span class="span_style">第一位:</span>  <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span> <span onclick='check(this)' class="span_cicle">11</span>
+					    <span id='select1gd11x5span' style="display:none" class="span_style">第一位:</span>  <span onclick='check(this)' class="span_cicle">01</span> <span onclick='check(this)' class="span_cicle">02</span> <span onclick='check(this)' class="span_cicle">03</span> <span onclick='check(this)' class="span_cicle">04</span> <span onclick='check(this)' class="span_cicle">05</span> <span onclick='check(this)' class="span_cicle">06</span> <span onclick='check(this)' class="span_cicle">07</span> <span onclick='check(this)' class="span_cicle">08</span> <span onclick='check(this)' class="span_cicle">09</span> <span onclick='check(this)' class="span_cicle">10</span> <span onclick='check(this)' class="span_cicle">11</span>
 						</div>
 						<br>
 						<div id='select2gd11x5' class="span_style" style="display:none">

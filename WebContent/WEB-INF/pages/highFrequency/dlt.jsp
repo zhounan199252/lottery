@@ -167,7 +167,8 @@
 	  				 "betNum":betNum,
 	  				"betQuan":betQuan,
 	  				"betType":betType,
-	  				"betPerson":betPerson
+	  				"betPerson":betPerson,
+	  				"betChildType": "dlt" 
 	  				
 	  			},
 	  			success : function(result) {
