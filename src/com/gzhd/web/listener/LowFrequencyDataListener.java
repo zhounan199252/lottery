@@ -59,7 +59,7 @@ public class LowFrequencyDataListener implements ServletContextListener {
 			public void run() {
 				getHighFrequencyData(application);
 			}
-		}, 2000, 1000*60*60*24);
+		}, 2000, 1000*60*60);
 	}
 
 	/**

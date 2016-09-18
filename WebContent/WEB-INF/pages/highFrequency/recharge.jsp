@@ -55,7 +55,7 @@ function recharge() {
      "<GatewayType>01</GatewayType><Lang></Lang><Merchanturl>http://ttquwan.com/betmessage!bankRecharge.action</Merchanturl><FailUrl></FailUrl>"+
     "<Attach>"+userId+"</Attach><OrderEncodeType>5</OrderEncodeType><RetEncodeType>17</RetEncodeType><RetType>1</RetType>"+
     "<ServerUrl>http://ttquwan.com</ServerUrl><BillEXP></BillEXP><GoodsName>彩票</GoodsName><IsCredit>1</IsCredit>"+
-    "<BankCode>"+bank+"</BankCode><ProductType>1</ProductType></body>180566xYXXG0JJMAGd3SysQ496j6aAOa6e2jdluBRXcrWQw1Nzjb3YtFmD0S6meOYas6T350vAZdUqJDJC0Zq9pBoGSVK6P2Ycg7p7NfSzlMnVKkqKhfjN1BVzDyfOJWuXuWzD"; 
+    "<BankCode>"+bank+"</BankCode><ProductType>1</ProductType></body>180566SP1uQZrWcmt1HXZc3h7dpmtDyL0wLU35rD788XZESTTunm1rFCzKqVWvDuZJceA8PpJMbCCw7cznr64wEuqDhA9TAl1KxcHbc3BYl8oheB3bTw2B2mHeM1jcKpg950NK"; 
 	   var hash = MD5(signature);
 	 var  data= "<Ips><GateWayReq><head><Version>v1.0.0</Version><MerCode>180566</MerCode><MerName>ttquwan</MerName>"+
   "<Account>1805660014</Account><MsgId></MsgId><ReqDate>20160617162015</ReqDate><Signature>"+hash+"</Signature></head>"+
@@ -74,7 +74,7 @@ function recharge() {
 </head>
 <body style="background: #FFC">
 	<div style="width: 68%; padding: 12px 0 0 20%"    align="center">
-	  <h3>账户充值</h3>
+	  <h3>网银充值</h3>
 		<table class="table" >
 			<tr>
 				<th>姓名</th>
@@ -108,13 +108,24 @@ function recharge() {
 		</table>
 
 		<div align="left">
-			充值须知：<br> 最低存款为￥100人民币，最高存款无限制。 未开通网银的会员，请您去银行柜台办理。 如有任何问题，请24小时线上客服!<br> 为了防止会员支付密码泄露和资金安全问题天天现金网只支持第三方网银转账充值存款方式，目前提供23个网银在线支付，中国工商银行、中国农业银行、中国建设银行，中国邮政银行，信业银行，民生银行，上海银行，等等以下银行可选择 ，也支持信用卡转账充值存款方式，支持15种信用卡转账充值方式，您选择方便的转帐方式转帐完成后，在页面下方填写您的汇款金额，转账支付成功，额度将立即自动加入您的天天现金网会员帐户，十分钟之内金额没有到平台帐户，请即时联系天天在线客服
+			网银充值需知：<br> 最低存款为￥100人民币，最高存款无限制。 未开通网银的会员，请您去银行柜台办理。 如有任何问题，请24小时线上客服!<br> 为了防止会员支付密码泄露和资金安全问题天天现金网只支持第三方网银转账充值存款方式，目前提供23个网银在线支付，中国工商银行、中国农业银行、中国建设银行，中国邮政银行，信业银行，民生银行，上海银行，等等以下银行可选择 ，也支持信用卡转账充值存款方式，支持15种信用卡转账充值方式，您选择方便的转帐方式转帐完成后，在页面下方填写您的汇款金额，转账支付成功，额度将立即自动加入您的天天现金网会员帐户，十分钟之内金额没有到平台帐户，请即时联系天天在线客服
 		</div>
 
-	<form style="display: none;" action="https://newpay.ips.com.cn/psfp-entry/gateway/payment.do" method="post" id="paymoney">
+	<form style="display: none;"  action="https://newpay.ips.com.cn/psfp-entry/gateway/payment.do" method="post" id="paymoney">
 		<input name="pGateWayReq" value="" id="pay" />
 	</form>
 
+</div>
+    <div style="width: 68%; padding: 12px 0 0 20%"    align="center">
+	  <h3> 支付宝充值</h3>
+		<div align="left">
+       
+		                 收款人账号：<span class="label label-primary">wangjia08@foxmail.com</span><br>
+		                 收款人姓名：<span class="label label-primary">符成海</span>  <br>
+		                支付宝充值需知：进行支付宝转账的时候付款说明里面要填写您的平台用户名或姓名方可自动到账，如有问题请及时联系在线客服咨询
+		                
+		    <h4> 支付宝链接   <a  target="_blank" class="color1" href="https://auth.alipay.com/login/index.htm">https://auth.alipay.com/login/index.htm</a></h4>   
+		</div>
 </div>
 
 </body>

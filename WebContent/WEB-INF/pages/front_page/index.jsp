@@ -97,7 +97,7 @@
 				<div class="cart box_1">
 					<!-- <font style="color: red">TEL:5566335544</font>&nbsp; -->
 				<%-- 	<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1904037944&site=qq&menu=yes"><img src="${pageContext.request.contextPath}/globle/images/front_bootstrap/kefu.png" alt="在线客服" title="点击咨询在线客服" /></a> --%>
-				<div ><a href="http://z1-pcok6.kuaishangkf.cn/bs/im.htm?cas=73251___240551&fi=73375">在线客服系统</a></div>
+				<div ><a href="http://z1-pcok6.kuaishangkf.cn/bs/im.htm?cas=82859___650420&fi=84521">在线客服系统</a></div>
 			
 				</div>
 
