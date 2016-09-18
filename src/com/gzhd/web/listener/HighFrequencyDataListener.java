@@ -297,15 +297,22 @@ public class HighFrequencyDataListener implements ServletContextListener {
 					flag =list1.subList(2, 5).containsAll(list2);
 				}else if(childType.equals("r2z2")||childType.equals("r3z3")||childType.equals("r3z6")||childType.equals("r3bdd")){
 				    list1 = new  ArrayList<String>();
+				    list2= new  ArrayList<String>();
 				    if(childType.equals("r2z2")){
-				    	list1.add(open[Integer.valueOf(betn[0])]);
-					    list1.add(open[Integer.valueOf(betn[1])]);    
-					    list2=list2.subList(2, list2.size());	
+				    	list1.add(open[Integer.valueOf(betn[0])-1]);
+					    list1.add(open[Integer.valueOf(betn[1])-1]);
+						 for(int i=2;i<betn.length;i++){
+							  list2.add(betn[i]);
+						    }
+					  
 				    }else{
-				    	list1.add(open[Integer.valueOf(betn[0])]);
-					    list1.add(open[Integer.valueOf(betn[1])]); 
-					    list1.add(open[Integer.valueOf(betn[2])]);  
-					    list2=list2.subList(3, list2.size());	
+				    	list1.add(open[Integer.valueOf(betn[0])-1]);
+					    list1.add(open[Integer.valueOf(betn[1])-1]); 
+					    list1.add(open[Integer.valueOf(betn[2])-1]);  
+					    for(int i=3;i<betn.length;i++){
+							  list2.add(betn[i]);
+						    }
+					   
 				    }
 				    
 				    if(childType.equals("r3z3")){

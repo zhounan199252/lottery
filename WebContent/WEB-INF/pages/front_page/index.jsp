@@ -60,7 +60,7 @@
 			<div class="header_top-sec">
 				<div class="top_right">
 					<ul>
-						<li><a href="javascript:void(0)">你好,欢迎来到天天现金网彩票！</a></li>
+						<li><a href="javascript:void(0)">你好,欢迎来到天天现金网！</a></li>
 					</ul>
 				</div>
 				<div class="top_left" id="nav">
