@@ -72,7 +72,7 @@
       var date = new Date();
       var day = date.getDay();
       var hours = date.getHours();
-      if(day==2||day==4||day==6){
+      if(day==1||day==3||day==6){
         if(hours==20){
          return  false; 
         }
@@ -223,7 +223,7 @@
 		  if(expect2!=""){
     	  var  betPeriod =parseInt(expect2)+1;
     	   $('#div2dlt').text("大乐透第"+betPeriod+"正在销售中"); 
-	  	    $('#div3dlt').text("截止销售时间：每周二、周四。周六的20-21禁止购买");
+	  	    $('#div3dlt').text("截止销售时间：每周一、周三、周六的20-21禁止购买");
 		  }else{
 			  setTimeout("timeCountDlt()",1000); 
 		  }

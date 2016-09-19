@@ -617,9 +617,6 @@ margin-right: 10px;
 	 	    var time=date.getTime()-date1.getTime();
 	 	    setTimeout("clearTimeCount()",time); 	
 	      if(timeLimate()==false){
-	    	    $('#div2cqssc').text("本日已开奖完毕"); 
-		  	    $('#div3cqssc').text("11选5每天投注时间为9-22时"); 
-		  	    $('#div4cqssc').text("");   
 	      }else{
 	  	    var peroid=  parseInt(getNowPeroid())+1;
 	  	    $('#div2cqssc').text("第"+peroid+"正在销售中"); 

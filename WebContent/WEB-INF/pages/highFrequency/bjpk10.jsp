@@ -34,11 +34,9 @@ margin-right: 10px;
  $(function(){ 
      look();
     timeCount();  
-  
-  
-  
-	 });
  
+	 });
+   
  //提示信息
  function waring(message) {
 	var  waring='<div  style="position:absolute;left:30%;top:40%;" class="alert alert-info alert-dismissible" role="alert">'+
@@ -48,59 +46,6 @@ margin-right: 10px;
 	  
  }
  
- 
- //日期 字转符串转
-	Date.prototype.Format = function (fmt) { //author: meizz 
-	    var o = {
-	        "M+": this.getMonth() + 1, //月份 
-	        "d+": this.getDate(), //日 
-	        "h+": this.getHours(), //小时 
-	        "m+": this.getMinutes(), //分 
-	        "s+": this.getSeconds(), //秒 
-	        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-	        "S": this.getMilliseconds() //毫秒 
-	    };
-	    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-	    for (var k in o)
-	    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-	    return fmt;
-	}
- 
-
- 
-  var expect3="";
- //查看当前最新开奖期数
-	function lookExpect() {
-		$.ajax({
-			url : "http://f.apiplus.cn/bjpk10-1.json",
-			type : "post",
-			dataType: 'jsonp',
-		    jsonp: 'callback',
-		    async:false,
-			success : function(result) {
-				var data= result.data;
-				if (data.length > 0) { 
-					expect3=  data[0].expect;	
-			      
-				/*     var date1 = new Date();
-				    var date2 = eval('new Date(' + data[0].opentime.replace(/\d+(?=-[^-]+$)/,
-					         function (a) { return parseInt(a, 10) - 1; }).match(/\d+/g) + ')');
-                      if(date1.getTime()-date2.getTime()<300000){
-                        expect3=  data[0].expect;	
-				      }else if(date1.getTime()-date2.getTime()>9*60*60*1000+180000){
-                        expect3=  data[0].expect;	
-				      }else if(date1.getTime()-date2.getTime()>9*60*60*1000+600000){
-                        expect3=  parseInt(data[0].expect)+1;	
-				      }else{
-				       expect3= parseInt(data[0].expect)+1;
-				      }  */
-		
-				 }
-				}
-			});		
-	}
-	
-	  
 
    function timeLimate(){
       var date = new Date();
@@ -194,14 +139,14 @@ margin-right: 10px;
 	           var betType="";
 	           var  betChildType="";
 	           var betPerson="";
-	           var betQuan="";
-	        	       lookExpect();
+	           var betQuan="";   
 	        	       if(timeLimate()==false){
 		        		   waring("已过投注时间");
 		        	       return;
 		        	      }
+	        	       lookExpect();
 	        	       if(expect3!=""){
-		        	       betPeriod = parseInt(expect3)+3;
+		        	       betPeriod =expect3;
 		        	      }else {
 		        	      setTimeout("buy()",100); 
 		        	       return;
@@ -290,29 +235,86 @@ margin-right: 10px;
 		 timeCountBjpk10();
 		
 	}
-	
+
+	 
+	 //日期 字转符串转
+		Date.prototype.Format = function (fmt) { //author: meizz 
+		    var o = {
+		        "M+": this.getMonth() + 1, //月份 
+		        "d+": this.getDate(), //日 
+		        "h+": this.getHours(), //小时 
+		        "m+": this.getMinutes(), //分 
+		        "s+": this.getSeconds(), //秒 
+		        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+		        "S": this.getMilliseconds() //毫秒 
+		    };
+		    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+		    for (var k in o)
+		    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+		    return fmt;
+		}
+	 
+
+	 
+	  var expect3="";
+	 //查看当前在投注期数
+		function lookExpect() {
+			$.ajax({
+				url : "http://f.apiplus.cn/bjpk10-1.json",
+				type : "post",
+				dataType: 'jsonp',
+			    jsonp: 'callback',
+			    async:false,
+				success : function(result) {
+					var data= result.data;
+					if (data.length > 0) { 
+						alert(1);
+					    var date1 = new Date();
+					    var date2 = eval('new Date(' + data[0].opentime.replace(/\d+(?=-[^-]+$)/,
+						         function (a) { return parseInt(a, 10) - 1; }).match(/\d+/g) + ')');
+						 date2.setSeconds(0,0);	
+						   alert(date2);
+					    var differ=  Math.ceil((date1.getTime()-date2.getTime())/300000);  
+					    alert(differ);
+	                      if(differ<108){
+	                        expect3= parseInt(data[0].expect)+differ;	
+					      }else  if(date1.getMinutes()>=7){
+	                        expect3= parseInt(data[0].expect)+Math.ceil((date1.getMinutes()-1)/5);
+					      }else{
+	                        expect3= parseInt(data[0].expect)+1;	
+					      }
+					 }
+					}
+				});		
+		}
+		
 
 	function getOpenTime(date,minute,interval){
-		
-		var newMinutes= (parseInt(minute/interval)+1)*interval;
-			if(newMinutes==60){
-				date.setMinutes(59,59,999); 
-			}else{
-				 date.setMinutes(newMinutes,0,0); 
-			}
-		
+	     var hour = date.getHours();
+		if(hour==9&&minute<2){
+			 date.setMinutes(7,0,0);	
+		}else if(minute<2){
+			 date.setMinutes(2,0,0);		
+		}else if(hour==23&&minute>=57){
+			date.setMinutes(59,59,59);
+		}else if(minute>=57){
+		    date.setHours(hour+1,2,0,0);	
+		}else{
+		var newMinutes= (parseInt((minute-2)/interval)+1)*interval+2;
+		    date.setMinutes(newMinutes,0,0);	
+		}
 		return date;
 	}
 	
 	
-
+	var inter2 ="";
 	function timeCountBjpk10() {
 	    	  if(expect3!=""){
 	    		    var date = new Date();
 	    		    var date1 = new Date();
 	    	        var minute= date.getMinutes();
 	    	      
-	    		   date=getOpenTime(date,minute,10);
+	    		   date=getOpenTime(date,minute,5);
 	   	 	      var time=date.getTime()-date1.getTime();
 	    		  setTimeout("clearTimeCount()",time); 	
 	    		  
@@ -321,9 +323,10 @@ margin-right: 10px;
 	    		  	    $('#div3bjpk10').text("北京pk10每天投注时间为9-24时"); 
 	    		  	    $('#div4bjpk10').text("");   
 	    	      }else{
-	    	    	  var  betPeriod =parseInt(expect3)+3;
+	    	    	  var  betPeriod =expect3;
 		  	  	      $('#div2bjpk10').text("第"+betPeriod+"正在销售中"); 
-		  	  	      $('#div3bjpk10').text("销售在当前已开奖期数基础上延迟三期"); 
+		  	  	      $('#div3bjpk10').text("截止销售时间："+date.Format("yyyy-MM-dd hh:mm:ss")); 
+			  		inter2=setInterval(function(){ShowCountDown(date);}, 1000);  
 		  	  	    	  	  	     
 	    	        }
 	    		  }else{
@@ -334,12 +337,13 @@ margin-right: 10px;
 	
 	
 	function clearTimeCount(){	
+		clearInterval(inter2);
 		 timeCount();
 		 look();
 		}
 	
 	
-	/* function ShowCountDown(endDate) { 	
+	 function ShowCountDown(endDate) { 	
 	var leftTime=endDate.getTime()- new Date().getTime(); 
 	var leftsecond = parseInt(leftTime/1000); 
 	//var day1=parseInt(leftsecond/(24*60*60*6)); 
@@ -349,7 +353,7 @@ margin-right: 10px;
 	var second=Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60); 
 	  $('#div4bjpk10').text("距开奖时间还有："+day1+"天"+hour+"小时"+minute+"分"+second+"秒");  
 
-	}  */
+	} 
 		
 	function show(type){
 		$("#select10dxd").hide();

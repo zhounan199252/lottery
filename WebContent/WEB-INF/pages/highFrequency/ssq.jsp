@@ -71,7 +71,7 @@
       var date = new Date();
       var day = date.getDay();
       var hours = date.getHours();
-      if(day==2||day==4||day==6){
+      if(day==2||day==4||day==0){
        if(hours==21){
          return  false; 
         }
@@ -221,7 +221,7 @@
 		  if(expect1!=""){
       	  var  betPeriod =parseInt(expect1)+1;
       	   $('#div2ssq').text("双色球第"+betPeriod+"正在销售中"); 
-	  	    $('#div3ssq').text("截止销售时间：每周二、周四。周六的21-22禁止购买");
+	  	    $('#div3ssq').text("截止销售时间：每周二、周四、周日的21-22禁止购买");
 		  }else{
 			  setTimeout("timeCountSsq()",1000); 
 		  }
