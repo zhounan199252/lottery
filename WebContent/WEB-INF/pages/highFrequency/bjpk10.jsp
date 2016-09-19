@@ -268,14 +268,11 @@ margin-right: 10px;
 				success : function(result) {
 					var data= result.data;
 					if (data.length > 0) { 
-						alert(1);
 					    var date1 = new Date();
 					    var date2 = eval('new Date(' + data[0].opentime.replace(/\d+(?=-[^-]+$)/,
 						         function (a) { return parseInt(a, 10) - 1; }).match(/\d+/g) + ')');
 						 date2.setSeconds(0,0);	
-						   alert(date2);
 					    var differ=  Math.ceil((date1.getTime()-date2.getTime())/300000);  
-					    alert(differ);
 	                      if(differ<108){
 	                        expect3= parseInt(data[0].expect)+differ;	
 					      }else  if(date1.getMinutes()>=7){
