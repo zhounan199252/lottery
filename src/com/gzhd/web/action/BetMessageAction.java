@@ -26,6 +26,7 @@ import com.gzhd.util.TimeUtil;
 import com.opensymphony.xwork2.ActionContext;
 
 @Action(value = "betmessage", results = {
+		@Result(name = "toBankRecharge", location = "/WEB-INF/pages/highFrequency/recharge.jsp"),
 		@Result(name = "list", location = "/WEB-INF/pages/highFrequency/backBetMessage.jsp"),
 		@Result(name = "myCount",location = "frontUser!myCount.action", type = "redirectAction"),
 		@Result(name = "toList", location = "betmessage!listBackBetMessage.action", type = "redirectAction") })
@@ -86,6 +87,18 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 
 	}
 	
+	
+		
+	/**
+	 * 账户充值填写页面
+	 */
+	public String toBankRecharge() {
+		return "toBankRecharge";
+	}
+	
+	/**
+	 * 账户充值，给用户增加充值金额，返回用户余额页面
+	 */
 	public String bankRecharge()  {
 		
 		Map params  =  ActionContext.getContext().getParameters();	

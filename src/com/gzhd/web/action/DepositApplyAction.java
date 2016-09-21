@@ -21,6 +21,7 @@ import com.opensymphony.xwork2.ActionContext;
 
 
 @Action(value = "depositApply", results = {
+		@Result(name = "toDepositApply", location = "/WEB-INF/pages/highFrequency/depositApply.jsp"),
 		@Result(name = "list", location = "/WEB-INF/pages/highFrequency/depositHandle.jsp"),
 		@Result(name = "tolist", location = "depositApply!listDepositMessage.action", type = "redirectAction"),
 		@Result(name = "toDefault", location = "/WEB-INF/pages/front_page/default.jsp")})
@@ -40,6 +41,18 @@ public class DepositApplyAction extends BaseAction<DepositApplyModel> {
 	
 	
 	
+	
+	/**
+	 * 提现申请填写
+	 */
+	public String toDepositApply() {
+		return "toDepositApply";
+	}
+	
+	/**
+	 * 提现申请增加
+	 */
+	
 	public String addDepositApply() {
 		model.setStatus("待处理");
 		model.setApplyTime(TimeUtil.getCurDate("yyyy-MM-dd HH:mm:ss"));
@@ -48,7 +61,9 @@ public class DepositApplyAction extends BaseAction<DepositApplyModel> {
 		
 	}
 	
-	
+	/**
+	 *  后台提现申请处理
+	 */
 	public String updateDepositApply() {
 		String[] ids = model.getId().split(",");
 		for (String sigleId : ids) {			
@@ -84,7 +99,7 @@ public class DepositApplyAction extends BaseAction<DepositApplyModel> {
 	}
 	
 	/**
-	 * 跳转后台查看提现申请
+	 * 后台提现申请查看
 	 */
 
 	public String listDepositMessage() {

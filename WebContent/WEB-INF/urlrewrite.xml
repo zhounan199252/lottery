@@ -141,11 +141,7 @@
 	</rule>
 	<!-- 退出登录 begin -->
 
-	<!-- 跳转数字彩票 -->
-	<rule>
-		<from>/numLottery.url</from>
-		<to>/pageJump!toHighFrequency.action</to>
-	</rule>
+     <!-- zn -->
 	<rule>
 		<from>/gdx.url</from>
 		<to>/pageJump!toGd11x5.action</to>
@@ -164,6 +160,11 @@
 	<rule>
 		<from>/cqssc.url</from>
 		<to>/pageJump!toCqssc.action</to>
+	</rule>
+	
+	<rule>
+		<from>/ylsfc.url</from>
+		<to>/pageJump!toYlsfc.action</to>
 	</rule>
 
 	<rule>
@@ -192,25 +193,26 @@
 
 	<rule>
 		<from>/recharge.url</from>
-		<to>/pageJump!toBankRecharge.action</to>
+		<to>/betmessage!toBankRecharge.action</to>
 	</rule>
 	
 	<rule>
 		<from>/depApp.url</from>
-		<to>/pageJump!toDepositApply.action</to>
+		<to>/depositApply!toDepositApply.action</to>
 	</rule>
 	<rule>
 		<from>/recom.url</from>
 		<to>/frontUser!listFrontUserbyRec.action</to>
 	</rule>
-	
-	<!-- 跳转数字彩票 -->
-
+    <!-- zn -->	
 	<!-- 跳转数字彩票 -->
 	<rule>
 		<from>/addBetM.url</from>
 		<to>/betmessage!addBetMessage.action</to>
 	</rule>
+	<!-- 跳转数字彩票 -->
+	
+	
 	<!-- 后台显示数字彩票信息 -->
 	<rule>
 		<from>/listBetM.url</from>
