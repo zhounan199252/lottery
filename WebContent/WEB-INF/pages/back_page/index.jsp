@@ -69,6 +69,10 @@
 						text : '前台用户管理',
 						href : '${pageContext.request.contextPath}/frontUser!listFrontUser.action'
 					} ,{
+						id : 'ylsfc',
+						text : '开奖号码管理',
+						href : '${pageContext.request.contextPath}/openMessage!openMessage.action'
+					 },{
 						id : 'front_user_bet',
 						text : '数字彩',
 						href : '${pageContext.request.contextPath}/betmessage!listBackBetMessage.action'

@@ -1,12 +1,19 @@
 package com.gzhd.service.itf;
 
 import com.gzhd.model.OpenMessageModel;
+import com.gzhd.model.PageModel;
 
 
 
 public interface OpenMessageService {
 	
 	public static final String BEAN_NAME = "com.gzhd.service.itf.OpenMessageService";
+	
+	/**
+	 * 
+	 *分页获取
+	 */
+	public PageModel getForPageModel(int pageNum, int pageSize,OpenMessageModel model);
 
 	/**
 	 * 
@@ -20,4 +27,12 @@ public interface OpenMessageService {
 	 *查询信息
 	 */
 	public OpenMessageModel getOpenMessage(OpenMessageModel model);
+	
+	/**
+	 * @Description:根据id删除信息
+	 * @param id
+
+
+	 */
+	public void deleteById(String id);
 }

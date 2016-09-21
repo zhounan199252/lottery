@@ -8,6 +8,8 @@ public class OpenMessageModel {
 	private String   expect;  //开奖期数
 	private String   opencode;   //开奖号码
 	private String   opentime;   //开奖时间	
+	
+	private int pageNum = 1;
 	public String getId() {
 		return id;
 	}
@@ -38,15 +40,13 @@ public class OpenMessageModel {
 	public void setOpentime(String opentime) {
 		this.opentime = opentime;
 	}
+	public int getPageNum() {
+		return pageNum;
+	}
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 }
