@@ -11,7 +11,7 @@
 
 	
 		<div class="row" style="width: 68%; padding: 12px 0 0 20%">
-			<s:form action="frontUser!listFrontUser.action" method="post" id="form_search" cssClass="form-horizontal">
+			<s:form action="recom.url" method="post" id="form_search" cssClass="form-horizontal">
 			</s:form>
 		</div>
 
