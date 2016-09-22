@@ -54,11 +54,6 @@
 	});
 
 
-	function addSave() {
-		
-		$("#form_add").submit();
-	}
-
 </script>
 </head>
 <body>
@@ -74,7 +69,7 @@
 				</tr>
 					<tr>
 					<th>开奖日期</th>
-					<td><s:textfield name="opentime" id="opentime" cssClass="control-text Wdate" readonly="true"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"></s:textfield></td>
+					<td><s:textfield name="opentime" id="opentime" cssClass="control-text Wdate" readonly="true"  onClick="WdatePicker({dateFmt:'yyyyMMdd'})"></s:textfield></td>
 					<td></td>
 				</tr>
 				<tr>
@@ -84,7 +79,7 @@
 				</tr>
 				<tr>
 					<th>
-						<button type="submit" class="button button-primary" onclick="addSave();">保存</button>
+						<button type="submit" class="button button-primary" >保存</button>
 						<button type="reset" class="button" onclick="goBack();">取消</button>
 					</th>
 					<td></td>

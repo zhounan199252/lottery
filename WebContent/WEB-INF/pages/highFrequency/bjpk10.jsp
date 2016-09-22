@@ -448,6 +448,7 @@ margin-right: 10px;
 			<li><a href="ssq.url">双色球</a></li>
 			<li><a href="dlt.url">大乐透</a></li>
 			<li><a href="cqssc.url">重庆时时彩</a></li>
+			<li><a href="ylsfc.url">永乐十分彩</a></li>
 			<li class="active"><a href="bjpk.url">北京pk10</a></li>
 		</ul>
 

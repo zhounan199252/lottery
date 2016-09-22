@@ -551,12 +551,10 @@ margin-right: 10px;
  //查看开奖信息
 	function look() {
 		$.ajax({
-			url : "http://f.apiplus.cn/ylsfc-06.json",
+			url : "${pageContext.request.contextPath}/openMessage!lookOpenMessage.action",
 			type : "post",
-			dataType: 'jsonp',
-		    jsonp: 'callback',
 			success : function(result) {
-				var data= result.data;
+				var data=$.parseJSON(result);
 				if (data.length > 0) {
 					$("#divylsfc").find("ul").remove();
 					var ul= "<ul>";

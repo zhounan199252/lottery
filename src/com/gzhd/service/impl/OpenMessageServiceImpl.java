@@ -10,10 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import com.gzhd.dao.itf.BaseDao;
-import com.gzhd.domain.BetMessage;
 import com.gzhd.domain.OpenMessage;
-import com.gzhd.model.BetMessageModel;
-import com.gzhd.model.FrontUserModel;
 import com.gzhd.model.OpenMessageModel;
 import com.gzhd.model.PageModel;
 import com.gzhd.service.itf.OpenMessageService;
@@ -50,7 +47,7 @@ public class OpenMessageServiceImpl implements OpenMessageService {
 			queryHql.append(" and a.type like :type");
 			params.put("type", "%%" + model.getType() + "%%" );
 		}
-        
+	
 		if (StringUtils.isNotBlank(model.getExpect())) {
 			queryHql.append(" and a.expect like :expect");
 			params.put("expect", "%%" + model.getExpect() + "%%" );
@@ -78,6 +75,11 @@ public class OpenMessageServiceImpl implements OpenMessageService {
 		if (StringUtils.isNotBlank(model.getType())) {
 			queryHql.append(" and a.type like :type");
 			params.put("type", "%%" + model.getType() + "%%" );
+		}
+		
+		if (StringUtils.isNotBlank(model.getOpentime())) {
+			queryHql.append(" and a.opentime <= :opentime");
+			params.put("opentime",model.getOpentime());
 		}
         
 		if (StringUtils.isNotBlank(model.getExpect())) {

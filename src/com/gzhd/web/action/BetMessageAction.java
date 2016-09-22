@@ -54,8 +54,11 @@ public class BetMessageAction extends BaseAction<BetMessageModel> {
 		if (frontUserModel.getId()!=null) {
 			double yue = frontUserModel.getBalance();
 			  double amount=0;
-			  if(model.getBetChildType().equals("dd")||model.getBetChildType().equals("pk10dd")
-			   ||model.getBetChildType().equals("wwdxd")||model.getBetChildType().equals("qwdxd")
+			  if(model.getBetChildType().equals("ylsfc-dd")||model.getBetChildType().equals("dd")||model.getBetChildType().equals("pk10dd")||
+				 model.getBetChildType().equals("ylsfc-wwdxd")||model.getBetChildType().equals("ylsfc-qwdxd")||
+				 model.getBetChildType().equals("ylsfc-bwdxd")||model.getBetChildType().equals("ylsfc-swdxd")||
+				 model.getBetChildType().equals("ylsfc-gwdxd")||
+				 model.getBetChildType().equals("wwdxd")||model.getBetChildType().equals("qwdxd")
 			   ||model.getBetChildType().equals("bwdxd")||model.getBetChildType().equals("swdxd")
 			   ||model.getBetChildType().equals("gwdxd")||model.getBetChildType().equals("pk1dxd")
 				||model.getBetChildType().equals("pk2dxd")||model.getBetChildType().equals("pk3dxd")||model.getBetChildType().equals("pk4dxd")

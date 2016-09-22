@@ -10,6 +10,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -33,10 +34,12 @@ import com.gzhd.domain.OpenMessage;
 import com.gzhd.model.BetMessageModel;
 import com.gzhd.model.FrontUserModel;
 import com.gzhd.model.OpenMessageModel;
+import com.gzhd.model.PageModel;
 import com.gzhd.service.itf.BetMessageService;
 import com.gzhd.service.itf.FrontUserService;
 import com.gzhd.service.itf.OpenMessageService;
 import com.gzhd.util.StringUtil;
+import com.gzhd.util.TimeUtil;
 
 
 public class HighFrequencyDataListener implements ServletContextListener {
@@ -115,7 +118,7 @@ public class HighFrequencyDataListener implements ServletContextListener {
 				             } 
 				      }
 			}
-			Thread.sleep(5000); // 先睡眠5秒，否则接口网站会认为恶意操作
+			Thread.sleep(2000); // 先睡眠2秒，否则接口网站会认为恶意操作
 			dataUrl = "http://f.apiplus.cn/cqssc-04.json";
 			url = new URL(dataUrl);
 			con = (HttpURLConnection) url.openConnection();
@@ -144,7 +147,7 @@ public class HighFrequencyDataListener implements ServletContextListener {
 			             } 
 			      }
 			}
-			Thread.sleep(5000); // 先睡眠5秒，否则接口网站会认为恶意操作
+			Thread.sleep(2000); // 先睡眠5秒，否则接口网站会认为恶意操作
 			
 			dataUrl = "http://f.apiplus.cn/bjpk10-04.json";
 			url = new URL(dataUrl);
@@ -174,6 +177,18 @@ public class HighFrequencyDataListener implements ServletContextListener {
 				             } 
 				      }
 			}
+			
+			OpenMessageModel  model = new OpenMessageModel(); 
+			model.setType("永乐十分彩");
+			model.setOpentime(TimeUtil.dateFormat(new Date(), "yyyy-MM-dd HH:mm:ss"));
+			PageModel pageModel = openMessageService.getForPageModel(
+					model.getPageNum(), 4, model);
+			 for (int i = 0; i < pageModel.getRecordList().size(); i++) {  
+				        model=(OpenMessageModel) pageModel.getRecordList().get(i); 
+	            		openAward(betMessageService,frontUserService,model);
+	             			      
+	             } 
+	  
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -261,6 +276,7 @@ public class HighFrequencyDataListener implements ServletContextListener {
 				}else if(childType.equals("ylsfc-dd")||childType.equals("dd")||childType.equals("pk10dd")){
 					int num =0;
 					 for(int i=0;i<betn.length/2;i++){
+						 System.out.print(Integer.valueOf(betn[2*i])-1);
 					    	if(open[Integer.valueOf(betn[2*i])-1].equals(betn[2*i+1])){
 					    		  flag = true;	
 					    		  num++;
