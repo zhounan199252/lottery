@@ -34,7 +34,9 @@
 						</label> 
 						<label class="control-label">
 							<button class="button" onclick="doClear();">清空</button>
-						</label>
+						</label><label class="control-label">
+						<button class="button" onclick="doRemove('${pageContext.request.contextPath}/depositApply!deleteById.action');">删除</button>
+					   </label>
 					   <label class="control-label">
 						<button class="button" onclick="doUpdate('${pageContext.request.contextPath}/depositApply!updateDepositApply.action');">处理</button>
 					  </label> 

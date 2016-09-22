@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -113,6 +111,16 @@ public class DepositApplyServiceImpl implements DepositApplyService {
 		 }
 			
 		return depositApplyModel;
+	}
+
+	@Override
+	public void deleteById(String id) {
+		String[] ids = id.split(",");
+		for (String sigleId : ids) {
+			DepositApply depositApply = baseDao.get(DepositApply.class, sigleId);
+			baseDao.delete(depositApply);
+		}
+		
 	}
 
 

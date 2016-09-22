@@ -23,7 +23,7 @@ import com.opensymphony.xwork2.ActionContext;
 @Action(value = "depositApply", results = {
 		@Result(name = "toDepositApply", location = "/WEB-INF/pages/highFrequency/depositApply.jsp"),
 		@Result(name = "list", location = "/WEB-INF/pages/highFrequency/depositHandle.jsp"),
-		@Result(name = "tolist", location = "depositApply!listDepositMessage.action", type = "redirectAction"),
+		@Result(name = "toList", location = "depositApply!listDepositMessage.action", type = "redirectAction"),
 		@Result(name = "toDefault", location = "/WEB-INF/pages/front_page/default.jsp")})
 @Scope("prototype")
 public class DepositApplyAction extends BaseAction<DepositApplyModel> {
@@ -94,7 +94,7 @@ public class DepositApplyAction extends BaseAction<DepositApplyModel> {
 		}	
 		
 		
-		return "tolist";
+		return "toList";
 		
 	}
 	
@@ -111,6 +111,15 @@ public class DepositApplyAction extends BaseAction<DepositApplyModel> {
 
 		return "list";
 
+	}
+	/**
+	 * 删除
+	 */
+	public String deleteById() {
+
+		depositApplyService.deleteById(model.getId());
+
+		return "toList";
 	}
 
 

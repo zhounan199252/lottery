@@ -1,6 +1,5 @@
 package com.gzhd.service.itf;
 
-import com.gzhd.model.BetMessageModel;
 import com.gzhd.model.DepositApplyModel;
 import com.gzhd.model.PageModel;
 
@@ -36,6 +35,11 @@ public interface DepositApplyService {
 	 */
 	public PageModel getForPageModel(int pageNum, int pageSize,DepositApplyModel model);
 	
-	
+	/**
+	 * 根据id删除信息
+	 *
+
+	 */
+	public void deleteById(String id);
 
 }

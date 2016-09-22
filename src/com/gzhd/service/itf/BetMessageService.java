@@ -27,22 +27,19 @@ public interface BetMessageService {
 	 *获取
 	 */
 	public List<BetMessageModel> getAll(BetMessageModel model);
+	
 	/**
-	 * @Description:根据id删除信息
-	 * @param id
-	 * @return:void
-	 * @exception:
-	 * @time:2015年7月28日 上午9:46:44
+	 * 根据id删除信息
+	 * 
+
 	 */
 	public void deleteById(String id);
 	
 	
 	/**
-	 * @Description:更新投注信息
-	 * @param model
-	 * @return:void
-	 * @exception:
-	 * @time:2015年7月28日 上午9:35:33
+	 * 更新投注信息
+	 * 
+	 
 	 */
 	public void updateBetMessage(BetMessageModel model);
 

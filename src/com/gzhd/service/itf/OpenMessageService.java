@@ -29,9 +29,8 @@ public interface OpenMessageService {
 	public OpenMessageModel getOpenMessage(OpenMessageModel model);
 	
 	/**
-	 * @Description:根据id删除信息
-	 * @param id
-
+	 * 根据id删除信息
+	 *
 
 	 */
 	public void deleteById(String id);
