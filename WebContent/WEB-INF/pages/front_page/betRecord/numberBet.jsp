@@ -29,7 +29,7 @@
 
 					<s:iterator value="#pageModel.recordList">
 						<tr>
-							<td>${betType}</td>
+							<td>${betType} ${betChildType}</td>
 							<td>${betPeriod}</td>
 							<td>${betQuan}</td>
 							<td>${betNum}</td>

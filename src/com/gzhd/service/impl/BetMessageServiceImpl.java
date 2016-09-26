@@ -11,6 +11,8 @@ import javax.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import com.gzhd.common.ConstantValues;
 import com.gzhd.dao.itf.BaseDao;
 import com.gzhd.domain.BetMessage;
 import com.gzhd.model.BetMessageModel;
@@ -18,6 +20,8 @@ import com.gzhd.model.FrontUserModel;
 import com.gzhd.model.PageModel;
 import com.gzhd.service.itf.BetMessageService;
 import com.gzhd.service.itf.FrontUserService;
+import com.sun.corba.se.impl.orbutil.closure.Constant;
+import com.sun.org.apache.bcel.internal.classfile.ConstantValue;
 
 @Service(BetMessageService.BEAN_NAME)
 public class BetMessageServiceImpl implements BetMessageService {
@@ -88,9 +92,13 @@ public class BetMessageServiceImpl implements BetMessageService {
 		List<BetMessageModel> modelList = new ArrayList<BetMessageModel>();
 
 		for (BetMessage betMessage : list) {
+		
 			BetMessageModel betMessageModel = new BetMessageModel();
 			BeanUtils.copyProperties(betMessage, betMessageModel);
-
+			 String  betChildType=betMessageModel.getBetChildType();	 
+			 if(StringUtils.isNotBlank(betChildType)){
+				 betMessageModel.setBetChildType(ConstantValues.getAwardType().get(betChildType)); 
+			 }
 			FrontUserModel frontUserModel = frontUserService
 					.getUserById(betMessageModel.getBetPerson());
 			if (frontUserModel.getUsername() != null) {

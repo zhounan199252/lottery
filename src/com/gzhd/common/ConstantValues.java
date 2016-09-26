@@ -245,4 +245,137 @@ public class ConstantValues {
 		
 	}
 	
+	
+	/**
+	 * 中奖金额
+	 */
+	
+	public static  Map<String, String> getAwardType(){
+		
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("r1", "任选一");
+		map.put("r2", "任选二");
+		map.put("r3", "任选三");
+		map.put("r4", "任选四");
+		map.put("r5", "任选五");
+		map.put("r6", "任选六");
+		map.put("r7", "任选七");
+		map.put("r8", "任选八");
+		map.put("q2", "前二直选");
+		map.put("q3", "前三直选");
+		map.put("q2z", "前二组选");
+		map.put("q3z", "前三组选");
+		
+		
+		map.put("dd", "定位胆");	
+		map.put("x2q2", "二星直选前二");
+		map.put("x2h2", "二星直选后二");
+		map.put("x2r2", "二星直选任选二");
+		map.put("x3q3", "三星直选前三");
+		map.put("x3z3", "三星直选中三");
+		map.put("x3h3", "三星直选后三");
+		map.put("x3r3", "三星直选任选三");	
+		map.put("x4q4", "四星直选前四");
+		map.put("x4h4", "四星直选后四");
+		map.put("x4r4", "四星直选任选四");
+		map.put("x5", "五星直选");	
+		map.put("q2z2", "二星组选前二");
+		map.put("h2z2", "二星组选后二");
+		map.put("r2z2", "二星组选任选二");
+		map.put("q3z3", "三星组选前三组三");
+		map.put("z3z3", "三星组选中三组三");
+		map.put("h3z3", "三星组选后三组三");
+		map.put("r3z3", "三星组选任选三组三");		
+		map.put("q3z6", "三星组选前三组六");
+		map.put("z3z6", "三星组选中三组六");
+		map.put("h3z6", "三星组选后三组六");
+		map.put("r3z6", "三星组选任选三组六");		
+		map.put("q3bdd", "前三不定胆");
+		map.put("z3bdd", "中三不定胆");	
+		map.put("h3bdd", "后三不定胆");	
+		map.put("r3bdd", "任三不定胆");	
+		map.put("q3em", "前三二码");
+		map.put("h3em", "后三二码");		
+		map.put("q2dxd", "前二大小单");	
+		map.put("h2dxd", "后二大小单");	
+		map.put("r2dxd", "任二大小单");
+		map.put("wwdxd", "万位大小单");	
+		map.put("qwdxd", "千位大小单");	
+		map.put("bwdxd", "百位大小单");	
+		map.put("swdxd", "十位大小单");	
+		map.put("gwdxd", "个位大小单");	
+		
+
+		map.put("ylsfc-dd", "定位胆");	
+		map.put("ylsfc-x2q2", "二星直选前二");
+		map.put("ylsfc-x2h2", "二星直选后二");
+		map.put("ylsfc-x2r2", "二星直选任选二");
+		map.put("ylsfc-x3q3", "三星直选前三");
+		map.put("ylsfc-x3z3", "三星直选中三");
+		map.put("ylsfc-x3h3", "三星直选后三");
+		map.put("ylsfc-x3r3", "三星直选任选三");	
+		map.put("ylsfc-x4q4", "四星直选前四");
+		map.put("ylsfc-x4h4", "四星直选后四");
+		map.put("ylsfc-x4r4", "四星直选任选四");
+		map.put("ylsfc-x5", "五星直选");	
+		map.put("ylsfc-q2z2", "二星组选前二");
+		map.put("ylsfc-h2z2", "二星组选后二");
+		map.put("ylsfc-r2z2", "二星组选任选二");
+		map.put("ylsfc-q3z3", "三星组选前三组三");
+		map.put("ylsfc-z3z3", "三星组选中三组三");
+		map.put("ylsfc-h3z3", "三星组选后三组三");
+		map.put("ylsfc-r3z3", "三星组选任选三组三");		
+		map.put("ylsfc-q3z6", "三星组选前三组六");
+		map.put("ylsfc-z3z6", "三星组选中三组六");
+		map.put("ylsfc-h3z6", "三星组选后三组六");
+		map.put("ylsfc-r3z6", "三星组选任选三组六");		
+		map.put("ylsfc-q3bdd", "前三不定胆");
+		map.put("ylsfc-z3bdd", "中三不定胆");	
+		map.put("ylsfc-h3bdd", "后三不定胆");	
+		map.put("ylsfc-r3bdd", "任三不定胆");	
+		map.put("ylsfc-q3em", "前三二码");
+		map.put("ylsfc-h3em", "后三二码");		
+		map.put("ylsfc-q2dxd", "前二大小单");	
+		map.put("ylsfc-h2dxd", "后二大小单");	
+		map.put("ylsfc-r2dxd", "任二大小单");
+		map.put("ylsfc-wwdxd", "万位大小单");	
+		map.put("ylsfc-qwdxd", "千位大小单");	
+		map.put("ylsfc-bwdxd", "百位大小单");	
+		map.put("ylsfc-swdxd", "十位大小单");	
+		map.put("ylsfc-gwdxd", "个位大小单");	
+		
+		map.put("pk10q2", "冠亚军");
+		map.put("pk10q3", "前三名");
+		map.put("pk10dd", "定位胆选");
+		map.put("pk1dxd", "两面冠军");
+		map.put("pk2dxd", "两面亚军");
+		map.put("pk3dxd", "两面季军");
+		map.put("pk4dxd", "两面第四名");
+		map.put("pk5dxd", "两面第五名");
+		map.put("pk6dxd", "两面第六名");
+		map.put("pk7dxd", "两面第七名");
+		map.put("pk8dxd", "两面第八名");
+		map.put("pk9dxd", "两面第九名");
+		map.put("pk10dxd", "两面第十名");
+		
+		map.put("s0", "0");
+		map.put("s1", "0");
+		map.put("s2", "0");
+		map.put("s3", "3000");
+		map.put("s4", "200");
+		map.put("s5", "10");
+		map.put("s6", "5");
+		
+		
+		map.put("d0", "0");
+		map.put("d1", "0");
+		map.put("d2", "0");
+		map.put("d3", "0");
+		map.put("d4", "200");
+		map.put("d5", "10");
+		map.put("d6", "5");				
+		return map;
+				
+	}
+	
 }

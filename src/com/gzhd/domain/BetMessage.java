@@ -30,6 +30,12 @@ public class BetMessage {
 	public void setBetType(String betType) {
 		this.betType = betType;
 	}
+	public String getBetChildType() {
+		return betChildType;
+	}
+	public void setBetChildType(String betChildType) {
+		this.betChildType = betChildType;
+	}
 	public String getBetPerson() {
 		return betPerson;
 	}
@@ -60,13 +66,6 @@ public class BetMessage {
 	public void setBetDate(String betDate) {
 		this.betDate = betDate;
 	}
-	public String getBetChildType() {
-		return betChildType;
-	}
-	public void setBetChildType(String betChildType) {
-		this.betChildType = betChildType;
-	}
-	
-	
+
 		
 }
