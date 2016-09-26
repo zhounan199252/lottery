@@ -95,7 +95,7 @@
 							<tr>
 								<td><input type="checkbox" name="ids" value="${id}"></td>
 								<td>${betPersonName}</td>
-								<td>${betType}</td>
+								<td>${betType} ${betChildType}</td>
 								<td>${betPeriod}</td>
 								<td>${betQuan}</td>
 								<td>${betNum}</td>
