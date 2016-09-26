@@ -120,8 +120,8 @@ function recharge() {
 	  <h3> 支付宝充值</h3>
 		<div align="left">
        
-		                 收款人账号：<span class="label label-primary">wangjia08@foxmail.com</span><br>
-		                 收款人姓名：<span class="label label-primary">符成海</span>  <br>
+		                 收款人账号：<span>wangjia08@foxmail.com</span><br>
+		                 收款人姓名：<span>符成海</span>  <br>
 		                支付宝充值需知：进行支付宝转账的时候付款说明里面要填写您的平台用户名或姓名方可自动到账，如有问题请及时联系在线客服咨询
 		                
 		    <h4> 支付宝链接   <a  target="_blank" class="color1" href="https://auth.alipay.com/login/index.htm">https://auth.alipay.com/login/index.htm</a></h4>   

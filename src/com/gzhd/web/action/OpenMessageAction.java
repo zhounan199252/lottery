@@ -1,19 +1,10 @@
 package com.gzhd.web.action;
 
-import java.io.IOException;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
 import javax.annotation.Resource;
-
-import org.apache.jasper.compiler.JspConfig;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.context.annotation.Scope;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.serializer.PropertyFilter;
 import com.gzhd.common.ConstantValues;
 import com.gzhd.model.OpenMessageModel;
 import com.gzhd.model.PageModel;
@@ -81,11 +72,11 @@ public class OpenMessageAction  extends BaseAction<OpenMessageModel>{
 	 */
 	public String saveYlsfcCode() {
 	    String  opencode=model.getOpencode();
-		  int total=opencode.length()/5;
+		  int total=(opencode.length()+1)/6;
 		  String  time=model.getOpentime();
 		  String time2=time.substring(0, 4)+"-"+time.substring(4, 6)+"-"+time.substring(6, 8)+" ";
 		  for(int i=1;i<=total;i++){
-			 String a=opencode.substring(5*(i-1), 5*i);
+			 String a=opencode.substring(6*(i-1), 6*i-1);
 			  model.setOpencode(a.substring(0, 1)+","+a.substring(1, 2)+","+a.substring(2, 3)+","+a.substring(3, 4)+","+a.substring(4, 5));
 			  String expect=time;
 			     if(i<10){
@@ -121,7 +112,10 @@ public class OpenMessageAction  extends BaseAction<OpenMessageModel>{
 			  }
 			       
 			  model.setOpentime(opentime);
-			  openMessageService.addOpenMessage(model);
+			  if(openMessageService.getOpenMessage(model)==null){
+				  openMessageService.addOpenMessage(model); 
+			  }
+		
 		  }
 		return "toList";
 	}

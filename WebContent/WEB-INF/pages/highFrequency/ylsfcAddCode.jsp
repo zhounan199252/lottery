@@ -34,8 +34,7 @@
 				},
 			
 				opencode: {
-					required : true,
-					digits : true,
+					required : true
 				}
 			
 			},
@@ -46,7 +45,7 @@
 				},
 				opencode : {
 					required : "请输入开奖号码",
-					minlength : "开奖号码为480位"
+					minlength : "开奖号码575位"
 				}
 			}
 		});
@@ -74,7 +73,7 @@
 				</tr>
 				<tr>
 					<th>开奖号码</th>
-					<td><s:textarea style="width:300px;height:400px;"  name="opencode" id="opencode"  cssClass="control-text" minLength="480"  maxLength="480"></s:textarea></td>
+					<td><s:textarea style="width:300px;height:400px;"  name="opencode" id="opencode"  cssClass="control-text" minLength="575"  maxLength="575"></s:textarea></td>
 					<td></td>
 				</tr>
 				<tr>
