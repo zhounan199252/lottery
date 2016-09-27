@@ -23,7 +23,7 @@
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/megamenu.js"></script>
 <script src="${pageContext.request.contextPath}/globle/js/front_bootstrap/simpleCart.min.js"></script>
 </head>
-<body  style="height:900px; overflow: auto;background: #FFC">
+<body  style="height:1000px; overflow: auto;background: #FFC">
 	<!-- banner -->
 	<div class="banner">
 		<div class="container">
