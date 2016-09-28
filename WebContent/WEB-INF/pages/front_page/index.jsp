@@ -139,7 +139,7 @@
 
 	<div class="footer-copy" style="background: #FFC;">
 		<p style="color: black; margin-top: 20px">
-			<a href="http://www.ttquwan.com" target="_blank">天天现金网</a> 版权所有 <a href="http://www.ttquwan.com/tbul.url" target="_blank" title="后台管理" class="color1">后台管理</a><br> 天天现金网2000年度我们以提供最佳体育博彩，在线娱乐服务而自豪，然而博彩只是一种娱乐消遣的方式，我们希望阁下您不会过度沉迷于游戏以至于对其经济，事业，家庭和社会产生负面影响。我们的游戏规则不允许任何未满18岁人士向我们投注或领奖。如果您未满18岁，请马上退出网站。
+		天天现金网2000年度我们以提供最佳体育博彩，在线娱乐服务而自豪，然而博彩只是一种娱乐消遣的方式，我们希望阁下您不会过度沉迷于游戏以至于对其经济，事业，家庭和社会产生负面影响。我们的游戏规则不允许任何未满18岁人士向我们投注或领奖。如果您未满18岁，请马上退出网站。
 		</p>
 	</div>
 </body>
