@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
+<link href="${pageContext.request.contextPath}/bootstrap-3.3.5/css/bootstrap.css" rel="stylesheet" />
+<script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
 $(function() {
@@ -67,7 +69,7 @@ $(function() {
 			</tr>
 			<tr>
 					<th>
-						<button type="submit" class="button button-primary" >保存</button>
+						<button type="submit" class="button" >保存</button>
 						<button type="reset" class="button" onclick="goBack();">取消</button>
 					</th>
 					<td></td>

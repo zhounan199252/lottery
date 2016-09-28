@@ -79,7 +79,6 @@ function recharge() {
 			<tr>
 				<th>姓名</th>
 				<td >${sessionScope.frontCurrentLoginUser.nickname}</td>
-
 				<td></td>
 			</tr>
 			<tr>
@@ -98,7 +97,7 @@ function recharge() {
 			</tr>
 			<tr>
 				<th>
-					<button type="submit" class="button button-primary" onclick="recharge();">保存</button>
+					<button type="submit" class="button" onclick="recharge();">保存</button>
 					<button type="reset" class="button" onclick="goBack();">取消</button>
 				</th>
 				<td></td>

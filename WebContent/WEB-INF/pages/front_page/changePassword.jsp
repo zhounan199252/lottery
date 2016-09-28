@@ -73,7 +73,7 @@
 </script>
 </head>
 <body style="background: #FFC">
-	<div style="width: 68%; padding: 12px 0 0 20%" align="center">
+	<div style="width: 48%; padding: 12px 0 0 20%" align="center">
 		<s:form action="/cp.url" id="form_changePassword">
 			<table class="table">
 				<tr>
@@ -91,11 +91,16 @@
 					<td><s:password name="rePassword" id="txt_rePassword" cssClass="control-text" maxLength="20"></s:password></td>
 					<td></td>
 				</tr>
+					<tr>
+					<th><button type="submit" class="button" onclick="addSave();">保存</button>
+		                 <button type="reset" class="button" onclick="goBack();">取消</button></th>
+					<td></td>
+					<td></td>
+				</tr>
 
 			</table>
 		</s:form>
-		<button type="submit" class="button button-primary" onclick="addSave();">保存</button>
-		<button type="reset" class="button" onclick="goBack();">取消</button>
+		
 	</div>
 </body>
 </html>
