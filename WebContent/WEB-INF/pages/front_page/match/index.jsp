@@ -655,13 +655,13 @@
 
 </head>
 <body style="background: #FFC">
-	<div style="margin-left: auto; margin-right: auto; border: 1px solid red; width: 68%; height: 100%; overflow: auto;" align="center" id="main">
+	<div style="margin-left: auto; margin-right: auto; border: 1px; width: 58%; height: 100%; overflow: auto;" align="center" id="main">
 		<ul class="nav nav-pills" style="width: 100%">
 			<li id="" style="" class="active for_active2" onclick="changeProject('football', 'basketball');"><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>足球竞彩</a></li>
 			<li id="" class="for_active2" style="" onclick="changeProject('basketball', 'football');"><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-large"></span>篮球竞彩</a></li>
 		</ul>
 		<div style="width: 100%;" id="football">
-			<table border="1px" style="width: 100%; text-align: center;" class="table">
+			<table border="1px  solid green" style="width: 100%; text-align: center;" class="table">
 				<tr style="width: 100%">
 					<td colspan="2" style="width: 12%">赛事</td>
 					<td style="width: 8%">停售时间</td>
@@ -701,8 +701,8 @@
 			</div>
 		</div>
 
-		<div style="width: 100%; border: 1px solid green; display: none" id="basketball">
-			<table border="1px" style="width: 100%; text-align: center;" class="table">
+		<div style="width: 100%; border: 1px; display: none" id="basketball">
+			<table border="1px  solid green" style="width: 100%; text-align: center;" class="table">
 				<tr style="width: 100%">
 					<td colspan="2" style="width: 12%">赛事</td>
 					<td style="width: 8%">停售时间</td>

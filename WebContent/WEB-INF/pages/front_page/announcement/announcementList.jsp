@@ -6,16 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-<link href="${pageContext.request.contextPath}/bootstrap-3.3.5/css/bootstrap.css" rel="stylesheet" />
-<script src="${pageContext.request.contextPath}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
 </script>
 </head>
 <body style="background: #FFC">
-	<div align="center">
+	<div style="width: 68%; padding: 12px 0 0 20%">
 		<div class="row">
-			<div class="control-group" style="width: 68%">
+			<div class="control-group  span24" >
 				<table class="table">
 					<tr>
 						<th>标题</th>
@@ -34,11 +32,11 @@
 
 			</div>
 		</div>
-		<div class="row">
-			<div class="control-group">
-				<jsp:include page="/globle/jsp/pageView.jsp"></jsp:include>
+		<div class="row" style="padding-left: 10px">
+				<div class="control-group span24 ">
+					<jsp:include page="/globle/jsp/pageView.jsp"></jsp:include>
+				</div>
 			</div>
-		</div>
 	</div>
 </body>
 </html>
